@@ -48,6 +48,31 @@
             align-items: center;
             gap: 1rem;
         }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            background: #f8f9fa;
+            color: #1a1a1a;
+        }
+        .nav-links a.active {
+            background: #FFE14D;
+            color: #1a1a1a;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
         .team-selector label {
             font-weight: 500;
             color: #666;
@@ -332,14 +357,20 @@
             <div class="logo-icon">Z</div>
             Team Directory
         </div>
-        <div class="team-selector">
-            <label for="team-filter">Select Team:</label>
-            <select id="team-filter" class="team-dropdown" onchange="filterTeams()">
-                <option value="all">All Teams</option>
-                <option value="peacock">Peacock</option>
-                <option value="pterodactyl">Pterodactyl</option>
-                <option value="billing">Billing</option>
-            </select>
+        <div class="header-right">
+            <nav class="nav-links">
+                <a href="index.html" class="active">Teams</a>
+                <a href="scorecard.html">Scorecard</a>
+            </nav>
+            <div class="team-selector">
+                <label for="team-filter">Select Team:</label>
+                <select id="team-filter" class="team-dropdown" onchange="filterTeams()">
+                    <option value="all">All Teams</option>
+                    <option value="peacock">Peacock</option>
+                    <option value="pterodactyl">Pterodactyl</option>
+                    <option value="billing">Billing</option>
+                </select>
+            </div>
         </div>
     </header>
 

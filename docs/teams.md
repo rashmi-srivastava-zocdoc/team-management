@@ -18,6 +18,12 @@
 | SWE | Eftal Sogukoglu | eftal.sogukoglu@zocdoc.com | 712020:721ca2ff-bbf6-4349-872f-b25f8c0dc0ca | | 712020:721ca2ff-bbf6-4349-872f-b25f8c0dc0ca |
 | QA | Simran Arora | simran.arora@zocdoc.com | 636adf2e6bbefce0aca389c1 | | |
 
+### Repositories
+
+| Repo | Description |
+|------|-------------|
+| provider-setup-service | |
+
 ## Pterodactyl (Provider User Permissions)
 
 **Jira Project:** PTERODACTL
@@ -33,6 +39,15 @@
 | SWE | Thiago Salvadori | thiago.salvadori@zocdoc.com | 636adee92f8b3c8f116b18eb | | 636adee92f8b3c8f116b18eb |
 | SWE | Alex Pryadun | alex.pryadun@zocdoc.com | 636adf6a4bca78179baa8e5e | alex-pryadun-zocdoc | 636adf6a4bca78179baa8e5e |
 | QA | Allen Koickal | allen.koickal@zocdoc.com | 712020:017019ed-9e14-4e2b-ac2c-e8cf49340a3f | allen-koickal1-zocdoc | 712020017019ed9e144e2bac2ce8cf49340a3f |
+
+### Repositories
+
+| Repo | Description |
+|------|-------------|
+| practice-user-permissions | |
+| practice-authorization-proxy | |
+| provider-grouping | |
+| provider-join-service | |
 
 ## Billing (Provider Billing)
 
