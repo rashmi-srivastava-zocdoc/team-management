@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T14:19:01.163075",
+  "lastUpdated": "2026-04-28T14:23:17.729402",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -135,16 +135,7 @@
             "blueGreen": {
               "tier": "unknown",
               "status": "unknown",
-              "notes": "No CDK directory",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1884",
-                  "summary": "Enable ECS blue/green deployment for PUP",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1884"
-                }
-              ],
-              "completion": 0
+              "notes": "No CDK directory"
             },
             "sloGate": {
               "tier": "unknown",
@@ -220,16 +211,7 @@
             "smokeTests": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "Roadie surfaces; no active gap",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1885",
-                  "summary": "Implement smoke tests for PUP blue/green deployment",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1885"
-                }
-              ],
-              "completion": 0
+              "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
               "tier": "unknown",
@@ -272,16 +254,7 @@
             "blueGreen": {
               "tier": "unknown",
               "status": "unknown",
-              "notes": "No CDK directory",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1886",
-                  "summary": "Enable ECS blue/green deployment for PAP",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1886"
-                }
-              ],
-              "completion": 0
+              "notes": "No CDK directory"
             },
             "sloGate": {
               "tier": "unknown",
@@ -356,16 +329,7 @@
             "smokeTests": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "Roadie surfaces; no active gap",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1887",
-                  "summary": "Implement smoke tests for PAP blue/green deployment",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1887"
-                }
-              ],
-              "completion": 0
+              "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
               "tier": "unknown",
@@ -408,16 +372,7 @@
             "blueGreen": {
               "tier": "unknown",
               "status": "unknown",
-              "notes": "No CDK directory",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1882",
-                  "summary": "Enable ECS blue/green deployment for POGS",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1882"
-                }
-              ],
-              "completion": 0
+              "notes": "No CDK directory"
             },
             "sloGate": {
               "tier": "unknown",
@@ -493,16 +448,7 @@
             "smokeTests": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "Roadie surfaces; no active gap",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1883",
-                  "summary": "Implement smoke tests for POGS blue/green deployment",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1883"
-                }
-              ],
-              "completion": 0
+              "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
               "tier": "unknown",
