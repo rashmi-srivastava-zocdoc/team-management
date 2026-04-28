@@ -288,6 +288,33 @@
             background: #fff3cd;
             color: #856404;
         }
+        .oncall-refresh {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .refresh-btn {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding: 0.35rem 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .refresh-btn:hover {
+            background: #FFE14D;
+            border-color: #FFE14D;
+            color: #1a1a1a;
+        }
+        .last-updated {
+            font-size: 0.75rem;
+            color: #999;
+        }
         @media (max-width: 768px) {
             .header { flex-direction: column; gap: 1rem; padding: 1rem; }
             .hero { padding: 2rem 1rem; }
@@ -340,6 +367,12 @@
                     <div class="oncall-item">
                         <span class="oncall-label">Secondary:</span>
                         <span class="oncall-badge secondary" id="peacock-secondary">-</span>
+                    </div>
+                    <div class="oncall-refresh">
+                        <a href="https://github.com/rashmi-srivastava-zocdoc/team-management/actions/workflows/update-oncall.yml" target="_blank" class="refresh-btn" title="Trigger refresh">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+                            Refresh
+                        </a>
                     </div>
                 </div>
             </div>
@@ -436,6 +469,12 @@
                         <span class="oncall-label">Secondary:</span>
                         <span class="oncall-badge secondary" id="pterodactyl-secondary">-</span>
                     </div>
+                    <div class="oncall-refresh">
+                        <a href="https://github.com/rashmi-srivastava-zocdoc/team-management/actions/workflows/update-oncall.yml" target="_blank" class="refresh-btn" title="Trigger refresh">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+                            Refresh
+                        </a>
+                    </div>
                 </div>
             </div>
             <table class="team-table">
@@ -518,6 +557,12 @@
                     <div class="oncall-item">
                         <span class="oncall-label">Secondary:</span>
                         <span class="oncall-badge secondary" id="billing-secondary">-</span>
+                    </div>
+                    <div class="oncall-refresh">
+                        <a href="https://github.com/rashmi-srivastava-zocdoc/team-management/actions/workflows/update-oncall.yml" target="_blank" class="refresh-btn" title="Trigger refresh">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+                            Refresh
+                        </a>
                     </div>
                 </div>
             </div>
