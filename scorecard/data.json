@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T09:27:48.688900",
+  "lastUpdated": "2026-04-28T14:19:01.163075",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -9,248 +9,9 @@
           "repo": "provider-setup-service",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "CDK present but B/G not detected",
-              "tickets": [
-                {
-                  "key": "PROVGRO-6301",
-                  "summary": "Implement smoke tests for blue/green deployment validation",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6301"
-                }
-              ],
-              "completion": 0
-            },
-            "sloGate": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Depends on SLO definition first",
-              "tickets": [
-                {
-                  "key": "PROVGRO-6189",
-                  "summary": "[plinth] add missing auth-policies",
-                  "status": "In Review",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6189"
-                }
-              ],
-              "completion": 0
-            },
-            "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 123,
-              "notes": "123 lines avg (30d)",
-              "tickets": [],
-              "completion": null
-            },
-            "changeFailureRate": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "DX/Roadie metric \u2014 not per-svc",
-              "tickets": [],
-              "completion": null
-            },
-            "rollbackTime": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "DX/Roadie metric",
-              "tickets": [],
-              "completion": null
-            },
-            "deployPipeline": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "DX metric \u2014 p90 time-to-deploy",
-              "tickets": [],
-              "completion": null
-            },
-            "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
-              "target": 80,
-              "notes": "Fill in from TeamCity - search for ProviderSetupService CoverageReport build",
-              "tickets": [
-                {
-                  "key": "PROVGRO-6264",
-                  "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6264"
-                },
-                {
-                  "key": "PROVGRO-6265",
-                  "summary": "[Test Coverage] Intake tasks + SKU definition",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6265"
-                },
-                {
-                  "key": "PROVGRO-6266",
-                  "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6266"
-                },
-                {
-                  "key": "PROVGRO-6267",
-                  "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6267"
-                },
-                {
-                  "key": "PROVGRO-6268",
-                  "summary": "[Test Coverage] Authorization handlers",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6268"
-                },
-                {
-                  "key": "PROVGRO-6269",
-                  "summary": "[Test Coverage] AlertHandlerImpl + alert definitions",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6269"
-                },
-                {
-                  "key": "PROVGRO-6270",
-                  "summary": "[Test Coverage] MilestonesImpl unit tests",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6270"
-                },
-                {
-                  "key": "PROVGRO-6271",
-                  "summary": "[Test Coverage] Lambda entry points",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6271"
-                },
-                {
-                  "key": "PROVGRO-6272",
-                  "summary": "[Test Coverage] Utilities, extensions & mappers",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6272"
-                }
-              ],
-              "completion": 0
-            },
-            "complexity": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "Roadie \u2014 not currently scored",
-              "tickets": [],
-              "completion": null
-            },
-            "methodSize": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "Roadie \u2014 not currently scored",
-              "tickets": [],
-              "completion": null
-            },
-            "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests",
-              "tickets": [],
-              "completion": null
-            },
-            "testFailureRate": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "CI-level metric \u2014 no per-svc data",
-              "tickets": [],
-              "completion": null
-            },
-            "eol": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": ".NET 8+ LTS",
-              "tickets": [],
-              "completion": null
-            },
-            "slo": {
-              "tier": "below_t3",
-              "status": "fail",
-              "count": 0,
-              "notes": "No SLO detected",
-              "tickets": [],
-              "completion": null
-            },
-            "burnRate": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "No burn rate alerting \u2014 depends on SLO",
-              "tickets": [],
-              "completion": null
-            },
-            "smokeTests": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "Roadie surfaces; no active gap",
-              "tickets": [],
-              "completion": null
-            },
-            "sentry": {
-              "tier": "unknown",
-              "status": "unknown",
-              "unresolved": null,
-              "notes": "Sentry configured \u2014 hygiene unchecked (needs API)",
-              "tickets": [],
-              "completion": null
-            },
-            "incidentMetric": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "5xx monitor wired to PD",
-              "tickets": [],
-              "completion": null
-            },
-            "deployable": {
-              "tier": "t3",
-              "status": "warning",
-              "days_ago": 70,
-              "notes": "Last commit: 2026-02-17 (70d ago)",
-              "tickets": [],
-              "completion": null
-            },
-            "plinth": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "On Plinth",
-              "tickets": [],
-              "completion": null
-            },
-            "cdkNoAnsible": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "CDK only",
-              "tickets": [],
-              "completion": null
-            },
-            "pagerduty": {
-              "tier": "t2",
-              "status": "warning",
-              "notes": "alarmWebhook wired, no off-hours config",
-              "tickets": [],
-              "completion": null
-            }
-          }
-        }
-      ],
-      "epic": {
-        "key": "PROVGRO-6335",
-        "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6335",
-        "summary": "[Q2 2026] Infrastructure Hardening"
-      }
-    },
-    "account-user-setup": {
-      "name": "Account & User Setup",
-      "services": [
-        {
-          "name": "practice-user-permissions",
-          "repo": "practice-user-permissions",
-          "checks": {
-            "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "CDK present but B/G not detected"
+              "notes": "B/G enabled in CDK"
             },
             "sloGate": {
               "tier": "unknown",
@@ -260,8 +21,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 103,
-              "notes": "103 lines avg (30d)"
+              "value": 119,
+              "notes": "119 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -279,11 +40,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "below_t3",
+              "status": "fail",
+              "value": 41.5,
               "target": 80,
-              "notes": "Fill in from TeamCity - search for PracticeUserPermissions CoverageReport build"
+              "notes": "C:41.5% M:41.5% L:41.5% B:100%",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24633751"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -339,10 +101,134 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t3",
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 0,
+              "notes": "Last commit: 2026-04-28 (0d ago)"
+            },
+            "plinth": {
+              "tier": "t1",
+              "status": "pass",
+              "notes": "On Plinth"
+            },
+            "cdkNoAnsible": {
+              "tier": "t1",
+              "status": "pass",
+              "notes": "CDK only"
+            },
+            "pagerduty": {
+              "tier": "t2",
               "status": "warning",
-              "days_ago": 76,
-              "notes": "Last commit: 2026-02-11 (76d ago)"
+              "notes": "alarmWebhook wired, no off-hours config"
+            }
+          }
+        }
+      ]
+    },
+    "account-user-setup": {
+      "name": "Account & User Setup",
+      "services": [
+        {
+          "name": "practice-user-permissions",
+          "repo": "practice-user-permissions",
+          "checks": {
+            "blueGreen": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "No CDK directory"
+            },
+            "sloGate": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Depends on SLO definition first"
+            },
+            "prSize": {
+              "tier": "t1",
+              "status": "pass",
+              "value": 97,
+              "notes": "97 lines avg (30d)"
+            },
+            "changeFailureRate": {
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "DX/Roadie metric \u2014 not per-svc"
+            },
+            "rollbackTime": {
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "DX/Roadie metric"
+            },
+            "deployPipeline": {
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "DX metric \u2014 p90 time-to-deploy"
+            },
+            "coverage": {
+              "tier": "below_t3",
+              "status": "fail",
+              "value": 13.18,
+              "target": 80,
+              "notes": "C:13.18% M:13.18% L:13.18% B:5.9%",
+              "build_url": ""
+            },
+            "complexity": {
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "Roadie \u2014 not currently scored"
+            },
+            "methodSize": {
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "Roadie \u2014 not currently scored"
+            },
+            "mutedTests": {
+              "tier": "t1",
+              "status": "pass",
+              "count": 0,
+              "notes": "No muted tests"
+            },
+            "testFailureRate": {
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "CI-level metric \u2014 no per-svc data"
+            },
+            "eol": {
+              "tier": "t1",
+              "status": "pass",
+              "notes": ".NET 8+ LTS"
+            },
+            "slo": {
+              "tier": "below_t3",
+              "status": "fail",
+              "count": 0,
+              "notes": "No SLO detected"
+            },
+            "burnRate": {
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "No burn rate alerting \u2014 depends on SLO"
+            },
+            "smokeTests": {
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "Roadie surfaces; no active gap"
+            },
+            "sentry": {
+              "tier": "unknown",
+              "status": "unknown",
+              "unresolved": null,
+              "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
+            },
+            "incidentMetric": {
+              "tier": "t1",
+              "status": "pass",
+              "notes": "5xx monitor wired to PD"
+            },
+            "deployable": {
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 0,
+              "notes": "Last commit: 2026-04-28 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -366,9 +252,9 @@
           "repo": "practice-authorization-proxy",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "CDK present but B/G not detected"
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "No CDK directory"
             },
             "sloGate": {
               "tier": "unknown",
@@ -378,8 +264,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 18,
-              "notes": "18 lines avg (30d)"
+              "value": 16,
+              "notes": "16 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -401,7 +287,7 @@
               "status": "unknown",
               "value": null,
               "target": 80,
-              "notes": "Fill in from TeamCity - search for PracticeAuthorizationProxy CoverageReport build"
+              "notes": "No XML in cobertura.zip"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -457,10 +343,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t3",
-              "status": "warning",
-              "days_ago": 84,
-              "notes": "Last commit: 2026-02-03 (84d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 0,
+              "notes": "Last commit: 2026-04-28 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -484,9 +370,9 @@
           "repo": "provider-grouping",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "CDK present but B/G not detected"
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "No CDK directory"
             },
             "sloGate": {
               "tier": "unknown",
@@ -496,8 +382,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 165,
-              "notes": "165 lines avg (30d)"
+              "value": 156,
+              "notes": "156 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -515,11 +401,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "below_t3",
+              "status": "fail",
+              "value": 5.37,
               "target": 80,
-              "notes": "Fill in from TeamCity - search for ProviderGrouping CoverageReport build"
+              "notes": "C:5.37% M:5.37% L:5.37% B:100%",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/24634146"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -575,10 +462,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t3",
-              "status": "warning",
-              "days_ago": 61,
-              "notes": "Last commit: 2026-02-26 (61d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 0,
+              "notes": "Last commit: 2026-04-28 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -602,9 +489,9 @@
           "repo": "provider-join-service",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "CDK present but B/G not detected"
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "No CDK directory"
             },
             "sloGate": {
               "tier": "unknown",
@@ -637,7 +524,7 @@
               "status": "unknown",
               "value": null,
               "target": 80,
-              "notes": "Fill in from TeamCity - search for ProviderJoinService CoverageReport build"
+              "notes": "No XML in cobertura.zip"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -693,10 +580,10 @@
               "notes": "No incident trigger metric detected"
             },
             "deployable": {
-              "tier": "t2",
-              "status": "warning",
-              "days_ago": 35,
-              "notes": "Last commit: 2026-03-24 (35d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 4,
+              "notes": "Last commit: 2026-04-24 (4d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -715,12 +602,7 @@
             }
           }
         }
-      ],
-      "epic": {
-        "key": "PTERODACTL-1880",
-        "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1880",
-        "summary": "[Q2 2026] Infrastructure Hardening"
-      }
+      ]
     },
     "billing": {
       "name": "Billing",
