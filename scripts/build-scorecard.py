@@ -3,33 +3,41 @@
 
 Adapted from PRM team's harden-scorecard skill (by Avinash).
 Outputs JSON for GitHub Pages with T1/T2/T3 tier status per check.
+
+Usage:
+    python3 build-scorecard.py              # Use local repos
+    python3 build-scorecard.py --use-github # Clone fresh from GitHub main branch
 """
+import argparse
 import json
 import os
+import shutil
 import subprocess
+import tempfile
 from datetime import datetime
 from pathlib import Path
 
 BASE_DIR = Path.home() / "Desktop/github"
 OUTPUT_DIR = BASE_DIR / "team-management/scorecard"
 OUTPUT_FILE = OUTPUT_DIR / "data.json"
+GITHUB_ORG = "Zocdoc"
 
 TEAMS = {
     "provider-onboarding": {
         "name": "Provider Onboarding",
         "repo_base": BASE_DIR / "_team_provider-peacock-team",
         "services": [
-            {"name": "provider-setup-service", "repo": "provider-setup-service"},
+            {"name": "provider-setup-service", "repo": "provider-setup-service", "github_repo": "provider-setup-service"},
         ]
     },
     "account-user-setup": {
         "name": "Account & User Setup",
         "repo_base": BASE_DIR / "_team_user-permissions",
         "services": [
-            {"name": "practice-user-permissions", "repo": "practice-user-permissions"},
-            {"name": "practice-authorization-proxy", "repo": "practice-authorization-proxy"},
-            {"name": "provider-grouping", "repo": "provider-grouping"},
-            {"name": "provider-join-service", "repo": "provider-join-service", "repo_override": BASE_DIR / "_team_provider-peacock-team/provider-join-service"},
+            {"name": "practice-user-permissions", "repo": "practice-user-permissions", "github_repo": "practice-user-permissions"},
+            {"name": "practice-authorization-proxy", "repo": "practice-authorization-proxy", "github_repo": "practice-authorization-proxy"},
+            {"name": "provider-grouping", "repo": "provider-grouping", "github_repo": "provider-grouping"},
+            {"name": "provider-join-service", "repo": "provider-join-service", "repo_override": BASE_DIR / "_team_provider-peacock-team/provider-join-service", "github_repo": "provider-join-service"},
         ]
     },
     "billing": {
@@ -40,6 +48,38 @@ TEAMS = {
         ]
     }
 }
+
+USE_GITHUB = False
+TEMP_DIR = None
+
+def clone_repo(github_repo):
+    """Clone a repo from GitHub to temp directory, return path."""
+    global TEMP_DIR
+    if TEMP_DIR is None:
+        TEMP_DIR = Path(tempfile.mkdtemp(prefix="scorecard_"))
+        print(f"Using temp directory: {TEMP_DIR}")
+
+    repo_path = TEMP_DIR / github_repo
+    if repo_path.exists():
+        return repo_path
+
+    url = f"https://github.com/{GITHUB_ORG}/{github_repo}.git"
+    print(f"  Cloning {github_repo} from main branch...")
+    result = subprocess.run(
+        ["gh", "repo", "clone", f"{GITHUB_ORG}/{github_repo}", str(repo_path), "--", "--depth=1", "--branch=main"],
+        capture_output=True, text=True
+    )
+    if result.returncode != 0:
+        print(f"  Warning: Failed to clone {github_repo}: {result.stderr}")
+        return None
+    return repo_path
+
+def cleanup_temp():
+    """Clean up temp directory."""
+    global TEMP_DIR
+    if TEMP_DIR and TEMP_DIR.exists():
+        shutil.rmtree(TEMP_DIR)
+        print(f"Cleaned up temp directory: {TEMP_DIR}")
 
 # Q2 Production Standards - 21 checks with tiered thresholds
 # Tiers: t1 (best), t2, t3, below_t3 (worst), unknown, dx_metric
@@ -489,16 +529,27 @@ def load_teamcity_coverage():
     return {}
 
 def analyze_service(team_id, service, repo_base, tc_coverage):
-    repo_path = service.get("repo_override") or (repo_base / service["repo"])
     svc_name = service["name"]
 
-    if not repo_path.exists():
-        return {
-            "name": svc_name,
-            "repo": service["repo"],
-            "error": f"Repo not found at {repo_path}",
-            "checks": {k: {"tier": "unknown", "status": "unknown", "notes": "Repo not found"} for k in CHECK_DEFINITIONS}
-        }
+    if USE_GITHUB:
+        github_repo = service.get("github_repo", service["repo"])
+        repo_path = clone_repo(github_repo)
+        if repo_path is None:
+            return {
+                "name": svc_name,
+                "repo": service["repo"],
+                "error": f"Failed to clone {github_repo} from GitHub",
+                "checks": {k: {"tier": "unknown", "status": "unknown", "notes": "Clone failed"} for k in CHECK_DEFINITIONS}
+            }
+    else:
+        repo_path = service.get("repo_override") or (repo_base / service["repo"])
+        if not repo_path.exists():
+            return {
+                "name": svc_name,
+                "repo": service["repo"],
+                "error": f"Repo not found at {repo_path}",
+                "checks": {k: {"tier": "unknown", "status": "unknown", "notes": "Repo not found"} for k in CHECK_DEFINITIONS}
+            }
 
     checks = {}
 
@@ -617,8 +668,25 @@ def print_summary(scorecard):
     print(f"View at: https://rashmi-srivastava-zocdoc.github.io/team-management/scorecard.html")
 
 def main():
-    scorecard = build_scorecard()
-    print_summary(scorecard)
+    global USE_GITHUB
+
+    parser = argparse.ArgumentParser(description="Build Q2 Infrastructure Scorecard")
+    parser.add_argument("--use-github", action="store_true",
+                        help="Clone repos fresh from GitHub main branch instead of using local copies")
+    args = parser.parse_args()
+
+    USE_GITHUB = args.use_github
+    if USE_GITHUB:
+        print("Mode: Cloning from GitHub main branch (fresh data)")
+    else:
+        print("Mode: Using local repos (may be stale)")
+
+    try:
+        scorecard = build_scorecard()
+        print_summary(scorecard)
+    finally:
+        if USE_GITHUB:
+            cleanup_temp()
 
 if __name__ == "__main__":
     main()
