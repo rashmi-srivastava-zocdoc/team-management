@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Directory</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+        }
+        .teams-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            gap: 2rem;
+        }
+        .team-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .team-header {
+            padding: 1.5rem;
+            color: white;
+        }
+        .team-header h2 {
+            margin-bottom: 0.5rem;
+        }
+        .team-header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        .team-header a {
+            color: white;
+            text-decoration: underline;
+        }
+        .peacock .team-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .pterodactyl .team-header { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .billing .team-header { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .team-members {
+            padding: 1rem;
+        }
+        .member {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #eee;
+        }
+        .member:last-child {
+            border-bottom: none;
+        }
+        .member-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #666;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        .member-info {
+            flex: 1;
+        }
+        .member-name {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .member-email {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .member-role {
+            background: #e8e8e8;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #555;
+        }
+        .member-role.em { background: #ffeaa7; color: #856404; }
+        .member-role.pm { background: #dfe6e9; color: #2d3436; }
+        .member-role.swe { background: #d4edda; color: #155724; }
+        .member-role.qa { background: #cce5ff; color: #004085; }
+        .member-role.ux { background: #f8d7da; color: #721c24; }
+        .member-role.pa { background: #e2d5f1; color: #4a235a; }
+        .member-links {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+        .member-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .member-links a:hover {
+            background: #f0f0f0;
+        }
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+            .member { flex-wrap: wrap; }
+            .member-links { margin-left: 0; margin-top: 0.5rem; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Team Directory</h1>
+    <div class="teams-container">
+        <div class="team-card peacock">
+            <div class="team-header">
+                <h2>Peacock</h2>
+                <p>Provider Onboarding | Jira: PROVGRO</p>
+                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/39427858/Provider+Onboarding+-+Peacock" target="_blank">Confluence</a>
+            </div>
+            <div class="team-members">
+                <div class="member">
+                    <div class="member-avatar">RS</div>
+                    <div class="member-info">
+                        <div class="member-name">Rashmi Srivastava</div>
+                        <div class="member-email">rashmi.srivastava@zocdoc.com</div>
+                    </div>
+                    <span class="member-role em">EM</span>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">AG</div>
+                    <div class="member-info">
+                        <div class="member-name">Alexander Gorowara</div>
+                        <div class="member-email">alexander.gorowara@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                    <div class="member-links">
+                        <a href="https://github.com/alexander-gorowara-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">CP</div>
+                    <div class="member-info">
+                        <div class="member-name">Clark Pathakis</div>
+                        <div class="member-email">clark.pathakis@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                    <div class="member-links">
+                        <a href="https://github.com/clark-pathakis-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">ME</div>
+                    <div class="member-info">
+                        <div class="member-name">Manon Escoffier</div>
+                        <div class="member-email">manon.escoffier@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">SM</div>
+                    <div class="member-info">
+                        <div class="member-name">Sydney Morton</div>
+                        <div class="member-email">sydney.morton@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                    <div class="member-links">
+                        <a href="https://github.com/sydney-morton-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">KL</div>
+                    <div class="member-info">
+                        <div class="member-name">Kelly Lee</div>
+                        <div class="member-email">kelly.lee@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">RB</div>
+                    <div class="member-info">
+                        <div class="member-name">Renan Borges</div>
+                        <div class="member-email">renan.borges@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">AP</div>
+                    <div class="member-info">
+                        <div class="member-name">Alex Pryadun</div>
+                        <div class="member-email">alex.pryadun@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                    <div class="member-links">
+                        <a href="https://github.com/alex-pryadun-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">ES</div>
+                    <div class="member-info">
+                        <div class="member-name">Eftal Sogukoglu</div>
+                        <div class="member-email">eftal.sogukoglu@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">SA</div>
+                    <div class="member-info">
+                        <div class="member-name">Simran Arora</div>
+                        <div class="member-email">simran.arora@zocdoc.com</div>
+                    </div>
+                    <span class="member-role qa">QA</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card pterodactyl">
+            <div class="team-header">
+                <h2>Pterodactyl</h2>
+                <p>Provider User Permissions | Jira: PTERODACTL</p>
+                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/932577285/Provider+User+Permissions+-+Pterodactyl" target="_blank">Confluence</a>
+            </div>
+            <div class="team-members">
+                <div class="member">
+                    <div class="member-avatar">RS</div>
+                    <div class="member-info">
+                        <div class="member-name">Rashmi Srivastava</div>
+                        <div class="member-email">rashmi.srivastava@zocdoc.com</div>
+                    </div>
+                    <span class="member-role em">EM</span>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">MC</div>
+                    <div class="member-info">
+                        <div class="member-name">Mayank Choudhary</div>
+                        <div class="member-email">mayank.choudhary@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">JH</div>
+                    <div class="member-info">
+                        <div class="member-name">Jacqueline Hang</div>
+                        <div class="member-email">jacqueline.hang@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">GS</div>
+                    <div class="member-info">
+                        <div class="member-name">Garon Smith</div>
+                        <div class="member-email">garon.smith@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                    <div class="member-links">
+                        <a href="https://github.com/garon-smith-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">ER</div>
+                    <div class="member-info">
+                        <div class="member-name">Elli Rappaport</div>
+                        <div class="member-email">elli.rappaport@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                    <div class="member-links">
+                        <a href="https://github.com/elli-rappaport-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">TS</div>
+                    <div class="member-info">
+                        <div class="member-name">Thiago Salvadori</div>
+                        <div class="member-email">thiago.salvadori@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">AP</div>
+                    <div class="member-info">
+                        <div class="member-name">Alex Pryadun</div>
+                        <div class="member-email">alex.pryadun@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                    <div class="member-links">
+                        <a href="https://github.com/alex-pryadun-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">AK</div>
+                    <div class="member-info">
+                        <div class="member-name">Allen Koickal</div>
+                        <div class="member-email">allen.koickal@zocdoc.com</div>
+                    </div>
+                    <span class="member-role qa">QA</span>
+                    <div class="member-links">
+                        <a href="https://github.com/allen-koickal1-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card billing">
+            <div class="team-header">
+                <h2>Billing</h2>
+                <p>Provider Billing | Jira: BILL</p>
+                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/2037547071/Billing+Team" target="_blank">Confluence</a>
+            </div>
+            <div class="team-members">
+                <div class="member">
+                    <div class="member-avatar">JP</div>
+                    <div class="member-info">
+                        <div class="member-name">John Penner</div>
+                        <div class="member-email">john.penner@zocdoc.com</div>
+                    </div>
+                    <span class="member-role em">EM</span>
+                    <div class="member-links">
+                        <a href="https://github.com/john-penner-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">DR</div>
+                    <div class="member-info">
+                        <div class="member-name">Dave Ramirez</div>
+                        <div class="member-email">dave.ramirez@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                    <div class="member-links">
+                        <a href="https://github.com/dave-ramirez-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">NP</div>
+                    <div class="member-info">
+                        <div class="member-name">Niko Prassas</div>
+                        <div class="member-email">niko.prassas@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                    <div class="member-links">
+                        <a href="https://github.com/Niko-Prassas-Zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">SS</div>
+                    <div class="member-info">
+                        <div class="member-name">Shantanu Singh</div>
+                        <div class="member-email">shantanu.singh@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                    <div class="member-links">
+                        <a href="https://github.com/shan-singh-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">AH</div>
+                    <div class="member-info">
+                        <div class="member-name">Abdo Hassan</div>
+                        <div class="member-email">abdo.hassan@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                    <div class="member-links">
+                        <a href="https://github.com/abdo-hassan-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">LP</div>
+                    <div class="member-info">
+                        <div class="member-name">Leo Pimenta</div>
+                        <div class="member-email">leo.pimenta@zocdoc.com</div>
+                    </div>
+                    <span class="member-role swe">SWE</span>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">LY</div>
+                    <div class="member-info">
+                        <div class="member-name">Leeyman Yousuf</div>
+                        <div class="member-email">leeyman.yousuf@zocdoc.com</div>
+                    </div>
+                    <span class="member-role pm">PM</span>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">RZ</div>
+                    <div class="member-info">
+                        <div class="member-name">Ren Zheng</div>
+                        <div class="member-email">ren.zheng@zocdoc.com</div>
+                    </div>
+                    <span class="member-role ux">UX</span>
+                    <div class="member-links">
+                        <a href="https://github.com/ren-zheng-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">VL</div>
+                    <div class="member-info">
+                        <div class="member-name">Vishesh Luthra</div>
+                        <div class="member-email">vishesh.luthra@zocdoc.com</div>
+                    </div>
+                    <span class="member-role qa">QA</span>
+                    <div class="member-links">
+                        <a href="https://github.com/vishesh-luthra-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">AC</div>
+                    <div class="member-info">
+                        <div class="member-name">Andrew Cohen</div>
+                        <div class="member-email">andrew.cohen@zocdoc.com</div>
+                    </div>
+                    <span class="member-role pa">PA</span>
+                    <div class="member-links">
+                        <a href="https://github.com/andrew-cohen-zocdoc" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
