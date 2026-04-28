@@ -374,10 +374,15 @@ def check_blue_green(repo_path):
     out, rc = run_cmd("test -d cdk || test -d infrastructure/cdk && echo exists", cwd=repo_path)
     if out:
         # CDK exists but no blue-green - check if it's even an ECS service
-        out2, _ = run_cmd("grep -rE 'EcsService|FargateService|Ec2Service' cdk/ infrastructure/cdk/ 2>/dev/null | head -1", cwd=repo_path)
+        # Include zd-cdk patterns: LoadBalancedHttpService, CronService, WorkerService
+        out2, _ = run_cmd(
+            "grep -rE 'EcsService|FargateService|Ec2Service|LoadBalancedHttpService|ecs\\.CronService|ecs\\.WorkerService' "
+            "cdk/ infrastructure/cdk/ 2>/dev/null | head -1",
+            cwd=repo_path
+        )
         if out2:
             return {"tier": "below_t3", "status": "fail", "notes": "ECS service without B/G"}
-        return {"tier": "n/a", "status": "n/a", "notes": "Not an ECS service (Lambda/Worker)"}
+        return {"tier": "n/a", "status": "n/a", "notes": "Not an ECS service (Lambda only)"}
     return {"tier": "unknown", "status": "unknown", "notes": "No CDK directory"}
 
 def check_slo_gate(repo_path):
