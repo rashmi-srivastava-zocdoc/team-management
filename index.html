@@ -254,6 +254,40 @@
             color: #ccc;
             font-size: 0.85rem;
         }
+        .oncall-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .oncall-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .oncall-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            font-weight: 600;
+        }
+        .oncall-badge {
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .oncall-badge.primary {
+            background: #d4edda;
+            color: #155724;
+        }
+        .oncall-badge.secondary {
+            background: #fff3cd;
+            color: #856404;
+        }
         @media (max-width: 768px) {
             .header { flex-direction: column; gap: 1rem; padding: 1rem; }
             .hero { padding: 2rem 1rem; }
@@ -297,6 +331,16 @@
                     <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/39427858/Provider+Onboarding+-+Peacock" target="_blank" class="secondary">Confluence</a>
                     <a href="https://zocdoc.pagerduty.com/schedules?teamIds=PCNWGAE" target="_blank" class="secondary">PagerDuty</a>
                     <a href="https://zocdoc.slack.com/channels/provider-peacock-team" target="_blank" class="secondary">#provider-peacock-team</a>
+                </div>
+                <div class="oncall-section">
+                    <div class="oncall-item">
+                        <span class="oncall-label">Primary:</span>
+                        <span class="oncall-badge primary" id="peacock-primary">-</span>
+                    </div>
+                    <div class="oncall-item">
+                        <span class="oncall-label">Secondary:</span>
+                        <span class="oncall-badge secondary" id="peacock-secondary">-</span>
+                    </div>
                 </div>
             </div>
             <table class="team-table">
@@ -383,6 +427,16 @@
                     <a href="https://zocdoc.pagerduty.com/schedules?teamIds=PXV50G4" target="_blank" class="secondary">PagerDuty</a>
                     <a href="https://zocdoc.slack.com/channels/provider-pterodactyl-alerts" target="_blank" class="secondary">#provider-pterodactyl-alerts</a>
                 </div>
+                <div class="oncall-section">
+                    <div class="oncall-item">
+                        <span class="oncall-label">Primary:</span>
+                        <span class="oncall-badge primary" id="pterodactyl-primary">-</span>
+                    </div>
+                    <div class="oncall-item">
+                        <span class="oncall-label">Secondary:</span>
+                        <span class="oncall-badge secondary" id="pterodactyl-secondary">-</span>
+                    </div>
+                </div>
             </div>
             <table class="team-table">
                 <thead>
@@ -455,6 +509,16 @@
                     <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/2037547071/Billing+Team" target="_blank" class="secondary">Confluence</a>
                     <a href="https://zocdoc.pagerduty.com/schedules?teamIds=P03ER2R" target="_blank" class="secondary">PagerDuty</a>
                     <a href="https://zocdoc.slack.com/channels/provider-billing-team" target="_blank" class="secondary">#provider-billing-team</a>
+                </div>
+                <div class="oncall-section">
+                    <div class="oncall-item">
+                        <span class="oncall-label">Primary:</span>
+                        <span class="oncall-badge primary" id="billing-primary">-</span>
+                    </div>
+                    <div class="oncall-item">
+                        <span class="oncall-label">Secondary:</span>
+                        <span class="oncall-badge secondary" id="billing-secondary">-</span>
+                    </div>
                 </div>
             </div>
             <table class="team-table">
