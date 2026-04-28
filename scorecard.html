@@ -278,12 +278,14 @@
         .status-badge.fail .dot { background: #de350b; }
         .status-badge.unknown .dot { background: #dfe1e6; }
         .status-badge.dx_metric .dot { background: #0065ff; }
+        .status-badge.na .dot { background: #97a0af; }
         .status-badge.pass { color: #006644; }
         .status-badge.warning { color: #172b4d; }
         .status-badge.t3 { color: #172b4d; }
         .status-badge.fail { color: #de350b; }
         .status-badge.unknown { color: #5e6c84; }
         .status-badge.dx_metric { color: #0747a6; }
+        .status-badge.na { color: #5e6c84; }
         .jira-col {
             min-width: 180px;
             max-width: 300px;
@@ -603,6 +605,7 @@
                 case 't3': return 'T3';
                 case 'below_t3': return '<T3';
                 case 'dx_metric': return 'DX';
+                case 'n/a': return 'N/A';
                 default: return 'x';
             }
         }
@@ -614,6 +617,7 @@
                 case 't3': return 't3';
                 case 'below_t3': return 'fail';
                 case 'dx_metric': return 'dx_metric';
+                case 'n/a': return 'na';
                 default: return 'unknown';
             }
         }

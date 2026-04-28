@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T14:23:17.729402",
+  "lastUpdated": "2026-04-28T10:31:20.026020",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -133,9 +133,9 @@
           "repo": "practice-user-permissions",
           "checks": {
             "blueGreen": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "No CDK directory",
+              "tier": "n/a",
+              "status": "n/a",
+              "notes": "Not an ECS service (Lambda/Worker)",
               "tickets": [
                 {
                   "key": "PTERODACTL-1884",
@@ -270,9 +270,9 @@
           "repo": "practice-authorization-proxy",
           "checks": {
             "blueGreen": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "No CDK directory",
+              "tier": "n/a",
+              "status": "n/a",
+              "notes": "Not an ECS service (Lambda/Worker)",
               "tickets": [
                 {
                   "key": "PTERODACTL-1886",
@@ -406,9 +406,9 @@
           "repo": "provider-grouping",
           "checks": {
             "blueGreen": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "No CDK directory",
+              "tier": "n/a",
+              "status": "n/a",
+              "notes": "Not an ECS service (Lambda/Worker)",
               "tickets": [
                 {
                   "key": "PTERODACTL-1882",
@@ -543,9 +543,9 @@
           "repo": "provider-join-service",
           "checks": {
             "blueGreen": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "No CDK directory"
+              "tier": "n/a",
+              "status": "n/a",
+              "notes": "Not an ECS service (Lambda/Worker)"
             },
             "sloGate": {
               "tier": "unknown",
