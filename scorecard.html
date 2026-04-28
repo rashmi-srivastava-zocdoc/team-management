@@ -690,37 +690,23 @@
             const teamEpic = teamData?.epic;
             const ticketsByCheck = teamData?.ticketsByCheck || {};
 
-            let html = '<div class="service-detail-header">';
-            html += `<h3>${service.name}</h3>`;
-            html += `<a href="${repoUrl}" target="_blank">View on GitHub →</a>`;
-            html += '</div>';
-
-            // Service metadata
-            html += '<div class="service-meta">';
-
-            // Coverage info if available
-            if (service.coverage) {
-                html += `<div class="meta-item">
-                    <span class="meta-label">Line Coverage</span>
-                    <span class="meta-value">${service.coverage.lines || 'N/A'}</span>
-                </div>`;
-                html += `<div class="meta-item">
-                    <span class="meta-label">Branch Coverage</span>
-                    <span class="meta-value">${service.coverage.branches || 'N/A'}</span>
-                </div>`;
-            }
-
             // Count tier stats
             let t1Count = 0, totalChecks = 0;
             for (const [checkId, check] of Object.entries(service.checks || {})) {
                 totalChecks++;
                 if (check.tier === 't1') t1Count++;
             }
+
+            // Service metadata row: GitHub, Tier 1 Compliance, Epic
+            let html = '<div class="service-meta">';
+            html += `<div class="meta-item">
+                <span class="meta-label">GitHub</span>
+                <span class="meta-value"><a href="${repoUrl}" target="_blank">${service.repo || service.name} →</a></span>
+            </div>`;
             html += `<div class="meta-item">
                 <span class="meta-label">Tier 1 Compliance</span>
                 <span class="meta-value">${t1Count}/${totalChecks} checks</span>
             </div>`;
-
             if (teamEpic) {
                 html += `<div class="meta-item">
                     <span class="meta-label">Epic</span>
