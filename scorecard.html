@@ -285,8 +285,12 @@
         .status-badge.unknown { color: #5e6c84; }
         .status-badge.dx_metric { color: #0747a6; }
         .jira-col {
-            min-width: 150px;
-            max-width: 250px;
+            min-width: 180px;
+            max-width: 300px;
+            white-space: normal;
+            word-wrap: break-word;
+            text-align: left;
+            padding: 0.5rem;
         }
         .completion-col {
             min-width: 80px;
@@ -296,9 +300,15 @@
             text-decoration: none;
             font-size: 0.75rem;
             font-weight: 500;
+            display: inline-block;
+            margin: 0.15rem 0.25rem 0.15rem 0;
+            padding: 0.1rem 0.3rem;
+            background: #deebff;
+            border-radius: 3px;
         }
         .ticket-link:hover {
-            text-decoration: underline;
+            text-decoration: none;
+            background: #b3d4ff;
         }
         .no-tickets {
             color: #97a0af;
@@ -539,7 +549,7 @@
                     for (const [checkId, check] of Object.entries(service.checks || {})) {
                         const def = data.checkDefinitions[checkId];
                         const tier = check.tier || 'unknown';
-                        if (def && def.priority === 'P1' && tier !== 'dx_metric') {
+                        if (def && def.priority === 'P1') {
                             totalP1Checks++;
                             if (tier === 't1') t1P1Checks++;
                         }
