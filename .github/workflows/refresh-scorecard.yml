@@ -1,6 +1,12 @@
 name: Refresh Scorecard Data
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build-scorecard.py'
+      - 'scorecard/**'
+      - '.github/workflows/refresh-scorecard.yml'
   schedule:
     # Run daily at 9am UTC (5am ET)
     - cron: '0 9 * * *'
