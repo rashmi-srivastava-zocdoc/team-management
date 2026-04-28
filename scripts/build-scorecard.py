@@ -30,6 +30,11 @@ TEAMS = {
     "provider-onboarding": {
         "name": "Provider Onboarding",
         "repo_base": BASE_DIR / "_team_provider-peacock-team",
+        "epic": {
+            "key": "PROVGRO-6335",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6335",
+            "summary": "Q2 2026 - Infrastructure Hardening"
+        },
         "services": [
             {"name": "provider-setup-service", "repo": "provider-setup-service", "github_repo": "provider-setup-service"},
         ]
@@ -37,6 +42,11 @@ TEAMS = {
     "account-user-setup": {
         "name": "Account & User Setup",
         "repo_base": BASE_DIR / "_team_user-permissions",
+        "epic": {
+            "key": "PTERODACTL-1880",
+            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1880",
+            "summary": "Q2 2026 [2x] - Infrastructure Hardening"
+        },
         "services": [
             {"name": "practice-user-permissions", "repo": "practice-user-permissions", "github_repo": "practice-user-permissions"},
             {"name": "practice-authorization-proxy", "repo": "practice-authorization-proxy", "github_repo": "practice-authorization-proxy"},
@@ -51,6 +61,25 @@ TEAMS = {
             # Add billing services here when available
         ]
     }
+}
+
+# Ticket mappings: team -> service -> check -> [tickets]
+# This is the stable source of truth for ticket assignments
+TICKET_MAPPINGS = {
+    "account-user-setup": {
+        "practice-user-permissions": {
+            "blueGreen": [{"key": "PTERODACTL-1884", "summary": "Enable ECS blue/green deployment for PUP", "status": "To Do"}],
+            "smokeTests": [{"key": "PTERODACTL-1885", "summary": "Implement smoke tests for PUP blue/green deployment", "status": "To Do"}],
+        },
+        "practice-authorization-proxy": {
+            "blueGreen": [{"key": "PTERODACTL-1886", "summary": "Enable ECS blue/green deployment for PAP", "status": "To Do"}],
+            "smokeTests": [{"key": "PTERODACTL-1887", "summary": "Implement smoke tests for PAP blue/green deployment", "status": "To Do"}],
+        },
+        "provider-grouping": {
+            "blueGreen": [{"key": "PTERODACTL-1882", "summary": "Enable ECS blue/green deployment for POGS", "status": "To Do"}],
+            "smokeTests": [{"key": "PTERODACTL-1883", "summary": "Implement smoke tests for POGS blue/green deployment", "status": "To Do"}],
+        },
+    },
 }
 
 USE_GITHUB = False
