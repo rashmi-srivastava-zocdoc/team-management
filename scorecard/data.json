@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T23:47:24.752245",
+  "lastUpdated": "2026-04-28T23:52:01.791968",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -40,12 +40,11 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "below_t3",
-              "status": "fail",
-              "value": 39.5,
+              "tier": "unknown",
+              "status": "unknown",
+              "value": null,
               "target": 80,
-              "notes": "Lines:39.5% (C:60.1% M:58.1% B:60.8%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24681499"
+              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -254,12 +253,11 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "t1",
-              "status": "pass",
-              "value": 81.8,
+              "tier": "unknown",
+              "status": "unknown",
+              "value": null,
               "target": 80,
-              "notes": "Lines:81.8% (C:85.3% M:85.1% B:70.3%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport/24649350"
+              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -373,12 +371,11 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "t1",
-              "status": "pass",
-              "value": 82.9,
+              "tier": "unknown",
+              "status": "unknown",
+              "value": null,
               "target": 80,
-              "notes": "Lines:82.9% (C:65.8% M:73.9% B:26.2%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/24649992"
+              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -492,12 +489,11 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "t2",
-              "status": "warning",
-              "value": 74.5,
+              "tier": "unknown",
+              "status": "unknown",
+              "value": null,
               "target": 80,
-              "notes": "Lines:74.5% (C:70.8% M:73.2% B:46.2%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/24666015"
+              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -611,12 +607,11 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "t1",
-              "status": "pass",
-              "value": 83.9,
+              "tier": "unknown",
+              "status": "unknown",
+              "value": null,
               "target": 80,
-              "notes": "Lines:83.9% (C:80.5% M:84.0% B:60.9%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport/24500321"
+              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
             },
             "complexity": {
               "tier": "dx_metric",
