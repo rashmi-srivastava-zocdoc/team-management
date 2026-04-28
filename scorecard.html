@@ -363,6 +363,128 @@
             padding: 0.5rem 0;
             border-bottom: 2px solid #dfe1e6;
         }
+        .service-tabs {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #dfe1e6;
+            flex-wrap: wrap;
+        }
+        .service-tab {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #5e6c84;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s;
+        }
+        .service-tab:hover {
+            color: #172b4d;
+            background: #f4f5f7;
+        }
+        .service-tab.active {
+            color: #0065ff;
+        }
+        .service-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #0065ff;
+        }
+        .detail-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-bottom: 1.5rem;
+        }
+        .detail-table th,
+        .detail-table td {
+            padding: 0.75rem 1rem;
+            border: 1px solid #dfe1e6;
+            text-align: left;
+            vertical-align: top;
+        }
+        .detail-table th {
+            background: #f4f5f7;
+            font-weight: 600;
+            color: #172b4d;
+            width: 140px;
+        }
+        .detail-table .check-row td {
+            vertical-align: middle;
+        }
+        .detail-table .check-name-col {
+            width: 180px;
+            font-weight: 500;
+        }
+        .detail-table .status-col {
+            width: 80px;
+            text-align: center;
+        }
+        .detail-table .tickets-col {
+            min-width: 200px;
+        }
+        .detail-table .notes-col {
+            color: #5e6c84;
+            font-size: 0.875rem;
+        }
+        .service-detail-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .service-detail-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #172b4d;
+            margin: 0;
+        }
+        .service-detail-header a {
+            color: #0065ff;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        .service-detail-header a:hover {
+            text-decoration: underline;
+        }
+        .service-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f4f5f7;
+            border-radius: 6px;
+        }
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .meta-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #5e6c84;
+            text-transform: uppercase;
+        }
+        .meta-value {
+            font-size: 0.9rem;
+            color: #172b4d;
+        }
+        .meta-value a {
+            color: #0065ff;
+            text-decoration: none;
+        }
+        .meta-value a:hover {
+            text-decoration: underline;
+        }
         .summary-row {
             background: #fafbfc;
         }
@@ -466,6 +588,7 @@
     <script>
         let scorecardData = null;
         let selectedTeam = 'all';
+        let selectedServiceTab = 'summary';
 
         const checksByPriority = {
             'P1': ['blueGreen', 'prSize', 'coverage', 'mutedTests', 'testFailureRate', 'eol', 'slo', 'burnRate', 'sentry', 'deployable', 'cdkNoAnsible', 'pagerduty'],
@@ -507,9 +630,124 @@
 
         function filterByTeam() {
             selectedTeam = document.getElementById('teamFilter').value;
+            selectedServiceTab = 'summary';
             if (scorecardData) {
                 renderScorecard(scorecardData);
             }
+        }
+
+        function selectServiceTab(tabId) {
+            selectedServiceTab = tabId;
+            if (scorecardData) {
+                renderScorecard(scorecardData);
+            }
+        }
+
+        function renderServiceTabs(services) {
+            let html = '<div class="service-tabs">';
+            html += `<button class="service-tab ${selectedServiceTab === 'summary' ? 'active' : ''}" onclick="selectServiceTab('summary')">Summary</button>`;
+            for (const service of services) {
+                const isActive = selectedServiceTab === service.name;
+                html += `<button class="service-tab ${isActive ? 'active' : ''}" onclick="selectServiceTab('${service.name}')">${service.name}</button>`;
+            }
+            html += '</div>';
+            return html;
+        }
+
+        function renderServiceDetail(service, data, teamEpic) {
+            const repoUrl = `https://github.com/Zocdoc/${service.repo || service.name}`;
+
+            let html = '<div class="service-detail-header">';
+            html += `<h3>${service.name}</h3>`;
+            html += `<a href="${repoUrl}" target="_blank">View on GitHub →</a>`;
+            html += '</div>';
+
+            // Service metadata
+            html += '<div class="service-meta">';
+
+            // Coverage info if available
+            if (service.coverage) {
+                html += `<div class="meta-item">
+                    <span class="meta-label">Line Coverage</span>
+                    <span class="meta-value">${service.coverage.lines || 'N/A'}</span>
+                </div>`;
+                html += `<div class="meta-item">
+                    <span class="meta-label">Branch Coverage</span>
+                    <span class="meta-value">${service.coverage.branches || 'N/A'}</span>
+                </div>`;
+            }
+
+            // Count tier stats
+            let t1Count = 0, totalChecks = 0;
+            for (const [checkId, check] of Object.entries(service.checks || {})) {
+                totalChecks++;
+                if (check.tier === 't1') t1Count++;
+            }
+            html += `<div class="meta-item">
+                <span class="meta-label">Tier 1 Compliance</span>
+                <span class="meta-value">${t1Count}/${totalChecks} checks</span>
+            </div>`;
+
+            if (teamEpic) {
+                html += `<div class="meta-item">
+                    <span class="meta-label">Epic</span>
+                    <span class="meta-value"><a href="${teamEpic.url}" target="_blank">${teamEpic.key}</a></span>
+                </div>`;
+            }
+            html += '</div>';
+
+            // Checks by priority
+            for (const [priority, checkIds] of Object.entries(checksByPriority)) {
+                const priorityChecks = checkIds.filter(id => data.checkDefinitions[id]);
+                if (priorityChecks.length === 0) continue;
+
+                html += `<div class="priority-section">`;
+                html += `<h3 class="priority-title">${priority} Checks</h3>`;
+                html += '<table class="detail-table"><thead><tr>';
+                html += '<th class="check-name-col">Check</th>';
+                html += '<th class="status-col">Status</th>';
+                html += '<th class="tickets-col">Jira Tickets</th>';
+                html += '<th class="notes-col">Notes / Requirements</th>';
+                html += '</tr></thead><tbody>';
+
+                for (const checkId of priorityChecks) {
+                    const def = data.checkDefinitions[checkId];
+                    const check = service.checks?.[checkId] || {};
+                    const tier = check.tier || 'unknown';
+                    const label = getTierLabel(tier);
+                    const tierClass = getTierClass(tier);
+
+                    html += '<tr class="check-row">';
+                    html += `<td class="check-name-col">${def.name}</td>`;
+                    html += `<td class="status-col">
+                        <span class="status-badge ${tierClass}">
+                            <span class="dot"></span>${label}
+                        </span>
+                    </td>`;
+
+                    // Tickets column
+                    if (check.tickets && check.tickets.length > 0) {
+                        const ticketLinks = check.tickets.map(t =>
+                            `<a href="${t.url}" target="_blank" title="${t.summary}" class="ticket-link">${t.key}</a>`
+                        ).join(' ');
+                        const completionBadge = check.completion !== null && check.completion !== undefined
+                            ? `<span class="completion-badge ${check.completion === 100 ? 'complete' : (check.completion > 0 ? 'partial' : 'none')}">${check.completion}%</span>`
+                            : '';
+                        html += `<td class="tickets-col">${ticketLinks} ${completionBadge}</td>`;
+                    } else {
+                        html += `<td class="tickets-col"><span class="no-tickets">No tickets assigned</span></td>`;
+                    }
+
+                    // Notes column - show tier requirements or custom notes
+                    const notes = check.notes || def.tier1 || '';
+                    html += `<td class="notes-col">${notes}</td>`;
+                    html += '</tr>';
+                }
+
+                html += '</tbody></table></div>';
+            }
+
+            return html;
         }
 
         function renderScorecard(data) {
@@ -567,6 +805,21 @@
             if (allServices.length === 0) {
                 container.innerHTML = '<p style="text-align: center; color: #5e6c84; padding: 2rem;">No services found for the selected team.</p>';
                 return;
+            }
+
+            // Show tabs when filtering by team
+            if (selectedTeam !== 'all') {
+                container.innerHTML += renderServiceTabs(allServices);
+
+                // If a specific service is selected, render detail view
+                if (selectedServiceTab !== 'summary') {
+                    const selectedService = allServices.find(s => s.name === selectedServiceTab);
+                    if (selectedService) {
+                        const teamEpic = data.teams[selectedTeam]?.epic;
+                        container.innerHTML += renderServiceDetail(selectedService, data, teamEpic);
+                        return;
+                    }
+                }
             }
 
             for (const [priority, checkIds] of Object.entries(checksByPriority)) {
