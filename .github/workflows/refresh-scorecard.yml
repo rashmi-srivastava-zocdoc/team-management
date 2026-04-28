@@ -99,6 +99,18 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Fetch epic tickets from Jira
+        env:
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+        run: |
+          if [[ -n "$JIRA_EMAIL" && -n "$JIRA_API_TOKEN" ]]; then
+            echo "Fetching tickets from Jira epics..."
+            python3 scripts/fetch-epic-tickets.py
+          else
+            echo "Jira credentials not configured, using hardcoded tickets"
+          fi
+
       - name: Build scorecard from GitHub repos
         env:
           GH_TOKEN: ${{ secrets.ZOCDOC_REPO_TOKEN }}
@@ -108,7 +120,7 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet scorecard/data.json; then
+          if git diff --quiet scorecard/data.json scorecard/epic-tickets.json 2>/dev/null; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -120,6 +132,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add scorecard/data.json
+          git add scorecard/epic-tickets.json 2>/dev/null || true
           git commit -m "chore: refresh scorecard data from GitHub
 
           Generated with AI

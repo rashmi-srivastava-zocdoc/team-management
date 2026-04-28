@@ -666,10 +666,36 @@ def add_ticket_url(ticket):
         ticket["url"] = f"https://zocdoc.atlassian.net/browse/{ticket['key']}"
     return ticket
 
+def load_epic_tickets():
+    """Load tickets from epic-tickets.json if it exists."""
+    epic_tickets_file = OUTPUT_DIR / "epic-tickets.json"
+    if epic_tickets_file.exists():
+        try:
+            with open(epic_tickets_file) as f:
+                data = json.load(f)
+                return data.get("ticketsByTeam", {})
+        except (json.JSONDecodeError, IOError):
+            pass
+    return None
+
 def apply_team_tickets(scorecard):
-    """Apply tickets from TEAM_TICKETS to team level, grouped by check."""
+    """Apply tickets to team level, grouped by check.
+
+    Priority: epic-tickets.json > TEAM_TICKETS hardcoded fallback
+    """
+    # Try to load from epic-tickets.json first
+    epic_tickets = load_epic_tickets()
+
     for team_id, team in scorecard["teams"].items():
-        team_ticket_config = TEAM_TICKETS.get(team_id, {})
+        # Use epic-tickets.json if available, otherwise fall back to hardcoded
+        if epic_tickets and team_id in epic_tickets:
+            team_ticket_config = epic_tickets[team_id]
+            print(f"  Using epic-tickets.json for {team_id}")
+        else:
+            team_ticket_config = TEAM_TICKETS.get(team_id, {})
+            if team_ticket_config:
+                print(f"  Using hardcoded TEAM_TICKETS for {team_id}")
+
         if team_ticket_config:
             tickets_by_check = {}
             for check_id, tickets in team_ticket_config.items():
