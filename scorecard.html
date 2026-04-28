@@ -770,7 +770,7 @@
         function renderScorecard(data) {
             const updated = data.lastUpdated ? new Date(data.lastUpdated) : new Date();
             document.getElementById('lastUpdated').textContent =
-                updated.toISOString().slice(0, 16).replace('T', ' ');
+                updated.toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) + ' ET';
             document.getElementById('pageMeta').textContent =
                 `By Rashmi Srivastava | Updated ${updated.toLocaleDateString()}`;
 
