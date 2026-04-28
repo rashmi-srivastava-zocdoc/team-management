@@ -18,7 +18,11 @@ from datetime import datetime
 from pathlib import Path
 
 BASE_DIR = Path.home() / "Desktop/github"
-OUTPUT_DIR = BASE_DIR / "team-management/scorecard"
+# In CI (GitHub Actions), use GITHUB_WORKSPACE; locally use ~/Desktop/github/team-management
+if os.environ.get("GITHUB_WORKSPACE"):
+    OUTPUT_DIR = Path(os.environ["GITHUB_WORKSPACE"]) / "scorecard"
+else:
+    OUTPUT_DIR = BASE_DIR / "team-management/scorecard"
 OUTPUT_FILE = OUTPUT_DIR / "data.json"
 GITHUB_ORG = "Zocdoc"
 
