@@ -129,43 +129,71 @@
         .team-header p {
             color: #666;
             font-size: 0.9rem;
+            margin-bottom: 0.75rem;
         }
-        .team-header a {
+        .team-links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .team-links a {
             color: #1a1a1a;
             text-decoration: none;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
             gap: 0.25rem;
-            margin-top: 0.5rem;
             padding: 0.5rem 1rem;
             background: #FFE14D;
             border-radius: 6px;
             font-size: 0.875rem;
             transition: background 0.2s;
         }
-        .team-header a:hover {
+        .team-links a:hover {
             background: #ffd700;
         }
-        .team-members {
-            padding: 0.5rem 0;
+        .team-links a.secondary {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
         }
-        .member {
-            display: flex;
-            align-items: center;
-            padding: 1rem 1.5rem;
+        .team-links a.secondary:hover {
+            background: #f8f9fa;
+            border-color: #FFE14D;
+        }
+        .team-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .team-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: #fafafa;
+            border-bottom: 2px solid #e8e8e8;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+        }
+        .team-table td {
+            padding: 0.75rem 1rem;
             border-bottom: 1px solid #f0f0f0;
-            transition: background 0.2s;
+            vertical-align: middle;
         }
-        .member:hover {
+        .team-table tr:hover {
             background: #fafafa;
         }
-        .member:last-child {
+        .team-table tr:last-child td {
             border-bottom: none;
         }
+        .member-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
         .member-avatar {
-            width: 44px;
-            height: 44px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: #e8e8e8;
             display: flex;
@@ -173,12 +201,8 @@
             justify-content: center;
             font-weight: 600;
             color: #666;
-            margin-right: 1rem;
             flex-shrink: 0;
-            font-size: 0.875rem;
-        }
-        .member-info {
-            flex: 1;
+            font-size: 0.8rem;
         }
         .member-name {
             font-weight: 600;
@@ -197,6 +221,7 @@
             color: #555;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            display: inline-block;
         }
         .member-role.em { background: #FFE14D; color: #1a1a1a; }
         .member-role.pm { background: #e8e8e8; color: #1a1a1a; }
@@ -204,32 +229,39 @@
         .member-role.qa { background: #cce5ff; color: #004085; }
         .member-role.ux { background: #f8d7da; color: #721c24; }
         .member-role.pa { background: #e2d5f1; color: #4a235a; }
-        .member-links {
-            display: flex;
-            gap: 0.5rem;
-            margin-left: 1rem;
-        }
-        .member-links a {
+        .github-link {
             color: #666;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             padding: 0.35rem 0.75rem;
             border: 1px solid #e0e0e0;
             border-radius: 6px;
             transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
         }
-        .member-links a:hover {
+        .github-link:hover {
             background: #FFE14D;
             border-color: #FFE14D;
             color: #1a1a1a;
         }
-        @media (max-width: 600px) {
+        .github-link svg {
+            width: 16px;
+            height: 16px;
+        }
+        .no-link {
+            color: #ccc;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 768px) {
             .header { flex-direction: column; gap: 1rem; padding: 1rem; }
             .hero { padding: 2rem 1rem; }
             .hero h1 { font-size: 1.75rem; }
             .teams-container { padding: 0 1rem; }
-            .member { flex-wrap: wrap; padding: 1rem; }
-            .member-links { margin-left: 0; margin-top: 0.75rem; width: 100%; }
+            .team-table th, .team-table td { padding: 0.5rem; font-size: 0.85rem; }
+            .member-avatar { width: 28px; height: 28px; font-size: 0.7rem; }
+            .team-table th:nth-child(2), .team-table td:nth-child(2) { display: none; }
         }
     </style>
 </head>
@@ -259,303 +291,238 @@
         <div class="team-card peacock" data-team="peacock">
             <div class="team-header">
                 <h2><span class="team-badge"></span>Peacock</h2>
-                <p>Provider Onboarding | Jira: PROVGRO</p>
-                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/39427858/Provider+Onboarding+-+Peacock" target="_blank">View Confluence</a>
-            </div>
-            <div class="team-members">
-                <div class="member">
-                    <div class="member-avatar">RS</div>
-                    <div class="member-info">
-                        <div class="member-name">Rashmi Srivastava</div>
-                        <div class="member-email">rashmi.srivastava@zocdoc.com</div>
-                    </div>
-                    <span class="member-role em">EM</span>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">AG</div>
-                    <div class="member-info">
-                        <div class="member-name">Alexander Gorowara</div>
-                        <div class="member-email">alexander.gorowara@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                    <div class="member-links">
-                        <a href="https://github.com/alexander-gorowara-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">CP</div>
-                    <div class="member-info">
-                        <div class="member-name">Clark Pathakis</div>
-                        <div class="member-email">clark.pathakis@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                    <div class="member-links">
-                        <a href="https://github.com/clark-pathakis-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">ME</div>
-                    <div class="member-info">
-                        <div class="member-name">Manon Escoffier</div>
-                        <div class="member-email">manon.escoffier@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">SM</div>
-                    <div class="member-info">
-                        <div class="member-name">Sydney Morton</div>
-                        <div class="member-email">sydney.morton@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                    <div class="member-links">
-                        <a href="https://github.com/sydney-morton-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">KL</div>
-                    <div class="member-info">
-                        <div class="member-name">Kelly Lee</div>
-                        <div class="member-email">kelly.lee@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">RB</div>
-                    <div class="member-info">
-                        <div class="member-name">Renan Borges</div>
-                        <div class="member-email">renan.borges@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">AP</div>
-                    <div class="member-info">
-                        <div class="member-name">Alex Pryadun</div>
-                        <div class="member-email">alex.pryadun@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                    <div class="member-links">
-                        <a href="https://github.com/alex-pryadun-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">ES</div>
-                    <div class="member-info">
-                        <div class="member-name">Eftal Sogukoglu</div>
-                        <div class="member-email">eftal.sogukoglu@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">SA</div>
-                    <div class="member-info">
-                        <div class="member-name">Simran Arora</div>
-                        <div class="member-email">simran.arora@zocdoc.com</div>
-                    </div>
-                    <span class="member-role qa">QA</span>
+                <p>Provider Onboarding</p>
+                <div class="team-links">
+                    <a href="https://zocdoc.atlassian.net/jira/software/c/projects/PROVGRO/boards/222" target="_blank">Jira Board</a>
+                    <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/39427858/Provider+Onboarding+-+Peacock" target="_blank" class="secondary">Confluence</a>
                 </div>
             </div>
+            <table class="team-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>GitHub</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">RS</div><span class="member-name">Rashmi Srivastava</span></div></td>
+                        <td class="member-email">rashmi.srivastava@zocdoc.com</td>
+                        <td><span class="member-role em">EM</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">AG</div><span class="member-name">Alexander Gorowara</span></div></td>
+                        <td class="member-email">alexander.gorowara@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><a href="https://github.com/alexander-gorowara-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">CP</div><span class="member-name">Clark Pathakis</span></div></td>
+                        <td class="member-email">clark.pathakis@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><a href="https://github.com/clark-pathakis-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">ME</div><span class="member-name">Manon Escoffier</span></div></td>
+                        <td class="member-email">manon.escoffier@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">SM</div><span class="member-name">Sydney Morton</span></div></td>
+                        <td class="member-email">sydney.morton@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><a href="https://github.com/sydney-morton-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">KL</div><span class="member-name">Kelly Lee</span></div></td>
+                        <td class="member-email">kelly.lee@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">RB</div><span class="member-name">Renan Borges</span></div></td>
+                        <td class="member-email">renan.borges@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">AP</div><span class="member-name">Alex Pryadun</span></div></td>
+                        <td class="member-email">alex.pryadun@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><a href="https://github.com/alex-pryadun-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">ES</div><span class="member-name">Eftal Sogukoglu</span></div></td>
+                        <td class="member-email">eftal.sogukoglu@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">SA</div><span class="member-name">Simran Arora</span></div></td>
+                        <td class="member-email">simran.arora@zocdoc.com</td>
+                        <td><span class="member-role qa">QA</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div class="team-card pterodactyl" data-team="pterodactyl">
             <div class="team-header">
                 <h2><span class="team-badge"></span>Pterodactyl</h2>
-                <p>Provider User Permissions | Jira: PTERODACTL</p>
-                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/932577285/Provider+User+Permissions+-+Pterodactyl" target="_blank">View Confluence</a>
-            </div>
-            <div class="team-members">
-                <div class="member">
-                    <div class="member-avatar">RS</div>
-                    <div class="member-info">
-                        <div class="member-name">Rashmi Srivastava</div>
-                        <div class="member-email">rashmi.srivastava@zocdoc.com</div>
-                    </div>
-                    <span class="member-role em">EM</span>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">MC</div>
-                    <div class="member-info">
-                        <div class="member-name">Mayank Choudhary</div>
-                        <div class="member-email">mayank.choudhary@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">JH</div>
-                    <div class="member-info">
-                        <div class="member-name">Jacqueline Hang</div>
-                        <div class="member-email">jacqueline.hang@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">GS</div>
-                    <div class="member-info">
-                        <div class="member-name">Garon Smith</div>
-                        <div class="member-email">garon.smith@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                    <div class="member-links">
-                        <a href="https://github.com/garon-smith-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">ER</div>
-                    <div class="member-info">
-                        <div class="member-name">Elli Rappaport</div>
-                        <div class="member-email">elli.rappaport@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                    <div class="member-links">
-                        <a href="https://github.com/elli-rappaport-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">TS</div>
-                    <div class="member-info">
-                        <div class="member-name">Thiago Salvadori</div>
-                        <div class="member-email">thiago.salvadori@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">AP</div>
-                    <div class="member-info">
-                        <div class="member-name">Alex Pryadun</div>
-                        <div class="member-email">alex.pryadun@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                    <div class="member-links">
-                        <a href="https://github.com/alex-pryadun-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">AK</div>
-                    <div class="member-info">
-                        <div class="member-name">Allen Koickal</div>
-                        <div class="member-email">allen.koickal@zocdoc.com</div>
-                    </div>
-                    <span class="member-role qa">QA</span>
-                    <div class="member-links">
-                        <a href="https://github.com/allen-koickal1-zocdoc" target="_blank">GitHub</a>
-                    </div>
+                <p>Provider User Permissions</p>
+                <div class="team-links">
+                    <a href="https://zocdoc.atlassian.net/jira/software/c/projects/PTERODACTL/boards/223" target="_blank">Jira Board</a>
+                    <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/932577285/Provider+User+Permissions+-+Pterodactyl" target="_blank" class="secondary">Confluence</a>
                 </div>
             </div>
+            <table class="team-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>GitHub</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">RS</div><span class="member-name">Rashmi Srivastava</span></div></td>
+                        <td class="member-email">rashmi.srivastava@zocdoc.com</td>
+                        <td><span class="member-role em">EM</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">MC</div><span class="member-name">Mayank Choudhary</span></div></td>
+                        <td class="member-email">mayank.choudhary@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">JH</div><span class="member-name">Jacqueline Hang</span></div></td>
+                        <td class="member-email">jacqueline.hang@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">GS</div><span class="member-name">Garon Smith</span></div></td>
+                        <td class="member-email">garon.smith@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><a href="https://github.com/garon-smith-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">ER</div><span class="member-name">Elli Rappaport</span></div></td>
+                        <td class="member-email">elli.rappaport@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><a href="https://github.com/elli-rappaport-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">TS</div><span class="member-name">Thiago Salvadori</span></div></td>
+                        <td class="member-email">thiago.salvadori@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">AP</div><span class="member-name">Alex Pryadun</span></div></td>
+                        <td class="member-email">alex.pryadun@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><a href="https://github.com/alex-pryadun-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">AK</div><span class="member-name">Allen Koickal</span></div></td>
+                        <td class="member-email">allen.koickal@zocdoc.com</td>
+                        <td><span class="member-role qa">QA</span></td>
+                        <td><a href="https://github.com/allen-koickal1-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div class="team-card billing" data-team="billing">
             <div class="team-header">
                 <h2><span class="team-badge"></span>Billing</h2>
-                <p>Provider Billing | Jira: BILL</p>
-                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/2037547071/Billing+Team" target="_blank">View Confluence</a>
-            </div>
-            <div class="team-members">
-                <div class="member">
-                    <div class="member-avatar">JP</div>
-                    <div class="member-info">
-                        <div class="member-name">John Penner</div>
-                        <div class="member-email">john.penner@zocdoc.com</div>
-                    </div>
-                    <span class="member-role em">EM</span>
-                    <div class="member-links">
-                        <a href="https://github.com/john-penner-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">DR</div>
-                    <div class="member-info">
-                        <div class="member-name">Dave Ramirez</div>
-                        <div class="member-email">dave.ramirez@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                    <div class="member-links">
-                        <a href="https://github.com/dave-ramirez-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">NP</div>
-                    <div class="member-info">
-                        <div class="member-name">Niko Prassas</div>
-                        <div class="member-email">niko.prassas@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                    <div class="member-links">
-                        <a href="https://github.com/Niko-Prassas-Zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">SS</div>
-                    <div class="member-info">
-                        <div class="member-name">Shantanu Singh</div>
-                        <div class="member-email">shantanu.singh@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                    <div class="member-links">
-                        <a href="https://github.com/shan-singh-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">AH</div>
-                    <div class="member-info">
-                        <div class="member-name">Abdo Hassan</div>
-                        <div class="member-email">abdo.hassan@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                    <div class="member-links">
-                        <a href="https://github.com/abdo-hassan-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">LP</div>
-                    <div class="member-info">
-                        <div class="member-name">Leo Pimenta</div>
-                        <div class="member-email">leo.pimenta@zocdoc.com</div>
-                    </div>
-                    <span class="member-role swe">SWE</span>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">LY</div>
-                    <div class="member-info">
-                        <div class="member-name">Leeyman Yousuf</div>
-                        <div class="member-email">leeyman.yousuf@zocdoc.com</div>
-                    </div>
-                    <span class="member-role pm">PM</span>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">RZ</div>
-                    <div class="member-info">
-                        <div class="member-name">Ren Zheng</div>
-                        <div class="member-email">ren.zheng@zocdoc.com</div>
-                    </div>
-                    <span class="member-role ux">UX</span>
-                    <div class="member-links">
-                        <a href="https://github.com/ren-zheng-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">VL</div>
-                    <div class="member-info">
-                        <div class="member-name">Vishesh Luthra</div>
-                        <div class="member-email">vishesh.luthra@zocdoc.com</div>
-                    </div>
-                    <span class="member-role qa">QA</span>
-                    <div class="member-links">
-                        <a href="https://github.com/vishesh-luthra-zocdoc" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">AC</div>
-                    <div class="member-info">
-                        <div class="member-name">Andrew Cohen</div>
-                        <div class="member-email">andrew.cohen@zocdoc.com</div>
-                    </div>
-                    <span class="member-role pa">PA</span>
-                    <div class="member-links">
-                        <a href="https://github.com/andrew-cohen-zocdoc" target="_blank">GitHub</a>
-                    </div>
+                <p>Provider Billing</p>
+                <div class="team-links">
+                    <a href="https://zocdoc.atlassian.net/jira/software/c/projects/BILL/boards/224" target="_blank">Jira Board</a>
+                    <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/2037547071/Billing+Team" target="_blank" class="secondary">Confluence</a>
                 </div>
             </div>
+            <table class="team-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>GitHub</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">JP</div><span class="member-name">John Penner</span></div></td>
+                        <td class="member-email">john.penner@zocdoc.com</td>
+                        <td><span class="member-role em">EM</span></td>
+                        <td><a href="https://github.com/john-penner-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">DR</div><span class="member-name">Dave Ramirez</span></div></td>
+                        <td class="member-email">dave.ramirez@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><a href="https://github.com/dave-ramirez-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">NP</div><span class="member-name">Niko Prassas</span></div></td>
+                        <td class="member-email">niko.prassas@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><a href="https://github.com/Niko-Prassas-Zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">SS</div><span class="member-name">Shantanu Singh</span></div></td>
+                        <td class="member-email">shantanu.singh@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><a href="https://github.com/shan-singh-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">AH</div><span class="member-name">Abdo Hassan</span></div></td>
+                        <td class="member-email">abdo.hassan@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><a href="https://github.com/abdo-hassan-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">LP</div><span class="member-name">Leo Pimenta</span></div></td>
+                        <td class="member-email">leo.pimenta@zocdoc.com</td>
+                        <td><span class="member-role swe">SWE</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">LY</div><span class="member-name">Leeyman Yousuf</span></div></td>
+                        <td class="member-email">leeyman.yousuf@zocdoc.com</td>
+                        <td><span class="member-role pm">PM</span></td>
+                        <td><span class="no-link">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">RZ</div><span class="member-name">Ren Zheng</span></div></td>
+                        <td class="member-email">ren.zheng@zocdoc.com</td>
+                        <td><span class="member-role ux">UX</span></td>
+                        <td><a href="https://github.com/ren-zheng-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">VL</div><span class="member-name">Vishesh Luthra</span></div></td>
+                        <td class="member-email">vishesh.luthra@zocdoc.com</td>
+                        <td><span class="member-role qa">QA</span></td>
+                        <td><a href="https://github.com/vishesh-luthra-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                    <tr>
+                        <td><div class="member-cell"><div class="member-avatar">AC</div><span class="member-name">Andrew Cohen</span></div></td>
+                        <td class="member-email">andrew.cohen@zocdoc.com</td>
+                        <td><span class="member-role pa">PA</span></td>
+                        <td><a href="https://github.com/andrew-cohen-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
