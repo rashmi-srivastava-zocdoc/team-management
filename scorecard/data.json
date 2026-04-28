@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T18:34:19.302401",
+  "lastUpdated": "2026-04-28T18:34:52.867709",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -9,9 +9,9 @@
           "repo": "provider-setup-service",
           "checks": {
             "blueGreen": {
-              "tier": "n/a",
-              "status": "n/a",
-              "notes": "Not an ECS service (Lambda/Worker)"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -223,9 +223,9 @@
           "repo": "practice-user-permissions",
           "checks": {
             "blueGreen": {
-              "tier": "n/a",
-              "status": "n/a",
-              "notes": "Not an ECS service (Lambda/Worker)"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -342,9 +342,9 @@
           "repo": "practice-authorization-proxy",
           "checks": {
             "blueGreen": {
-              "tier": "n/a",
-              "status": "n/a",
-              "notes": "Not an ECS service (Lambda/Worker)"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -460,9 +460,9 @@
           "repo": "provider-grouping",
           "checks": {
             "blueGreen": {
-              "tier": "n/a",
-              "status": "n/a",
-              "notes": "Not an ECS service (Lambda/Worker)"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -581,7 +581,7 @@
             "blueGreen": {
               "tier": "n/a",
               "status": "n/a",
-              "notes": "Not an ECS service (Lambda/Worker)"
+              "notes": "Not an ECS service (Lambda only)"
             },
             "sloGate": {
               "tier": "unknown",
