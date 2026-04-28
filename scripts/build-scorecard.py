@@ -528,8 +528,12 @@ def check_pagerduty(repo_path):
 def load_teamcity_coverage():
     coverage_file = OUTPUT_DIR / "teamcity-coverage.json"
     if coverage_file.exists():
-        with open(coverage_file) as f:
-            return json.load(f)
+        try:
+            with open(coverage_file) as f:
+                return json.load(f)
+        except json.JSONDecodeError as e:
+            print(f"Warning: Invalid JSON in {coverage_file}: {e}")
+            return {}
     return {}
 
 def analyze_service(team_id, service, repo_base, tc_coverage):
