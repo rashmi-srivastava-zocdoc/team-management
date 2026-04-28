@@ -13,7 +13,9 @@ import json
 import subprocess
 import os
 
-OUTPUT_DIR = os.path.expanduser("~/Desktop/Github/team-management/scorecard")
+# Use relative path from script location (works in both local and GitHub Actions)
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = os.path.join(SCRIPT_DIR, "..", "scorecard")
 
 # service -> PantsCICoverageReport buildType ID
 # Verified in TeamCity 2026-04-28

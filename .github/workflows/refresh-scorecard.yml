@@ -35,13 +35,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Fetch TeamCity coverage data
         env:
           TEAMCITY_TOKEN: ${{ secrets.TEAMCITY_TOKEN }}
-          TEAMCITY_URL: https://teamcity.east.zocdoccloud.net
-        run: |
-          chmod +x scripts/fetch-teamcity-coverage.sh
-          ./scripts/fetch-teamcity-coverage.sh
+        run: python3 scripts/fetch-teamcity-coverage.py
 
       - name: Check for changes
         id: changes
