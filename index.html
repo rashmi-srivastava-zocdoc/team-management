@@ -75,28 +75,29 @@
         }
         .team-selector label {
             font-weight: 500;
-            color: #666;
+            color: #5e6c84;
         }
         .team-dropdown {
-            padding: 0.75rem 2.5rem 0.75rem 1rem;
-            font-size: 1rem;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
+            padding: 0.5rem 2rem 0.5rem 0.75rem;
+            font-size: 0.9rem;
+            border: 1px solid #dfe1e6;
+            border-radius: 6px;
             background: #ffffff;
-            color: #1a1a1a;
+            color: #172b4d;
             cursor: pointer;
             appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 1rem center;
+            background-position: right 0.75rem center;
+            min-width: 180px;
         }
         .team-dropdown:hover {
-            border-color: #FFE14D;
+            border-color: #0065ff;
         }
         .team-dropdown:focus {
             outline: none;
-            border-color: #FFE14D;
-            box-shadow: 0 0 0 3px rgba(255, 225, 77, 0.3);
+            border-color: #0065ff;
+            box-shadow: 0 0 0 2px rgba(0, 101, 255, 0.2);
         }
         .hero {
             background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
@@ -363,7 +364,7 @@
                 <a href="scorecard.html">Scorecard</a>
             </nav>
             <div class="team-selector">
-                <label for="team-filter">Select Team:</label>
+                <label for="team-filter">Team:</label>
                 <select id="team-filter" class="team-dropdown" onchange="filterTeams()">
                     <option value="all">All Teams</option>
                     <option value="peacock">Peacock</option>

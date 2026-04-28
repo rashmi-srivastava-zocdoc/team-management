@@ -99,6 +99,29 @@
             border-color: #0065ff;
             box-shadow: 0 0 0 2px rgba(0, 101, 255, 0.2);
         }
+        .refresh-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #0065ff;
+            background: #ffffff;
+            border: 1px solid #0065ff;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .refresh-btn:hover {
+            background: #0065ff;
+            color: #ffffff;
+        }
+        .refresh-icon {
+            width: 14px;
+            height: 14px;
+        }
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -291,16 +314,25 @@
             Team Directory
         </a>
         <div class="header-right">
+            <nav class="nav-links">
+                <a href="index.html">Teams</a>
+                <a href="scorecard.html" class="active">Scorecard</a>
+            </nav>
             <div class="team-selector">
                 <label for="teamFilter">Team:</label>
                 <select id="teamFilter" class="team-dropdown" onchange="filterByTeam()">
                     <option value="all">All Teams</option>
                 </select>
             </div>
-            <nav class="nav-links">
-                <a href="index.html">Teams</a>
-                <a href="scorecard.html" class="active">Scorecard</a>
-            </nav>
+            <a href="https://github.com/rashmi-srivastava-zocdoc/team-management/actions/workflows/refresh-scorecard.yml"
+               target="_blank"
+               class="refresh-btn"
+               title="Trigger GitHub Action to refresh TeamCity data">
+                <svg class="refresh-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+                </svg>
+                Refresh Data
+            </a>
         </div>
     </header>
 

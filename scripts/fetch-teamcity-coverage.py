@@ -28,9 +28,55 @@ COVERAGE_BUILD_TYPES = {
     "provider-join-service": "Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport",
 }
 
+TEAMCITY_URL = "https://teamcity.east.zocdoccloud.net"
+KEYCHAIN_SERVICE = "teamcity-api"
+KEYCHAIN_ACCOUNT = "rashmi.srivastava"
+
+
+def get_token_from_keychain():
+    """Retrieve token from macOS Keychain."""
+    try:
+        r = subprocess.run(
+            ["security", "find-generic-password", "-s", KEYCHAIN_SERVICE, "-a", KEYCHAIN_ACCOUNT, "-w"],
+            capture_output=True, text=True
+        )
+        if r.returncode == 0:
+            return r.stdout.strip()
+    except Exception:
+        pass
+    return None
+
+
+def get_token():
+    """Get token from env var or keychain."""
+    # 1. Check environment variable
+    token = os.environ.get("TEAMCITY_TOKEN")
+    if token:
+        return token
+
+    # 2. Check macOS Keychain
+    token = get_token_from_keychain()
+    if token:
+        return token
+
+    return None
+
+
 def api(path):
-    """Call TeamCity API via the teamcity CLI."""
-    r = subprocess.run(["teamcity", "api", path], capture_output=True, text=True)
+    """Call TeamCity REST API. Uses TEAMCITY_TOKEN env var, keychain, or teamcity CLI."""
+    token = get_token()
+
+    if token:
+        # Use curl with bearer token
+        url = f"{TEAMCITY_URL}{path}"
+        r = subprocess.run(
+            ["curl", "-sS", "-H", f"Authorization: Bearer {token}", "-H", "Accept: application/json", url],
+            capture_output=True, text=True
+        )
+    else:
+        # Fall back to teamcity CLI
+        r = subprocess.run(["teamcity", "api", path], capture_output=True, text=True)
+
     if r.returncode != 0:
         return None
     try:
