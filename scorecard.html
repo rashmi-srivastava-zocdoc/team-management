@@ -830,12 +830,6 @@
                 section.className = 'priority-section';
 
                 let html = `<h3 class="priority-title">${priority} Checks</h3>`;
-                // Get team epic if filtering by team
-                let teamEpic = null;
-                if (selectedTeam !== 'all' && data.teams[selectedTeam]?.epic) {
-                    teamEpic = data.teams[selectedTeam].epic;
-                }
-
                 html += '<table class="scorecard-table"><thead><tr>';
                 html += '<th class="service-col">Check</th>';
 
@@ -843,22 +837,12 @@
                     const repoUrl = `https://github.com/Zocdoc/${service.repo || service.name}`;
                     html += `<th class="status-cell"><a href="${repoUrl}" target="_blank">${service.name}</a></th>`;
                 }
-
-                // Add Jira tracking columns if team has epic
-                if (teamEpic) {
-                    html += `<th class="status-cell jira-col">Jira Tickets</th>`;
-                    html += `<th class="status-cell completion-col">Completion</th>`;
-                }
                 html += '</tr></thead><tbody>';
 
                 for (const checkId of priorityChecks) {
                     const def = data.checkDefinitions[checkId];
                     html += '<tr>';
                     html += `<td class="check-name">${def.name}</td>`;
-
-                    // Collect tickets from all services for this check
-                    let allTickets = [];
-                    let completionPct = null;
 
                     for (const service of allServices) {
                         const check = service.checks?.[checkId] || {};
@@ -872,30 +856,6 @@
                                 <span class="dot"></span>${label}
                             </span>
                         </td>`;
-
-                        // Collect tickets
-                        if (check.tickets && check.tickets.length > 0) {
-                            allTickets = allTickets.concat(check.tickets);
-                            if (check.completion !== null && check.completion !== undefined) {
-                                completionPct = check.completion;
-                            }
-                        }
-                    }
-
-                    // Add Jira tracking columns
-                    if (teamEpic) {
-                        if (allTickets.length > 0) {
-                            const ticketLinks = allTickets.map(t =>
-                                `<a href="${t.url}" target="_blank" title="${t.summary}" class="ticket-link">${t.key}</a>`
-                            ).join(', ');
-                            html += `<td class="status-cell jira-col">${ticketLinks}</td>`;
-
-                            const pctClass = completionPct === 100 ? 'complete' : (completionPct > 0 ? 'partial' : 'none');
-                            html += `<td class="status-cell completion-col"><span class="completion-badge ${pctClass}">${completionPct}%</span></td>`;
-                        } else {
-                            html += `<td class="status-cell jira-col"><span class="no-tickets">—</span></td>`;
-                            html += `<td class="status-cell completion-col"><span class="no-tickets">—</span></td>`;
-                        }
                     }
                     html += '</tr>';
                 }
