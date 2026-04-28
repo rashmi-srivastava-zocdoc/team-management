@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T10:51:05.910354",
+  "lastUpdated": "2026-04-28T10:55:24.954889",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -45,64 +45,7 @@
               "value": 41.5,
               "target": 80,
               "notes": "C:41.5% M:41.5% L:41.5% B:100%",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24633751",
-              "tickets": [
-                {
-                  "key": "PROVGRO-6264",
-                  "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6264"
-                },
-                {
-                  "key": "PROVGRO-6265",
-                  "summary": "[Test Coverage] Intake tasks + SKU definition",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6265"
-                },
-                {
-                  "key": "PROVGRO-6266",
-                  "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6266"
-                },
-                {
-                  "key": "PROVGRO-6267",
-                  "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6267"
-                },
-                {
-                  "key": "PROVGRO-6268",
-                  "summary": "[Test Coverage] Authorization handlers",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6268"
-                },
-                {
-                  "key": "PROVGRO-6269",
-                  "summary": "[Test Coverage] AlertHandlerImpl + alert definitions",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6269"
-                },
-                {
-                  "key": "PROVGRO-6270",
-                  "summary": "[Test Coverage] MilestonesImpl unit tests",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6270"
-                },
-                {
-                  "key": "PROVGRO-6271",
-                  "summary": "[Test Coverage] Lambda entry points",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6271"
-                },
-                {
-                  "key": "PROVGRO-6272",
-                  "summary": "[Test Coverage] Utilities, extensions & mappers",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6272"
-                }
-              ],
-              "completion": 0
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24633751"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -144,16 +87,7 @@
             "smokeTests": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "Roadie surfaces; no active gap",
-              "tickets": [
-                {
-                  "key": "PROVGRO-6301",
-                  "summary": "Implement smoke tests for blue/green deployment validation",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6301"
-                }
-              ],
-              "completion": 0
+              "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
               "tier": "unknown",
@@ -175,16 +109,7 @@
             "plinth": {
               "tier": "t1",
               "status": "pass",
-              "notes": "On Plinth",
-              "tickets": [
-                {
-                  "key": "PROVGRO-6189",
-                  "summary": "[plinth] add missing auth-policies",
-                  "status": "In Review",
-                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6189"
-                }
-              ],
-              "completion": 0
+              "notes": "On Plinth"
             },
             "cdkNoAnsible": {
               "tier": "t1",
@@ -203,7 +128,75 @@
         "key": "PROVGRO-6335",
         "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6335",
         "summary": "Q2 2026 - Infrastructure Hardening"
-      }
+      },
+      "tickets": [
+        {
+          "key": "PROVGRO-6189",
+          "summary": "[plinth] add missing auth-policies",
+          "status": "In Review",
+          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6189"
+        },
+        {
+          "key": "PROVGRO-6301",
+          "summary": "Implement smoke tests for blue/green deployment validation",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6301"
+        },
+        {
+          "key": "PROVGRO-6264",
+          "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6264"
+        },
+        {
+          "key": "PROVGRO-6265",
+          "summary": "[Test Coverage] Intake tasks + SKU definition",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6265"
+        },
+        {
+          "key": "PROVGRO-6266",
+          "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6266"
+        },
+        {
+          "key": "PROVGRO-6267",
+          "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6267"
+        },
+        {
+          "key": "PROVGRO-6268",
+          "summary": "[Test Coverage] Authorization handlers",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6268"
+        },
+        {
+          "key": "PROVGRO-6269",
+          "summary": "[Test Coverage] AlertHandlerImpl + alert definitions",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6269"
+        },
+        {
+          "key": "PROVGRO-6270",
+          "summary": "[Test Coverage] MilestonesImpl unit tests",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6270"
+        },
+        {
+          "key": "PROVGRO-6271",
+          "summary": "[Test Coverage] Lambda entry points",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6271"
+        },
+        {
+          "key": "PROVGRO-6272",
+          "summary": "[Test Coverage] Utilities, extensions & mappers",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6272"
+        }
+      ]
     },
     "account-user-setup": {
       "name": "Account & User Setup",
@@ -215,16 +208,7 @@
             "blueGreen": {
               "tier": "n/a",
               "status": "n/a",
-              "notes": "Not an ECS service (Lambda/Worker)",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1884",
-                  "summary": "Enable ECS blue/green deployment for PUP",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1884"
-                }
-              ],
-              "completion": 0
+              "notes": "Not an ECS service (Lambda/Worker)"
             },
             "sloGate": {
               "tier": "unknown",
@@ -300,16 +284,7 @@
             "smokeTests": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "Roadie surfaces; no active gap",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1885",
-                  "summary": "Implement smoke tests for PUP blue/green deployment",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1885"
-                }
-              ],
-              "completion": 0
+              "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
               "tier": "unknown",
@@ -352,16 +327,7 @@
             "blueGreen": {
               "tier": "n/a",
               "status": "n/a",
-              "notes": "Not an ECS service (Lambda/Worker)",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1886",
-                  "summary": "Enable ECS blue/green deployment for PAP",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1886"
-                }
-              ],
-              "completion": 0
+              "notes": "Not an ECS service (Lambda/Worker)"
             },
             "sloGate": {
               "tier": "unknown",
@@ -436,16 +402,7 @@
             "smokeTests": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "Roadie surfaces; no active gap",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1887",
-                  "summary": "Implement smoke tests for PAP blue/green deployment",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1887"
-                }
-              ],
-              "completion": 0
+              "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
               "tier": "unknown",
@@ -488,16 +445,7 @@
             "blueGreen": {
               "tier": "n/a",
               "status": "n/a",
-              "notes": "Not an ECS service (Lambda/Worker)",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1882",
-                  "summary": "Enable ECS blue/green deployment for POGS",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1882"
-                }
-              ],
-              "completion": 0
+              "notes": "Not an ECS service (Lambda/Worker)"
             },
             "sloGate": {
               "tier": "unknown",
@@ -573,16 +521,7 @@
             "smokeTests": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "Roadie surfaces; no active gap",
-              "tickets": [
-                {
-                  "key": "PTERODACTL-1883",
-                  "summary": "Implement smoke tests for POGS blue/green deployment",
-                  "status": "To Do",
-                  "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1883"
-                }
-              ],
-              "completion": 0
+              "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
               "tier": "unknown",
@@ -741,7 +680,45 @@
         "key": "PTERODACTL-1880",
         "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1880",
         "summary": "Q2 2026 [2x] - Infrastructure Hardening"
-      }
+      },
+      "tickets": [
+        {
+          "key": "PTERODACTL-1882",
+          "summary": "Enable ECS blue/green deployment for POGS",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1882"
+        },
+        {
+          "key": "PTERODACTL-1883",
+          "summary": "Implement smoke tests for POGS blue/green deployment",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1883"
+        },
+        {
+          "key": "PTERODACTL-1884",
+          "summary": "Enable ECS blue/green deployment for PUP",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1884"
+        },
+        {
+          "key": "PTERODACTL-1885",
+          "summary": "Implement smoke tests for PUP blue/green deployment",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1885"
+        },
+        {
+          "key": "PTERODACTL-1886",
+          "summary": "Enable ECS blue/green deployment for PAP",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1886"
+        },
+        {
+          "key": "PTERODACTL-1887",
+          "summary": "Implement smoke tests for PAP blue/green deployment",
+          "status": "To Do",
+          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1887"
+        }
+      ]
     },
     "billing": {
       "name": "Billing",

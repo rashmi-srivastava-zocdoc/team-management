@@ -335,6 +335,31 @@
             background: #ffebe6;
             color: #bf2600;
         }
+        .ticket-status {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .ticket-status.status-done {
+            background: #e3fcef;
+            color: #006644;
+        }
+        .ticket-status.status-progress {
+            background: #deebff;
+            color: #0747a6;
+        }
+        .ticket-status.status-todo {
+            background: #f4f5f7;
+            color: #5e6c84;
+        }
+        .tickets-section {
+            margin-top: 1.5rem;
+        }
+        .tickets-section .detail-table {
+            max-width: 900px;
+        }
         .team-header {
             display: flex;
             align-items: center;
@@ -710,7 +735,6 @@
                 html += '<table class="detail-table"><thead><tr>';
                 html += '<th class="check-name-col">Check</th>';
                 html += '<th class="status-col">Status</th>';
-                html += '<th class="tickets-col">Jira Tickets</th>';
                 html += '<th class="notes-col">Notes / Requirements</th>';
                 html += '</tr></thead><tbody>';
 
@@ -729,19 +753,6 @@
                         </span>
                     </td>`;
 
-                    // Tickets column
-                    if (check.tickets && check.tickets.length > 0) {
-                        const ticketLinks = check.tickets.map(t =>
-                            `<a href="${t.url}" target="_blank" title="${t.summary}" class="ticket-link">${t.key}</a>`
-                        ).join(' ');
-                        const completionBadge = check.completion !== null && check.completion !== undefined
-                            ? `<span class="completion-badge ${check.completion === 100 ? 'complete' : (check.completion > 0 ? 'partial' : 'none')}">${check.completion}%</span>`
-                            : '';
-                        html += `<td class="tickets-col">${ticketLinks} ${completionBadge}</td>`;
-                    } else {
-                        html += `<td class="tickets-col"><span class="no-tickets">No tickets assigned</span></td>`;
-                    }
-
                     // Notes column - show tier requirements or custom notes
                     const notes = check.notes || def.tier1 || '';
                     html += `<td class="notes-col">${notes}</td>`;
@@ -751,6 +762,33 @@
                 html += '</tbody></table></div>';
             }
 
+            return html;
+        }
+
+        function renderTeamTickets(tickets, epic) {
+            let html = '<div class="priority-section tickets-section">';
+            html += '<h3 class="priority-title">Infrastructure Hardening Tickets';
+            if (epic) {
+                html += ` <a href="${epic.url}" target="_blank" class="epic-link" title="${epic.summary}">${epic.key}</a>`;
+            }
+            html += '</h3>';
+            html += '<table class="detail-table"><thead><tr>';
+            html += '<th style="width: 120px;">Ticket</th>';
+            html += '<th>Summary</th>';
+            html += '<th style="width: 100px;">Status</th>';
+            html += '</tr></thead><tbody>';
+
+            for (const ticket of tickets) {
+                const statusClass = ticket.status === 'Done' ? 'status-done' :
+                                   ticket.status === 'In Progress' || ticket.status === 'In Review' ? 'status-progress' : 'status-todo';
+                html += '<tr>';
+                html += `<td><a href="${ticket.url}" target="_blank" class="ticket-link">${ticket.key}</a></td>`;
+                html += `<td>${ticket.summary}</td>`;
+                html += `<td><span class="ticket-status ${statusClass}">${ticket.status}</span></td>`;
+                html += '</tr>';
+            }
+
+            html += '</tbody></table></div>';
             return html;
         }
 
@@ -823,6 +861,12 @@
                         container.innerHTML += renderServiceDetail(selectedService, data, teamEpic);
                         return;
                     }
+                }
+
+                // Show team tickets in summary tab
+                const teamData = data.teams[selectedTeam];
+                if (teamData?.tickets && teamData.tickets.length > 0) {
+                    container.innerHTML += renderTeamTickets(teamData.tickets, teamData.epic);
                 }
             }
 
