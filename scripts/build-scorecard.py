@@ -611,38 +611,35 @@ def load_existing_data():
             pass
     return None
 
-def merge_preserved_data(scorecard, existing):
-    """Merge tickets and epics from existing data into new scorecard."""
-    if not existing:
-        return
+def add_ticket_url(ticket):
+    """Add Jira URL to a ticket dict."""
+    if "url" not in ticket:
+        ticket["url"] = f"https://zocdoc.atlassian.net/browse/{ticket['key']}"
+    return ticket
 
-    existing_teams = existing.get("teams", {})
+def apply_ticket_mappings(scorecard):
+    """Apply tickets from TICKET_MAPPINGS to the scorecard."""
     for team_id, team in scorecard["teams"].items():
-        existing_team = existing_teams.get(team_id, {})
+        team_mappings = TICKET_MAPPINGS.get(team_id, {})
 
-        # Preserve epic
-        if "epic" in existing_team:
-            team["epic"] = existing_team["epic"]
-
-        # Preserve tickets per service/check
-        existing_services = {s["name"]: s for s in existing_team.get("services", [])}
         for service in team.get("services", []):
-            existing_svc = existing_services.get(service["name"], {})
-            existing_checks = existing_svc.get("checks", {})
+            svc_mappings = team_mappings.get(service["name"], {})
 
             for check_id, check in service.get("checks", {}).items():
-                existing_check = existing_checks.get(check_id, {})
-                # Preserve tickets and completion
-                if "tickets" in existing_check:
-                    check["tickets"] = existing_check["tickets"]
-                if "completion" in existing_check:
-                    check["completion"] = existing_check["completion"]
+                if check_id in svc_mappings:
+                    tickets = [add_ticket_url(dict(t)) for t in svc_mappings[check_id]]
+                    check["tickets"] = tickets
+                    check["completion"] = 0
+
+def apply_team_epics(scorecard):
+    """Apply epic info from TEAMS config to the scorecard."""
+    for team_id, team in scorecard["teams"].items():
+        team_config = TEAMS.get(team_id, {})
+        if "epic" in team_config:
+            team["epic"] = team_config["epic"]
 
 def build_scorecard():
     tc_coverage = load_teamcity_coverage()
-
-    # Load existing data to preserve tickets and epics
-    existing_data = load_existing_data()
 
     teams_data = {}
     for team_id, team_config in TEAMS.items():
@@ -662,8 +659,9 @@ def build_scorecard():
         "checkDefinitions": CHECK_DEFINITIONS
     }
 
-    # Merge preserved data (tickets, epics) from existing file
-    merge_preserved_data(scorecard, existing_data)
+    # Apply epics and tickets from stable config
+    apply_team_epics(scorecard)
+    apply_ticket_mappings(scorecard)
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     with open(OUTPUT_FILE, "w") as f:
