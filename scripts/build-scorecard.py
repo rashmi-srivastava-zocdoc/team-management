@@ -15,21 +15,28 @@ OUTPUT_DIR = BASE_DIR / "team-management/scorecard"
 OUTPUT_FILE = OUTPUT_DIR / "data.json"
 
 TEAMS = {
-    "peacock": {
-        "name": "Peacock",
+    "provider-onboarding": {
+        "name": "Provider Onboarding",
         "repo_base": BASE_DIR / "_team_provider-peacock-team",
         "services": [
             {"name": "provider-setup-service", "repo": "provider-setup-service"},
         ]
     },
-    "pterodactyl": {
-        "name": "Pterodactyl",
+    "account-user-setup": {
+        "name": "Account & User Setup",
         "repo_base": BASE_DIR / "_team_user-permissions",
         "services": [
             {"name": "practice-user-permissions", "repo": "practice-user-permissions"},
             {"name": "practice-authorization-proxy", "repo": "practice-authorization-proxy"},
             {"name": "provider-grouping", "repo": "provider-grouping"},
             {"name": "provider-join-service", "repo": "provider-join-service", "repo_override": BASE_DIR / "_team_provider-peacock-team/provider-join-service"},
+        ]
+    },
+    "billing": {
+        "name": "Billing",
+        "repo_base": BASE_DIR / "_team_billing",
+        "services": [
+            # Add billing services here when available
         ]
     }
 }

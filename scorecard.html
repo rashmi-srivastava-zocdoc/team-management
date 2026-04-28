@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q2 Infrastructure Hardening - Peacock & Pterodactyl</title>
+    <title>Q2 Infrastructure Hardening Scorecard</title>
     <style>
         * {
             box-sizing: border-box;
@@ -213,13 +213,42 @@
             font-weight: 600;
             color: #172b4d;
         }
+        .filter-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .filter-row label {
+            font-weight: 500;
+            color: #172b4d;
+        }
+        .filter-row select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #dfe1e6;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            background: white;
+            color: #172b4d;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        .filter-row select:hover {
+            border-color: #0065ff;
+        }
+        .filter-row select:focus {
+            outline: none;
+            border-color: #0065ff;
+            box-shadow: 0 0 0 2px rgba(0, 101, 255, 0.2);
+        }
         .team-badge {
             width: 10px;
             height: 10px;
             border-radius: 50%;
         }
-        .peacock .team-badge { background: #6554c0; }
-        .pterodactyl .team-badge { background: #ff5630; }
+        .provider-onboarding .team-badge { background: #6554c0; }
+        .account-user-setup .team-badge { background: #ff5630; }
+        .billing .team-badge { background: #00875a; }
         .priority-section {
             margin-bottom: 2rem;
         }
@@ -260,7 +289,7 @@
     </header>
 
     <main class="container">
-        <h1 class="page-title">Q2 Infrastructure Hardening - Peacock & Pterodactyl</h1>
+        <h1 class="page-title">Q2 Infrastructure Hardening Scorecard</h1>
         <p class="page-meta" id="pageMeta">Loading...</p>
 
         <div class="info-banner">
@@ -271,7 +300,14 @@
             </div>
         </div>
 
-        <h2 class="section-title">Q2 Infrastructure Hardening Tracker - Peacock & Pterodactyl</h2>
+        <div class="filter-row">
+            <label for="teamFilter">Team:</label>
+            <select id="teamFilter" onchange="filterByTeam()">
+                <option value="all">All Teams</option>
+            </select>
+        </div>
+
+        <h2 class="section-title" id="sectionTitle">Q2 Infrastructure Hardening Tracker</h2>
 
         <h3 class="subsection-title">Legend</h3>
         <table class="legend-table">
@@ -315,6 +351,9 @@
     </main>
 
     <script>
+        let scorecardData = null;
+        let selectedTeam = 'all';
+
         const checksByPriority = {
             'P1': ['blueGreen', 'prSize', 'coverage', 'mutedTests', 'testFailureRate', 'eol', 'slo', 'burnRate', 'sentry', 'deployable', 'cdkNoAnsible', 'pagerduty'],
             'P2': ['sloGate', 'rollbackTime', 'methodSize', 'smokeTests', 'incidentMetric'],
@@ -343,6 +382,23 @@
             }
         }
 
+        function populateTeamDropdown(data) {
+            const dropdown = document.getElementById('teamFilter');
+            dropdown.innerHTML = '<option value="all">All Teams</option>';
+            for (const [teamId, team] of Object.entries(data.teams)) {
+                if (team.services && team.services.length > 0) {
+                    dropdown.innerHTML += `<option value="${teamId}">${team.name}</option>`;
+                }
+            }
+        }
+
+        function filterByTeam() {
+            selectedTeam = document.getElementById('teamFilter').value;
+            if (scorecardData) {
+                renderScorecard(scorecardData);
+            }
+        }
+
         function renderScorecard(data) {
             const updated = data.lastUpdated ? new Date(data.lastUpdated) : new Date();
             document.getElementById('lastUpdated').textContent =
@@ -354,7 +410,21 @@
             let t1P1Checks = 0;
             let allServices = [];
 
-            for (const [teamId, team] of Object.entries(data.teams)) {
+            // Filter teams based on selection
+            const teamsToShow = selectedTeam === 'all'
+                ? Object.entries(data.teams)
+                : Object.entries(data.teams).filter(([id]) => id === selectedTeam);
+
+            // Update section title
+            if (selectedTeam === 'all') {
+                document.getElementById('sectionTitle').textContent = 'Q2 Infrastructure Hardening Tracker';
+            } else {
+                const teamName = data.teams[selectedTeam]?.name || selectedTeam;
+                document.getElementById('sectionTitle').textContent = `Q2 Infrastructure Hardening Tracker - ${teamName}`;
+            }
+
+            for (const [teamId, team] of teamsToShow) {
+                if (!team.services || team.services.length === 0) continue;
                 for (const service of team.services) {
                     allServices.push({ ...service, teamId, teamName: team.name });
                     for (const [checkId, check] of Object.entries(service.checks || {})) {
@@ -374,6 +444,11 @@
 
             const container = document.getElementById('scorecardContent');
             container.innerHTML = '';
+
+            if (allServices.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #5e6c84; padding: 2rem;">No services found for the selected team.</p>';
+                return;
+            }
 
             for (const [priority, checkIds] of Object.entries(checksByPriority)) {
                 const priorityChecks = checkIds.filter(id => data.checkDefinitions[id]);
@@ -425,7 +500,11 @@
 
         fetch('scorecard/data.json')
             .then(response => response.json())
-            .then(data => renderScorecard(data))
+            .then(data => {
+                scorecardData = data;
+                populateTeamDropdown(data);
+                renderScorecard(data);
+            })
             .catch(error => {
                 console.error('Error loading scorecard data:', error);
                 document.getElementById('scorecardContent').innerHTML =
