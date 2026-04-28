@@ -889,10 +889,16 @@
                         const tierClass = getTierClass(tier);
                         const tooltip = check.notes || def.tier1 || '';
 
+                        // Show coverage percentage alongside tier for coverage check
+                        let valueDisplay = '';
+                        if (checkId === 'coverage' && check.value != null) {
+                            valueDisplay = ` <span style="font-size:0.75rem;color:#5e6c84;">${check.value}%</span>`;
+                        }
+
                         html += `<td class="status-cell">
                             <span class="status-badge ${tierClass}" title="${tooltip}">
                                 <span class="dot"></span>${label}
-                            </span>
+                            </span>${valueDisplay}
                         </td>`;
                     }
 

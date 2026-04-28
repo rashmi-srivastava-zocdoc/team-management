@@ -423,8 +423,8 @@ def check_coverage(repo_path, tc_coverage, svc_name):
     tc_data = tc_coverage.get(svc_name, {})
     if "error" in tc_data:
         return {"tier": "unknown", "status": "unknown", "value": None, "target": 80, "notes": tc_data["error"]}
-    if tc_data.get("classes_pct") is not None:
-        pct = tc_data["classes_pct"]
+    if tc_data.get("lines_pct") is not None:
+        pct = tc_data["lines_pct"]
         if pct >= 80:
             tier = "t1"
         elif pct >= 70:
@@ -439,7 +439,7 @@ def check_coverage(repo_path, tc_coverage, svc_name):
             "status": status,
             "value": pct,
             "target": 80,
-            "notes": f"C:{pct}% M:{tc_data.get('methods_pct', '?')}% L:{tc_data.get('lines_pct', '?')}% B:{tc_data.get('branches_pct', '?')}%",
+            "notes": f"Lines:{pct}% (C:{tc_data.get('classes_pct', '?')}% M:{tc_data.get('methods_pct', '?')}% B:{tc_data.get('branches_pct', '?')}%)",
             "build_url": tc_data.get("web_url", "")
         }
     return {"tier": "unknown", "status": "unknown", "value": None, "target": 80, "notes": "No TeamCity data"}
