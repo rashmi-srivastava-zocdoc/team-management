@@ -715,7 +715,12 @@
             }
           }
         }
-      ]
+      ],
+      "epic": {
+        "key": "PTERODACTL-1880",
+        "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1880",
+        "summary": "[Q2 2026] Infrastructure Hardening"
+      }
     },
     "billing": {
       "name": "Billing",
