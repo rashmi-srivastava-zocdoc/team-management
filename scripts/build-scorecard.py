@@ -596,8 +596,48 @@ def analyze_service(team_id, service, repo_base, tc_coverage):
         "checks": checks
     }
 
+def load_existing_data():
+    """Load existing data.json to preserve tickets and epics."""
+    if OUTPUT_FILE.exists():
+        try:
+            with open(OUTPUT_FILE) as f:
+                return json.load(f)
+        except (json.JSONDecodeError, IOError):
+            pass
+    return None
+
+def merge_preserved_data(scorecard, existing):
+    """Merge tickets and epics from existing data into new scorecard."""
+    if not existing:
+        return
+
+    existing_teams = existing.get("teams", {})
+    for team_id, team in scorecard["teams"].items():
+        existing_team = existing_teams.get(team_id, {})
+
+        # Preserve epic
+        if "epic" in existing_team:
+            team["epic"] = existing_team["epic"]
+
+        # Preserve tickets per service/check
+        existing_services = {s["name"]: s for s in existing_team.get("services", [])}
+        for service in team.get("services", []):
+            existing_svc = existing_services.get(service["name"], {})
+            existing_checks = existing_svc.get("checks", {})
+
+            for check_id, check in service.get("checks", {}).items():
+                existing_check = existing_checks.get(check_id, {})
+                # Preserve tickets and completion
+                if "tickets" in existing_check:
+                    check["tickets"] = existing_check["tickets"]
+                if "completion" in existing_check:
+                    check["completion"] = existing_check["completion"]
+
 def build_scorecard():
     tc_coverage = load_teamcity_coverage()
+
+    # Load existing data to preserve tickets and epics
+    existing_data = load_existing_data()
 
     teams_data = {}
     for team_id, team_config in TEAMS.items():
@@ -616,6 +656,9 @@ def build_scorecard():
         "teams": teams_data,
         "checkDefinitions": CHECK_DEFINITIONS
     }
+
+    # Merge preserved data (tickets, epics) from existing file
+    merge_preserved_data(scorecard, existing_data)
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     with open(OUTPUT_FILE, "w") as f:
