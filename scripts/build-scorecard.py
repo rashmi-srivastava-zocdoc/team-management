@@ -66,6 +66,23 @@ TEAMS = {
 # Ticket mappings: team -> service -> check -> [tickets]
 # This is the stable source of truth for ticket assignments
 TICKET_MAPPINGS = {
+    "provider-onboarding": {
+        "provider-setup-service": {
+            "smokeTests": [{"key": "PROVGRO-6301", "summary": "Implement smoke tests for blue/green deployment validation", "status": "To Do"}],
+            "coverage": [
+                {"key": "PROVGRO-6264", "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions", "status": "To Do"},
+                {"key": "PROVGRO-6265", "summary": "[Test Coverage] Intake tasks + SKU definition", "status": "To Do"},
+                {"key": "PROVGRO-6266", "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU", "status": "To Do"},
+                {"key": "PROVGRO-6267", "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU", "status": "To Do"},
+                {"key": "PROVGRO-6268", "summary": "[Test Coverage] Authorization handlers", "status": "To Do"},
+                {"key": "PROVGRO-6269", "summary": "[Test Coverage] AlertHandlerImpl + alert definitions", "status": "To Do"},
+                {"key": "PROVGRO-6270", "summary": "[Test Coverage] MilestonesImpl unit tests", "status": "To Do"},
+                {"key": "PROVGRO-6271", "summary": "[Test Coverage] Lambda entry points", "status": "To Do"},
+                {"key": "PROVGRO-6272", "summary": "[Test Coverage] Utilities, extensions & mappers", "status": "To Do"},
+            ],
+            "plinth": [{"key": "PROVGRO-6189", "summary": "[plinth] add missing auth-policies", "status": "In Review"}],
+        },
+    },
     "account-user-setup": {
         "practice-user-permissions": {
             "blueGreen": [{"key": "PTERODACTL-1884", "summary": "Enable ECS blue/green deployment for PUP", "status": "To Do"}],

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T14:37:53.334443",
+  "lastUpdated": "2026-04-28T10:50:06.131614",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -9,9 +9,9 @@
           "repo": "provider-setup-service",
           "checks": {
             "blueGreen": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "B/G enabled in CDK"
+              "tier": "n/a",
+              "status": "n/a",
+              "notes": "Not an ECS service (Lambda/Worker)"
             },
             "sloGate": {
               "tier": "unknown",
@@ -45,7 +45,64 @@
               "value": 41.5,
               "target": 80,
               "notes": "C:41.5% M:41.5% L:41.5% B:100%",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24633751"
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24633751",
+              "tickets": [
+                {
+                  "key": "PROVGRO-6264",
+                  "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6264"
+                },
+                {
+                  "key": "PROVGRO-6265",
+                  "summary": "[Test Coverage] Intake tasks + SKU definition",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6265"
+                },
+                {
+                  "key": "PROVGRO-6266",
+                  "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6266"
+                },
+                {
+                  "key": "PROVGRO-6267",
+                  "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6267"
+                },
+                {
+                  "key": "PROVGRO-6268",
+                  "summary": "[Test Coverage] Authorization handlers",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6268"
+                },
+                {
+                  "key": "PROVGRO-6269",
+                  "summary": "[Test Coverage] AlertHandlerImpl + alert definitions",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6269"
+                },
+                {
+                  "key": "PROVGRO-6270",
+                  "summary": "[Test Coverage] MilestonesImpl unit tests",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6270"
+                },
+                {
+                  "key": "PROVGRO-6271",
+                  "summary": "[Test Coverage] Lambda entry points",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6271"
+                },
+                {
+                  "key": "PROVGRO-6272",
+                  "summary": "[Test Coverage] Utilities, extensions & mappers",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6272"
+                }
+              ],
+              "completion": 0
             },
             "complexity": {
               "tier": "dx_metric",
@@ -87,7 +144,16 @@
             "smokeTests": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "Roadie surfaces; no active gap"
+              "notes": "Roadie surfaces; no active gap",
+              "tickets": [
+                {
+                  "key": "PROVGRO-6301",
+                  "summary": "Implement smoke tests for blue/green deployment validation",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6301"
+                }
+              ],
+              "completion": 0
             },
             "sentry": {
               "tier": "unknown",
@@ -101,15 +167,24 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-04-28 (0d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 70,
+              "notes": "Last commit: 2026-02-17 (70d ago)"
             },
             "plinth": {
               "tier": "t1",
               "status": "pass",
-              "notes": "On Plinth"
+              "notes": "On Plinth",
+              "tickets": [
+                {
+                  "key": "PROVGRO-6189",
+                  "summary": "[plinth] add missing auth-policies",
+                  "status": "In Review",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6189"
+                }
+              ],
+              "completion": 0
             },
             "cdkNoAnsible": {
               "tier": "t1",
@@ -123,7 +198,12 @@
             }
           }
         }
-      ]
+      ],
+      "epic": {
+        "key": "PROVGRO-6335",
+        "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6335",
+        "summary": "Q2 2026 - Infrastructure Hardening"
+      }
     },
     "account-user-setup": {
       "name": "Account & User Setup",
@@ -243,10 +323,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-04-28 (0d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 76,
+              "notes": "Last commit: 2026-02-11 (76d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -379,10 +459,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-04-28 (0d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 84,
+              "notes": "Last commit: 2026-02-03 (84d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -516,10 +596,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-04-28 (0d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 61,
+              "notes": "Last commit: 2026-02-26 (61d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -634,10 +714,10 @@
               "notes": "No incident trigger metric detected"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-04-24 (4d ago)"
+              "tier": "t2",
+              "status": "warning",
+              "days_ago": 35,
+              "notes": "Last commit: 2026-03-24 (35d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -656,7 +736,12 @@
             }
           }
         }
-      ]
+      ],
+      "epic": {
+        "key": "PTERODACTL-1880",
+        "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1880",
+        "summary": "Q2 2026 [2x] - Infrastructure Hardening"
+      }
     },
     "billing": {
       "name": "Billing",
