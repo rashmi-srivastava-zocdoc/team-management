@@ -88,12 +88,10 @@ TEAM_TICKETS = {
     "account-user-setup": {
         "blueGreen": [
             {"key": "PTERODACTL-1882", "summary": "Enable ECS blue/green deployment for POGS", "status": "To Do", "service": "provider-grouping"},
-            {"key": "PTERODACTL-1884", "summary": "Enable ECS blue/green deployment for PUP", "status": "To Do", "service": "practice-user-permissions"},
-            {"key": "PTERODACTL-1886", "summary": "Enable ECS blue/green deployment for PAP", "status": "To Do", "service": "practice-authorization-proxy"},
-        ],
-        "smokeTests": [
             {"key": "PTERODACTL-1883", "summary": "Implement smoke tests for POGS blue/green deployment", "status": "To Do", "service": "provider-grouping"},
+            {"key": "PTERODACTL-1884", "summary": "Enable ECS blue/green deployment for PUP", "status": "To Do", "service": "practice-user-permissions"},
             {"key": "PTERODACTL-1885", "summary": "Implement smoke tests for PUP blue/green deployment", "status": "To Do", "service": "practice-user-permissions"},
+            {"key": "PTERODACTL-1886", "summary": "Enable ECS blue/green deployment for PAP", "status": "To Do", "service": "practice-authorization-proxy"},
             {"key": "PTERODACTL-1887", "summary": "Implement smoke tests for PAP blue/green deployment", "status": "To Do", "service": "practice-authorization-proxy"},
         ],
     },

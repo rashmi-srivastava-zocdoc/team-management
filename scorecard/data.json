@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T22:40:31.199440",
+  "lastUpdated": "2026-04-28T18:47:55.546816",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -9,9 +9,9 @@
           "repo": "provider-setup-service",
           "checks": {
             "blueGreen": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "B/G enabled in CDK"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -101,10 +101,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-04-28 (0d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 70,
+              "notes": "Last commit: 2026-02-17 (70d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -315,10 +315,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-04-28 (0d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 76,
+              "notes": "Last commit: 2026-02-11 (76d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -433,10 +433,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-04-28 (0d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 84,
+              "notes": "Last commit: 2026-02-03 (84d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -670,10 +670,10 @@
               "notes": "No incident trigger metric detected"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-04-24 (4d ago)"
+              "tier": "t2",
+              "status": "warning",
+              "days_ago": 35,
+              "notes": "Last commit: 2026-03-24 (35d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -708,22 +708,6 @@
             "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1882"
           },
           {
-            "key": "PTERODACTL-1884",
-            "summary": "Enable ECS blue/green deployment for PUP",
-            "status": "To Do",
-            "service": "practice-user-permissions",
-            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1884"
-          },
-          {
-            "key": "PTERODACTL-1886",
-            "summary": "Enable ECS blue/green deployment for PAP",
-            "status": "To Do",
-            "service": "practice-authorization-proxy",
-            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1886"
-          }
-        ],
-        "smokeTests": [
-          {
             "key": "PTERODACTL-1883",
             "summary": "Implement smoke tests for POGS blue/green deployment",
             "status": "To Do",
@@ -731,11 +715,25 @@
             "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1883"
           },
           {
+            "key": "PTERODACTL-1884",
+            "summary": "Enable ECS blue/green deployment for PUP",
+            "status": "To Do",
+            "service": "practice-user-permissions",
+            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1884"
+          },
+          {
             "key": "PTERODACTL-1885",
             "summary": "Implement smoke tests for PUP blue/green deployment",
             "status": "To Do",
             "service": "practice-user-permissions",
             "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1885"
+          },
+          {
+            "key": "PTERODACTL-1886",
+            "summary": "Enable ECS blue/green deployment for PAP",
+            "status": "To Do",
+            "service": "practice-authorization-proxy",
+            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1886"
           },
           {
             "key": "PTERODACTL-1887",
