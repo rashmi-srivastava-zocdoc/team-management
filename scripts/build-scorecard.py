@@ -63,30 +63,40 @@ TEAMS = {
     }
 }
 
-# Ticket mappings: team -> [tickets]
-# All tickets for infrastructure hardening work, displayed in team summary tab
+# Ticket mappings: team -> check -> [tickets with service info]
+# Tickets are grouped by check type, with optional service for filtering in detail view
 TEAM_TICKETS = {
-    "provider-onboarding": [
-        {"key": "PROVGRO-6189", "summary": "[plinth] add missing auth-policies", "status": "In Review"},
-        {"key": "PROVGRO-6301", "summary": "Implement smoke tests for blue/green deployment validation", "status": "To Do"},
-        {"key": "PROVGRO-6264", "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions", "status": "To Do"},
-        {"key": "PROVGRO-6265", "summary": "[Test Coverage] Intake tasks + SKU definition", "status": "To Do"},
-        {"key": "PROVGRO-6266", "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU", "status": "To Do"},
-        {"key": "PROVGRO-6267", "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU", "status": "To Do"},
-        {"key": "PROVGRO-6268", "summary": "[Test Coverage] Authorization handlers", "status": "To Do"},
-        {"key": "PROVGRO-6269", "summary": "[Test Coverage] AlertHandlerImpl + alert definitions", "status": "To Do"},
-        {"key": "PROVGRO-6270", "summary": "[Test Coverage] MilestonesImpl unit tests", "status": "To Do"},
-        {"key": "PROVGRO-6271", "summary": "[Test Coverage] Lambda entry points", "status": "To Do"},
-        {"key": "PROVGRO-6272", "summary": "[Test Coverage] Utilities, extensions & mappers", "status": "To Do"},
-    ],
-    "account-user-setup": [
-        {"key": "PTERODACTL-1882", "summary": "Enable ECS blue/green deployment for POGS", "status": "To Do"},
-        {"key": "PTERODACTL-1883", "summary": "Implement smoke tests for POGS blue/green deployment", "status": "To Do"},
-        {"key": "PTERODACTL-1884", "summary": "Enable ECS blue/green deployment for PUP", "status": "To Do"},
-        {"key": "PTERODACTL-1885", "summary": "Implement smoke tests for PUP blue/green deployment", "status": "To Do"},
-        {"key": "PTERODACTL-1886", "summary": "Enable ECS blue/green deployment for PAP", "status": "To Do"},
-        {"key": "PTERODACTL-1887", "summary": "Implement smoke tests for PAP blue/green deployment", "status": "To Do"},
-    ],
+    "provider-onboarding": {
+        "plinth": [
+            {"key": "PROVGRO-6189", "summary": "[plinth] add missing auth-policies", "status": "In Review", "service": "provider-setup-service"},
+        ],
+        "smokeTests": [
+            {"key": "PROVGRO-6301", "summary": "Implement smoke tests for blue/green deployment validation", "status": "To Do", "service": "provider-setup-service"},
+        ],
+        "coverage": [
+            {"key": "PROVGRO-6264", "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions", "status": "To Do", "service": "provider-setup-service"},
+            {"key": "PROVGRO-6265", "summary": "[Test Coverage] Intake tasks + SKU definition", "status": "To Do", "service": "provider-setup-service"},
+            {"key": "PROVGRO-6266", "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU", "status": "To Do", "service": "provider-setup-service"},
+            {"key": "PROVGRO-6267", "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU", "status": "To Do", "service": "provider-setup-service"},
+            {"key": "PROVGRO-6268", "summary": "[Test Coverage] Authorization handlers", "status": "To Do", "service": "provider-setup-service"},
+            {"key": "PROVGRO-6269", "summary": "[Test Coverage] AlertHandlerImpl + alert definitions", "status": "To Do", "service": "provider-setup-service"},
+            {"key": "PROVGRO-6270", "summary": "[Test Coverage] MilestonesImpl unit tests", "status": "To Do", "service": "provider-setup-service"},
+            {"key": "PROVGRO-6271", "summary": "[Test Coverage] Lambda entry points", "status": "To Do", "service": "provider-setup-service"},
+            {"key": "PROVGRO-6272", "summary": "[Test Coverage] Utilities, extensions & mappers", "status": "To Do", "service": "provider-setup-service"},
+        ],
+    },
+    "account-user-setup": {
+        "blueGreen": [
+            {"key": "PTERODACTL-1882", "summary": "Enable ECS blue/green deployment for POGS", "status": "To Do", "service": "provider-grouping"},
+            {"key": "PTERODACTL-1884", "summary": "Enable ECS blue/green deployment for PUP", "status": "To Do", "service": "practice-user-permissions"},
+            {"key": "PTERODACTL-1886", "summary": "Enable ECS blue/green deployment for PAP", "status": "To Do", "service": "practice-authorization-proxy"},
+        ],
+        "smokeTests": [
+            {"key": "PTERODACTL-1883", "summary": "Implement smoke tests for POGS blue/green deployment", "status": "To Do", "service": "provider-grouping"},
+            {"key": "PTERODACTL-1885", "summary": "Implement smoke tests for PUP blue/green deployment", "status": "To Do", "service": "practice-user-permissions"},
+            {"key": "PTERODACTL-1887", "summary": "Implement smoke tests for PAP blue/green deployment", "status": "To Do", "service": "practice-authorization-proxy"},
+        ],
+    },
 }
 
 USE_GITHUB = False
@@ -654,11 +664,14 @@ def add_ticket_url(ticket):
     return ticket
 
 def apply_team_tickets(scorecard):
-    """Apply tickets from TEAM_TICKETS to team level in the scorecard."""
+    """Apply tickets from TEAM_TICKETS to team level, grouped by check."""
     for team_id, team in scorecard["teams"].items():
-        team_tickets = TEAM_TICKETS.get(team_id, [])
-        if team_tickets:
-            team["tickets"] = [add_ticket_url(dict(t)) for t in team_tickets]
+        team_ticket_config = TEAM_TICKETS.get(team_id, {})
+        if team_ticket_config:
+            tickets_by_check = {}
+            for check_id, tickets in team_ticket_config.items():
+                tickets_by_check[check_id] = [add_ticket_url(dict(t)) for t in tickets]
+            team["ticketsByCheck"] = tickets_by_check
 
 def apply_team_epics(scorecard):
     """Apply epic info from TEAMS config to the scorecard."""

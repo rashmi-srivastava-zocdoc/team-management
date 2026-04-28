@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T10:56:13.201566",
+  "lastUpdated": "2026-04-28T18:34:19.302401",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -21,8 +21,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 119,
-              "notes": "119 lines avg (30d)"
+              "value": 159,
+              "notes": "159 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -129,74 +129,91 @@
         "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6335",
         "summary": "Q2 2026 - Infrastructure Hardening"
       },
-      "tickets": [
-        {
-          "key": "PROVGRO-6189",
-          "summary": "[plinth] add missing auth-policies",
-          "status": "In Review",
-          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6189"
-        },
-        {
-          "key": "PROVGRO-6301",
-          "summary": "Implement smoke tests for blue/green deployment validation",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6301"
-        },
-        {
-          "key": "PROVGRO-6264",
-          "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6264"
-        },
-        {
-          "key": "PROVGRO-6265",
-          "summary": "[Test Coverage] Intake tasks + SKU definition",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6265"
-        },
-        {
-          "key": "PROVGRO-6266",
-          "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6266"
-        },
-        {
-          "key": "PROVGRO-6267",
-          "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6267"
-        },
-        {
-          "key": "PROVGRO-6268",
-          "summary": "[Test Coverage] Authorization handlers",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6268"
-        },
-        {
-          "key": "PROVGRO-6269",
-          "summary": "[Test Coverage] AlertHandlerImpl + alert definitions",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6269"
-        },
-        {
-          "key": "PROVGRO-6270",
-          "summary": "[Test Coverage] MilestonesImpl unit tests",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6270"
-        },
-        {
-          "key": "PROVGRO-6271",
-          "summary": "[Test Coverage] Lambda entry points",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6271"
-        },
-        {
-          "key": "PROVGRO-6272",
-          "summary": "[Test Coverage] Utilities, extensions & mappers",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6272"
-        }
-      ]
+      "ticketsByCheck": {
+        "plinth": [
+          {
+            "key": "PROVGRO-6189",
+            "summary": "[plinth] add missing auth-policies",
+            "status": "In Review",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6189"
+          }
+        ],
+        "smokeTests": [
+          {
+            "key": "PROVGRO-6301",
+            "summary": "Implement smoke tests for blue/green deployment validation",
+            "status": "To Do",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6301"
+          }
+        ],
+        "coverage": [
+          {
+            "key": "PROVGRO-6264",
+            "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions",
+            "status": "To Do",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6264"
+          },
+          {
+            "key": "PROVGRO-6265",
+            "summary": "[Test Coverage] Intake tasks + SKU definition",
+            "status": "To Do",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6265"
+          },
+          {
+            "key": "PROVGRO-6266",
+            "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU",
+            "status": "To Do",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6266"
+          },
+          {
+            "key": "PROVGRO-6267",
+            "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU",
+            "status": "To Do",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6267"
+          },
+          {
+            "key": "PROVGRO-6268",
+            "summary": "[Test Coverage] Authorization handlers",
+            "status": "To Do",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6268"
+          },
+          {
+            "key": "PROVGRO-6269",
+            "summary": "[Test Coverage] AlertHandlerImpl + alert definitions",
+            "status": "To Do",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6269"
+          },
+          {
+            "key": "PROVGRO-6270",
+            "summary": "[Test Coverage] MilestonesImpl unit tests",
+            "status": "To Do",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6270"
+          },
+          {
+            "key": "PROVGRO-6271",
+            "summary": "[Test Coverage] Lambda entry points",
+            "status": "To Do",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6271"
+          },
+          {
+            "key": "PROVGRO-6272",
+            "summary": "[Test Coverage] Utilities, extensions & mappers",
+            "status": "To Do",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6272"
+          }
+        ]
+      }
     },
     "account-user-setup": {
       "name": "Account & User Setup",
@@ -455,8 +472,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 156,
-              "notes": "156 lines avg (30d)"
+              "value": 152,
+              "notes": "152 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -535,10 +552,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t3",
-              "status": "warning",
-              "days_ago": 61,
-              "notes": "Last commit: 2026-02-26 (61d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 0,
+              "notes": "Last commit: 2026-04-28 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -681,44 +698,54 @@
         "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1880",
         "summary": "Q2 2026 [2x] - Infrastructure Hardening"
       },
-      "tickets": [
-        {
-          "key": "PTERODACTL-1882",
-          "summary": "Enable ECS blue/green deployment for POGS",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1882"
-        },
-        {
-          "key": "PTERODACTL-1883",
-          "summary": "Implement smoke tests for POGS blue/green deployment",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1883"
-        },
-        {
-          "key": "PTERODACTL-1884",
-          "summary": "Enable ECS blue/green deployment for PUP",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1884"
-        },
-        {
-          "key": "PTERODACTL-1885",
-          "summary": "Implement smoke tests for PUP blue/green deployment",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1885"
-        },
-        {
-          "key": "PTERODACTL-1886",
-          "summary": "Enable ECS blue/green deployment for PAP",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1886"
-        },
-        {
-          "key": "PTERODACTL-1887",
-          "summary": "Implement smoke tests for PAP blue/green deployment",
-          "status": "To Do",
-          "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1887"
-        }
-      ]
+      "ticketsByCheck": {
+        "blueGreen": [
+          {
+            "key": "PTERODACTL-1882",
+            "summary": "Enable ECS blue/green deployment for POGS",
+            "status": "To Do",
+            "service": "provider-grouping",
+            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1882"
+          },
+          {
+            "key": "PTERODACTL-1884",
+            "summary": "Enable ECS blue/green deployment for PUP",
+            "status": "To Do",
+            "service": "practice-user-permissions",
+            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1884"
+          },
+          {
+            "key": "PTERODACTL-1886",
+            "summary": "Enable ECS blue/green deployment for PAP",
+            "status": "To Do",
+            "service": "practice-authorization-proxy",
+            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1886"
+          }
+        ],
+        "smokeTests": [
+          {
+            "key": "PTERODACTL-1883",
+            "summary": "Implement smoke tests for POGS blue/green deployment",
+            "status": "To Do",
+            "service": "provider-grouping",
+            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1883"
+          },
+          {
+            "key": "PTERODACTL-1885",
+            "summary": "Implement smoke tests for PUP blue/green deployment",
+            "status": "To Do",
+            "service": "practice-user-permissions",
+            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1885"
+          },
+          {
+            "key": "PTERODACTL-1887",
+            "summary": "Implement smoke tests for PAP blue/green deployment",
+            "status": "To Do",
+            "service": "practice-authorization-proxy",
+            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1887"
+          }
+        ]
+      }
     },
     "billing": {
       "name": "Billing",

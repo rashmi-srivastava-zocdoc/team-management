@@ -354,11 +354,13 @@
             background: #f4f5f7;
             color: #5e6c84;
         }
-        .tickets-section {
-            margin-top: 1.5rem;
+        .tickets-header {
+            min-width: 180px;
+            text-align: left;
         }
-        .tickets-section .detail-table {
-            max-width: 900px;
+        .tickets-cell {
+            text-align: left;
+            white-space: normal;
         }
         .team-header {
             display: flex;
@@ -683,8 +685,10 @@
             return html;
         }
 
-        function renderServiceDetail(service, data, teamEpic) {
+        function renderServiceDetail(service, data, teamData) {
             const repoUrl = `https://github.com/Zocdoc/${service.repo || service.name}`;
+            const teamEpic = teamData?.epic;
+            const ticketsByCheck = teamData?.ticketsByCheck || {};
 
             let html = '<div class="service-detail-header">';
             html += `<h3>${service.name}</h3>`;
@@ -735,6 +739,7 @@
                 html += '<table class="detail-table"><thead><tr>';
                 html += '<th class="check-name-col">Check</th>';
                 html += '<th class="status-col">Status</th>';
+                html += '<th class="tickets-col">Jira Tickets</th>';
                 html += '<th class="notes-col">Notes / Requirements</th>';
                 html += '</tr></thead><tbody>';
 
@@ -753,6 +758,17 @@
                         </span>
                     </td>`;
 
+                    // Tickets column - filter by service name
+                    const checkTickets = (ticketsByCheck[checkId] || []).filter(t => t.service === service.name);
+                    if (checkTickets.length > 0) {
+                        const ticketLinks = checkTickets.map(t =>
+                            `<a href="${t.url}" target="_blank" title="${t.summary}" class="ticket-link">${t.key}</a>`
+                        ).join(' ');
+                        html += `<td class="tickets-col">${ticketLinks}</td>`;
+                    } else {
+                        html += '<td class="tickets-col"></td>';
+                    }
+
                     // Notes column - show tier requirements or custom notes
                     const notes = check.notes || def.tier1 || '';
                     html += `<td class="notes-col">${notes}</td>`;
@@ -762,33 +778,6 @@
                 html += '</tbody></table></div>';
             }
 
-            return html;
-        }
-
-        function renderTeamTickets(tickets, epic) {
-            let html = '<div class="priority-section tickets-section">';
-            html += '<h3 class="priority-title">Infrastructure Hardening Tickets';
-            if (epic) {
-                html += ` <a href="${epic.url}" target="_blank" class="epic-link" title="${epic.summary}">${epic.key}</a>`;
-            }
-            html += '</h3>';
-            html += '<table class="detail-table"><thead><tr>';
-            html += '<th style="width: 120px;">Ticket</th>';
-            html += '<th>Summary</th>';
-            html += '<th style="width: 100px;">Status</th>';
-            html += '</tr></thead><tbody>';
-
-            for (const ticket of tickets) {
-                const statusClass = ticket.status === 'Done' ? 'status-done' :
-                                   ticket.status === 'In Progress' || ticket.status === 'In Review' ? 'status-progress' : 'status-todo';
-                html += '<tr>';
-                html += `<td><a href="${ticket.url}" target="_blank" class="ticket-link">${ticket.key}</a></td>`;
-                html += `<td>${ticket.summary}</td>`;
-                html += `<td><span class="ticket-status ${statusClass}">${ticket.status}</span></td>`;
-                html += '</tr>';
-            }
-
-            html += '</tbody></table></div>';
             return html;
         }
 
@@ -857,18 +846,15 @@
                 if (selectedServiceTab !== 'summary') {
                     const selectedService = allServices.find(s => s.name === selectedServiceTab);
                     if (selectedService) {
-                        const teamEpic = data.teams[selectedTeam]?.epic;
-                        container.innerHTML += renderServiceDetail(selectedService, data, teamEpic);
+                        const teamData = data.teams[selectedTeam];
+                        container.innerHTML += renderServiceDetail(selectedService, data, teamData);
                         return;
                     }
                 }
-
-                // Show team tickets in summary tab
-                const teamData = data.teams[selectedTeam];
-                if (teamData?.tickets && teamData.tickets.length > 0) {
-                    container.innerHTML += renderTeamTickets(teamData.tickets, teamData.epic);
-                }
             }
+
+            // Get team tickets if viewing a specific team
+            const teamTicketsByCheck = selectedTeam !== 'all' ? data.teams[selectedTeam]?.ticketsByCheck || {} : {};
 
             for (const [priority, checkIds] of Object.entries(checksByPriority)) {
                 const priorityChecks = checkIds.filter(id => data.checkDefinitions[id]);
@@ -884,6 +870,10 @@
                 for (const service of allServices) {
                     const repoUrl = `https://github.com/Zocdoc/${service.repo || service.name}`;
                     html += `<th class="status-cell"><a href="${repoUrl}" target="_blank">${service.name}</a></th>`;
+                }
+                // Add tickets column when viewing a specific team
+                if (selectedTeam !== 'all') {
+                    html += '<th class="tickets-header">Jira Tickets</th>';
                 }
                 html += '</tr></thead><tbody>';
 
@@ -904,6 +894,19 @@
                                 <span class="dot"></span>${label}
                             </span>
                         </td>`;
+                    }
+
+                    // Add tickets cell when viewing a specific team
+                    if (selectedTeam !== 'all') {
+                        const checkTickets = teamTicketsByCheck[checkId] || [];
+                        if (checkTickets.length > 0) {
+                            const ticketLinks = checkTickets.map(t =>
+                                `<a href="${t.url}" target="_blank" title="${t.summary}" class="ticket-link">${t.key}</a>`
+                            ).join(' ');
+                            html += `<td class="tickets-cell">${ticketLinks}</td>`;
+                        } else {
+                            html += '<td class="tickets-cell"></td>';
+                        }
                     }
                     html += '</tr>';
                 }
