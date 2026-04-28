@@ -63,6 +63,42 @@
             background: #FFE14D;
             color: #172b4d;
         }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .team-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .team-selector label {
+            font-weight: 500;
+            color: #5e6c84;
+        }
+        .team-dropdown {
+            padding: 0.5rem 2rem 0.5rem 0.75rem;
+            font-size: 0.9rem;
+            border: 1px solid #dfe1e6;
+            border-radius: 6px;
+            background: #ffffff;
+            color: #172b4d;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            min-width: 180px;
+        }
+        .team-dropdown:hover {
+            border-color: #0065ff;
+        }
+        .team-dropdown:focus {
+            outline: none;
+            border-color: #0065ff;
+            box-shadow: 0 0 0 2px rgba(0, 101, 255, 0.2);
+        }
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -213,34 +249,6 @@
             font-weight: 600;
             color: #172b4d;
         }
-        .filter-row {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-        .filter-row label {
-            font-weight: 500;
-            color: #172b4d;
-        }
-        .filter-row select {
-            padding: 0.5rem 1rem;
-            border: 1px solid #dfe1e6;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            background: white;
-            color: #172b4d;
-            cursor: pointer;
-            min-width: 200px;
-        }
-        .filter-row select:hover {
-            border-color: #0065ff;
-        }
-        .filter-row select:focus {
-            outline: none;
-            border-color: #0065ff;
-            box-shadow: 0 0 0 2px rgba(0, 101, 255, 0.2);
-        }
         .team-badge {
             width: 10px;
             height: 10px;
@@ -282,10 +290,18 @@
             <div class="logo-icon">Z</div>
             Team Directory
         </a>
-        <nav class="nav-links">
-            <a href="index.html">Teams</a>
-            <a href="scorecard.html" class="active">Scorecard</a>
-        </nav>
+        <div class="header-right">
+            <div class="team-selector">
+                <label for="teamFilter">Team:</label>
+                <select id="teamFilter" class="team-dropdown" onchange="filterByTeam()">
+                    <option value="all">All Teams</option>
+                </select>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Teams</a>
+                <a href="scorecard.html" class="active">Scorecard</a>
+            </nav>
+        </div>
     </header>
 
     <main class="container">
@@ -298,13 +314,6 @@
                 <strong>Last Updated:</strong> <span id="lastUpdated">-</span> |
                 <strong>Tier 1 Compliance:</strong> <span id="complianceRate">-</span>
             </div>
-        </div>
-
-        <div class="filter-row">
-            <label for="teamFilter">Team:</label>
-            <select id="teamFilter" onchange="filterByTeam()">
-                <option value="all">All Teams</option>
-            </select>
         </div>
 
         <h2 class="section-title" id="sectionTitle">Q2 Infrastructure Hardening Tracker</h2>
