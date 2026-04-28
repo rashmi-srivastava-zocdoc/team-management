@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T23:01:46.918587",
+  "lastUpdated": "2026-04-28T19:25:08.314086",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -9,9 +9,9 @@
           "repo": "provider-setup-service",
           "checks": {
             "blueGreen": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "B/G enabled in CDK"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -42,10 +42,10 @@
             "coverage": {
               "tier": "below_t3",
               "status": "fail",
-              "value": 41.5,
+              "value": 39.5,
               "target": 80,
-              "notes": "Lines:41.5% (C:41.5% M:41.5% B:100%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24633751"
+              "notes": "Lines:39.5% (C:60.1% M:58.1% B:60.8%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24681499"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -101,10 +101,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-04-28 (0d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 70,
+              "notes": "Last commit: 2026-02-17 (70d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -254,12 +254,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "below_t3",
-              "status": "fail",
-              "value": 13.18,
+              "tier": "t1",
+              "status": "pass",
+              "value": 81.8,
               "target": 80,
-              "notes": "Lines:13.18% (C:13.18% M:13.18% B:5.9%)",
-              "build_url": ""
+              "notes": "Lines:81.8% (C:85.3% M:85.1% B:70.3%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport/24649350"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -315,10 +315,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-04-28 (0d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 76,
+              "notes": "Last commit: 2026-02-11 (76d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -373,11 +373,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t1",
+              "status": "pass",
+              "value": 82.9,
               "target": 80,
-              "notes": "No XML in cobertura.zip"
+              "notes": "Lines:82.9% (C:65.8% M:73.9% B:26.2%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/24649992"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -433,10 +434,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-04-28 (0d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 84,
+              "notes": "Last commit: 2026-02-03 (84d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -491,12 +492,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "below_t3",
-              "status": "fail",
-              "value": 5.37,
+              "tier": "t2",
+              "status": "warning",
+              "value": 74.5,
               "target": 80,
-              "notes": "Lines:5.37% (C:5.37% M:5.37% B:100%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/24634146"
+              "notes": "Lines:74.5% (C:70.8% M:73.2% B:46.2%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/24666015"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -610,11 +611,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t1",
+              "status": "pass",
+              "value": 83.9,
               "target": 80,
-              "notes": "No XML in cobertura.zip"
+              "notes": "Lines:83.9% (C:80.5% M:84.0% B:60.9%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport/24500321"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -670,10 +672,10 @@
               "notes": "No incident trigger metric detected"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-04-24 (4d ago)"
+              "tier": "t2",
+              "status": "warning",
+              "days_ago": 35,
+              "notes": "Last commit: 2026-03-24 (35d ago)"
             },
             "plinth": {
               "tier": "t1",

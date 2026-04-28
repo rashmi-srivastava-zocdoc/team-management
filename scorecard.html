@@ -878,7 +878,8 @@
                         // Show coverage percentage alongside tier for coverage check
                         let valueDisplay = '';
                         if (checkId === 'coverage' && check.value != null) {
-                            valueDisplay = ` <span style="font-size:0.75rem;color:#5e6c84;">${check.value}%</span>`;
+                            const reportLink = check.build_url ? ` <a href="${check.build_url}" target="_blank" title="View coverage report" style="color:#0052cc;text-decoration:none;">↗</a>` : '';
+                            valueDisplay = ` <span style="font-size:0.75rem;color:#5e6c84;">${check.value}%${reportLink}</span>`;
                         }
 
                         html += `<td class="status-cell">

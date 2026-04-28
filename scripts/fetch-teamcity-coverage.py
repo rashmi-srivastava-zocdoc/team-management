@@ -13,18 +13,17 @@ import json
 import subprocess
 import os
 
-OUTPUT_DIR = os.path.expanduser("~/Desktop/github/team-management/scorecard")
+OUTPUT_DIR = os.path.expanduser("~/Desktop/Github/team-management/scorecard")
 
 # service -> PantsCICoverageReport buildType ID
-# TODO: Verify these build type IDs in TeamCity
-# Pattern: {Category}_{ServiceName}_{Category}_{ServiceName}_PantsCICoverageReport
+# Verified in TeamCity 2026-04-28
 COVERAGE_BUILD_TYPES = {
-    # Peacock
+    # Peacock (Provider Onboarding)
     "provider-setup-service": "Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport",
-    # Pterodactyl
-    "practice-user-permissions": "Provider_PracticeUserPermissions_Provider_PracticeUserPermissions_PantsCICoverageReport",
-    "practice-authorization-proxy": "Provider_PracticeAuthorizationProxy_Provider_PracticeAuthorizationProxy_PantsCICoverageReport",
-    "provider-grouping": "Provider_ProviderGrouping_Provider_ProviderGrouping_PantsCICoverageReport",
+    # Pterodactyl (Account & User Setup)
+    "practice-user-permissions": "PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport",
+    "practice-authorization-proxy": "PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport",
+    "provider-grouping": "Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport",
     "provider-join-service": "Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport",
 }
 

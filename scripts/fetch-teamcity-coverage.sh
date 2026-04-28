@@ -65,9 +65,8 @@ fetch_coverage() {
 
     log "    -> Found build: $build_id (status: $build_status)"
 
-    # Get build URL
-    local web_url
-    web_url=$(teamcity run view "$build_id" 2>/dev/null | grep "View in browser:" | sed 's/View in browser: //' || echo "")
+    # Construct build URL directly (more reliable than parsing CLI output)
+    local web_url="https://teamcity.east.zocdoccloud.net/buildConfiguration/${build_type}/${build_id}"
 
     # Download coverage artifact (try cobertura.zip first, then coverage.zip)
     # Note: TeamCity CLI creates a directory at -o path, with artifact inside
