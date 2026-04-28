@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T01:05:43.750172",
+  "lastUpdated": "2026-04-28T09:27:48.688900",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -11,118 +11,234 @@
             "blueGreen": {
               "tier": "below_t3",
               "status": "fail",
-              "notes": "CDK present but B/G not detected"
+              "notes": "CDK present but B/G not detected",
+              "tickets": [
+                {
+                  "key": "PROVGRO-6301",
+                  "summary": "Implement smoke tests for blue/green deployment validation",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6301"
+                }
+              ],
+              "completion": 0
             },
             "sloGate": {
               "tier": "unknown",
               "status": "unknown",
-              "notes": "Depends on SLO definition first"
+              "notes": "Depends on SLO definition first",
+              "tickets": [
+                {
+                  "key": "PROVGRO-6189",
+                  "summary": "[plinth] add missing auth-policies",
+                  "status": "In Review",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6189"
+                }
+              ],
+              "completion": 0
             },
             "prSize": {
               "tier": "t1",
               "status": "pass",
               "value": 123,
-              "notes": "123 lines avg (30d)"
+              "notes": "123 lines avg (30d)",
+              "tickets": [],
+              "completion": null
             },
             "changeFailureRate": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "DX/Roadie metric \u2014 not per-svc"
+              "notes": "DX/Roadie metric \u2014 not per-svc",
+              "tickets": [],
+              "completion": null
             },
             "rollbackTime": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "DX/Roadie metric"
+              "notes": "DX/Roadie metric",
+              "tickets": [],
+              "completion": null
             },
             "deployPipeline": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "DX metric \u2014 p90 time-to-deploy"
+              "notes": "DX metric \u2014 p90 time-to-deploy",
+              "tickets": [],
+              "completion": null
             },
             "coverage": {
               "tier": "unknown",
               "status": "unknown",
               "value": null,
               "target": 80,
-              "notes": "Fill in from TeamCity - search for ProviderSetupService CoverageReport build"
+              "notes": "Fill in from TeamCity - search for ProviderSetupService CoverageReport build",
+              "tickets": [
+                {
+                  "key": "PROVGRO-6264",
+                  "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6264"
+                },
+                {
+                  "key": "PROVGRO-6265",
+                  "summary": "[Test Coverage] Intake tasks + SKU definition",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6265"
+                },
+                {
+                  "key": "PROVGRO-6266",
+                  "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6266"
+                },
+                {
+                  "key": "PROVGRO-6267",
+                  "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6267"
+                },
+                {
+                  "key": "PROVGRO-6268",
+                  "summary": "[Test Coverage] Authorization handlers",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6268"
+                },
+                {
+                  "key": "PROVGRO-6269",
+                  "summary": "[Test Coverage] AlertHandlerImpl + alert definitions",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6269"
+                },
+                {
+                  "key": "PROVGRO-6270",
+                  "summary": "[Test Coverage] MilestonesImpl unit tests",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6270"
+                },
+                {
+                  "key": "PROVGRO-6271",
+                  "summary": "[Test Coverage] Lambda entry points",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6271"
+                },
+                {
+                  "key": "PROVGRO-6272",
+                  "summary": "[Test Coverage] Utilities, extensions & mappers",
+                  "status": "To Do",
+                  "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6272"
+                }
+              ],
+              "completion": 0
             },
             "complexity": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "Roadie \u2014 not currently scored"
+              "notes": "Roadie \u2014 not currently scored",
+              "tickets": [],
+              "completion": null
             },
             "methodSize": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "Roadie \u2014 not currently scored"
+              "notes": "Roadie \u2014 not currently scored",
+              "tickets": [],
+              "completion": null
             },
             "mutedTests": {
               "tier": "t1",
               "status": "pass",
               "count": 0,
-              "notes": "No muted tests"
+              "notes": "No muted tests",
+              "tickets": [],
+              "completion": null
             },
             "testFailureRate": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "CI-level metric \u2014 no per-svc data"
+              "notes": "CI-level metric \u2014 no per-svc data",
+              "tickets": [],
+              "completion": null
             },
             "eol": {
               "tier": "t1",
               "status": "pass",
-              "notes": ".NET 8+ LTS"
+              "notes": ".NET 8+ LTS",
+              "tickets": [],
+              "completion": null
             },
             "slo": {
               "tier": "below_t3",
               "status": "fail",
               "count": 0,
-              "notes": "No SLO detected"
+              "notes": "No SLO detected",
+              "tickets": [],
+              "completion": null
             },
             "burnRate": {
               "tier": "below_t3",
               "status": "fail",
-              "notes": "No burn rate alerting \u2014 depends on SLO"
+              "notes": "No burn rate alerting \u2014 depends on SLO",
+              "tickets": [],
+              "completion": null
             },
             "smokeTests": {
               "tier": "dx_metric",
               "status": "dx_metric",
-              "notes": "Roadie surfaces; no active gap"
+              "notes": "Roadie surfaces; no active gap",
+              "tickets": [],
+              "completion": null
             },
             "sentry": {
               "tier": "unknown",
               "status": "unknown",
               "unresolved": null,
-              "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
+              "notes": "Sentry configured \u2014 hygiene unchecked (needs API)",
+              "tickets": [],
+              "completion": null
             },
             "incidentMetric": {
               "tier": "t1",
               "status": "pass",
-              "notes": "5xx monitor wired to PD"
+              "notes": "5xx monitor wired to PD",
+              "tickets": [],
+              "completion": null
             },
             "deployable": {
               "tier": "t3",
               "status": "warning",
               "days_ago": 70,
-              "notes": "Last commit: 2026-02-17 (70d ago)"
+              "notes": "Last commit: 2026-02-17 (70d ago)",
+              "tickets": [],
+              "completion": null
             },
             "plinth": {
               "tier": "t1",
               "status": "pass",
-              "notes": "On Plinth"
+              "notes": "On Plinth",
+              "tickets": [],
+              "completion": null
             },
             "cdkNoAnsible": {
               "tier": "t1",
               "status": "pass",
-              "notes": "CDK only"
+              "notes": "CDK only",
+              "tickets": [],
+              "completion": null
             },
             "pagerduty": {
               "tier": "t2",
               "status": "warning",
-              "notes": "alarmWebhook wired, no off-hours config"
+              "notes": "alarmWebhook wired, no off-hours config",
+              "tickets": [],
+              "completion": null
             }
           }
         }
-      ]
+      ],
+      "epic": {
+        "key": "PROVGRO-6335",
+        "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6335",
+        "summary": "[Q2 2026] Infrastructure Hardening"
+      }
     },
     "account-user-setup": {
       "name": "Account & User Setup",

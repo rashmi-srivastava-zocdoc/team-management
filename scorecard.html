@@ -172,6 +172,21 @@
             color: #172b4d;
             margin: 2rem 0 1rem 0;
         }
+        .epic-link {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #0065ff;
+            text-decoration: none;
+            background: #deebff;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            margin-left: 0.75rem;
+            vertical-align: middle;
+        }
+        .epic-link:hover {
+            background: #b3d4ff;
+            text-decoration: none;
+        }
         .subsection-title {
             font-size: 1.125rem;
             font-weight: 600;
@@ -269,6 +284,45 @@
         .status-badge.fail { color: #de350b; }
         .status-badge.unknown { color: #5e6c84; }
         .status-badge.dx_metric { color: #0747a6; }
+        .jira-col {
+            min-width: 150px;
+            max-width: 250px;
+        }
+        .completion-col {
+            min-width: 80px;
+        }
+        .ticket-link {
+            color: #0065ff;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .ticket-link:hover {
+            text-decoration: underline;
+        }
+        .no-tickets {
+            color: #97a0af;
+            font-size: 0.85rem;
+        }
+        .completion-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .completion-badge.complete {
+            background: #e3fcef;
+            color: #006644;
+        }
+        .completion-badge.partial {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .completion-badge.none {
+            background: #ffebe6;
+            color: #bf2600;
+        }
         .team-header {
             display: flex;
             align-items: center;
@@ -464,12 +518,18 @@
                 ? Object.entries(data.teams)
                 : Object.entries(data.teams).filter(([id]) => id === selectedTeam);
 
-            // Update section title
+            // Update section title with epic link if available
+            const sectionTitle = document.getElementById('sectionTitle');
             if (selectedTeam === 'all') {
-                document.getElementById('sectionTitle').textContent = 'Q2 Infrastructure Hardening Tracker';
+                sectionTitle.innerHTML = 'Q2 Infrastructure Hardening Tracker';
             } else {
                 const teamName = data.teams[selectedTeam]?.name || selectedTeam;
-                document.getElementById('sectionTitle').textContent = `Q2 Infrastructure Hardening Tracker - ${teamName}`;
+                const epic = data.teams[selectedTeam]?.epic;
+                let titleHtml = `Q2 Infrastructure Hardening Tracker - ${teamName}`;
+                if (epic) {
+                    titleHtml += ` <a href="${epic.url}" target="_blank" class="epic-link" title="${epic.summary}">${epic.key}</a>`;
+                }
+                sectionTitle.innerHTML = titleHtml;
             }
 
             for (const [teamId, team] of teamsToShow) {
@@ -507,6 +567,12 @@
                 section.className = 'priority-section';
 
                 let html = `<h3 class="priority-title">${priority} Checks</h3>`;
+                // Get team epic if filtering by team
+                let teamEpic = null;
+                if (selectedTeam !== 'all' && data.teams[selectedTeam]?.epic) {
+                    teamEpic = data.teams[selectedTeam].epic;
+                }
+
                 html += '<table class="scorecard-table"><thead><tr>';
                 html += '<th class="service-col">Check</th>';
 
@@ -514,12 +580,22 @@
                     const repoUrl = `https://github.com/Zocdoc/${service.repo || service.name}`;
                     html += `<th class="status-cell"><a href="${repoUrl}" target="_blank">${service.name}</a></th>`;
                 }
+
+                // Add Jira tracking columns if team has epic
+                if (teamEpic) {
+                    html += `<th class="status-cell jira-col">Jira Tickets</th>`;
+                    html += `<th class="status-cell completion-col">Completion</th>`;
+                }
                 html += '</tr></thead><tbody>';
 
                 for (const checkId of priorityChecks) {
                     const def = data.checkDefinitions[checkId];
                     html += '<tr>';
                     html += `<td class="check-name">${def.name}</td>`;
+
+                    // Collect tickets from all services for this check
+                    let allTickets = [];
+                    let completionPct = null;
 
                     for (const service of allServices) {
                         const check = service.checks?.[checkId] || {};
@@ -533,6 +609,30 @@
                                 <span class="dot"></span>${label}
                             </span>
                         </td>`;
+
+                        // Collect tickets
+                        if (check.tickets && check.tickets.length > 0) {
+                            allTickets = allTickets.concat(check.tickets);
+                            if (check.completion !== null && check.completion !== undefined) {
+                                completionPct = check.completion;
+                            }
+                        }
+                    }
+
+                    // Add Jira tracking columns
+                    if (teamEpic) {
+                        if (allTickets.length > 0) {
+                            const ticketLinks = allTickets.map(t =>
+                                `<a href="${t.url}" target="_blank" title="${t.summary}" class="ticket-link">${t.key}</a>`
+                            ).join(', ');
+                            html += `<td class="status-cell jira-col">${ticketLinks}</td>`;
+
+                            const pctClass = completionPct === 100 ? 'complete' : (completionPct > 0 ? 'partial' : 'none');
+                            html += `<td class="status-cell completion-col"><span class="completion-badge ${pctClass}">${completionPct}%</span></td>`;
+                        } else {
+                            html += `<td class="status-cell jira-col"><span class="no-tickets">—</span></td>`;
+                            html += `<td class="status-cell completion-col"><span class="no-tickets">—</span></td>`;
+                        }
                     }
                     html += '</tr>';
                 }
