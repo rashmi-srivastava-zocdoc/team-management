@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infrastructure Scorecard</title>
+    <title>Q2 Infrastructure Hardening - Peacock & Pterodactyl</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,12 +13,12 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: #ffffff;
-            color: #1a1a1a;
+            color: #172b4d;
             line-height: 1.6;
         }
         .header {
             background: #ffffff;
-            border-bottom: 1px solid #e8e8e8;
+            border-bottom: 1px solid #dfe1e6;
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
@@ -30,7 +30,7 @@
             gap: 0.5rem;
             font-weight: 600;
             font-size: 1.25rem;
-            color: #1a1a1a;
+            color: #172b4d;
             text-decoration: none;
         }
         .logo-icon {
@@ -42,243 +42,207 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            color: #1a1a1a;
+            color: #172b4d;
         }
         .nav-links {
             display: flex;
             gap: 1rem;
         }
         .nav-links a {
-            color: #666;
+            color: #5e6c84;
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 6px;
             transition: all 0.2s;
         }
         .nav-links a:hover {
-            background: #f8f9fa;
-            color: #1a1a1a;
+            background: #f4f5f7;
+            color: #172b4d;
         }
         .nav-links a.active {
             background: #FFE14D;
-            color: #1a1a1a;
-        }
-        .hero {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid #e8e8e8;
-        }
-        .hero h1 {
-            font-size: 2rem;
-            font-weight: 400;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
-        }
-        .hero p {
-            color: #666;
-            font-size: 1rem;
-        }
-        .last-updated {
-            color: #888;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
+            color: #172b4d;
         }
         .container {
-            max-width: 1600px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
         }
-        .summary-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .summary-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.25rem;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            border: 1px solid #e8e8e8;
-            text-align: center;
-        }
-        .summary-card .value {
+        .page-title {
             font-size: 1.75rem;
-            font-weight: 700;
-            color: #1a1a1a;
+            font-weight: 500;
+            color: #172b4d;
+            margin-bottom: 0.5rem;
         }
-        .summary-card .label {
-            color: #666;
-            font-size: 0.8rem;
-            margin-top: 0.25rem;
+        .page-meta {
+            color: #5e6c84;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
         }
-        .legend {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+        .info-banner {
+            background: #deebff;
+            border-radius: 3px;
+            padding: 1rem 1.25rem;
             margin-bottom: 2rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            font-size: 0.85rem;
-        }
-        .legend-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #666;
         }
-        .team-section {
-            margin-bottom: 3rem;
-        }
-        .team-title {
+        .info-banner .info-icon {
+            width: 24px;
+            height: 24px;
+            background: #0065ff;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+        .info-banner .info-text {
+            color: #172b4d;
+        }
+        .info-banner .info-text strong {
+            font-weight: 600;
+        }
+        .section-title {
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 500;
+            color: #172b4d;
+            margin: 2rem 0 1rem 0;
         }
-        .team-badge {
-            width: 12px;
-            height: 12px;
+        .subsection-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #172b4d;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+        .legend-table {
+            width: auto;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            background: white;
+        }
+        .legend-table td {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #dfe1e6;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .tier-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .tier-dot {
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
+            display: inline-block;
         }
-        .peacock .team-badge { background: #667eea; }
-        .pterodactyl .team-badge { background: #f5576c; }
-        .billing .team-badge { background: #4facfe; }
-        .pillar-section {
-            margin-bottom: 1.5rem;
-        }
-        .pillar-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #495057;
-            margin-bottom: 0.5rem;
-            padding: 0.5rem;
-            background: #e9ecef;
-            border-radius: 6px;
-        }
+        .tier-dot.t1 { background: #36b37e; }
+        .tier-dot.t2 { background: #ffab00; }
+        .tier-dot.t3 { background: #ff8b00; }
+        .tier-dot.below { background: #de350b; }
+        .tier-dot.unknown { background: #dfe1e6; }
+        .tier-dot.dx { background: #0065ff; }
         .scorecard-table {
             width: 100%;
             border-collapse: collapse;
             background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            border: 1px solid #e8e8e8;
-            font-size: 0.85rem;
+            margin-bottom: 2rem;
         }
-        .scorecard-table th {
-            text-align: left;
-            padding: 0.6rem 0.75rem;
-            background: #f8f9fa;
-            border-bottom: 2px solid #e8e8e8;
-            font-weight: 600;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #666;
-        }
-        .scorecard-table th.check-col {
-            text-align: center;
-            min-width: 80px;
-            max-width: 120px;
-        }
+        .scorecard-table th,
         .scorecard-table td {
-            padding: 0.6rem 0.75rem;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 0.75rem 1rem;
+            border: 1px solid #dfe1e6;
+            text-align: left;
             vertical-align: middle;
         }
-        .scorecard-table tr:hover {
-            background: #fafafa;
-        }
-        .scorecard-table tr:last-child td {
-            border-bottom: none;
-        }
-        .service-name {
+        .scorecard-table th {
+            background: #f4f5f7;
             font-weight: 600;
-            color: #1a1a1a;
-            white-space: nowrap;
+            color: #172b4d;
         }
-        .service-name a {
-            color: inherit;
-            text-decoration: none;
+        .scorecard-table th.service-col {
+            min-width: 180px;
         }
-        .service-name a:hover {
-            color: #667eea;
+        .scorecard-table td.check-name {
+            font-weight: 500;
         }
         .status-cell {
             text-align: center;
+            white-space: nowrap;
         }
-        .status {
+        .status-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 26px;
-            height: 26px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        .status.pass {
-            background: #d4edda;
-            color: #155724;
-        }
-        .status.fail {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        .status.warning {
-            background: #fff3cd;
-            color: #856404;
-        }
-        .status.unknown {
-            background: #e9ecef;
-            color: #6c757d;
-        }
-        .status.dx_metric {
-            background: #cce5ff;
-            color: #004085;
-        }
-        .status.na {
-            background: #f8f9fa;
-            color: #adb5bd;
-        }
-        .check-header {
-            font-size: 0.65rem;
-            line-height: 1.2;
-        }
-        .priority-badge {
-            display: inline-block;
-            font-size: 0.55rem;
-            padding: 0.1rem 0.3rem;
+            gap: 0.35rem;
+            padding: 0.25rem 0.5rem;
             border-radius: 3px;
-            margin-top: 2px;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
-        .priority-badge.p1 { background: #f8d7da; color: #721c24; }
-        .priority-badge.p2 { background: #fff3cd; color: #856404; }
-        .priority-badge.p3 { background: #e9ecef; color: #6c757d; }
-        .pillar-row {
-            background: #f8f9fa !important;
+        .status-badge .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
         }
-        .pillar-row td {
+        .status-badge.pass .dot { background: #36b37e; }
+        .status-badge.warning .dot { background: #ffab00; }
+        .status-badge.t3 .dot { background: #ff8b00; }
+        .status-badge.fail .dot { background: #de350b; }
+        .status-badge.unknown .dot { background: #dfe1e6; }
+        .status-badge.dx_metric .dot { background: #0065ff; }
+        .status-badge.pass { color: #006644; }
+        .status-badge.warning { color: #172b4d; }
+        .status-badge.t3 { color: #172b4d; }
+        .status-badge.fail { color: #de350b; }
+        .status-badge.unknown { color: #5e6c84; }
+        .status-badge.dx_metric { color: #0747a6; }
+        .team-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 2.5rem 0 1rem 0;
+        }
+        .team-header h2 {
+            font-size: 1.25rem;
             font-weight: 600;
-            color: #495057;
-            padding: 0.5rem 0.75rem !important;
+            color: #172b4d;
+        }
+        .team-badge {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .peacock .team-badge { background: #6554c0; }
+        .pterodactyl .team-badge { background: #ff5630; }
+        .priority-section {
+            margin-bottom: 2rem;
+        }
+        .priority-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #172b4d;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid #dfe1e6;
+        }
+        .summary-row {
+            background: #fafbfc;
+        }
+        .summary-row td {
+            font-weight: 500;
         }
         @media (max-width: 1200px) {
             .scorecard-table {
-                font-size: 0.75rem;
+                font-size: 0.85rem;
             }
             .scorecard-table th, .scorecard-table td {
-                padding: 0.4rem 0.5rem;
-            }
-            .status {
-                width: 22px;
-                height: 22px;
-                font-size: 0.75rem;
+                padding: 0.5rem 0.75rem;
             }
         }
     </style>
@@ -295,43 +259,55 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>Q2 Infrastructure Scorecard</h1>
-        <p>21 Production Standards checks across 4 pillars</p>
-        <div class="last-updated" id="lastUpdated">Last updated: Never</div>
-    </section>
-
     <main class="container">
-        <div class="legend">
-            <div class="legend-item"><span class="status pass">&#10003;</span> Passing</div>
-            <div class="legend-item"><span class="status warning">!</span> In Progress</div>
-            <div class="legend-item"><span class="status fail">&#10007;</span> Gap</div>
-            <div class="legend-item"><span class="status dx_metric">&#9670;</span> DX/Roadie Metric</div>
-            <div class="legend-item"><span class="status unknown">?</span> Unknown</div>
+        <h1 class="page-title">Q2 Infrastructure Hardening - Peacock & Pterodactyl</h1>
+        <p class="page-meta" id="pageMeta">Loading...</p>
+
+        <div class="info-banner">
+            <div class="info-icon">i</div>
+            <div class="info-text">
+                <strong>Last Updated:</strong> <span id="lastUpdated">-</span> |
+                <strong>Tier 1 Compliance:</strong> <span id="complianceRate">-</span>
+            </div>
         </div>
 
-        <div class="summary-cards" id="summaryCards">
-            <div class="summary-card">
-                <div class="value" id="totalServices">0</div>
-                <div class="label">Services</div>
-            </div>
-            <div class="summary-card">
-                <div class="value" id="totalChecks">0</div>
-                <div class="label">Total Checks</div>
-            </div>
-            <div class="summary-card">
-                <div class="value" id="totalPassing">0%</div>
-                <div class="label">Actionable Passing</div>
-            </div>
-            <div class="summary-card">
-                <div class="value" id="totalGaps">0</div>
-                <div class="label">Gaps</div>
-            </div>
-            <div class="summary-card">
-                <div class="value" id="dxMetrics">0</div>
-                <div class="label">DX Metrics</div>
-            </div>
-        </div>
+        <h2 class="section-title">Q2 Infrastructure Hardening Tracker - Peacock & Pterodactyl</h2>
+
+        <h3 class="subsection-title">Legend</h3>
+        <table class="legend-table">
+            <tr>
+                <td>
+                    <span class="tier-indicator">
+                        <span class="tier-dot t1"></span>
+                        <strong>T1</strong> Tier 1 Met
+                    </span>
+                </td>
+                <td>
+                    <span class="tier-indicator">
+                        <span class="tier-dot t2"></span>
+                        <strong>T2</strong> Tier 2 Met
+                    </span>
+                </td>
+                <td>
+                    <span class="tier-indicator">
+                        <span class="tier-dot t3"></span>
+                        <strong>T3</strong> Tier 3 Met
+                    </span>
+                </td>
+                <td>
+                    <span class="tier-indicator">
+                        <span class="tier-dot below"></span>
+                        <strong>&lt;T3</strong> Below Tier 3
+                    </span>
+                </td>
+                <td>
+                    <span class="tier-indicator">
+                        <span class="tier-dot unknown"></span>
+                        <strong>x</strong> Unknown
+                    </span>
+                </td>
+            </tr>
+        </table>
 
         <div id="scorecardContent">
             <!-- Populated by JavaScript -->
@@ -339,120 +315,112 @@
     </main>
 
     <script>
-        const pillars = [
-            { id: 'Deployment Safety', checks: ['blueGreen', 'sloGate', 'prSize', 'changeFailureRate', 'rollbackTime', 'deployPipeline'] },
-            { id: 'Code Quality', checks: ['coverage', 'complexity', 'methodSize', 'mutedTests', 'testFailureRate', 'eol'] },
-            { id: 'Observability', checks: ['slo', 'burnRate', 'smokeTests', 'sentry', 'incidentMetric'] },
-            { id: 'Tooling', checks: ['deployable', 'plinth', 'cdkNoAnsible', 'pagerduty'] }
-        ];
+        const checksByPriority = {
+            'P1': ['blueGreen', 'prSize', 'coverage', 'mutedTests', 'testFailureRate', 'eol', 'slo', 'burnRate', 'sentry', 'deployable', 'cdkNoAnsible', 'pagerduty'],
+            'P2': ['sloGate', 'rollbackTime', 'methodSize', 'smokeTests', 'incidentMetric'],
+            'P3': ['changeFailureRate', 'deployPipeline', 'complexity', 'plinth']
+        };
 
-        function getStatusIcon(status) {
-            switch(status) {
-                case 'pass': return '&#10003;';
-                case 'fail': return '&#10007;';
-                case 'warning': return '!';
-                case 'dx_metric': return '&#9670;';
-                case 'na': return '-';
-                default: return '?';
+        function getTierLabel(tier) {
+            switch(tier) {
+                case 't1': return 'T1';
+                case 't2': return 'T2';
+                case 't3': return 'T3';
+                case 'below_t3': return '<T3';
+                case 'dx_metric': return 'DX';
+                default: return 'x';
+            }
+        }
+
+        function getTierClass(tier) {
+            switch(tier) {
+                case 't1': return 'pass';
+                case 't2': return 'warning';
+                case 't3': return 't3';
+                case 'below_t3': return 'fail';
+                case 'dx_metric': return 'dx_metric';
+                default: return 'unknown';
             }
         }
 
         function renderScorecard(data) {
-            if (data.lastUpdated) {
-                document.getElementById('lastUpdated').textContent =
-                    'Last updated: ' + new Date(data.lastUpdated).toLocaleString();
+            const updated = data.lastUpdated ? new Date(data.lastUpdated) : new Date();
+            document.getElementById('lastUpdated').textContent =
+                updated.toISOString().slice(0, 16).replace('T', ' ');
+            document.getElementById('pageMeta').textContent =
+                `By Rashmi Srivastava | Updated ${updated.toLocaleDateString()}`;
+
+            let totalP1Checks = 0;
+            let t1P1Checks = 0;
+            let allServices = [];
+
+            for (const [teamId, team] of Object.entries(data.teams)) {
+                for (const service of team.services) {
+                    allServices.push({ ...service, teamId, teamName: team.name });
+                    for (const [checkId, check] of Object.entries(service.checks || {})) {
+                        const def = data.checkDefinitions[checkId];
+                        const tier = check.tier || 'unknown';
+                        if (def && def.priority === 'P1' && tier !== 'dx_metric') {
+                            totalP1Checks++;
+                            if (tier === 't1') t1P1Checks++;
+                        }
+                    }
+                }
             }
 
-            let totalServices = 0;
-            let totalChecks = 0;
-            let passingChecks = 0;
-            let gaps = 0;
-            let dxMetrics = 0;
+            const compliancePct = totalP1Checks > 0 ? Math.round((t1P1Checks / totalP1Checks) * 100) : 0;
+            document.getElementById('complianceRate').textContent =
+                `${compliancePct}% (${t1P1Checks}/${totalP1Checks} checks)`;
 
             const container = document.getElementById('scorecardContent');
             container.innerHTML = '';
 
-            for (const [teamId, team] of Object.entries(data.teams)) {
-                totalServices += team.services.length;
+            for (const [priority, checkIds] of Object.entries(checksByPriority)) {
+                const priorityChecks = checkIds.filter(id => data.checkDefinitions[id]);
+                if (priorityChecks.length === 0) continue;
 
-                const section = document.createElement('section');
-                section.className = `team-section ${teamId}`;
+                const section = document.createElement('div');
+                section.className = 'priority-section';
 
-                let tableHtml = `
-                    <h2 class="team-title"><span class="team-badge"></span>${team.name}</h2>
-                    <table class="scorecard-table">
-                        <thead>
-                            <tr>
-                                <th style="min-width: 180px;">Service</th>
-                `;
+                let html = `<h3 class="priority-title">${priority} Checks</h3>`;
+                html += '<table class="scorecard-table"><thead><tr>';
+                html += '<th class="service-col">Check</th>';
 
-                // Build headers by pillar
-                for (const pillar of pillars) {
-                    for (const checkId of pillar.checks) {
-                        const check = data.checkDefinitions[checkId];
-                        if (!check) continue;
-                        const priority = check.priority || '';
-                        const priorityClass = priority.toLowerCase();
-                        tableHtml += `
-                            <th class="check-col" title="${check.tier1 || ''}">
-                                <div class="check-header">${check.name}</div>
-                                <span class="priority-badge ${priorityClass}">${priority}</span>
-                            </th>`;
+                for (const service of allServices) {
+                    const shortName = service.name
+                        .replace('provider-', '')
+                        .replace('practice-', '')
+                        .replace('-service', '')
+                        .replace('-proxy', '');
+                    html += `<th class="status-cell">${shortName}</th>`;
+                }
+                html += '</tr></thead><tbody>';
+
+                for (const checkId of priorityChecks) {
+                    const def = data.checkDefinitions[checkId];
+                    html += '<tr>';
+                    html += `<td class="check-name">${def.name}</td>`;
+
+                    for (const service of allServices) {
+                        const check = service.checks?.[checkId] || {};
+                        const tier = check.tier || 'unknown';
+                        const label = getTierLabel(tier);
+                        const tierClass = getTierClass(tier);
+                        const tooltip = check.notes || def.tier1 || '';
+
+                        html += `<td class="status-cell">
+                            <span class="status-badge ${tierClass}" title="${tooltip}">
+                                <span class="dot"></span>${label}
+                            </span>
+                        </td>`;
                     }
+                    html += '</tr>';
                 }
 
-                tableHtml += `
-                            </tr>
-                        </thead>
-                        <tbody>
-                `;
-
-                for (const service of team.services) {
-                    tableHtml += `
-                        <tr>
-                            <td class="service-name">
-                                <a href="https://github.com/zocdoc/${service.repo}" target="_blank">${service.name}</a>
-                            </td>
-                    `;
-
-                    for (const pillar of pillars) {
-                        for (const checkId of pillar.checks) {
-                            const check = service.checks?.[checkId];
-                            const status = check?.status || 'unknown';
-                            totalChecks++;
-
-                            if (status === 'pass') passingChecks++;
-                            if (status === 'fail') gaps++;
-                            if (status === 'dx_metric') dxMetrics++;
-
-                            let tooltip = check?.notes || '';
-                            if (checkId === 'coverage' && check?.value !== null && check?.value !== undefined) {
-                                tooltip = `${check.value}% (target: ${check.target}%)`;
-                            }
-
-                            tableHtml += `
-                                <td class="status-cell">
-                                    <span class="status ${status}" title="${tooltip}">${getStatusIcon(status)}</span>
-                                </td>
-                            `;
-                        }
-                    }
-
-                    tableHtml += '</tr>';
-                }
-
-                tableHtml += '</tbody></table>';
-                section.innerHTML = tableHtml;
+                html += '</tbody></table>';
+                section.innerHTML = html;
                 container.appendChild(section);
             }
-
-            document.getElementById('totalServices').textContent = totalServices;
-            document.getElementById('totalChecks').textContent = totalChecks;
-            const actionable = totalChecks - dxMetrics;
-            document.getElementById('totalPassing').textContent =
-                actionable > 0 ? Math.round((passingChecks / actionable) * 100) + '%' : '0%';
-            document.getElementById('totalGaps').textContent = gaps;
-            document.getElementById('dxMetrics').textContent = dxMetrics;
         }
 
         fetch('scorecard/data.json')
@@ -461,7 +429,7 @@
             .catch(error => {
                 console.error('Error loading scorecard data:', error);
                 document.getElementById('scorecardContent').innerHTML =
-                    '<p style="text-align: center; color: #666; padding: 2rem;">Error loading scorecard data. Run <code>python3 scripts/build-scorecard.py</code> to generate data.</p>';
+                    '<p style="text-align: center; color: #5e6c84; padding: 2rem;">Error loading scorecard data. Run <code>python3 scripts/build-scorecard.py</code> to generate data.</p>';
             });
     </script>
 </body>

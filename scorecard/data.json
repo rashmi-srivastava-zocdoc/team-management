@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T22:40:28.605978",
+  "lastUpdated": "2026-04-28T00:31:05.390659",
   "teams": {
     "peacock": {
       "name": "Peacock",
@@ -9,94 +9,116 @@
           "repo": "provider-setup-service",
           "checks": {
             "blueGreen": {
+              "tier": "below_t3",
               "status": "fail",
               "notes": "CDK present but B/G not detected"
             },
             "sloGate": {
+              "tier": "unknown",
               "status": "unknown",
               "notes": "Depends on SLO definition first"
             },
             "prSize": {
+              "tier": "t1",
               "status": "pass",
               "value": 123,
-              "notes": "123 lines avg"
+              "notes": "123 lines avg (30d)"
             },
             "changeFailureRate": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX/Roadie metric \u2014 not per-svc"
             },
             "rollbackTime": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX/Roadie metric"
             },
             "deployPipeline": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
+              "tier": "unknown",
               "status": "unknown",
               "value": null,
               "target": 80,
               "notes": "No TeamCity data"
             },
             "complexity": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie \u2014 not currently scored"
             },
             "methodSize": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
+              "tier": "t1",
               "status": "pass",
               "count": 0,
-              "notes": ""
+              "notes": "No muted tests"
             },
             "testFailureRate": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "CI-level metric \u2014 no per-svc data"
             },
             "eol": {
+              "tier": "t1",
               "status": "pass",
               "notes": ".NET 8+ LTS"
             },
             "slo": {
+              "tier": "below_t3",
               "status": "fail",
               "count": 0,
               "notes": "No SLO detected"
             },
             "burnRate": {
+              "tier": "below_t3",
               "status": "fail",
               "notes": "No burn rate alerting \u2014 depends on SLO"
             },
             "smokeTests": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
+              "tier": "unknown",
               "status": "unknown",
               "unresolved": null,
               "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
             },
             "incidentMetric": {
-              "status": "warning",
-              "notes": "No incident trigger metric detected"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "status": "pass",
-              "notes": "Last commit: 2026-02-17"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 70,
+              "notes": "Last commit: 2026-02-17 (70d ago)"
             },
             "plinth": {
+              "tier": "t1",
               "status": "pass",
               "notes": "On Plinth"
             },
             "cdkNoAnsible": {
+              "tier": "t1",
               "status": "pass",
               "notes": "CDK only"
             },
             "pagerduty": {
-              "status": "pass",
-              "notes": "PagerDuty config found in CDK"
+              "tier": "t2",
+              "status": "warning",
+              "notes": "alarmWebhook wired, no off-hours config"
             }
           }
         }
@@ -110,94 +132,116 @@
           "repo": "practice-user-permissions",
           "checks": {
             "blueGreen": {
+              "tier": "below_t3",
               "status": "fail",
               "notes": "CDK present but B/G not detected"
             },
             "sloGate": {
+              "tier": "unknown",
               "status": "unknown",
               "notes": "Depends on SLO definition first"
             },
             "prSize": {
+              "tier": "t1",
               "status": "pass",
               "value": 103,
-              "notes": "103 lines avg"
+              "notes": "103 lines avg (30d)"
             },
             "changeFailureRate": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX/Roadie metric \u2014 not per-svc"
             },
             "rollbackTime": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX/Roadie metric"
             },
             "deployPipeline": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
+              "tier": "unknown",
               "status": "unknown",
               "value": null,
               "target": 80,
               "notes": "No TeamCity data"
             },
             "complexity": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie \u2014 not currently scored"
             },
             "methodSize": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
+              "tier": "t1",
               "status": "pass",
               "count": 0,
-              "notes": ""
+              "notes": "No muted tests"
             },
             "testFailureRate": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "CI-level metric \u2014 no per-svc data"
             },
             "eol": {
+              "tier": "t1",
               "status": "pass",
               "notes": ".NET 8+ LTS"
             },
             "slo": {
+              "tier": "below_t3",
               "status": "fail",
               "count": 0,
               "notes": "No SLO detected"
             },
             "burnRate": {
+              "tier": "below_t3",
               "status": "fail",
               "notes": "No burn rate alerting \u2014 depends on SLO"
             },
             "smokeTests": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
+              "tier": "unknown",
               "status": "unknown",
               "unresolved": null,
               "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
             },
             "incidentMetric": {
+              "tier": "t1",
               "status": "pass",
-              "notes": "5xx/error monitor found"
+              "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "status": "pass",
-              "notes": "Last commit: 2026-02-11"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 76,
+              "notes": "Last commit: 2026-02-11 (76d ago)"
             },
             "plinth": {
+              "tier": "t1",
               "status": "pass",
               "notes": "On Plinth"
             },
             "cdkNoAnsible": {
+              "tier": "t1",
               "status": "pass",
               "notes": "CDK only"
             },
             "pagerduty": {
-              "status": "pass",
-              "notes": "PagerDuty config found in CDK"
+              "tier": "t2",
+              "status": "warning",
+              "notes": "alarmWebhook wired, no off-hours config"
             }
           }
         },
@@ -206,94 +250,116 @@
           "repo": "practice-authorization-proxy",
           "checks": {
             "blueGreen": {
+              "tier": "below_t3",
               "status": "fail",
               "notes": "CDK present but B/G not detected"
             },
             "sloGate": {
+              "tier": "unknown",
               "status": "unknown",
               "notes": "Depends on SLO definition first"
             },
             "prSize": {
+              "tier": "t1",
               "status": "pass",
               "value": 18,
-              "notes": "18 lines avg"
+              "notes": "18 lines avg (30d)"
             },
             "changeFailureRate": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX/Roadie metric \u2014 not per-svc"
             },
             "rollbackTime": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX/Roadie metric"
             },
             "deployPipeline": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
+              "tier": "unknown",
               "status": "unknown",
               "value": null,
               "target": 80,
               "notes": "No TeamCity data"
             },
             "complexity": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie \u2014 not currently scored"
             },
             "methodSize": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
+              "tier": "t1",
               "status": "pass",
               "count": 0,
-              "notes": ""
+              "notes": "No muted tests"
             },
             "testFailureRate": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "CI-level metric \u2014 no per-svc data"
             },
             "eol": {
+              "tier": "t1",
               "status": "pass",
               "notes": ".NET 8+ LTS"
             },
             "slo": {
+              "tier": "below_t3",
               "status": "fail",
               "count": 0,
               "notes": "No SLO detected"
             },
             "burnRate": {
+              "tier": "below_t3",
               "status": "fail",
               "notes": "No burn rate alerting \u2014 depends on SLO"
             },
             "smokeTests": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
+              "tier": "unknown",
               "status": "unknown",
               "unresolved": null,
               "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
             },
             "incidentMetric": {
-              "status": "warning",
-              "notes": "No incident trigger metric detected"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "status": "pass",
-              "notes": "Last commit: 2026-02-03"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 84,
+              "notes": "Last commit: 2026-02-03 (84d ago)"
             },
             "plinth": {
+              "tier": "t1",
               "status": "pass",
               "notes": "On Plinth"
             },
             "cdkNoAnsible": {
+              "tier": "t1",
               "status": "pass",
               "notes": "CDK only"
             },
             "pagerduty": {
-              "status": "pass",
-              "notes": "PagerDuty config found in CDK"
+              "tier": "t2",
+              "status": "warning",
+              "notes": "alarmWebhook wired, no off-hours config"
             }
           }
         },
@@ -302,94 +368,116 @@
           "repo": "provider-grouping",
           "checks": {
             "blueGreen": {
+              "tier": "below_t3",
               "status": "fail",
               "notes": "CDK present but B/G not detected"
             },
             "sloGate": {
+              "tier": "unknown",
               "status": "unknown",
               "notes": "Depends on SLO definition first"
             },
             "prSize": {
+              "tier": "t1",
               "status": "pass",
               "value": 165,
-              "notes": "165 lines avg"
+              "notes": "165 lines avg (30d)"
             },
             "changeFailureRate": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX/Roadie metric \u2014 not per-svc"
             },
             "rollbackTime": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX/Roadie metric"
             },
             "deployPipeline": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
+              "tier": "unknown",
               "status": "unknown",
               "value": null,
               "target": 80,
               "notes": "No TeamCity data"
             },
             "complexity": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie \u2014 not currently scored"
             },
             "methodSize": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
+              "tier": "t1",
               "status": "pass",
               "count": 0,
-              "notes": ""
+              "notes": "No muted tests"
             },
             "testFailureRate": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "CI-level metric \u2014 no per-svc data"
             },
             "eol": {
+              "tier": "t1",
               "status": "pass",
               "notes": ".NET 8+ LTS"
             },
             "slo": {
+              "tier": "below_t3",
               "status": "fail",
               "count": 0,
               "notes": "No SLO detected"
             },
             "burnRate": {
+              "tier": "below_t3",
               "status": "fail",
               "notes": "No burn rate alerting \u2014 depends on SLO"
             },
             "smokeTests": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
+              "tier": "unknown",
               "status": "unknown",
               "unresolved": null,
               "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
             },
             "incidentMetric": {
+              "tier": "t1",
               "status": "pass",
-              "notes": "5xx/error monitor found"
+              "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "status": "pass",
-              "notes": "Last commit: 2026-02-26"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 61,
+              "notes": "Last commit: 2026-02-26 (61d ago)"
             },
             "plinth": {
+              "tier": "t1",
               "status": "pass",
               "notes": "On Plinth"
             },
             "cdkNoAnsible": {
+              "tier": "t1",
               "status": "pass",
               "notes": "CDK only"
             },
             "pagerduty": {
-              "status": "pass",
-              "notes": "PagerDuty config found in CDK"
+              "tier": "t2",
+              "status": "warning",
+              "notes": "alarmWebhook wired, no off-hours config"
             }
           }
         },
@@ -398,92 +486,114 @@
           "repo": "provider-join-service",
           "checks": {
             "blueGreen": {
+              "tier": "below_t3",
               "status": "fail",
               "notes": "CDK present but B/G not detected"
             },
             "sloGate": {
+              "tier": "unknown",
               "status": "unknown",
               "notes": "Depends on SLO definition first"
             },
             "prSize": {
+              "tier": "t1",
               "status": "pass",
               "value": 47,
-              "notes": "47 lines avg"
+              "notes": "47 lines avg (30d)"
             },
             "changeFailureRate": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX/Roadie metric \u2014 not per-svc"
             },
             "rollbackTime": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX/Roadie metric"
             },
             "deployPipeline": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
+              "tier": "unknown",
               "status": "unknown",
               "value": null,
               "target": 80,
               "notes": "No TeamCity data"
             },
             "complexity": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie \u2014 not currently scored"
             },
             "methodSize": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
+              "tier": "t1",
               "status": "pass",
               "count": 0,
-              "notes": ""
+              "notes": "No muted tests"
             },
             "testFailureRate": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "CI-level metric \u2014 no per-svc data"
             },
             "eol": {
+              "tier": "t1",
               "status": "pass",
               "notes": ".NET 8+ LTS"
             },
             "slo": {
+              "tier": "below_t3",
               "status": "fail",
               "count": 0,
               "notes": "No SLO detected"
             },
             "burnRate": {
+              "tier": "below_t3",
               "status": "fail",
               "notes": "No burn rate alerting \u2014 depends on SLO"
             },
             "smokeTests": {
+              "tier": "dx_metric",
               "status": "dx_metric",
               "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
+              "tier": "unknown",
               "status": "unknown",
               "unresolved": null,
               "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
             },
             "incidentMetric": {
-              "status": "warning",
+              "tier": "below_t3",
+              "status": "fail",
               "notes": "No incident trigger metric detected"
             },
             "deployable": {
-              "status": "pass",
-              "notes": "Last commit: 2026-03-24"
+              "tier": "t2",
+              "status": "warning",
+              "days_ago": 35,
+              "notes": "Last commit: 2026-03-24 (35d ago)"
             },
             "plinth": {
+              "tier": "t1",
               "status": "pass",
               "notes": "On Plinth"
             },
             "cdkNoAnsible": {
+              "tier": "t1",
               "status": "pass",
               "notes": "CDK only"
             },
             "pagerduty": {
+              "tier": "below_t3",
               "status": "fail",
               "notes": "alarmWebhook not wired"
             }
@@ -498,147 +608,226 @@
       "pillar": "Deployment Safety",
       "priority": "P1",
       "tier1": "blue_green_enabled = true",
-      "sor": "Repo Scanner"
+      "tier2": null,
+      "tier3": null,
+      "sor": "Repo Scanner",
+      "binary": true
     },
     "sloGate": {
       "name": "SLO Deployment Gate Enabled",
       "pillar": "Deployment Safety",
       "priority": "P2",
       "tier1": "GitHub check blocks deploy on SLO breach",
-      "sor": "GitHub / Datadog"
+      "tier2": "Gate configured but not blocking",
+      "tier3": null,
+      "sor": "GitHub / Datadog",
+      "binary": true
     },
     "prSize": {
       "name": "Average PR Size Within Threshold",
       "pillar": "Deployment Safety",
       "priority": "P1",
-      "tier1": "<= 400 lines (30d avg)",
-      "sor": "GitHub"
+      "tier1": "<= 400 lines",
+      "tier2": "<= 600 lines",
+      "tier3": "<= 800 lines",
+      "sor": "GitHub",
+      "thresholds": {
+        "t1": 400,
+        "t2": 600,
+        "t3": 800
+      }
     },
     "changeFailureRate": {
       "name": "Prod Change Failure Rate Within Threshold",
       "pillar": "Deployment Safety",
       "priority": "P3",
       "tier1": "< 15%",
-      "sor": "DX Metrics"
+      "tier2": "< 25%",
+      "tier3": "< 35%",
+      "sor": "DX Metrics",
+      "dx_metric": true
     },
     "rollbackTime": {
       "name": "Rollback Times Within Threshold",
       "pillar": "Deployment Safety",
       "priority": "P2",
       "tier1": "< 10 min",
-      "sor": "DX Metrics"
+      "tier2": "< 15 min",
+      "tier3": "< 30 min",
+      "sor": "DX Metrics",
+      "dx_metric": true
     },
     "deployPipeline": {
       "name": "Production Deploy Pipelines Within Threshold",
       "pillar": "Deployment Safety",
       "priority": "P3",
       "tier1": "p90 < 30 min",
-      "sor": "DX Metrics"
+      "tier2": "p90 < 45 min",
+      "tier3": "p90 < 60 min",
+      "sor": "DX Metrics",
+      "dx_metric": true
     },
     "coverage": {
       "name": "Code Coverage Meets Threshold",
       "pillar": "Code Quality",
       "priority": "P1",
       "tier1": ">= 80%",
-      "sor": "TeamCity"
+      "tier2": ">= 70%",
+      "tier3": ">= 60%",
+      "sor": "TeamCity",
+      "thresholds": {
+        "t1": 80,
+        "t2": 70,
+        "t3": 60
+      }
     },
     "complexity": {
       "name": "Cyclomatic Complexity p95 Within Threshold",
       "pillar": "Code Quality",
       "priority": "P3",
       "tier1": "< 15",
-      "sor": "Roadie"
+      "tier2": "< 20",
+      "tier3": "< 30",
+      "sor": "Roadie",
+      "dx_metric": true
     },
     "methodSize": {
       "name": "Method Size p95 Within Threshold",
       "pillar": "Code Quality",
       "priority": "P2",
       "tier1": "< 50 lines",
-      "sor": "Roadie"
+      "tier2": "< 75 lines",
+      "tier3": "< 100 lines",
+      "sor": "Roadie",
+      "dx_metric": true
     },
     "mutedTests": {
       "name": "No Muted/Ignored Critical Tests",
       "pillar": "Code Quality",
       "priority": "P1",
       "tier1": "count = 0",
-      "sor": "TeamCity / Repo"
+      "tier2": "count <= 2",
+      "tier3": "count <= 5",
+      "sor": "TeamCity / Repo",
+      "thresholds": {
+        "t1": 0,
+        "t2": 2,
+        "t3": 5
+      }
     },
     "testFailureRate": {
       "name": "Test Failure Rate",
       "pillar": "Code Quality",
       "priority": "P1",
       "tier1": "< 1%",
-      "sor": "CI Metrics"
+      "tier2": "< 3%",
+      "tier3": "< 5%",
+      "sor": "CI Metrics",
+      "dx_metric": true
     },
     "eol": {
       "name": "EOL Framework/Version not being used",
       "pillar": "Code Quality",
       "priority": "P1",
-      "tier1": "eol_days < 90",
-      "sor": "Repo Scanner"
+      "tier1": ".NET 8+ LTS",
+      "tier2": ".NET 7 (upgrade within 6mo)",
+      "tier3": ".NET 6 (upgrade within 12mo)",
+      "sor": "Repo Scanner",
+      "binary": true
     },
     "slo": {
       "name": "SLO Defined in Datadog",
       "pillar": "Observability",
       "priority": "P1",
       "tier1": "slo_count >= 1",
-      "sor": "Datadog / Roadie"
+      "tier2": null,
+      "tier3": null,
+      "sor": "Datadog / Roadie",
+      "binary": true
     },
     "burnRate": {
       "name": "SLO Burn Rate Alerting Configured",
       "pillar": "Observability",
       "priority": "P1",
       "tier1": "monitor_count >= 1",
-      "sor": "Datadog / Roadie"
+      "tier2": null,
+      "tier3": null,
+      "sor": "Datadog / Roadie",
+      "binary": true
     },
     "smokeTests": {
       "name": "Smoke Tests Passing",
       "pillar": "Observability",
       "priority": "P2",
       "tier1": "100% pass rate",
-      "sor": "Roadie"
+      "tier2": ">= 95% pass rate",
+      "tier3": ">= 90% pass rate",
+      "sor": "Roadie",
+      "dx_metric": true
     },
     "sentry": {
       "name": "Sentry Hygiene",
       "pillar": "Observability",
       "priority": "P1",
       "tier1": "0 unresolved, 0 permanently muted",
-      "sor": "Sentry"
+      "tier2": "<= 5 unresolved",
+      "tier3": "<= 10 unresolved",
+      "sor": "Sentry",
+      "binary": true
     },
     "incidentMetric": {
       "name": "Metric to auto trigger incidents identified",
       "pillar": "Observability",
       "priority": "P2",
       "tier1": "5xx/error monitor wired to PD",
-      "sor": "CDK / Datadog"
+      "tier2": "Monitor exists but not wired to PD",
+      "tier3": null,
+      "sor": "CDK / Datadog",
+      "binary": true
     },
     "deployable": {
       "name": "Deployable (Recent Prod Deploy)",
       "pillar": "Tooling",
       "priority": "P1",
-      "tier1": "<= 90 days since prod deploy",
-      "sor": "TeamCity / GitHub"
+      "tier1": "<= 30 days since prod deploy",
+      "tier2": "<= 60 days",
+      "tier3": "<= 90 days",
+      "sor": "TeamCity / GitHub",
+      "thresholds": {
+        "t1": 30,
+        "t2": 60,
+        "t3": 90
+      }
     },
     "plinth": {
       "name": "On Plinth",
       "pillar": "Tooling",
       "priority": "P3",
       "tier1": "service on Plinth framework",
-      "sor": "Repo Scanner"
+      "tier2": null,
+      "tier3": null,
+      "sor": "Repo Scanner",
+      "binary": true
     },
     "cdkNoAnsible": {
       "name": "On CDK, Off Ansible",
       "pillar": "Tooling",
       "priority": "P1",
-      "tier1": "iac_system = cdk AND ansible_present = false",
-      "sor": "Repo Scanner"
+      "tier1": "CDK only, no Ansible",
+      "tier2": "CDK present, Ansible remnants",
+      "tier3": null,
+      "sor": "Repo Scanner",
+      "binary": true
     },
     "pagerduty": {
       "name": "PagerDuty Configured Correctly",
       "pillar": "Tooling",
       "priority": "P1",
-      "tier1": "poc != soc AND off_hours_escalation",
-      "sor": "PagerDuty / CDK"
+      "tier1": "alarmWebhook wired, off-hours escalation",
+      "tier2": "alarmWebhook wired, no off-hours",
+      "tier3": null,
+      "sor": "PagerDuty / CDK",
+      "binary": true
     }
   }
 }

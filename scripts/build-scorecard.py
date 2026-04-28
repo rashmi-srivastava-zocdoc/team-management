@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Build the Q2 Production Standards scorecard (21 checks) for Peacock and Pterodactyl teams.
+"""Build the Q2 Production Standards scorecard with tiered compliance levels.
 
 Adapted from PRM team's harden-scorecard skill (by Avinash).
-Outputs JSON for GitHub Pages (no Confluence publishing).
+Outputs JSON for GitHub Pages with T1/T2/T3 tier status per check.
 """
 import json
 import os
@@ -14,7 +14,6 @@ BASE_DIR = Path.home() / "Desktop/github"
 OUTPUT_DIR = BASE_DIR / "team-management/scorecard"
 OUTPUT_FILE = OUTPUT_DIR / "data.json"
 
-# Team and service definitions
 TEAMS = {
     "peacock": {
         "name": "Peacock",
@@ -35,8 +34,8 @@ TEAMS = {
     }
 }
 
-# Q2 Production Standards - All 21 scored checks across 4 pillars
-# Source: Infrastructure Scorecard.xlsx (Q2 2026)
+# Q2 Production Standards - 21 checks with tiered thresholds
+# Tiers: t1 (best), t2, t3, below_t3 (worst), unknown, dx_metric
 CHECK_DEFINITIONS = {
     # === DEPLOYMENT SAFETY (6 checks) ===
     "blueGreen": {
@@ -44,42 +43,60 @@ CHECK_DEFINITIONS = {
         "pillar": "Deployment Safety",
         "priority": "P1",
         "tier1": "blue_green_enabled = true",
-        "sor": "Repo Scanner"
+        "tier2": None,
+        "tier3": None,
+        "sor": "Repo Scanner",
+        "binary": True
     },
     "sloGate": {
         "name": "SLO Deployment Gate Enabled",
         "pillar": "Deployment Safety",
         "priority": "P2",
         "tier1": "GitHub check blocks deploy on SLO breach",
-        "sor": "GitHub / Datadog"
+        "tier2": "Gate configured but not blocking",
+        "tier3": None,
+        "sor": "GitHub / Datadog",
+        "binary": True
     },
     "prSize": {
         "name": "Average PR Size Within Threshold",
         "pillar": "Deployment Safety",
         "priority": "P1",
-        "tier1": "<= 400 lines (30d avg)",
-        "sor": "GitHub"
+        "tier1": "<= 400 lines",
+        "tier2": "<= 600 lines",
+        "tier3": "<= 800 lines",
+        "sor": "GitHub",
+        "thresholds": {"t1": 400, "t2": 600, "t3": 800}
     },
     "changeFailureRate": {
         "name": "Prod Change Failure Rate Within Threshold",
         "pillar": "Deployment Safety",
         "priority": "P3",
         "tier1": "< 15%",
-        "sor": "DX Metrics"
+        "tier2": "< 25%",
+        "tier3": "< 35%",
+        "sor": "DX Metrics",
+        "dx_metric": True
     },
     "rollbackTime": {
         "name": "Rollback Times Within Threshold",
         "pillar": "Deployment Safety",
         "priority": "P2",
         "tier1": "< 10 min",
-        "sor": "DX Metrics"
+        "tier2": "< 15 min",
+        "tier3": "< 30 min",
+        "sor": "DX Metrics",
+        "dx_metric": True
     },
     "deployPipeline": {
         "name": "Production Deploy Pipelines Within Threshold",
         "pillar": "Deployment Safety",
         "priority": "P3",
         "tier1": "p90 < 30 min",
-        "sor": "DX Metrics"
+        "tier2": "p90 < 45 min",
+        "tier3": "p90 < 60 min",
+        "sor": "DX Metrics",
+        "dx_metric": True
     },
 
     # === CODE QUALITY (6 checks) ===
@@ -88,42 +105,60 @@ CHECK_DEFINITIONS = {
         "pillar": "Code Quality",
         "priority": "P1",
         "tier1": ">= 80%",
-        "sor": "TeamCity"
+        "tier2": ">= 70%",
+        "tier3": ">= 60%",
+        "sor": "TeamCity",
+        "thresholds": {"t1": 80, "t2": 70, "t3": 60}
     },
     "complexity": {
         "name": "Cyclomatic Complexity p95 Within Threshold",
         "pillar": "Code Quality",
         "priority": "P3",
         "tier1": "< 15",
-        "sor": "Roadie"
+        "tier2": "< 20",
+        "tier3": "< 30",
+        "sor": "Roadie",
+        "dx_metric": True
     },
     "methodSize": {
         "name": "Method Size p95 Within Threshold",
         "pillar": "Code Quality",
         "priority": "P2",
         "tier1": "< 50 lines",
-        "sor": "Roadie"
+        "tier2": "< 75 lines",
+        "tier3": "< 100 lines",
+        "sor": "Roadie",
+        "dx_metric": True
     },
     "mutedTests": {
         "name": "No Muted/Ignored Critical Tests",
         "pillar": "Code Quality",
         "priority": "P1",
         "tier1": "count = 0",
-        "sor": "TeamCity / Repo"
+        "tier2": "count <= 2",
+        "tier3": "count <= 5",
+        "sor": "TeamCity / Repo",
+        "thresholds": {"t1": 0, "t2": 2, "t3": 5}
     },
     "testFailureRate": {
         "name": "Test Failure Rate",
         "pillar": "Code Quality",
         "priority": "P1",
         "tier1": "< 1%",
-        "sor": "CI Metrics"
+        "tier2": "< 3%",
+        "tier3": "< 5%",
+        "sor": "CI Metrics",
+        "dx_metric": True
     },
     "eol": {
         "name": "EOL Framework/Version not being used",
         "pillar": "Code Quality",
         "priority": "P1",
-        "tier1": "eol_days < 90",
-        "sor": "Repo Scanner"
+        "tier1": ".NET 8+ LTS",
+        "tier2": ".NET 7 (upgrade within 6mo)",
+        "tier3": ".NET 6 (upgrade within 12mo)",
+        "sor": "Repo Scanner",
+        "binary": True
     },
 
     # === OBSERVABILITY (5 checks) ===
@@ -132,35 +167,50 @@ CHECK_DEFINITIONS = {
         "pillar": "Observability",
         "priority": "P1",
         "tier1": "slo_count >= 1",
-        "sor": "Datadog / Roadie"
+        "tier2": None,
+        "tier3": None,
+        "sor": "Datadog / Roadie",
+        "binary": True
     },
     "burnRate": {
         "name": "SLO Burn Rate Alerting Configured",
         "pillar": "Observability",
         "priority": "P1",
         "tier1": "monitor_count >= 1",
-        "sor": "Datadog / Roadie"
+        "tier2": None,
+        "tier3": None,
+        "sor": "Datadog / Roadie",
+        "binary": True
     },
     "smokeTests": {
         "name": "Smoke Tests Passing",
         "pillar": "Observability",
         "priority": "P2",
         "tier1": "100% pass rate",
-        "sor": "Roadie"
+        "tier2": ">= 95% pass rate",
+        "tier3": ">= 90% pass rate",
+        "sor": "Roadie",
+        "dx_metric": True
     },
     "sentry": {
         "name": "Sentry Hygiene",
         "pillar": "Observability",
         "priority": "P1",
         "tier1": "0 unresolved, 0 permanently muted",
-        "sor": "Sentry"
+        "tier2": "<= 5 unresolved",
+        "tier3": "<= 10 unresolved",
+        "sor": "Sentry",
+        "binary": True
     },
     "incidentMetric": {
         "name": "Metric to auto trigger incidents identified",
         "pillar": "Observability",
         "priority": "P2",
         "tier1": "5xx/error monitor wired to PD",
-        "sor": "CDK / Datadog"
+        "tier2": "Monitor exists but not wired to PD",
+        "tier3": None,
+        "sor": "CDK / Datadog",
+        "binary": True
     },
 
     # === TOOLING STANDARDIZATION (4 checks) ===
@@ -168,61 +218,69 @@ CHECK_DEFINITIONS = {
         "name": "Deployable (Recent Prod Deploy)",
         "pillar": "Tooling",
         "priority": "P1",
-        "tier1": "<= 90 days since prod deploy",
-        "sor": "TeamCity / GitHub"
+        "tier1": "<= 30 days since prod deploy",
+        "tier2": "<= 60 days",
+        "tier3": "<= 90 days",
+        "sor": "TeamCity / GitHub",
+        "thresholds": {"t1": 30, "t2": 60, "t3": 90}
     },
     "plinth": {
         "name": "On Plinth",
         "pillar": "Tooling",
         "priority": "P3",
         "tier1": "service on Plinth framework",
-        "sor": "Repo Scanner"
+        "tier2": None,
+        "tier3": None,
+        "sor": "Repo Scanner",
+        "binary": True
     },
     "cdkNoAnsible": {
         "name": "On CDK, Off Ansible",
         "pillar": "Tooling",
         "priority": "P1",
-        "tier1": "iac_system = cdk AND ansible_present = false",
-        "sor": "Repo Scanner"
+        "tier1": "CDK only, no Ansible",
+        "tier2": "CDK present, Ansible remnants",
+        "tier3": None,
+        "sor": "Repo Scanner",
+        "binary": True
     },
     "pagerduty": {
         "name": "PagerDuty Configured Correctly",
         "pillar": "Tooling",
         "priority": "P1",
-        "tier1": "poc != soc AND off_hours_escalation",
-        "sor": "PagerDuty / CDK"
+        "tier1": "alarmWebhook wired, off-hours escalation",
+        "tier2": "alarmWebhook wired, no off-hours",
+        "tier3": None,
+        "sor": "PagerDuty / CDK",
+        "binary": True
     },
 }
 
 def run_cmd(cmd, cwd=None):
-    """Run a shell command and return stdout."""
     try:
         r = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=cwd, timeout=30)
         return r.stdout.strip(), r.returncode
     except subprocess.TimeoutExpired:
         return "", 1
 
-# === CHECK FUNCTIONS ===
+# === CHECK FUNCTIONS (return tier: t1, t2, t3, below_t3, unknown, dx_metric) ===
 
 def check_blue_green(repo_path):
-    """Check if blue/green deployment is enabled."""
     out, rc = run_cmd("grep -r 'deploymentStrategy\\|blue_green\\|BlueGreen\\|blueGreenDeployment' cdk/ 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "pass", "notes": "B/G enabled in CDK"}
+        return {"tier": "t1", "status": "pass", "notes": "B/G enabled in CDK"}
     out, rc = run_cmd("ls cdk/ 2>/dev/null", cwd=repo_path)
     if rc == 0:
-        return {"status": "fail", "notes": "CDK present but B/G not detected"}
-    return {"status": "unknown", "notes": "No CDK directory"}
+        return {"tier": "below_t3", "status": "fail", "notes": "CDK present but B/G not detected"}
+    return {"tier": "unknown", "status": "unknown", "notes": "No CDK directory"}
 
 def check_slo_gate(repo_path):
-    """Check for SLO deployment gate."""
     out, rc = run_cmd("grep -r 'sloGate\\|SloGate\\|deployment.*gate' cdk/ .github/ 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "pass", "notes": "SLO gate found"}
-    return {"status": "unknown", "notes": "Depends on SLO definition first"}
+        return {"tier": "t1", "status": "pass", "notes": "SLO gate found"}
+    return {"tier": "unknown", "status": "unknown", "notes": "Depends on SLO definition first"}
 
 def check_pr_size(repo_path):
-    """Check average PR size (30d). Requires gh CLI."""
     out, rc = run_cmd("""
         SINCE=$(date -u -v-30d '+%Y-%m-%dT%H:%M:%SZ' 2>/dev/null || date -u -d '30 days ago' '+%Y-%m-%dT%H:%M:%SZ')
         gh pr list --state merged --limit 50 --json additions,deletions,mergedAt 2>/dev/null | \
@@ -230,130 +288,156 @@ def check_pr_size(repo_path):
     """, cwd=repo_path)
     try:
         avg = int(out)
-        status = "pass" if avg <= 400 else "warning" if avg <= 600 else "fail"
-        return {"status": status, "value": avg, "notes": f"{avg} lines avg"}
+        if avg <= 400:
+            tier = "t1"
+        elif avg <= 600:
+            tier = "t2"
+        elif avg <= 800:
+            tier = "t3"
+        else:
+            tier = "below_t3"
+        status = "pass" if tier == "t1" else "warning" if tier in ("t2", "t3") else "fail"
+        return {"tier": tier, "status": status, "value": avg, "notes": f"{avg} lines avg (30d)"}
     except (ValueError, TypeError):
-        return {"status": "dx_metric", "notes": "DX-tracked metric"}
+        return {"tier": "dx_metric", "status": "dx_metric", "notes": "DX-tracked metric"}
 
 def check_change_failure_rate(repo_path):
-    """Check prod change failure rate - DX metric."""
-    return {"status": "dx_metric", "notes": "DX/Roadie metric — not per-svc"}
+    return {"tier": "dx_metric", "status": "dx_metric", "notes": "DX/Roadie metric — not per-svc"}
 
 def check_rollback_time(repo_path):
-    """Check rollback time - DX metric."""
-    return {"status": "dx_metric", "notes": "DX/Roadie metric"}
+    return {"tier": "dx_metric", "status": "dx_metric", "notes": "DX/Roadie metric"}
 
 def check_deploy_pipeline(repo_path):
-    """Check deploy pipeline time - DX metric."""
-    return {"status": "dx_metric", "notes": "DX metric — p90 time-to-deploy"}
+    return {"tier": "dx_metric", "status": "dx_metric", "notes": "DX metric — p90 time-to-deploy"}
 
 def check_coverage(repo_path, tc_coverage, svc_name):
-    """Check code coverage from TeamCity."""
     tc_data = tc_coverage.get(svc_name, {})
     if "error" in tc_data:
-        return {"status": "unknown", "value": None, "target": 80, "notes": tc_data["error"]}
+        return {"tier": "unknown", "status": "unknown", "value": None, "target": 80, "notes": tc_data["error"]}
     if tc_data.get("classes_pct") is not None:
         pct = tc_data["classes_pct"]
-        status = "pass" if pct >= 80 else "warning" if pct >= 70 else "fail"
+        if pct >= 80:
+            tier = "t1"
+        elif pct >= 70:
+            tier = "t2"
+        elif pct >= 60:
+            tier = "t3"
+        else:
+            tier = "below_t3"
+        status = "pass" if tier == "t1" else "warning" if tier in ("t2", "t3") else "fail"
         return {
+            "tier": tier,
             "status": status,
             "value": pct,
             "target": 80,
             "notes": f"C:{pct}% M:{tc_data.get('methods_pct', '?')}% L:{tc_data.get('lines_pct', '?')}% B:{tc_data.get('branches_pct', '?')}%",
             "build_url": tc_data.get("web_url", "")
         }
-    return {"status": "unknown", "value": None, "target": 80, "notes": "No TeamCity data"}
+    return {"tier": "unknown", "status": "unknown", "value": None, "target": 80, "notes": "No TeamCity data"}
 
 def check_complexity(repo_path):
-    """Check cyclomatic complexity - Roadie metric."""
-    return {"status": "dx_metric", "notes": "Roadie — not currently scored"}
+    return {"tier": "dx_metric", "status": "dx_metric", "notes": "Roadie — not currently scored"}
 
 def check_method_size(repo_path):
-    """Check method size - Roadie metric."""
-    return {"status": "dx_metric", "notes": "Roadie — not currently scored"}
+    return {"tier": "dx_metric", "status": "dx_metric", "notes": "Roadie — not currently scored"}
 
 def check_muted_tests(repo_path):
-    """Count muted/ignored tests."""
     out, rc = run_cmd("grep -rn '\\[Ignore\\]\\|\\[Skip\\]\\|\\[Explicit\\]' tests/ --include='*.cs' 2>/dev/null | wc -l", cwd=repo_path)
     try:
         count = int(out.strip())
     except ValueError:
         count = 0
     if count == 0:
-        return {"status": "pass", "count": 0, "notes": ""}
-    return {"status": "fail", "count": count, "notes": f"{count} muted tests"}
+        return {"tier": "t1", "status": "pass", "count": 0, "notes": "No muted tests"}
+    elif count <= 2:
+        return {"tier": "t2", "status": "warning", "count": count, "notes": f"{count} muted tests"}
+    elif count <= 5:
+        return {"tier": "t3", "status": "warning", "count": count, "notes": f"{count} muted tests"}
+    else:
+        return {"tier": "below_t3", "status": "fail", "count": count, "notes": f"{count} muted tests"}
 
 def check_test_failure_rate(repo_path):
-    """Check test failure rate - CI metric."""
-    return {"status": "dx_metric", "notes": "CI-level metric — no per-svc data"}
+    return {"tier": "dx_metric", "status": "dx_metric", "notes": "CI-level metric — no per-svc data"}
 
 def check_eol(repo_path):
-    """Check for EOL frameworks."""
     out, rc = run_cmd("grep -r 'net8.0\\|net9.0' . --include='*.csproj' 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "pass", "notes": ".NET 8+ LTS"}
-    out, rc = run_cmd("grep -r 'net6.0\\|net7.0' . --include='*.csproj' 2>/dev/null | head -1", cwd=repo_path)
+        return {"tier": "t1", "status": "pass", "notes": ".NET 8+ LTS"}
+    out, rc = run_cmd("grep -r 'net7.0' . --include='*.csproj' 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "warning", "notes": ".NET 6/7 — upgrade soon"}
+        return {"tier": "t2", "status": "warning", "notes": ".NET 7 — upgrade within 6mo"}
+    out, rc = run_cmd("grep -r 'net6.0' . --include='*.csproj' 2>/dev/null | head -1", cwd=repo_path)
+    if out:
+        return {"tier": "t3", "status": "warning", "notes": ".NET 6 — upgrade within 12mo"}
     out, rc = run_cmd("grep -r 'TargetFramework' . --include='*.csproj' 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "unknown", "notes": "Check framework version"}
-    return {"status": "unknown", "notes": "No .csproj found"}
+        return {"tier": "below_t3", "status": "fail", "notes": "Legacy framework — urgent upgrade needed"}
+    return {"tier": "unknown", "status": "unknown", "notes": "No .csproj found"}
 
 def check_slo(repo_path):
-    """Check for SLO definition."""
     out, rc = run_cmd("grep -ri 'new.*Slo\\|SloDefinition\\|createSlo' cdk/ --include='*.ts' 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "pass", "count": 1, "notes": "SLO found in CDK"}
+        return {"tier": "t1", "status": "pass", "count": 1, "notes": "SLO found in CDK"}
     out, rc = run_cmd("grep -ri 'slo' cdk/ --include='*.ts' 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "warning", "count": 0, "notes": "SLO reference found, verify definition"}
-    return {"status": "fail", "count": 0, "notes": "No SLO detected"}
+        return {"tier": "t2", "status": "warning", "count": 0, "notes": "SLO reference found, verify definition"}
+    return {"tier": "below_t3", "status": "fail", "count": 0, "notes": "No SLO detected"}
 
 def check_burn_rate(repo_path):
-    """Check for burn rate alerting."""
     out, rc = run_cmd("grep -ri 'burn.*rate\\|burnRate\\|BurnRate' cdk/ --include='*.ts' 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "pass", "notes": "Burn rate found in CDK"}
-    return {"status": "fail", "notes": "No burn rate alerting — depends on SLO"}
+        return {"tier": "t1", "status": "pass", "notes": "Burn rate found in CDK"}
+    return {"tier": "below_t3", "status": "fail", "notes": "No burn rate alerting — depends on SLO"}
 
 def check_smoke_tests(repo_path):
-    """Check smoke tests - Roadie metric."""
-    return {"status": "dx_metric", "notes": "Roadie surfaces; no active gap"}
+    return {"tier": "dx_metric", "status": "dx_metric", "notes": "Roadie surfaces; no active gap"}
 
 def check_sentry(repo_path):
-    """Check Sentry configuration."""
     out, rc = run_cmd("grep -ri 'sentry\\|Sentry' . --include='*.cs' --include='*.json' --include='*.ts' 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "unknown", "unresolved": None, "notes": "Sentry configured — hygiene unchecked (needs API)"}
-    return {"status": "fail", "unresolved": None, "notes": "No Sentry config found"}
+        return {"tier": "unknown", "status": "unknown", "unresolved": None, "notes": "Sentry configured — hygiene unchecked (needs API)"}
+    return {"tier": "below_t3", "status": "fail", "unresolved": None, "notes": "No Sentry config found"}
 
 def check_incident_metric(repo_path):
-    """Check for incident trigger metric."""
+    out, rc = run_cmd("grep -ri 'alarmWebhook\\|pagerDuty.*5xx\\|5xx.*pagerDuty' cdk/ --include='*.ts' 2>/dev/null | head -1", cwd=repo_path)
+    if out:
+        return {"tier": "t1", "status": "pass", "notes": "5xx monitor wired to PD"}
     out, rc = run_cmd("grep -ri '5xx\\|error.*monitor\\|alarm.*5' cdk/ --include='*.ts' 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "pass", "notes": "5xx/error monitor found"}
-    return {"status": "warning", "notes": "No incident trigger metric detected"}
+        return {"tier": "t2", "status": "warning", "notes": "5xx/error monitor found, verify PD wiring"}
+    return {"tier": "below_t3", "status": "fail", "notes": "No incident trigger metric detected"}
 
 def check_deployable(repo_path):
-    """Check recent deploy (via git commit on main/master)."""
     out, rc = run_cmd("git log --oneline -1 --format='%ci' origin/main 2>/dev/null || git log --oneline -1 --format='%ci' origin/master 2>/dev/null", cwd=repo_path)
     if out:
-        return {"status": "pass", "notes": f"Last commit: {out[:10]}"}
-    return {"status": "unknown", "notes": "Could not get last commit date"}
+        from datetime import datetime
+        try:
+            commit_date = datetime.strptime(out[:10], "%Y-%m-%d")
+            days_ago = (datetime.now() - commit_date).days
+            if days_ago <= 30:
+                tier = "t1"
+            elif days_ago <= 60:
+                tier = "t2"
+            elif days_ago <= 90:
+                tier = "t3"
+            else:
+                tier = "below_t3"
+            status = "pass" if tier == "t1" else "warning" if tier in ("t2", "t3") else "fail"
+            return {"tier": tier, "status": status, "days_ago": days_ago, "notes": f"Last commit: {out[:10]} ({days_ago}d ago)"}
+        except:
+            pass
+    return {"tier": "unknown", "status": "unknown", "notes": "Could not get last commit date"}
 
 def check_plinth(repo_path):
-    """Check if service is on Plinth."""
     out, rc = run_cmd("grep -ri 'plinth\\|Plinth' . --include='*.csproj' --include='*.cs' 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "pass", "notes": "On Plinth"}
+        return {"tier": "t1", "status": "pass", "notes": "On Plinth"}
     out, rc = run_cmd("ls src/ 2>/dev/null && ls cdk/ 2>/dev/null", cwd=repo_path)
     if rc == 0:
-        return {"status": "pass", "notes": "Plinth-style structure"}
-    return {"status": "unknown", "notes": "Could not determine"}
+        return {"tier": "t1", "status": "pass", "notes": "Plinth-style structure"}
+    return {"tier": "unknown", "status": "unknown", "notes": "Could not determine"}
 
 def check_cdk_no_ansible(repo_path):
-    """Check if on CDK and off Ansible."""
     has_cdk = False
     has_ansible = False
 
@@ -366,23 +450,27 @@ def check_cdk_no_ansible(repo_path):
         has_ansible = True
 
     if has_cdk and not has_ansible:
-        return {"status": "pass", "notes": "CDK only"}
+        return {"tier": "t1", "status": "pass", "notes": "CDK only"}
     elif has_cdk and has_ansible:
-        return {"status": "warning", "notes": "CDK present but ansible/ still exists"}
+        return {"tier": "t2", "status": "warning", "notes": "CDK present but ansible/ still exists"}
     elif not has_cdk and has_ansible:
-        return {"status": "fail", "notes": "Ansible only — needs CDK migration"}
+        return {"tier": "below_t3", "status": "fail", "notes": "Ansible only — needs CDK migration"}
     else:
-        return {"status": "unknown", "notes": "No CDK or Ansible found"}
+        return {"tier": "unknown", "status": "unknown", "notes": "No CDK or Ansible found"}
 
 def check_pagerduty(repo_path):
-    """Check for PagerDuty configuration."""
-    out, rc = run_cmd("grep -ri 'pagerduty\\|PagerDuty\\|alarmWebhook\\|pagerDutyIntegration' cdk/ --include='*.ts' 2>/dev/null | head -1", cwd=repo_path)
+    out, rc = run_cmd("grep -ri 'alarmWebhook' cdk/ --include='*.ts' 2>/dev/null | head -1", cwd=repo_path)
     if out:
-        return {"status": "pass", "notes": "PagerDuty config found in CDK"}
-    return {"status": "fail", "notes": "alarmWebhook not wired"}
+        out2, rc2 = run_cmd("grep -ri 'offHours\\|off_hours\\|escalation' cdk/ --include='*.ts' 2>/dev/null | head -1", cwd=repo_path)
+        if out2:
+            return {"tier": "t1", "status": "pass", "notes": "alarmWebhook + off-hours escalation"}
+        return {"tier": "t2", "status": "warning", "notes": "alarmWebhook wired, no off-hours config"}
+    out, rc = run_cmd("grep -ri 'pagerduty\\|PagerDuty\\|pagerDutyIntegration' cdk/ --include='*.ts' 2>/dev/null | head -1", cwd=repo_path)
+    if out:
+        return {"tier": "t2", "status": "warning", "notes": "PagerDuty config found, verify alarmWebhook"}
+    return {"tier": "below_t3", "status": "fail", "notes": "alarmWebhook not wired"}
 
 def load_teamcity_coverage():
-    """Load TeamCity coverage data if available."""
     coverage_file = OUTPUT_DIR / "teamcity-coverage.json"
     if coverage_file.exists():
         with open(coverage_file) as f:
@@ -390,8 +478,6 @@ def load_teamcity_coverage():
     return {}
 
 def analyze_service(team_id, service, repo_base, tc_coverage):
-    """Run all 21 checks for a service."""
-    # Support repo_override for services cloned in different directories
     repo_path = service.get("repo_override") or (repo_base / service["repo"])
     svc_name = service["name"]
 
@@ -400,7 +486,7 @@ def analyze_service(team_id, service, repo_base, tc_coverage):
             "name": svc_name,
             "repo": service["repo"],
             "error": f"Repo not found at {repo_path}",
-            "checks": {k: {"status": "unknown", "notes": "Repo not found"} for k in CHECK_DEFINITIONS}
+            "checks": {k: {"tier": "unknown", "status": "unknown", "notes": "Repo not found"} for k in CHECK_DEFINITIONS}
         }
 
     checks = {}
@@ -441,7 +527,6 @@ def analyze_service(team_id, service, repo_base, tc_coverage):
     }
 
 def build_scorecard():
-    """Build the full scorecard."""
     tc_coverage = load_teamcity_coverage()
 
     teams_data = {}
@@ -464,22 +549,18 @@ def build_scorecard():
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     with open(OUTPUT_FILE, "w") as f:
-        json.dump(scorecard, f, indent=2)
+        json.dump(scorecard, f, indent=2, default=str)
 
     return scorecard
 
 def print_summary(scorecard):
-    """Print a terminal summary of the scorecard."""
     print("\n" + "=" * 80)
-    print("      Q2 INFRASTRUCTURE SCORECARD (21 checks)")
+    print("      Q2 INFRASTRUCTURE SCORECARD (21 checks, tiered)")
     print("=" * 80)
 
-    total_checks = 0
-    passing = 0
-    failing = 0
-    dx_metric = 0
-
-    pillars = ["Deployment Safety", "Code Quality", "Observability", "Tooling"]
+    tier_counts = {"t1": 0, "t2": 0, "t3": 0, "below_t3": 0, "unknown": 0, "dx_metric": 0}
+    p1_t1 = 0
+    p1_total = 0
 
     for team_id, team in scorecard["teams"].items():
         print(f"\n{'='*80}")
@@ -495,42 +576,31 @@ def print_summary(scorecard):
             print(f"  {'-'*50}")
 
             checks = service["checks"]
+            for check_id, check in checks.items():
+                tier = check.get("tier", "unknown")
+                tier_counts[tier] = tier_counts.get(tier, 0) + 1
 
-            for pillar in pillars:
-                pillar_checks = [k for k, v in CHECK_DEFINITIONS.items() if v["pillar"] == pillar]
-                line = f"    {pillar}: "
-                statuses = []
+                defn = CHECK_DEFINITIONS.get(check_id, {})
+                if defn.get("priority") == "P1" and tier != "dx_metric":
+                    p1_total += 1
+                    if tier == "t1":
+                        p1_t1 += 1
 
-                for check_id in pillar_checks:
-                    check = checks.get(check_id, {})
-                    status = check.get("status", "unknown")
-                    total_checks += 1
-
-                    if status == "pass":
-                        passing += 1
-                        statuses.append("✓")
-                    elif status == "fail":
-                        failing += 1
-                        statuses.append("✗")
-                    elif status == "warning":
-                        statuses.append("!")
-                    elif status == "dx_metric":
-                        dx_metric += 1
-                        statuses.append("◆")
-                    else:
-                        statuses.append("?")
-
-                print(f"{line}{' '.join(statuses)}")
+                icon = {"t1": "T1", "t2": "T2", "t3": "T3", "below_t3": "<T3", "unknown": "??", "dx_metric": "DX"}.get(tier, "??")
+                print(f"    [{icon:>3}] {defn.get('name', check_id)}: {check.get('notes', '')}")
 
     print("\n" + "=" * 80)
-    print(" LEGEND: ✓=pass  ✗=fail  !=warning  ◆=DX/Roadie metric  ?=unknown")
+    print(" TIER SUMMARY")
     print("=" * 80)
-    actionable = total_checks - dx_metric
-    pct = round(100 * passing / actionable) if actionable > 0 else 0
-    print(f" Services: {sum(len(t['services']) for t in scorecard['teams'].values())}")
-    print(f" Checks: {total_checks} total ({dx_metric} DX-tracked, {actionable} actionable)")
-    print(f" Passing: {passing}/{actionable} actionable ({pct}%)")
-    print(f" Gaps: {failing}")
+    print(f"  T1 (best):    {tier_counts['t1']}")
+    print(f"  T2:           {tier_counts['t2']}")
+    print(f"  T3:           {tier_counts['t3']}")
+    print(f"  <T3 (gaps):   {tier_counts['below_t3']}")
+    print(f"  Unknown:      {tier_counts['unknown']}")
+    print(f"  DX Metric:    {tier_counts['dx_metric']}")
+    print("=" * 80)
+    compliance = round(100 * p1_t1 / p1_total) if p1_total > 0 else 0
+    print(f" P1 Tier 1 Compliance: {compliance}% ({p1_t1}/{p1_total})")
     print("=" * 80)
     print(f"\nUpdated: {OUTPUT_FILE}")
     print(f"View at: https://rashmi-srivastava-zocdoc.github.io/team-management/scorecard.html")
