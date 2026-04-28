@@ -95,7 +95,7 @@ jobs:
 
       - name: Build scorecard from GitHub repos
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.ZOCDOC_REPO_TOKEN }}
         run: |
           python3 scripts/build-scorecard.py --use-github
 
