@@ -503,12 +503,7 @@
                 html += '<th class="service-col">Check</th>';
 
                 for (const service of allServices) {
-                    const shortName = service.name
-                        .replace('provider-', '')
-                        .replace('practice-', '')
-                        .replace('-service', '')
-                        .replace('-proxy', '');
-                    html += `<th class="status-cell">${shortName}</th>`;
+                    html += `<th class="status-cell">${service.name}</th>`;
                 }
                 html += '</tr></thead><tbody>';
 
