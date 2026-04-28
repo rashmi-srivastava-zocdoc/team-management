@@ -235,6 +235,14 @@
             text-align: center;
             white-space: nowrap;
         }
+        .status-cell a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .status-cell a:hover {
+            color: #0065ff;
+            text-decoration: underline;
+        }
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -503,7 +511,8 @@
                 html += '<th class="service-col">Check</th>';
 
                 for (const service of allServices) {
-                    html += `<th class="status-cell">${service.name}</th>`;
+                    const repoUrl = `https://github.com/Zocdoc/${service.repo || service.name}`;
+                    html += `<th class="status-cell"><a href="${repoUrl}" target="_blank">${service.name}</a></th>`;
                 }
                 html += '</tr></thead><tbody>';
 
