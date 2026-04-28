@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T22:51:28.146681",
+  "lastUpdated": "2026-04-28T23:01:46.918587",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -44,7 +44,7 @@
               "status": "fail",
               "value": 41.5,
               "target": 80,
-              "notes": "C:41.5% M:41.5% L:41.5% B:100%",
+              "notes": "Lines:41.5% (C:41.5% M:41.5% B:100%)",
               "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24633751"
             },
             "complexity": {
@@ -258,7 +258,7 @@
               "status": "fail",
               "value": 13.18,
               "target": 80,
-              "notes": "C:13.18% M:13.18% L:13.18% B:5.9%",
+              "notes": "Lines:13.18% (C:13.18% M:13.18% B:5.9%)",
               "build_url": ""
             },
             "complexity": {
@@ -495,7 +495,7 @@
               "status": "fail",
               "value": 5.37,
               "target": 80,
-              "notes": "C:5.37% M:5.37% L:5.37% B:100%",
+              "notes": "Lines:5.37% (C:5.37% M:5.37% B:100%)",
               "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/24634146"
             },
             "complexity": {
