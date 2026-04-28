@@ -1,0 +1,78 @@
+name: Update On-Call
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Every hour
+  workflow_dispatch:      # Manual trigger
+
+jobs:
+  update-oncall:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch on-call data and update page
+        env:
+          PAGERDUTY_API_KEY: ${{ secrets.PAGERDUTY_API_KEY }}
+        run: |
+          # Team configurations: teamId|primaryElementId|secondaryElementId
+          declare -a TEAMS=(
+            "PCNWGAE|peacock-primary|peacock-secondary"
+            "PXV50G4|pterodactyl-primary|pterodactyl-secondary"
+            "P03ER2R|billing-primary|billing-secondary"
+          )
+
+          NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          for team in "${TEAMS[@]}"; do
+            IFS='|' read -r TEAM_ID PRIMARY_ID SECONDARY_ID <<< "$team"
+
+            # Get schedules for this team
+            SCHEDULES=$(curl -s -H "Authorization: Token token=$PAGERDUTY_API_KEY" \
+              "https://api.pagerduty.com/schedules?team_ids[]=$TEAM_ID")
+
+            PRIMARY=""
+            SECONDARY=""
+
+            # Loop through each schedule
+            for SCHEDULE_ID in $(echo "$SCHEDULES" | jq -r '.schedules[].id'); do
+              SCHEDULE_NAME=$(echo "$SCHEDULES" | jq -r ".schedules[] | select(.id==\"$SCHEDULE_ID\") | .name")
+
+              # Get current on-call for this schedule
+              ONCALL=$(curl -s -H "Authorization: Token token=$PAGERDUTY_API_KEY" \
+                "https://api.pagerduty.com/oncalls?schedule_ids[]=$SCHEDULE_ID&since=$NOW&until=$NOW")
+
+              USER_NAME=$(echo "$ONCALL" | jq -r '.oncalls[0].user.summary // empty')
+
+              if [ -n "$USER_NAME" ]; then
+                # Check if primary or secondary based on schedule name
+                if echo "$SCHEDULE_NAME" | grep -qi "primary"; then
+                  [ -z "$PRIMARY" ] && PRIMARY="$USER_NAME"
+                elif echo "$SCHEDULE_NAME" | grep -qi "secondary"; then
+                  [ -z "$SECONDARY" ] && SECONDARY="$USER_NAME"
+                else
+                  # Default: first found is primary, second is secondary
+                  if [ -z "$PRIMARY" ]; then
+                    PRIMARY="$USER_NAME"
+                  elif [ -z "$SECONDARY" ]; then
+                    SECONDARY="$USER_NAME"
+                  fi
+                fi
+              fi
+            done
+
+            # Update HTML with sed
+            [ -z "$PRIMARY" ] && PRIMARY="-"
+            [ -z "$SECONDARY" ] && SECONDARY="-"
+
+            sed -i "s|<span class=\"oncall-badge primary\" id=\"$PRIMARY_ID\">[^<]*</span>|<span class=\"oncall-badge primary\" id=\"$PRIMARY_ID\">$PRIMARY</span>|g" index.html
+            sed -i "s|<span class=\"oncall-badge secondary\" id=\"$SECONDARY_ID\">[^<]*</span>|<span class=\"oncall-badge secondary\" id=\"$SECONDARY_ID\">$SECONDARY</span>|g" index.html
+
+            echo "Updated $TEAM_ID: Primary=$PRIMARY, Secondary=$SECONDARY"
+          done
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet index.html || (git add index.html && git commit -m "Update on-call data [automated]" && git push)
