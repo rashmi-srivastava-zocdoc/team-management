@@ -609,6 +609,31 @@
                 }
             });
         }
+
+        const ONCALL_API_URL = 'https://team-oncall.zocdoc.workers.dev';
+
+        const teamSchedules = {
+            peacock: { teamId: 'PCNWGAE', primaryId: 'peacock-primary', secondaryId: 'peacock-secondary' },
+            pterodactyl: { teamId: 'PXV50G4', primaryId: 'pterodactyl-primary', secondaryId: 'pterodactyl-secondary' },
+            billing: { teamId: 'P03ER2R', primaryId: 'billing-primary', secondaryId: 'billing-secondary' }
+        };
+
+        async function fetchOnCall() {
+            for (const [team, config] of Object.entries(teamSchedules)) {
+                try {
+                    const response = await fetch(`${ONCALL_API_URL}?teamId=${config.teamId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        document.getElementById(config.primaryId).textContent = data.primary || '-';
+                        document.getElementById(config.secondaryId).textContent = data.secondary || '-';
+                    }
+                } catch (error) {
+                    console.log(`Could not fetch on-call for ${team}:`, error.message);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchOnCall);
     </script>
 </body>
 </html>
