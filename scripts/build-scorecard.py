@@ -374,9 +374,9 @@ def check_blue_green(repo_path):
     out, rc = run_cmd("test -d cdk || test -d infrastructure/cdk && echo exists", cwd=repo_path)
     if out:
         # CDK exists but no blue-green - check if it's even an ECS service
-        # Include zd-cdk patterns: LoadBalancedHttpService, CronService, WorkerService
+        # Include zd-cdk patterns: HttpService, LoadBalancedHttpService, CronService, WorkerService
         out2, _ = run_cmd(
-            "grep -rE 'EcsService|FargateService|Ec2Service|LoadBalancedHttpService|ecs\\.CronService|ecs\\.WorkerService' "
+            "grep -rE 'EcsService|FargateService|Ec2Service|ecs\\.HttpService|LoadBalancedHttpService|ecs\\.CronService|ecs\\.WorkerService' "
             "cdk/ infrastructure/cdk/ 2>/dev/null | head -1",
             cwd=repo_path
         )
