@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T14:37:53.334443",
+  "lastUpdated": "2026-04-28T14:40:37.980455",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -123,7 +123,12 @@
             }
           }
         }
-      ]
+      ],
+      "epic": {
+        "key": "PROVGRO-6335",
+        "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6335",
+        "summary": "Q2 2026 - Infrastructure Hardening"
+      }
     },
     "account-user-setup": {
       "name": "Account & User Setup",
@@ -656,7 +661,12 @@
             }
           }
         }
-      ]
+      ],
+      "epic": {
+        "key": "PTERODACTL-1880",
+        "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1880",
+        "summary": "Q2 2026 [2x] - Infrastructure Hardening"
+      }
     },
     "billing": {
       "name": "Billing",
