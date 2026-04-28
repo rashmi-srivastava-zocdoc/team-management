@@ -12,70 +12,170 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            padding: 2rem;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 2rem;
+            background: #ffffff;
             color: #1a1a1a;
+            line-height: 1.6;
+        }
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: #1a1a1a;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #FFE14D;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+        .team-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .team-selector label {
+            font-weight: 500;
+            color: #666;
+        }
+        .team-dropdown {
+            padding: 0.75rem 2.5rem 0.75rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #1a1a1a;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+        .team-dropdown:hover {
+            border-color: #FFE14D;
+        }
+        .team-dropdown:focus {
+            outline: none;
+            border-color: #FFE14D;
+            box-shadow: 0 0 0 3px rgba(255, 225, 77, 0.3);
+        }
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+        .hero p {
+            color: #666;
+            font-size: 1.1rem;
         }
         .teams-container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 2rem auto;
+            padding: 0 2rem;
             display: grid;
             gap: 2rem;
         }
         .team-card {
             background: white;
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             overflow: hidden;
+            border: 1px solid #e8e8e8;
+        }
+        .team-card.hidden {
+            display: none;
         }
         .team-header {
             padding: 1.5rem;
-            color: white;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e8e8e8;
         }
         .team-header h2 {
             margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
+        .team-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .peacock .team-badge { background: #667eea; }
+        .pterodactyl .team-badge { background: #f5576c; }
+        .billing .team-badge { background: #4facfe; }
         .team-header p {
-            opacity: 0.9;
+            color: #666;
             font-size: 0.9rem;
         }
         .team-header a {
-            color: white;
-            text-decoration: underline;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #FFE14D;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            transition: background 0.2s;
         }
-        .peacock .team-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .pterodactyl .team-header { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-        .billing .team-header { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .team-header a:hover {
+            background: #ffd700;
+        }
         .team-members {
-            padding: 1rem;
+            padding: 0.5rem 0;
         }
         .member {
             display: flex;
             align-items: center;
-            padding: 0.75rem;
-            border-bottom: 1px solid #eee;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+        .member:hover {
+            background: #fafafa;
         }
         .member:last-child {
             border-bottom: none;
         }
         .member-avatar {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background: #ddd;
+            background: #e8e8e8;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 600;
             color: #666;
             margin-right: 1rem;
             flex-shrink: 0;
+            font-size: 0.875rem;
         }
         .member-info {
             flex: 1;
@@ -86,18 +186,20 @@
         }
         .member-email {
             font-size: 0.85rem;
-            color: #666;
+            color: #888;
         }
         .member-role {
-            background: #e8e8e8;
-            padding: 0.25rem 0.75rem;
+            background: #f0f0f0;
+            padding: 0.3rem 0.85rem;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 600;
             color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .member-role.em { background: #ffeaa7; color: #856404; }
-        .member-role.pm { background: #dfe6e9; color: #2d3436; }
+        .member-role.em { background: #FFE14D; color: #1a1a1a; }
+        .member-role.pm { background: #e8e8e8; color: #1a1a1a; }
         .member-role.swe { background: #d4edda; color: #155724; }
         .member-role.qa { background: #cce5ff; color: #004085; }
         .member-role.ux { background: #f8d7da; color: #721c24; }
@@ -111,28 +213,54 @@
             color: #666;
             text-decoration: none;
             font-size: 0.8rem;
-            padding: 0.25rem 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 0.35rem 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.2s;
         }
         .member-links a:hover {
-            background: #f0f0f0;
+            background: #FFE14D;
+            border-color: #FFE14D;
+            color: #1a1a1a;
         }
         @media (max-width: 600px) {
-            body { padding: 1rem; }
-            .member { flex-wrap: wrap; }
-            .member-links { margin-left: 0; margin-top: 0.5rem; width: 100%; }
+            .header { flex-direction: column; gap: 1rem; padding: 1rem; }
+            .hero { padding: 2rem 1rem; }
+            .hero h1 { font-size: 1.75rem; }
+            .teams-container { padding: 0 1rem; }
+            .member { flex-wrap: wrap; padding: 1rem; }
+            .member-links { margin-left: 0; margin-top: 0.75rem; width: 100%; }
         }
     </style>
 </head>
 <body>
-    <h1>Team Directory</h1>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">Z</div>
+            Team Directory
+        </div>
+        <div class="team-selector">
+            <label for="team-filter">Select Team:</label>
+            <select id="team-filter" class="team-dropdown" onchange="filterTeams()">
+                <option value="all">All Teams</option>
+                <option value="peacock">Peacock</option>
+                <option value="pterodactyl">Pterodactyl</option>
+                <option value="billing">Billing</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Team Directory</h1>
+        <p>Find your team members and their contact information</p>
+    </div>
+
     <div class="teams-container">
-        <div class="team-card peacock">
+        <div class="team-card peacock" data-team="peacock">
             <div class="team-header">
-                <h2>Peacock</h2>
+                <h2><span class="team-badge"></span>Peacock</h2>
                 <p>Provider Onboarding | Jira: PROVGRO</p>
-                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/39427858/Provider+Onboarding+-+Peacock" target="_blank">Confluence</a>
+                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/39427858/Provider+Onboarding+-+Peacock" target="_blank">View Confluence</a>
             </div>
             <div class="team-members">
                 <div class="member">
@@ -230,11 +358,11 @@
             </div>
         </div>
 
-        <div class="team-card pterodactyl">
+        <div class="team-card pterodactyl" data-team="pterodactyl">
             <div class="team-header">
-                <h2>Pterodactyl</h2>
+                <h2><span class="team-badge"></span>Pterodactyl</h2>
                 <p>Provider User Permissions | Jira: PTERODACTL</p>
-                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/932577285/Provider+User+Permissions+-+Pterodactyl" target="_blank">Confluence</a>
+                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/932577285/Provider+User+Permissions+-+Pterodactyl" target="_blank">View Confluence</a>
             </div>
             <div class="team-members">
                 <div class="member">
@@ -316,11 +444,11 @@
             </div>
         </div>
 
-        <div class="team-card billing">
+        <div class="team-card billing" data-team="billing">
             <div class="team-header">
-                <h2>Billing</h2>
+                <h2><span class="team-badge"></span>Billing</h2>
                 <p>Provider Billing | Jira: BILL</p>
-                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/2037547071/Billing+Team" target="_blank">Confluence</a>
+                <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/2037547071/Billing+Team" target="_blank">View Confluence</a>
             </div>
             <div class="team-members">
                 <div class="member">
@@ -430,5 +558,20 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function filterTeams() {
+            const filter = document.getElementById('team-filter').value;
+            const teamCards = document.querySelectorAll('.team-card');
+
+            teamCards.forEach(card => {
+                if (filter === 'all' || card.dataset.team === filter) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
