@@ -273,10 +273,14 @@ def run_cmd(cmd, cwd=None):
 # === CHECK FUNCTIONS (return tier: t1, t2, t3, below_t3, unknown, dx_metric) ===
 
 def check_blue_green(repo_path):
-    out, rc = run_cmd("grep -r 'deploymentStrategy\\|blue_green\\|BlueGreen\\|blueGreenDeployment' cdk/ 2>/dev/null | head -1", cwd=repo_path)
+    out, rc = run_cmd(
+        "grep -rE 'BLUE_GREEN|blueGreen|blue-green|deploymentStrategy|blueGreenDeployment' "
+        "cdk/ infrastructure/cdk/ 2>/dev/null | head -1",
+        cwd=repo_path
+    )
     if out:
         return {"tier": "t1", "status": "pass", "notes": "B/G enabled in CDK"}
-    out, rc = run_cmd("ls cdk/ 2>/dev/null", cwd=repo_path)
+    out, rc = run_cmd("ls cdk/ infrastructure/cdk/ 2>/dev/null", cwd=repo_path)
     if rc == 0:
         return {"tier": "below_t3", "status": "fail", "notes": "CDK present but B/G not detected"}
     return {"tier": "unknown", "status": "unknown", "notes": "No CDK directory"}
