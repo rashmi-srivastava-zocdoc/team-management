@@ -36,12 +36,28 @@ jobs:
           python-version: '3.11'
 
       - name: Fetch TeamCity coverage data
+        id: fetch
         env:
           TEAMCITY_TOKEN: ${{ secrets.TEAMCITY_TOKEN }}
-        run: python3 scripts/fetch-teamcity-coverage.py
+        run: |
+          python3 scripts/fetch-teamcity-coverage.py
+
+          # Check if ALL services returned errors (means TeamCity is unreachable)
+          error_count=$(grep -c '"error":' scorecard/teamcity-coverage.json || echo 0)
+          total_count=$(grep -c '"provider\|"practice' scorecard/teamcity-coverage.json || echo 0)
+
+          if [[ "$error_count" -eq "$total_count" && "$total_count" -gt 0 ]]; then
+            echo "⚠️ All services returned errors - TeamCity may be unreachable from GitHub Actions"
+            echo "valid=false" >> $GITHUB_OUTPUT
+            # Restore original file to prevent committing errors
+            git checkout scorecard/teamcity-coverage.json
+          else
+            echo "valid=true" >> $GITHUB_OUTPUT
+          fi
 
       - name: Check for changes
         id: changes
+        if: steps.fetch.outputs.valid == 'true'
         run: |
           if git diff --quiet scorecard/teamcity-coverage.json; then
             echo "changed=false" >> $GITHUB_OUTPUT
@@ -50,7 +66,7 @@ jobs:
           fi
 
       - name: Commit and push changes
-        if: steps.changes.outputs.changed == 'true'
+        if: steps.fetch.outputs.valid == 'true' && steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -66,7 +82,14 @@ jobs:
         run: |
           echo "## TeamCity Coverage Refresh" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if [[ "${{ steps.changes.outputs.changed }}" == "true" ]]; then
+          if [[ "${{ steps.fetch.outputs.valid }}" != "true" ]]; then
+            echo "⚠️ TeamCity unreachable from GitHub Actions - coverage data unchanged" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "To update coverage data, run locally:" >> $GITHUB_STEP_SUMMARY
+            echo '```bash' >> $GITHUB_STEP_SUMMARY
+            echo 'python3 scripts/fetch-teamcity-coverage.py && git add scorecard/teamcity-coverage.json && git commit -m "chore: refresh coverage" && git push' >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          elif [[ "${{ steps.changes.outputs.changed }}" == "true" ]]; then
             echo "✅ Coverage data updated and committed" >> $GITHUB_STEP_SUMMARY
           else
             echo "ℹ️ No changes to coverage data" >> $GITHUB_STEP_SUMMARY
