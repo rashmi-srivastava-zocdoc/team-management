@@ -58,6 +58,16 @@ SLUG_TO_CHECK_ID = {
 
 CHECK_ID_TO_SLUG = {v: k for k, v in SLUG_TO_CHECK_ID.items()}
 
+# TeamCity project IDs for muted tests API
+# Query: teamcity api "/app/rest/mutes?locator=project:(id:PROJECT_ID)"
+TEAMCITY_PROJECT_IDS = {
+    "provider-setup-service": "Provider_ProviderSetupService",
+    "practice-user-permissions": "PracticeUserPermissions",
+    "practice-authorization-proxy": "PracticeAuthorizationProxy",
+    "provider-grouping": "Poomba_ProviderGrouping",
+    "provider-join-service": "Provider_ProviderJoinService",
+}
+
 TEAMS = {
     "provider-onboarding": {
         "name": "Provider Onboarding",
@@ -319,20 +329,29 @@ def check_complexity(repo_path):
 def check_method_size(repo_path):
     return {"tier": "dx_metric", "status": "dx_metric", "notes": "Roadie — not currently scored"}
 
-def check_muted_tests(repo_path):
-    out, rc = run_cmd("grep -rn '\\[Ignore\\]\\|\\[Skip\\]\\|\\[Explicit\\]' tests/ --include='*.cs' 2>/dev/null | wc -l", cwd=repo_path)
-    try:
-        count = int(out.strip())
-    except ValueError:
-        count = 0
+def check_muted_tests(tc_muted_tests, svc_name):
+    """Check muted tests count from TeamCity API.
+
+    Per Excel guidance: Tier 1 = muted_tests_count = 0
+    Data source: TeamCity test occurrence data (mutes API)
+    """
+    tc_data = tc_muted_tests.get(svc_name, {})
+    if "error" in tc_data:
+        return {"tier": "unknown", "status": "unknown", "count": None, "notes": tc_data["error"]}
+
+    count = tc_data.get("count", 0)
+    project_id = tc_data.get("project_id", "")
+
     if count == 0:
-        return {"tier": "t1", "status": "pass", "count": 0, "notes": "No muted tests"}
-    elif count <= 2:
-        return {"tier": "t2", "status": "warning", "count": count, "notes": f"{count} muted tests"}
-    elif count <= 5:
-        return {"tier": "t3", "status": "warning", "count": count, "notes": f"{count} muted tests"}
+        return {"tier": "t1", "status": "pass", "count": 0, "notes": "No muted tests in TeamCity"}
     else:
-        return {"tier": "below_t3", "status": "fail", "count": count, "notes": f"{count} muted tests"}
+        return {
+            "tier": "below_t3",
+            "status": "fail",
+            "count": count,
+            "notes": f"{count} muted tests in TeamCity",
+            "project_id": project_id
+        }
 
 def check_test_failure_rate(repo_path):
     return {"tier": "dx_metric", "status": "dx_metric", "notes": "CI-level metric — no per-svc data"}
@@ -459,7 +478,36 @@ def load_teamcity_coverage():
             return {}
     return {}
 
-def analyze_service(team_id, service, repo_base, tc_coverage):
+
+def load_teamcity_muted_tests():
+    """Fetch muted test counts from TeamCity using the CLI."""
+    results = {}
+    for svc_name, project_id in TEAMCITY_PROJECT_IDS.items():
+        try:
+            r = subprocess.run(
+                ["teamcity", "api", f"/app/rest/mutes?locator=project:(id:{project_id})"],
+                capture_output=True, text=True, timeout=30
+            )
+            if r.returncode == 0:
+                data = json.loads(r.stdout)
+                count = data.get("count", 0)
+                results[svc_name] = {"count": count, "project_id": project_id}
+            else:
+                results[svc_name] = {"error": f"TeamCity API error: {r.stderr[:100]}"}
+        except subprocess.TimeoutExpired:
+            results[svc_name] = {"error": "TeamCity API timeout"}
+        except json.JSONDecodeError:
+            results[svc_name] = {"error": "Invalid JSON from TeamCity"}
+        except FileNotFoundError:
+            results[svc_name] = {"error": "teamcity CLI not found"}
+            break
+        except Exception as e:
+            results[svc_name] = {"error": str(e)[:100]}
+
+    print(f"Loaded muted tests for {len([r for r in results.values() if 'count' in r])} services from TeamCity")
+    return results
+
+def analyze_service(team_id, service, repo_base, tc_coverage, tc_muted_tests):
     svc_name = service["name"]
     check_defs = CHECK_DEFINITIONS or CHECK_DEFINITIONS_FALLBACK
 
@@ -497,7 +545,7 @@ def analyze_service(team_id, service, repo_base, tc_coverage):
     checks["coverage"] = check_coverage(repo_path, tc_coverage, svc_name)
     checks["complexity"] = check_complexity(repo_path)
     checks["methodSize"] = check_method_size(repo_path)
-    checks["mutedTests"] = check_muted_tests(repo_path)
+    checks["mutedTests"] = check_muted_tests(tc_muted_tests, svc_name)
     checks["testFailureRate"] = check_test_failure_rate(repo_path)
     checks["eol"] = check_eol(repo_path)
 
@@ -589,12 +637,13 @@ def build_scorecard():
         CHECK_DEFINITIONS = CHECK_DEFINITIONS_FALLBACK
 
     tc_coverage = load_teamcity_coverage()
+    tc_muted_tests = load_teamcity_muted_tests()
 
     teams_data = {}
     for team_id, team_config in TEAMS.items():
         services = []
         for service in team_config["services"]:
-            result = analyze_service(team_id, service, team_config["repo_base"], tc_coverage)
+            result = analyze_service(team_id, service, team_config["repo_base"], tc_coverage, tc_muted_tests)
             services.append(result)
 
         teams_data[team_id] = {
