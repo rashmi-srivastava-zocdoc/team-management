@@ -1,0 +1,191 @@
+{
+  "ticketsByTeam": {
+    "provider-onboarding": {
+      "coverage": [
+        {
+          "key": "PROVGRO-6347",
+          "summary": "[Coverage] Edge-case tests for ProviderBootstrapPracticeService (63/90 \u2192 90/90 branches)",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6346",
+          "summary": "[Coverage] Edge-case tests for InboxPracticeService (85/106 \u2192 106/106 branches)",
+          "status": "Closed",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6345",
+          "summary": "[Coverage] Branch tests for exception handlers + ImpersonationBaseController (0/14 branches)",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6344",
+          "summary": "[Coverage] Branch tests for auth handlers + JwtCookiePromotionMiddleware (0/26 branches)",
+          "status": "In Progress",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6343",
+          "summary": "[Coverage] Branch tests for SynchronizerWebAppController (0/22 branches)",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6342",
+          "summary": "[Coverage] Branch tests for ProviderBootstrapDataController (0/18 branches)",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6341",
+          "summary": "[Coverage] Branch tests for InboxController + NavbarController (0/18 branches)",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6340",
+          "summary": "[Coverage] Branch tests for MiniFeBootstrapper error paths (4/36 branches)",
+          "status": "Closed",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6339",
+          "summary": "[Coverage] Unit tests for MultiPracticeLoginService (0% \u2192 100%)",
+          "status": "In Progress",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6338",
+          "summary": "[Coverage] Unit tests for InboxHtmlService (0% \u2192 100%)",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6337",
+          "summary": "[Coverage] Unit tests for CalendarDataService (0% \u2192 100%)",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6336",
+          "summary": "[Coverage] Unit tests for ClientSideHtmlService (0% \u2192 100%)",
+          "status": "Closed",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6272",
+          "summary": "[Test Coverage] Utilities, extensions & mappers",
+          "status": "Closed",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6271",
+          "summary": "[Test Coverage] Lambda entry points",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6270",
+          "summary": "[Test Coverage] MilestonesImpl unit tests",
+          "status": "Closed",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6269",
+          "summary": "[Test Coverage] AlertHandlerImpl + alert definitions",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6268",
+          "summary": "[Test Coverage] Authorization handlers",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6267",
+          "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6266",
+          "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6265",
+          "summary": "[Test Coverage] Intake tasks + SKU definition",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        },
+        {
+          "key": "PROVGRO-6264",
+          "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions",
+          "status": "Closed",
+          "service": "provider-setup-service"
+        }
+      ],
+      "blueGreen": [
+        {
+          "key": "PROVGRO-6301",
+          "summary": "Implement smoke tests for blue/green deployment validation",
+          "status": "To Do",
+          "service": "provider-setup-service"
+        }
+      ],
+      "plinth": [
+        {
+          "key": "PROVGRO-6189",
+          "summary": "[plinth] add missing auth-policies",
+          "status": "Closed",
+          "service": "provider-setup-service"
+        }
+      ]
+    },
+    "account-user-setup": {
+      "blueGreen": [
+        {
+          "key": "PTERODACTL-1887",
+          "summary": "Implement smoke tests for PAP blue/green deployment validation",
+          "status": "To Do",
+          "service": "practice-authorization-proxy"
+        },
+        {
+          "key": "PTERODACTL-1886",
+          "summary": "Enable ECS blue/green deployment for PAP",
+          "status": "To Do",
+          "service": "practice-authorization-proxy"
+        },
+        {
+          "key": "PTERODACTL-1885",
+          "summary": "Implement smoke tests for PUP blue/green deployment validation",
+          "status": "To Do",
+          "service": "practice-user-permissions"
+        },
+        {
+          "key": "PTERODACTL-1884",
+          "summary": "Enable ECS blue/green deployment for PUP",
+          "status": "To Do",
+          "service": "practice-user-permissions"
+        },
+        {
+          "key": "PTERODACTL-1883",
+          "summary": "Implement smoke tests for POGS blue/green deployment validation",
+          "status": "To Do",
+          "service": "provider-grouping"
+        },
+        {
+          "key": "PTERODACTL-1882",
+          "summary": "Enable ECS blue/green deployment for POGS",
+          "status": "To Do",
+          "service": "provider-grouping"
+        }
+      ]
+    }
+  },
+  "uncategorized": {}
+}

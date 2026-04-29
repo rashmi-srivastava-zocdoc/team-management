@@ -8,7 +8,11 @@ Usage:
     python3 fetch-epic-tickets.py                    # Fetch all team epics
     python3 fetch-epic-tickets.py --team provider-onboarding  # Fetch one team
 
-Requires:
+    # Stdin mode - categorize pre-fetched JSON (e.g., from Atlassian MCP):
+    python3 fetch-epic-tickets.py --stdin --team provider-onboarding < tickets.json
+    cat tickets.json | python3 fetch-epic-tickets.py --stdin --team account-user-setup
+
+Requires (for API mode):
     JIRA_EMAIL and JIRA_API_TOKEN environment variables
     Or: ~/.config/jira-credentials.json with {"email": "...", "api_token": "..."}
 """
@@ -239,13 +243,135 @@ def fetch_and_categorize(team_id, team_config, email, token):
     return categorized, uncategorized
 
 
+def parse_stdin_tickets(raw_json, default_service):
+    """Parse tickets from stdin JSON (Atlassian MCP format or raw Jira API response)."""
+    data = json.loads(raw_json) if isinstance(raw_json, str) else raw_json
+
+    # Handle MCP wrapper format: [{"type": "text", "text": "{...}"}]
+    if isinstance(data, list) and len(data) > 0 and "type" in data[0]:
+        data = json.loads(data[0]["text"])
+
+    # Extract issues array
+    issues = data.get("issues", [])
+
+    tickets = []
+    for issue in issues:
+        fields = issue.get("fields", {})
+
+        # Extract description text
+        description = ""
+        desc_field = fields.get("description")
+        if isinstance(desc_field, str):
+            description = desc_field
+        elif isinstance(desc_field, dict):
+            # ADF format - extract text content
+            for content in desc_field.get("content", []):
+                for item in content.get("content", []):
+                    if item.get("type") == "text":
+                        description += item.get("text", "") + " "
+
+        # Get status name
+        status = "Unknown"
+        status_field = fields.get("status")
+        if isinstance(status_field, dict):
+            status = status_field.get("name", "Unknown")
+        elif isinstance(status_field, str):
+            status = status_field
+
+        tickets.append({
+            "key": issue.get("key"),
+            "summary": fields.get("summary", ""),
+            "status": status,
+            "description": description[:500],
+        })
+
+    return tickets
+
+
+def categorize_tickets_from_list(tickets, default_service):
+    """Categorize a list of tickets."""
+    categorized = {}
+    uncategorized = []
+
+    for ticket in tickets:
+        check_id, service = categorize_ticket(ticket, default_service)
+
+        if check_id:
+            if check_id not in categorized:
+                categorized[check_id] = []
+
+            categorized[check_id].append({
+                "key": ticket["key"],
+                "summary": ticket["summary"],
+                "status": ticket["status"],
+                "service": service,
+            })
+            print(f"  {ticket['key']}: {check_id} ({service})")
+        else:
+            uncategorized.append(ticket)
+            print(f"  {ticket['key']}: UNCATEGORIZED - {ticket['summary'][:50]}...")
+
+    return categorized, uncategorized
+
+
 def main():
     parser = argparse.ArgumentParser(description="Fetch and categorize epic tickets for scorecard")
     parser.add_argument("--team", help="Team ID to fetch (default: all teams)")
     parser.add_argument("--dry-run", action="store_true", help="Print results without saving")
+    parser.add_argument("--stdin", action="store_true", help="Read JSON from stdin instead of fetching from Jira API")
     args = parser.parse_args()
 
-    # Get credentials
+    # Stdin mode - categorize pre-fetched JSON
+    if args.stdin:
+        if not args.team:
+            print("Error: --stdin requires --team to specify which team the tickets belong to")
+            sys.exit(1)
+
+        if args.team not in TEAM_EPICS:
+            print(f"Error: Unknown team '{args.team}'. Valid teams: {', '.join(TEAM_EPICS.keys())}")
+            sys.exit(1)
+
+        team_config = TEAM_EPICS[args.team]
+        default_service = team_config["default_service"]
+
+        print(f"Reading tickets from stdin for {args.team}...")
+        raw_json = sys.stdin.read()
+
+        tickets = parse_stdin_tickets(raw_json, default_service)
+        print(f"  Found {len(tickets)} tickets")
+
+        categorized, uncategorized = categorize_tickets_from_list(tickets, default_service)
+
+        # Load existing data and merge
+        all_tickets = {}
+        all_uncategorized = {}
+
+        if OUTPUT_FILE.exists():
+            with open(OUTPUT_FILE) as f:
+                existing = json.load(f)
+                all_tickets = existing.get("ticketsByTeam", {})
+                all_uncategorized = existing.get("uncategorized", {})
+
+        all_tickets[args.team] = categorized
+        if uncategorized:
+            all_uncategorized[args.team] = uncategorized
+
+        # Save
+        if not args.dry_run:
+            output = {
+                "ticketsByTeam": all_tickets,
+                "uncategorized": all_uncategorized,
+            }
+            os.makedirs(OUTPUT_FILE.parent, exist_ok=True)
+            with open(OUTPUT_FILE, "w") as f:
+                json.dump(output, f, indent=2)
+            print(f"\n✓ Saved to {OUTPUT_FILE}")
+        else:
+            print("\n(Dry run - results not saved)")
+
+        return
+
+    # API mode - fetch from Jira
     email, token = get_jira_credentials()
     if not email or not token:
         print("Error: Jira credentials not found.")
