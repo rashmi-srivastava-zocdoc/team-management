@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T20:53:23.570325",
+  "lastUpdated": "2026-04-29T00:54:24.911309",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -9,9 +9,9 @@
           "repo": "provider-setup-service",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "ECS service without B/G"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "B/G enabled in CDK"
             },
             "sloGate": {
               "tier": "unknown",
@@ -100,10 +100,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t3",
-              "status": "warning",
-              "days_ago": 70,
-              "notes": "Last commit: 2026-02-17 (70d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 1,
+              "notes": "Last commit: 2026-04-28 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -313,10 +313,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t3",
-              "status": "warning",
-              "days_ago": 76,
-              "notes": "Last commit: 2026-02-11 (76d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 1,
+              "notes": "Last commit: 2026-04-28 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -431,10 +431,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t3",
-              "status": "warning",
-              "days_ago": 84,
-              "notes": "Last commit: 2026-02-03 (84d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 1,
+              "notes": "Last commit: 2026-04-28 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -551,8 +551,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-04-28 (0d ago)"
+              "days_ago": 1,
+              "notes": "Last commit: 2026-04-28 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -667,10 +667,10 @@
               "notes": "No incident trigger metric detected"
             },
             "deployable": {
-              "tier": "t2",
-              "status": "warning",
-              "days_ago": 35,
-              "notes": "Last commit: 2026-03-24 (35d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 5,
+              "notes": "Last commit: 2026-04-24 (5d ago)"
             },
             "plinth": {
               "tier": "t1",
