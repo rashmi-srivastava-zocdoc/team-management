@@ -140,7 +140,8 @@ def fetch_epic_children(epic_key, email, token):
     """Fetch all child issues of an epic."""
     # JQL to find issues in the epic
     jql = f'"Epic Link" = {epic_key} OR parent = {epic_key}'
-    endpoint = f"search?jql={jql.replace(' ', '%20').replace('=', '%3D').replace('"', '%22')}&maxResults=100&fields=key,summary,status,description"
+    jql_encoded = jql.replace(' ', '%20').replace('=', '%3D').replace('"', '%22')
+    endpoint = f"search?jql={jql_encoded}&maxResults=100&fields=key,summary,status,description"
 
     result = jira_request(endpoint, email, token)
     if not result:
