@@ -1,0 +1,226 @@
+{
+  "services": [
+    {
+      "name": "AAA API",
+      "lang": "scala",
+      "repo": "https://github.com/Zocdoc/appointment-accounting-api/",
+      "checks": {
+        "Blue/Green Deployments Enabled": {
+          "tier": "below_t3",
+          "status": "blocked by need to migrate to CDK",
+          "jira": null
+        },
+        "No Muted or Ignored Ciritcal Tests or Flaky Tests": {
+          "tier": "t1",
+          "status": null,
+          "jira": null
+        },
+        "On CDK, Off Ansible": {
+          "tier": "below_t3",
+          "status": "In progress\n\nQ2 Goal",
+          "jira": "BILL-591"
+        },
+        "Code Coverage Meets Threshold": {
+          "tier": "unknown",
+          "status": null,
+          "jira": null
+        },
+        "No EOL Frameworks or Versions": {
+          "tier": "unknown",
+          "status": "Working with Jacek to fix this in roadie to give insights",
+          "jira": null
+        },
+        "Deployable \u2014 Recent Production Deploy": {
+          "tier": "t1",
+          "status": null,
+          "jira": null
+        },
+        "Endpoint Authentication": {
+          "tier": "below_t3",
+          "status": "7 endpoints need migration",
+          "jira": "BILL-536"
+        }
+      }
+    },
+    {
+      "name": "AAA Booking Processor",
+      "lang": "scala",
+      "repo": "https://github.com/zocdoc/aaa-booking-processor",
+      "checks": {
+        "Blue/Green Deployments Enabled": {
+          "tier": "below_t3",
+          "status": "blocked by need to migrate to CDK",
+          "jira": null
+        },
+        "No Muted or Ignored Ciritcal Tests or Flaky Tests": {
+          "tier": "unknown",
+          "status": null,
+          "jira": null
+        },
+        "On CDK, Off Ansible": {
+          "tier": "below_t3",
+          "status": null,
+          "jira": null
+        },
+        "Code Coverage Meets Threshold": {
+          "tier": "unknown",
+          "status": null,
+          "jira": null
+        },
+        "No EOL Frameworks or Versions": {
+          "tier": "unknown",
+          "status": "Working with Jacek to fix this in roadie to give insights",
+          "jira": null
+        },
+        "Deployable \u2014 Recent Production Deploy": {
+          "tier": "t1",
+          "status": "has been 60 days",
+          "jira": null
+        },
+        "Endpoint Authentication": {
+          "tier": "n/a",
+          "status": "Lambdas, no endpoints",
+          "jira": null
+        }
+      }
+    },
+    {
+      "name": "appointment-accounting-api-dotnet",
+      "lang": "C#",
+      "repo": "https://github.com/Zocdoc/appointment-accounting-api-dotnet",
+      "checks": {
+        "Blue/Green Deployments Enabled": {
+          "tier": "below_t3",
+          "status": null,
+          "jira": null
+        },
+        "No Muted or Ignored Ciritcal Tests or Flaky Tests": {
+          "tier": "t1",
+          "status": null,
+          "jira": null
+        },
+        "On CDK, Off Ansible": {
+          "tier": "t1",
+          "status": null,
+          "jira": null
+        },
+        "Code Coverage Meets Threshold": {
+          "tier": "below_t3",
+          "status": "40% - need to investigate",
+          "jira": null
+        },
+        "No EOL Frameworks or Versions": {
+          "tier": "unknown",
+          "status": "Working with Jacek to fix this in roadie to give insights",
+          "jira": null
+        },
+        "Deployable \u2014 Recent Production Deploy": {
+          "tier": "t1",
+          "status": null,
+          "jira": null
+        },
+        "Endpoint Authentication": {
+          "tier": "t1",
+          "status": null,
+          "jira": null
+        }
+      }
+    },
+    {
+      "name": "AppointmentEventProcessorLambda",
+      "lang": "C#",
+      "repo": "https://github.com/Zocdoc/provider-billing",
+      "checks": {
+        "Blue/Green Deployments Enabled": {
+          "tier": "below_t3",
+          "status": null,
+          "jira": null
+        },
+        "No Muted or Ignored Ciritcal Tests or Flaky Tests": {
+          "tier": "unknown",
+          "status": null,
+          "jira": null
+        },
+        "On CDK, Off Ansible": {
+          "tier": "t1",
+          "status": null,
+          "jira": null
+        },
+        "Code Coverage Meets Threshold": {
+          "tier": "unknown",
+          "status": null,
+          "jira": null
+        },
+        "No EOL Frameworks or Versions": {
+          "tier": "unknown",
+          "status": "Working with Jacek to fix this in roadie to give insights",
+          "jira": null
+        },
+        "Deployable \u2014 Recent Production Deploy": {
+          "tier": "t1",
+          "status": null,
+          "jira": null
+        },
+        "Endpoint Authentication": {
+          "tier": "n/a",
+          "status": null,
+          "jira": null
+        }
+      }
+    },
+    {
+      "name": "provider-billing API",
+      "lang": "C#",
+      "repo": "https://github.com/Zocdoc/provider-billing",
+      "checks": {
+        "Blue/Green Deployments Enabled": {
+          "tier": "below_t3",
+          "status": null,
+          "jira": null
+        },
+        "No Muted or Ignored Ciritcal Tests or Flaky Tests": {
+          "tier": "t1",
+          "status": null,
+          "jira": null
+        },
+        "On CDK, Off Ansible": {
+          "tier": "t1",
+          "status": null,
+          "jira": null
+        },
+        "Code Coverage Meets Threshold": {
+          "tier": "unknown",
+          "status": null,
+          "jira": null
+        },
+        "No EOL Frameworks or Versions": {
+          "tier": "unknown",
+          "status": "Working with Jacek to fix this in roadie to give insights",
+          "jira": null
+        },
+        "Deployable \u2014 Recent Production Deploy": {
+          "tier": "t1",
+          "status": null,
+          "jira": null
+        },
+        "Endpoint Authentication": {
+          "tier": "below_t3",
+          "status": "2 endpoints need to be fixed",
+          "jira": null
+        }
+      }
+    }
+  ],
+  "service_count": 5,
+  "summary": {
+    "total_checks": 35,
+    "t1": 12,
+    "t2": 0,
+    "t3": 0,
+    "below_t3": 10,
+    "n_a": 2,
+    "unknown": 11,
+    "scorable_checks": 22,
+    "compliance_pct": 54.5
+  }
+}

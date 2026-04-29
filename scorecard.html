@@ -813,15 +813,42 @@
                 const sectionTitle = document.getElementById('sectionTitle');
                 sectionTitle.innerHTML = `Q2 Infrastructure Hardening Tracker - ${tracker.name}`;
 
+                // Build stats display if available
+                let statsHtml = '';
+                if (tracker.stats) {
+                    const s = tracker.stats;
+                    statsHtml = `
+                        <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 700; color: #172b4d;">${tracker.service_count || 0}</div>
+                                <div style="font-size: 0.875rem; color: #5e6c84;">Services</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 700; color: #36b37e;">${s.t1}</div>
+                                <div style="font-size: 0.875rem; color: #5e6c84;">T1 Met</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 700; color: #de350b;">${s.below_t3}</div>
+                                <div style="font-size: 0.875rem; color: #5e6c84;">Gaps</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 700; color: #0052cc;">${s.compliance_pct}%</div>
+                                <div style="font-size: 0.875rem; color: #5e6c84;">T1 Compliance</div>
+                            </div>
+                        </div>
+                    `;
+                }
+
                 document.getElementById('scorecardContent').innerHTML = `
-                    <div class="external-tracker-notice" style="text-align: center; padding: 60px 40px; background: #fff; border-radius: 8px; margin-top: 20px;">
-                        <h3 style="margin-bottom: 20px; font-size: 1.5rem;">📊 ${tracker.name} Team Scorecard</h3>
-                        <p style="margin-bottom: 24px; color: #666; font-size: 1rem;">
-                            The ${tracker.name} team's infrastructure hardening tracker is maintained by ${tracker.owner} in Google Sheets.
+                    <div class="external-tracker-notice" style="text-align: center; padding: 40px; background: #fff; border-radius: 8px; margin-top: 20px;">
+                        <h3 style="margin-bottom: 24px; font-size: 1.25rem; color: #172b4d;">📊 ${tracker.name} Team Summary</h3>
+                        ${statsHtml}
+                        <p style="margin-bottom: 20px; color: #5e6c84; font-size: 0.9rem;">
+                            Full details maintained by ${tracker.owner} in Google Sheets
                         </p>
                         <a href="${tracker.url}" target="_blank"
-                           style="display: inline-block; padding: 14px 28px; background: #0052cc; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1rem;">
-                            Open ${tracker.name} Tracker →
+                           style="display: inline-block; padding: 12px 24px; background: #0052cc; color: white; text-decoration: none; border-radius: 6px; font-weight: 600;">
+                            Open Full Tracker →
                         </a>
                     </div>
                 `;
@@ -955,18 +982,31 @@
             }
         }
 
-        fetch('scorecard/data.json')
-            .then(response => response.json())
-            .then(data => {
-                scorecardData = data;
-                populateTeamDropdown(data);
-                renderScorecard(data);
-            })
-            .catch(error => {
-                console.error('Error loading scorecard data:', error);
-                document.getElementById('scorecardContent').innerHTML =
-                    '<p style="text-align: center; color: #5e6c84; padding: 2rem;">Error loading scorecard data. Run <code>python3 scripts/build-scorecard.py</code> to generate data.</p>';
-            });
+        // Load main scorecard data and billing tracker data
+        let billingData = null;
+
+        Promise.all([
+            fetch('scorecard/data.json').then(r => r.json()),
+            fetch('scorecard/billing-tracker.json').then(r => r.json()).catch(() => null)
+        ])
+        .then(([data, billing]) => {
+            scorecardData = data;
+            billingData = billing;
+
+            // Store billing data in EXTERNAL_TRACKERS for rendering
+            if (billing && billing.summary) {
+                EXTERNAL_TRACKERS['billing'].stats = billing.summary;
+                EXTERNAL_TRACKERS['billing'].service_count = billing.service_count;
+            }
+
+            populateTeamDropdown(data);
+            renderScorecard(data);
+        })
+        .catch(error => {
+            console.error('Error loading scorecard data:', error);
+            document.getElementById('scorecardContent').innerHTML =
+                '<p style="text-align: center; color: #5e6c84; padding: 2rem;">Error loading scorecard data. Run <code>python3 scripts/build-scorecard.py</code> to generate data.</p>';
+        });
     </script>
 </body>
 </html>
