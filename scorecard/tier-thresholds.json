@@ -1,0 +1,545 @@
+{
+  "version": "Q2-2026",
+  "source": "Infrastructure Scorecard.xlsx",
+  "generated": "2026-04-29T00:48:39.031620Z",
+  "checks": {
+    "blue_green_enabled": {
+      "name": "Blue/Green Enabled",
+      "pillar": "Deployment Safety",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend"
+      ],
+      "sor": "Roadie",
+      "data_provider": "Repo Scanner",
+      "tier1": {
+        "threshold": "Exists / true"
+      },
+      "tier2": {
+        "threshold": "Exists / true if iac_system=cdk"
+      },
+      "tier3": {
+        "threshold": "Not Scored"
+      },
+      "description": "Fact blue_green_enabled must be true. Source endpoint returns deployment strategy per service. Verifiable via deployment platform, not self-report."
+    },
+    "slo_deployment_gate_enabled": {
+      "name": "SLO Deployment Gate Enabled",
+      "pillar": "Deployment Safety",
+      "priority": "P2",
+      "scope": [
+        "Backend",
+        "Frontend"
+      ],
+      "sor": "Roadie",
+      "data_provider": "Github Check Enabled",
+      "tier1": {
+        "threshold": "true"
+      },
+      "tier2": {
+        "threshold": "Recommended / true"
+      },
+      "tier3": {
+        "threshold": "Optional"
+      },
+      "description": "Fact slo_deploy_gate_enabled must be true. Gate should block production deploys when SLO burn threshold is violated; override path remains outside Roadie."
+    },
+    "average_pr_size_within_threshold": {
+      "name": "Average PR Size Within Threshold",
+      "pillar": "Deployment Safety",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "DX",
+      "data_provider": "Metrics",
+      "tier1": {
+        "threshold": "<= 400 changed lines (30d avg)"
+      },
+      "tier2": {
+        "threshold": "<= 600 changed lines (30d avg)"
+      },
+      "tier3": {
+        "threshold": "<= 800 changed lines (30d avg)"
+      },
+      "description": "Fact avg_pr_changed_lines_30d. Uses rolling 30-day average of merged PR changed lines (adds + deletes). Thresholds standardized here because the source doc left X/Y open."
+    },
+    "prod_change_failure_rate_within_threshold": {
+      "name": "Prod Change Failure Rate Within Threshold",
+      "pillar": "Deployment Safety",
+      "priority": "P3",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie/DX",
+      "data_provider": "TeamCity / DataDoog",
+      "tier1": {
+        "threshold": "cfr < 5%"
+      },
+      "tier2": {
+        "threshold": "cfr < 10%"
+      },
+      "tier3": {
+        "threshold": "cfr < 15%"
+      },
+      "description": ""
+    },
+    "rollback_times_within_threshold": {
+      "name": "Rollback Times Within Threshold",
+      "pillar": "Deployment Safety",
+      "priority": "P2",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie/DX",
+      "data_provider": "Production Deploys / Events",
+      "tier1": {
+        "threshold": "rollback_from_ttd_issue < 10m"
+      },
+      "tier2": {
+        "threshold": "rollback_from_ttd_issue < 15m"
+      },
+      "tier3": {
+        "threshold": "rollback_from_ttd_issue < 20m"
+      },
+      "description": ""
+    },
+    "production_deploy_pipelines_within_threshold": {
+      "name": "Production Deploy Pipelines Within Threshold",
+      "pillar": "Deployment Safety",
+      "priority": "P3",
+      "scope": [
+        "Backend",
+        "Frontend"
+      ],
+      "sor": "Roadie/DX",
+      "data_provider": "Production Deploys / Events",
+      "tier1": {
+        "threshold": "p90_time_to_deploy < 10m"
+      },
+      "tier2": {
+        "threshold": "p90_time_to_deploy < 15m"
+      },
+      "tier3": {
+        "threshold": "p90_time_to_deploy < 20m"
+      },
+      "description": ""
+    },
+    "code_coverage_meets_threshold": {
+      "name": "Code Coverage Meets Threshold",
+      "pillar": "Code Quality",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie/DX",
+      "data_provider": "TOOL TBD",
+      "tier1": {
+        "threshold": ">= 80%"
+      },
+      "tier2": {
+        "threshold": ">= 70%"
+      },
+      "tier3": {
+        "threshold": ">= 60%"
+      },
+      "description": "Fact coverage_pct from CI or quality collector. Use line coverage percent for main production code."
+    },
+    "cyclomatic_complexity_p95_within_threshold": {
+      "name": "Cyclomatic Complexity p95 Within Threshold",
+      "pillar": "Code Quality",
+      "priority": "P3",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie/DX",
+      "data_provider": "TOOL TBD",
+      "tier1": {
+        "threshold": "< 10"
+      },
+      "tier2": {
+        "threshold": "< 12"
+      },
+      "tier3": {
+        "threshold": "< 20"
+      },
+      "description": "Fact cyclomatic_complexity_p95. Using p95 keeps one pathological file from dominating the service score while still pushing teams to improve."
+    },
+    "method_size_p95_within_threshold": {
+      "name": "Method Size p95 Within Threshold",
+      "pillar": "Code Quality",
+      "priority": "P2",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "TOOL TBD",
+      "tier1": {
+        "threshold": "< 500 lines"
+      },
+      "tier2": {
+        "threshold": "< 500 lines"
+      },
+      "tier3": {
+        "threshold": "< 500 lines"
+      },
+      "description": "Fact method_size_p95_lines. Aligns to the target stated in the source doc."
+    },
+    "no_muted_ignored_critical_tests": {
+      "name": "No Muted/Ignored Critical Tests",
+      "pillar": "Code Quality",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "TeamCity",
+      "tier1": {
+        "threshold": "muted_tests_count = 0"
+      },
+      "tier2": {
+        "threshold": "muted_critical_tests_count = 0 AND muted_important_tests_count = 0"
+      },
+      "tier3": {
+        "threshold": "muted_critical_tests_count = 0"
+      },
+      "description": "Fact muted_critical_tests_count must equal 0. This should include muted integration, smoke, and blocking CI tests marked critical."
+    },
+    "test_failure_rate": {
+      "name": "Test Failure Rate",
+      "pillar": "Code Quality",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "TeamCity",
+      "tier1": {
+        "threshold": "ci_test_failures < 1% MoM"
+      },
+      "tier2": {
+        "threshold": "ci_critcial_test_failures + ci_important_test_failures < 2% MoM"
+      },
+      "tier3": {
+        "threshold": "ci_critcial_test_failures + ci_important_test_failures < 5% MoM"
+      },
+      "description": ""
+    },
+    "eol_framework_version_not_being_used": {
+      "name": "EOL Framework/Version not being used",
+      "pillar": "Code Quality",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "Roadie",
+      "tier1": {
+        "threshold": "eol_days < 90"
+      },
+      "tier2": {
+        "threshold": "eol_days < 90"
+      },
+      "tier3": {
+        "threshold": "eol_days != 0"
+      },
+      "description": ""
+    },
+    "slo_defined_in_datadog": {
+      "name": "SLO Defined in Datadog",
+      "pillar": "Observability",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "Roadie",
+      "tier1": {
+        "threshold": "Slo Count >= 1"
+      },
+      "tier2": {
+        "threshold": "Slo Count >= 1"
+      },
+      "tier3": {
+        "threshold": "Slo Count >= 1"
+      },
+      "description": "Built-in Datadog fact Slo Count. Requires datadoghq.com/slo_tag annotation on the catalog entity."
+    },
+    "slo_burn_rate_alerting_configured": {
+      "name": "SLO Burn Rate Alerting Configured",
+      "pillar": "Observability",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "Roadie",
+      "tier1": {
+        "threshold": "Monitor Count >= 1"
+      },
+      "tier2": {
+        "threshold": "Monitor Count >= 1"
+      },
+      "tier3": {
+        "threshold": "Recommended"
+      },
+      "description": "Built-in Datadog fact Monitor Count. Requires datadoghq.com/monitor_tags annotation that resolves only SLO burn-rate monitors."
+    },
+    "smoke_tests_passing": {
+      "name": "Smoke Tests Passing",
+      "pillar": "Observability",
+      "priority": "P2",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "Zocdoc Service Scorecard Metrics (custom HTTP)",
+      "tier1": {
+        "threshold": ">= 95% last 30d and latest deploy passed and smoke_test_count > 3"
+      },
+      "tier2": {
+        "threshold": ">= 95% last 30d if iac_system=cdk and smoke_test_count > 1"
+      },
+      "tier3": {
+        "threshold": "Recommended"
+      },
+      "description": "Facts smoke_tests_last_30d_success_pct and latest_deploy_smoke_tests_passed. Keeps this measurable while still allowing some transient noise."
+    },
+    "sentry_hygiene": {
+      "name": "Sentry Hygiene",
+      "pillar": "Observability",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "Roadie",
+      "tier1": {
+        "threshold": "'= 0 unresolved AND 0 permanently unmuted"
+      },
+      "tier2": {
+        "threshold": "'= 0 unresolved AND 0 permanently unmuted"
+      },
+      "tier3": {
+        "threshold": "<= 5 unresolved AND 0 permanently unmuted"
+      },
+      "description": "Two-condition check on sentry_unresolved_errors_count and sentry_permanently_unmuted_errors_count."
+    },
+    "metric_to_auto_trigger_incidents_identified": {
+      "name": "Metric to auto trigger incidents identified",
+      "pillar": "Observability",
+      "priority": "P2",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "DataDog/Pagerduty",
+      "tier1": {
+        "threshold": "sev_1_incident_trigger_metric_present =true"
+      },
+      "tier2": {
+        "threshold": "sev_2_incident_trigger_metric_present =true"
+      },
+      "tier3": {
+        "threshold": "sev_3_incident_trigger_metric_present =true"
+      },
+      "description": ""
+    },
+    "deployable_recent_prod_deploy": {
+      "name": "Deployable (Recent Prod Deploy)",
+      "pillar": "Tooling Standardization",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "Teamcity",
+      "tier1": {
+        "threshold": "<= 90 days since prod deploy"
+      },
+      "tier2": {
+        "threshold": "<= 90 days since prod deploy"
+      },
+      "tier3": {
+        "threshold": "<= 180 days since prod deploy"
+      },
+      "description": "Fact last_prod_deploy_days_ago. Standardizes \u201cdeployable\u201d as a recent successful production deploy."
+    },
+    "on_plinth": {
+      "name": "On Plinth",
+      "pillar": "Tooling Standardization",
+      "priority": "P3",
+      "scope": [
+        "Backend",
+        "Frontend"
+      ],
+      "sor": "Roadie",
+      "data_provider": "Repo Scanner",
+      "tier1": {
+        "threshold": "true"
+      },
+      "tier2": {
+        "threshold": "true"
+      },
+      "tier3": {
+        "threshold": "true"
+      },
+      "description": "Fact plinth_enabled must be true. Use platform inventory or onboarding registry as source of truth."
+    },
+    "on_cdk_off_ansible": {
+      "name": "On CDK, Off Ansible",
+      "pillar": "Tooling Standardization",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend"
+      ],
+      "sor": "Roadie",
+      "data_provider": "Repo Scanner / Roadie",
+      "tier1": {
+        "threshold": "iac_system = cdk AND ansible_present = false"
+      },
+      "tier2": {
+        "threshold": "iac_system = cdk AND ansible_present = false"
+      },
+      "tier3": {
+        "threshold": "Recommended"
+      },
+      "description": "Two-condition check that the service has completed the CDK migration and no longer relies on Ansible."
+    },
+    "pagerduty_configured_correctly": {
+      "name": "PagerDuty Configured Correctly",
+      "pillar": "Tooling Standardization",
+      "priority": "P1",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "PagerDuty",
+      "tier1": {
+        "threshold": "poc != soc AND off_hours_escalation IS configured"
+      },
+      "tier2": {
+        "threshold": "poc != soc AND off_hours_escalation IS configured"
+      },
+      "tier3": {
+        "threshold": "poc != soc AND business_hours_escalation IS configured"
+      },
+      "description": ""
+    },
+    "defining_core_user_journeys": {
+      "name": "Defining Core User Journeys",
+      "pillar": "Observability",
+      "priority": "P2",
+      "scope": [
+        "Backend",
+        "Frontend",
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "TOOL TBD",
+      "tier1": {
+        "threshold": ""
+      },
+      "tier2": {
+        "threshold": ""
+      },
+      "tier3": {
+        "threshold": ""
+      },
+      "description": ""
+    },
+    "qa_iterations_per_app_cycle": {
+      "name": "QA Iterations Per App Cycle",
+      "pillar": "Observability",
+      "priority": "P3",
+      "scope": [
+        "Mobile"
+      ],
+      "sor": "Roadie",
+      "data_provider": "TOOL TBD",
+      "tier1": {
+        "threshold": ""
+      },
+      "tier2": {
+        "threshold": "-"
+      },
+      "tier3": {
+        "threshold": "-"
+      },
+      "description": ""
+    },
+    "branch_preview_enabled": {
+      "name": "Branch Preview Enabled",
+      "pillar": "Deployment Safety",
+      "priority": "P2",
+      "scope": [
+        "Frontend"
+      ],
+      "sor": "Roadie",
+      "data_provider": "Repo Scanner",
+      "tier1": {
+        "threshold": ""
+      },
+      "tier2": {
+        "threshold": ""
+      },
+      "tier3": {
+        "threshold": ""
+      },
+      "description": ""
+    }
+  },
+  "pillar_order": [
+    "Deployment Safety",
+    "Code Quality",
+    "Observability",
+    "Tooling Standardization"
+  ],
+  "priority_order": [
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "status_values": {
+    "tier1_met": "T1",
+    "tier2_met": "T2",
+    "tier3_met": "T3",
+    "below_tier3": "<T3",
+    "not_applicable": "N/A",
+    "unknown": "x"
+  }
+}

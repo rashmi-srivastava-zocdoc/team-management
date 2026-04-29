@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'scripts/build-scorecard.py'
+      - 'scripts/parse-tier-thresholds.py'
+      - 'data/Infrastructure Scorecard.xlsx'
       - 'scorecard/**'
       - '.github/workflows/refresh-scorecard.yml'
   schedule:
@@ -101,6 +103,18 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install dependencies
+        run: pip install openpyxl
+
+      - name: Parse tier thresholds from Excel
+        run: |
+          if [[ -f "data/Infrastructure Scorecard.xlsx" ]]; then
+            echo "Parsing tier thresholds from Excel..."
+            python3 scripts/parse-tier-thresholds.py
+          else
+            echo "Warning: Excel file not found, using existing tier-thresholds.json"
+          fi
+
       - name: Fetch epic tickets from Jira
         env:
           JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
@@ -122,7 +136,7 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet scorecard/data.json scorecard/epic-tickets.json 2>/dev/null; then
+          if git diff --quiet scorecard/data.json scorecard/tier-thresholds.json scorecard/epic-tickets.json 2>/dev/null; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -134,6 +148,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add scorecard/data.json
+          git add scorecard/tier-thresholds.json 2>/dev/null || true
           git add scorecard/epic-tickets.json 2>/dev/null || true
           git commit -m "chore: refresh scorecard data from GitHub
 
