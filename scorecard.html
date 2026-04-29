@@ -649,6 +649,15 @@
             }
         }
 
+        // External tracker links for teams without services in this scorecard
+        const EXTERNAL_TRACKERS = {
+            'billing': {
+                name: 'Billing',
+                url: 'https://docs.google.com/spreadsheets/d/1yeIsHbIq3Wn9DuTHJfFgiyamMXavJtm-_YjlzzkG8xU/edit?gid=0#gid=0',
+                owner: 'John'
+            }
+        };
+
         function populateTeamDropdown(data) {
             const dropdown = document.getElementById('teamFilter');
             dropdown.innerHTML = '<option value="all">All Teams</option>';
@@ -656,6 +665,10 @@
                 if (team.services && team.services.length > 0) {
                     dropdown.innerHTML += `<option value="${teamId}">${team.name}</option>`;
                 }
+            }
+            // Add teams with external trackers
+            for (const [teamId, info] of Object.entries(EXTERNAL_TRACKERS)) {
+                dropdown.innerHTML += `<option value="${teamId}">${info.name}</option>`;
             }
         }
 
@@ -793,6 +806,28 @@
             const teamsToShow = selectedTeam === 'all'
                 ? Object.entries(data.teams)
                 : Object.entries(data.teams).filter(([id]) => id === selectedTeam);
+
+            // Check if selected team is an external tracker
+            if (EXTERNAL_TRACKERS[selectedTeam]) {
+                const tracker = EXTERNAL_TRACKERS[selectedTeam];
+                const sectionTitle = document.getElementById('sectionTitle');
+                sectionTitle.innerHTML = `Q2 Infrastructure Hardening Tracker - ${tracker.name}`;
+
+                document.getElementById('complianceCard').innerHTML = `
+                    <div class="external-tracker-notice" style="text-align: center; padding: 40px;">
+                        <h3 style="margin-bottom: 20px;">📊 ${tracker.name} Team Scorecard</h3>
+                        <p style="margin-bottom: 20px; color: #666;">
+                            The ${tracker.name} team's infrastructure hardening tracker is maintained by ${tracker.owner} in Google Sheets.
+                        </p>
+                        <a href="${tracker.url}" target="_blank"
+                           style="display: inline-block; padding: 12px 24px; background: #0052cc; color: white; text-decoration: none; border-radius: 4px; font-weight: 500;">
+                            Open ${tracker.name} Tracker →
+                        </a>
+                    </div>
+                `;
+                document.getElementById('scorecardContent').innerHTML = '';
+                return;
+            }
 
             // Update section title with epic link if available
             const sectionTitle = document.getElementById('sectionTitle');
