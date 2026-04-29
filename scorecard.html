@@ -813,19 +813,18 @@
                 const sectionTitle = document.getElementById('sectionTitle');
                 sectionTitle.innerHTML = `Q2 Infrastructure Hardening Tracker - ${tracker.name}`;
 
-                document.getElementById('complianceCard').innerHTML = `
-                    <div class="external-tracker-notice" style="text-align: center; padding: 40px;">
-                        <h3 style="margin-bottom: 20px;">📊 ${tracker.name} Team Scorecard</h3>
-                        <p style="margin-bottom: 20px; color: #666;">
+                document.getElementById('scorecardContent').innerHTML = `
+                    <div class="external-tracker-notice" style="text-align: center; padding: 60px 40px; background: #fff; border-radius: 8px; margin-top: 20px;">
+                        <h3 style="margin-bottom: 20px; font-size: 1.5rem;">📊 ${tracker.name} Team Scorecard</h3>
+                        <p style="margin-bottom: 24px; color: #666; font-size: 1rem;">
                             The ${tracker.name} team's infrastructure hardening tracker is maintained by ${tracker.owner} in Google Sheets.
                         </p>
                         <a href="${tracker.url}" target="_blank"
-                           style="display: inline-block; padding: 12px 24px; background: #0052cc; color: white; text-decoration: none; border-radius: 4px; font-weight: 500;">
+                           style="display: inline-block; padding: 14px 28px; background: #0052cc; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1rem;">
                             Open ${tracker.name} Tracker →
                         </a>
                     </div>
                 `;
-                document.getElementById('scorecardContent').innerHTML = '';
                 return;
             }
 
