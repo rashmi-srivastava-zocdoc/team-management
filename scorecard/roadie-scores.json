@@ -1,0 +1,229 @@
+{
+  "provider-setup-service": {
+    "failing": [
+      {
+        "card": "Application Security",
+        "check": "No Critical or High Dependabot Findings",
+        "desc": "",
+        "id": "39310ec5-f024-4a3d-821d-2298bfddb197"
+      },
+      {
+        "card": "Application Security",
+        "check": "Zero High Severity Code Findings",
+        "desc": "",
+        "id": "d96de368-b962-4bd2-ac56-d43359247c99"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Pagerduty Long Time to First Ack",
+        "desc": "",
+        "id": "e314e46e-8848-409a-b289-ed4b510d02de"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Pagerduty High Total Incidents",
+        "desc": "",
+        "id": "8cc3986a-714a-46a0-8d60-739cb0480664"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Pagerduty Configuration",
+        "desc": "",
+        "id": "19a6f611-7e0b-4f35-9a66-8abee3366e11"
+      },
+      {
+        "card": "Observability",
+        "check": "Sentry Issues Not Looked At",
+        "desc": "",
+        "id": "43b4979e-cdc7-46eb-9c02-912ba56c953e"
+      },
+      {
+        "card": "Observability",
+        "check": "Sentry Issues Unassigned",
+        "desc": "",
+        "id": "33b7d0b9-06b7-456f-a594-cef0f56a1e55"
+      }
+    ],
+    "passing_count": 10,
+    "failing_count": 7
+  },
+  "practice-user-permissions": {
+    "failing": [
+      {
+        "card": "Application Security",
+        "check": "No Critical or High Dependabot Findings",
+        "desc": "",
+        "id": "39310ec5-f024-4a3d-821d-2298bfddb197"
+      },
+      {
+        "card": "Resiliency",
+        "check": "BCRP Docs Provided",
+        "desc": "",
+        "id": "ca782c70-8490-460d-bbad-119568ab99e2"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Architecture Diagram Provided",
+        "desc": "",
+        "id": "36f357dd-3a73-4b19-b954-635781b2cb58"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Pagerduty Long Time to First Ack",
+        "desc": "",
+        "id": "e314e46e-8848-409a-b289-ed4b510d02de"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Pagerduty High Total Incidents",
+        "desc": "",
+        "id": "8cc3986a-714a-46a0-8d60-739cb0480664"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Pagerduty Configuration",
+        "desc": "",
+        "id": "19a6f611-7e0b-4f35-9a66-8abee3366e11"
+      },
+      {
+        "card": "Compliance - HIPAA",
+        "check": "Repository Scanned by Semgrep (past 30 days)",
+        "desc": "",
+        "id": "adab6066-17a0-4bb4-ba81-fd266c6c5bac"
+      },
+      {
+        "card": "Observability",
+        "check": "Sentry Issues Not Looked At",
+        "desc": "",
+        "id": "43b4979e-cdc7-46eb-9c02-912ba56c953e"
+      },
+      {
+        "card": "Observability",
+        "check": "Sentry Issues Unassigned",
+        "desc": "",
+        "id": "33b7d0b9-06b7-456f-a594-cef0f56a1e55"
+      }
+    ],
+    "passing_count": 8,
+    "failing_count": 9
+  },
+  "practice-authorization-proxy": {
+    "failing": [
+      {
+        "card": "Application Security",
+        "check": "No Critical or High Dependabot Findings",
+        "desc": "",
+        "id": "39310ec5-f024-4a3d-821d-2298bfddb197"
+      },
+      {
+        "card": "Application Security",
+        "check": "Zero High Severity Code Findings",
+        "desc": "",
+        "id": "d96de368-b962-4bd2-ac56-d43359247c99"
+      },
+      {
+        "card": "Resiliency",
+        "check": "BCRP Docs Provided",
+        "desc": "",
+        "id": "ca782c70-8490-460d-bbad-119568ab99e2"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Architecture Diagram Provided",
+        "desc": "",
+        "id": "36f357dd-3a73-4b19-b954-635781b2cb58"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Pagerduty Long Time to First Ack",
+        "desc": "",
+        "id": "e314e46e-8848-409a-b289-ed4b510d02de"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Pagerduty High Total Incidents",
+        "desc": "",
+        "id": "8cc3986a-714a-46a0-8d60-739cb0480664"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Pagerduty Configuration",
+        "desc": "",
+        "id": "19a6f611-7e0b-4f35-9a66-8abee3366e11"
+      },
+      {
+        "card": "Observability",
+        "check": "Sentry Issues Not Looked At",
+        "desc": "",
+        "id": "43b4979e-cdc7-46eb-9c02-912ba56c953e"
+      },
+      {
+        "card": "Observability",
+        "check": "Sentry Issues Unassigned",
+        "desc": "",
+        "id": "33b7d0b9-06b7-456f-a594-cef0f56a1e55"
+      }
+    ],
+    "passing_count": 8,
+    "failing_count": 9
+  },
+  "provider-grouping": {
+    "failing": [
+      {
+        "card": "Application Security",
+        "check": "No Critical or High Dependabot Findings",
+        "desc": "",
+        "id": "39310ec5-f024-4a3d-821d-2298bfddb197"
+      },
+      {
+        "card": "Application Security",
+        "check": "Zero High Severity Code Findings",
+        "desc": "",
+        "id": "d96de368-b962-4bd2-ac56-d43359247c99"
+      },
+      {
+        "card": "Resiliency",
+        "check": "BCRP Docs Provided",
+        "desc": "",
+        "id": "ca782c70-8490-460d-bbad-119568ab99e2"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Architecture Diagram Provided",
+        "desc": "",
+        "id": "36f357dd-3a73-4b19-b954-635781b2cb58"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Pagerduty Long Time to First Ack",
+        "desc": "",
+        "id": "e314e46e-8848-409a-b289-ed4b510d02de"
+      },
+      {
+        "card": "Resiliency",
+        "check": "Pagerduty High Total Incidents",
+        "desc": "",
+        "id": "8cc3986a-714a-46a0-8d60-739cb0480664"
+      },
+      {
+        "card": "Observability",
+        "check": "Sentry Issues Not Looked At",
+        "desc": "",
+        "id": "43b4979e-cdc7-46eb-9c02-912ba56c953e"
+      },
+      {
+        "card": "Observability",
+        "check": "Sentry Issues Unassigned",
+        "desc": "",
+        "id": "33b7d0b9-06b7-456f-a594-cef0f56a1e55"
+      }
+    ],
+    "passing_count": 9,
+    "failing_count": 8
+  },
+  "provider-join-service": {
+    "failing": [],
+    "passing_count": 0,
+    "failing_count": 0
+  }
+}

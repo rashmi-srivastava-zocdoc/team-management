@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-29T04:57:04.663669",
+  "lastUpdated": "2026-04-29T05:03:47.014863",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -90,10 +90,10 @@
               "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
-              "tier": "unknown",
-              "status": "unknown",
-              "unresolved": null,
-              "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "Roadie: Sentry Issues Not Looked At, Sentry Issues Unassigned",
+              "roadie_source": true
             },
             "incidentMetric": {
               "tier": "t1",
@@ -117,9 +117,10 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "t2",
-              "status": "warning",
-              "notes": "alarmWebhook wired, no off-hours config"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "Roadie: Pagerduty Long Time to First Ack, Pagerduty High Total Incidents, Pagerduty Configuration",
+              "roadie_source": true
             }
           }
         }
@@ -388,10 +389,10 @@
               "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
-              "tier": "unknown",
-              "status": "unknown",
-              "unresolved": null,
-              "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "Roadie: Sentry Issues Not Looked At, Sentry Issues Unassigned",
+              "roadie_source": true
             },
             "incidentMetric": {
               "tier": "t1",
@@ -415,9 +416,10 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "t2",
-              "status": "warning",
-              "notes": "alarmWebhook wired, no off-hours config"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "Roadie: Pagerduty Long Time to First Ack, Pagerduty High Total Incidents, Pagerduty Configuration",
+              "roadie_source": true
             }
           }
         },
@@ -507,10 +509,10 @@
               "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
-              "tier": "unknown",
-              "status": "unknown",
-              "unresolved": null,
-              "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "Roadie: Sentry Issues Not Looked At, Sentry Issues Unassigned",
+              "roadie_source": true
             },
             "incidentMetric": {
               "tier": "t1",
@@ -534,9 +536,10 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "t2",
-              "status": "warning",
-              "notes": "alarmWebhook wired, no off-hours config"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "Roadie: Pagerduty Long Time to First Ack, Pagerduty High Total Incidents, Pagerduty Configuration",
+              "roadie_source": true
             }
           }
         },
@@ -626,10 +629,10 @@
               "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
-              "tier": "unknown",
-              "status": "unknown",
-              "unresolved": null,
-              "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "Roadie: Sentry Issues Not Looked At, Sentry Issues Unassigned",
+              "roadie_source": true
             },
             "incidentMetric": {
               "tier": "t1",
@@ -653,9 +656,10 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "t2",
-              "status": "warning",
-              "notes": "alarmWebhook wired, no off-hours config"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "Roadie: Pagerduty Long Time to First Ack, Pagerduty High Total Incidents",
+              "roadie_source": true
             }
           }
         },

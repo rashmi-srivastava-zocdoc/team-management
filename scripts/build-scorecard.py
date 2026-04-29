@@ -58,6 +58,23 @@ SLUG_TO_CHECK_ID = {
 
 CHECK_ID_TO_SLUG = {v: k for k, v in SLUG_TO_CHECK_ID.items()}
 
+# Roadie check mapping: Roadie check name -> scorecard check ID
+ROADIE_CHECK_MAP = {
+    # Sentry
+    "Sentry Issues Not Looked At": "sentry",
+    "Sentry Issues Unassigned": "sentry",
+    # PagerDuty
+    "Pagerduty Configuration": "pagerduty",
+    "Pagerduty Long Time to First Ack": "pagerduty",
+    "Pagerduty High Total Incidents": "pagerduty",
+    # Security / EOL
+    "No Critical or High Dependabot Findings": "eol",
+    "Zero High Severity Code Findings": "eol",
+    "Repository Scanned by Semgrep (past 30 days)": "eol",
+}
+
+ROADIE_SCORES_FILE = OUTPUT_DIR / "roadie-scores.json"
+
 # TeamCity project IDs for muted tests API
 # Query: teamcity api "/app/rest/mutes?locator=project:(id:PROJECT_ID)"
 TEAMCITY_PROJECT_IDS = {
@@ -171,6 +188,37 @@ def load_tier_thresholds():
 
     print(f"Loaded {len(check_defs)} check definitions from tier-thresholds.json")
     return check_defs
+
+
+def load_roadie_scores():
+    """Load Roadie Tech Insights scores if available."""
+    if not ROADIE_SCORES_FILE.exists():
+        return {}
+
+    with open(ROADIE_SCORES_FILE) as f:
+        data = json.load(f)
+
+    # Transform to per-service, per-check format
+    scores = {}
+    for service, info in data.items():
+        scores[service] = {
+            "passing_count": info.get("passing_count", 0),
+            "failing_count": info.get("failing_count", 0),
+            "failing_checks": {},  # check_id -> [roadie check names]
+        }
+
+        # Map failing Roadie checks to scorecard check IDs
+        for failing in info.get("failing", []):
+            roadie_check = failing.get("check", "")
+            check_id = ROADIE_CHECK_MAP.get(roadie_check)
+            if check_id:
+                if check_id not in scores[service]["failing_checks"]:
+                    scores[service]["failing_checks"][check_id] = []
+                scores[service]["failing_checks"][check_id].append(roadie_check)
+
+    print(f"Loaded Roadie scores for {len(scores)} services")
+    return scores
+
 
 def clone_repo(github_repo):
     """Clone a repo from GitHub to temp directory, return path."""
@@ -507,9 +555,10 @@ def load_teamcity_muted_tests():
     print(f"Loaded muted tests for {len([r for r in results.values() if 'count' in r])} services from TeamCity")
     return results
 
-def analyze_service(team_id, service, repo_base, tc_coverage, tc_muted_tests):
+def analyze_service(team_id, service, repo_base, tc_coverage, tc_muted_tests, roadie_scores=None):
     svc_name = service["name"]
     check_defs = CHECK_DEFINITIONS or CHECK_DEFINITIONS_FALLBACK
+    roadie = roadie_scores.get(svc_name, {}) if roadie_scores else {}
 
     if USE_GITHUB:
         github_repo = service.get("github_repo", service["repo"])
@@ -561,6 +610,37 @@ def analyze_service(team_id, service, repo_base, tc_coverage, tc_muted_tests):
     checks["plinth"] = check_plinth(repo_path)
     checks["cdkNoAnsible"] = check_cdk_no_ansible(repo_path)
     checks["pagerduty"] = check_pagerduty(repo_path)
+
+    # Override with Roadie data if available
+    roadie_failing = roadie.get("failing_checks", {})
+    if roadie_failing:
+        # Sentry - Roadie has actual hygiene data
+        if "sentry" in roadie_failing:
+            failing_checks = roadie_failing["sentry"]
+            checks["sentry"] = {
+                "tier": "below_t3",
+                "status": "fail",
+                "notes": f"Roadie: {', '.join(failing_checks)}",
+                "roadie_source": True
+            }
+        elif checks["sentry"].get("status") == "unknown":
+            # No sentry failures in Roadie = passing
+            checks["sentry"] = {
+                "tier": "t1",
+                "status": "pass",
+                "notes": "Roadie: Sentry hygiene passing",
+                "roadie_source": True
+            }
+
+        # PagerDuty - Roadie has config and incident data
+        if "pagerduty" in roadie_failing:
+            failing_checks = roadie_failing["pagerduty"]
+            checks["pagerduty"] = {
+                "tier": "below_t3",
+                "status": "fail",
+                "notes": f"Roadie: {', '.join(failing_checks)}",
+                "roadie_source": True
+            }
 
     return {
         "name": svc_name,
@@ -638,12 +718,13 @@ def build_scorecard():
 
     tc_coverage = load_teamcity_coverage()
     tc_muted_tests = load_teamcity_muted_tests()
+    roadie_scores = load_roadie_scores()
 
     teams_data = {}
     for team_id, team_config in TEAMS.items():
         services = []
         for service in team_config["services"]:
-            result = analyze_service(team_id, service, team_config["repo_base"], tc_coverage, tc_muted_tests)
+            result = analyze_service(team_id, service, team_config["repo_base"], tc_coverage, tc_muted_tests, roadie_scores)
             services.append(result)
 
         teams_data[team_id] = {

@@ -30,10 +30,15 @@ SERVICES = [
 
 def get(url):
     """Make authenticated GET request to Roadie API."""
-    r = Request(url)
-    r.add_header("Authorization", f"bearer {TOKEN}")
-    r.add_header("Accept", "application/json")
-    return json.loads(urlopen(r, timeout=30).read())
+    import subprocess
+    # Use curl to avoid sandbox urllib issues
+    result = subprocess.run(
+        ["curl", "-sS", "-H", f"Authorization: bearer {TOKEN}", "-H", "Accept: application/json", url],
+        capture_output=True, text=True, timeout=30
+    )
+    if result.returncode != 0:
+        raise Exception(f"curl failed: {result.stderr}")
+    return json.loads(result.stdout)
 
 def main():
     if not TOKEN:
