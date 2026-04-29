@@ -401,8 +401,35 @@ def check_muted_tests(tc_muted_tests, svc_name):
             "project_id": project_id
         }
 
-def check_test_failure_rate(repo_path):
-    return {"tier": "dx_metric", "status": "dx_metric", "notes": "CI-level metric — no per-svc data"}
+def check_test_failure_rate(tc_test_stats, svc_name):
+    """Check test failure rate from TeamCity build statistics."""
+    tc_data = tc_test_stats.get(svc_name, {})
+    if "error" in tc_data:
+        return {"tier": "unknown", "status": "unknown", "notes": tc_data["error"]}
+
+    failure_rate = tc_data.get("failure_rate_pct")
+    if failure_rate is None:
+        return {"tier": "unknown", "status": "unknown", "notes": "No test failure data"}
+
+    tier = tc_data.get("tier", "unknown")
+    failed = tc_data.get("failed_count", 0)
+    passed = tc_data.get("passed_count", 0)
+    builds = tc_data.get("total_builds", 0)
+
+    if tier == "t1":
+        status = "pass"
+    elif tier in ("t2", "t3"):
+        status = "warning"
+    else:
+        status = "fail"
+
+    return {
+        "tier": tier,
+        "status": status,
+        "value": failure_rate,
+        "target": 1,  # Tier 1 target: < 1%
+        "notes": f"{failure_rate}% ({failed}/{failed+passed} tests, {builds} builds)"
+    }
 
 def check_eol(repo_path):
     out, rc = run_cmd("grep -r 'net8.0\\|net9.0' . --include='*.csproj' 2>/dev/null | head -1", cwd=repo_path)
@@ -527,6 +554,19 @@ def load_teamcity_coverage():
     return {}
 
 
+def load_teamcity_test_stats():
+    """Load test failure rate data from teamcity-test-stats.json."""
+    test_stats_file = OUTPUT_DIR / "teamcity-test-stats.json"
+    if test_stats_file.exists():
+        try:
+            with open(test_stats_file) as f:
+                return json.load(f)
+        except json.JSONDecodeError as e:
+            print(f"Warning: Invalid JSON in {test_stats_file}: {e}")
+            return {}
+    return {}
+
+
 def load_teamcity_muted_tests():
     """Fetch muted test counts from TeamCity using the CLI."""
     results = {}
@@ -555,7 +595,7 @@ def load_teamcity_muted_tests():
     print(f"Loaded muted tests for {len([r for r in results.values() if 'count' in r])} services from TeamCity")
     return results
 
-def analyze_service(team_id, service, repo_base, tc_coverage, tc_muted_tests, roadie_scores=None):
+def analyze_service(team_id, service, repo_base, tc_coverage, tc_muted_tests, tc_test_stats, roadie_scores=None):
     svc_name = service["name"]
     check_defs = CHECK_DEFINITIONS or CHECK_DEFINITIONS_FALLBACK
     roadie = roadie_scores.get(svc_name, {}) if roadie_scores else {}
@@ -595,7 +635,7 @@ def analyze_service(team_id, service, repo_base, tc_coverage, tc_muted_tests, ro
     checks["complexity"] = check_complexity(repo_path)
     checks["methodSize"] = check_method_size(repo_path)
     checks["mutedTests"] = check_muted_tests(tc_muted_tests, svc_name)
-    checks["testFailureRate"] = check_test_failure_rate(repo_path)
+    checks["testFailureRate"] = check_test_failure_rate(tc_test_stats, svc_name)
     checks["eol"] = check_eol(repo_path)
 
     # Observability
@@ -718,13 +758,14 @@ def build_scorecard():
 
     tc_coverage = load_teamcity_coverage()
     tc_muted_tests = load_teamcity_muted_tests()
+    tc_test_stats = load_teamcity_test_stats()
     roadie_scores = load_roadie_scores()
 
     teams_data = {}
     for team_id, team_config in TEAMS.items():
         services = []
         for service in team_config["services"]:
-            result = analyze_service(team_id, service, team_config["repo_base"], tc_coverage, tc_muted_tests, roadie_scores)
+            result = analyze_service(team_id, service, team_config["repo_base"], tc_coverage, tc_muted_tests, tc_test_stats, roadie_scores)
             services.append(result)
 
         teams_data[team_id] = {

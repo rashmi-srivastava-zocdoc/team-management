@@ -1,0 +1,37 @@
+{
+  "provider-setup-service": {
+    "failure_rate_pct": 0.0,
+    "failed_count": 0,
+    "passed_count": 12766,
+    "total_builds": 20,
+    "tier": "t1"
+  },
+  "practice-user-permissions": {
+    "failure_rate_pct": 0.0,
+    "failed_count": 0,
+    "passed_count": 13231,
+    "total_builds": 20,
+    "tier": "t1"
+  },
+  "practice-authorization-proxy": {
+    "failure_rate_pct": 0.0,
+    "failed_count": 0,
+    "passed_count": 370,
+    "total_builds": 20,
+    "tier": "t1"
+  },
+  "provider-grouping": {
+    "failure_rate_pct": 0.0,
+    "failed_count": 0,
+    "passed_count": 4836,
+    "total_builds": 20,
+    "tier": "t1"
+  },
+  "provider-join-service": {
+    "failure_rate_pct": 0.0,
+    "failed_count": 0,
+    "passed_count": 6717,
+    "total_builds": 20,
+    "tier": "t1"
+  }
+}

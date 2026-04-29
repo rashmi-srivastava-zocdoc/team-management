@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-29T05:03:47.014863",
+  "lastUpdated": "2026-04-29T05:23:04.411357",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -64,9 +64,11 @@
               "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "CI-level metric \u2014 no per-svc data"
+              "tier": "t1",
+              "status": "pass",
+              "value": 0.0,
+              "target": 1,
+              "notes": "0.0% (0/12766 tests, 20 builds)"
             },
             "eol": {
               "tier": "t1",
@@ -363,9 +365,11 @@
               "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "CI-level metric \u2014 no per-svc data"
+              "tier": "t1",
+              "status": "pass",
+              "value": 0.0,
+              "target": 1,
+              "notes": "0.0% (0/13231 tests, 20 builds)"
             },
             "eol": {
               "tier": "t1",
@@ -483,9 +487,11 @@
               "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "CI-level metric \u2014 no per-svc data"
+              "tier": "t1",
+              "status": "pass",
+              "value": 0.0,
+              "target": 1,
+              "notes": "0.0% (0/370 tests, 20 builds)"
             },
             "eol": {
               "tier": "t1",
@@ -603,9 +609,11 @@
               "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "CI-level metric \u2014 no per-svc data"
+              "tier": "t1",
+              "status": "pass",
+              "value": 0.0,
+              "target": 1,
+              "notes": "0.0% (0/4836 tests, 20 builds)"
             },
             "eol": {
               "tier": "t1",
@@ -723,9 +731,11 @@
               "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
-              "tier": "dx_metric",
-              "status": "dx_metric",
-              "notes": "CI-level metric \u2014 no per-svc data"
+              "tier": "t1",
+              "status": "pass",
+              "value": 0.0,
+              "target": 1,
+              "notes": "0.0% (0/6717 tests, 20 builds)"
             },
             "eol": {
               "tier": "t1",

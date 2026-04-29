@@ -28,20 +28,23 @@ echo "========================================"
 echo "  REFRESH SCORECARD DATA"
 echo "========================================"
 
-# Step 1: TeamCity coverage
+# Step 1: TeamCity coverage and test stats
 if [ "$SKIP_TEAMCITY" = false ]; then
     echo ""
-    echo "[1/4] Fetching TeamCity coverage..."
+    echo "[1/5] Fetching TeamCity coverage..."
     python3 scripts/fetch-teamcity-coverage.py
+    echo ""
+    echo "[1.5/5] Fetching TeamCity test failure rates..."
+    python3 scripts/fetch-teamcity-test-stats.py
 else
     echo ""
-    echo "[1/4] Skipping TeamCity coverage (--skip-teamcity)"
+    echo "[1/5] Skipping TeamCity data (--skip-teamcity)"
 fi
 
 # Step 2: Jira epic tickets
 if [ "$SKIP_JIRA" = false ]; then
     echo ""
-    echo "[2/4] Fetching Jira epic tickets..."
+    echo "[2/5] Fetching Jira epic tickets..."
     if python3 scripts/fetch-epic-tickets.py 2>/dev/null; then
         echo "  ✓ Epic tickets updated"
     else
@@ -49,21 +52,21 @@ if [ "$SKIP_JIRA" = false ]; then
     fi
 else
     echo ""
-    echo "[2/4] Skipping Jira fetch (--skip-jira)"
+    echo "[2/5] Skipping Jira fetch (--skip-jira)"
 fi
 
 # Step 3: Parse tier thresholds from Excel
 echo ""
-echo "[3/4] Parsing tier thresholds from Excel..."
+echo "[3/5] Parsing tier thresholds from Excel..."
 if [ -f "data/Infrastructure Scorecard.xlsx" ]; then
     python3 scripts/parse-tier-thresholds.py
 else
     echo "  ⚠ Excel file not found - using existing tier-thresholds.json"
 fi
 
-# Step 4: Build scorecard
+# Step 5: Build scorecard
 echo ""
-echo "[4/4] Building scorecard..."
+echo "[5/5] Building scorecard..."
 python3 scripts/build-scorecard.py
 
 echo ""

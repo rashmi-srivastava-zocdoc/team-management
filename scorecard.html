@@ -733,8 +733,19 @@
                     const def = data.checkDefinitions[checkId];
                     const check = service.checks?.[checkId] || {};
                     const tier = check.tier || 'unknown';
-                    const label = getTierLabel(tier);
+                    let label = getTierLabel(tier);
                     const tierClass = getTierClass(tier);
+
+                    // Show value for percentage-based checks (coverage, testFailureRate)
+                    if (check.value !== undefined && check.value !== null && tier !== 'unknown' && tier !== 'dx_metric') {
+                        if (checkId === 'coverage') {
+                            label = `${label} (${check.value}%)`;
+                        } else if (checkId === 'testFailureRate') {
+                            label = `${label} (${check.value}%)`;
+                        } else if (typeof check.value === 'number') {
+                            label = `${label} (${check.value})`;
+                        }
+                    }
 
                     html += '<tr class="check-row">';
                     html += `<td class="check-name-col">${def.name}</td>`;
