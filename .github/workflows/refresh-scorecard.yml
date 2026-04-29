@@ -1,18 +1,11 @@
 name: Refresh Scorecard Data
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/build-scorecard.py'
-      - 'scripts/parse-tier-thresholds.py'
-      - 'data/Infrastructure Scorecard.xlsx'
-      - 'scorecard/**'
-      - '.github/workflows/refresh-scorecard.yml'
   schedule:
     # Run daily at 9am UTC (5am ET)
     - cron: '0 9 * * *'
   workflow_dispatch:
+    # Manual trigger - use "Run workflow" button in GitHub Actions UI
     inputs:
       skip_teamcity:
         description: 'Skip TeamCity coverage fetch'
