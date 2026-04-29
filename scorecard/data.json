@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-29T04:12:52.688120",
+  "lastUpdated": "2026-04-29T04:17:12.110204",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -130,6 +130,15 @@
         "summary": "Q2 2026 - Infrastructure Hardening"
       },
       "ticketsByCheck": {
+        "blueGreen": [
+          {
+            "key": "PROVGRO-6301",
+            "summary": "Implement smoke tests for blue/green deployment validation",
+            "status": "To Do",
+            "service": "provider-setup-service",
+            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6301"
+          }
+        ],
         "plinth": [
           {
             "key": "PROVGRO-6189",
@@ -137,15 +146,6 @@
             "status": "In Review",
             "service": "provider-setup-service",
             "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6189"
-          }
-        ],
-        "smokeTests": [
-          {
-            "key": "PROVGRO-6301",
-            "summary": "Implement smoke tests for blue/green deployment validation",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6301"
           }
         ],
         "coverage": [

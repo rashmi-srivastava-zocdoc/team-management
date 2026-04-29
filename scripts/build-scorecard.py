@@ -109,11 +109,11 @@ TEAMS = {
 # Tickets are grouped by check type, with optional service for filtering in detail view
 TEAM_TICKETS = {
     "provider-onboarding": {
+        "blueGreen": [
+            {"key": "PROVGRO-6301", "summary": "Implement smoke tests for blue/green deployment validation", "status": "To Do", "service": "provider-setup-service"},
+        ],
         "plinth": [
             {"key": "PROVGRO-6189", "summary": "[plinth] add missing auth-policies", "status": "In Review", "service": "provider-setup-service"},
-        ],
-        "smokeTests": [
-            {"key": "PROVGRO-6301", "summary": "Implement smoke tests for blue/green deployment validation", "status": "To Do", "service": "provider-setup-service"},
         ],
         "coverage": [
             {"key": "PROVGRO-6264", "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions", "status": "To Do", "service": "provider-setup-service"},
