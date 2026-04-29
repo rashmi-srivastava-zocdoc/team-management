@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-29T05:23:04.411357",
+  "lastUpdated": "2026-04-29T10:46:58.270321",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -58,10 +58,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "teamcity CLI not found"
             },
             "testFailureRate": {
               "tier": "t1",
