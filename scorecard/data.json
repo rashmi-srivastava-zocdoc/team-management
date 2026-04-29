@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-29T00:50:59.494191",
+  "lastUpdated": "2026-04-28T20:53:23.570325",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -9,9 +9,9 @@
           "repo": "provider-setup-service",
           "checks": {
             "blueGreen": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "B/G enabled in CDK"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -100,10 +100,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-04-28 (1d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 70,
+              "notes": "Last commit: 2026-02-17 (70d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -313,10 +313,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-04-28 (1d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 76,
+              "notes": "Last commit: 2026-02-11 (76d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -431,10 +431,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-04-28 (1d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 84,
+              "notes": "Last commit: 2026-02-03 (84d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -551,8 +551,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-04-28 (1d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-04-28 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -667,10 +667,10 @@
               "notes": "No incident trigger metric detected"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 5,
-              "notes": "Last commit: 2026-04-24 (5d ago)"
+              "tier": "t2",
+              "status": "warning",
+              "days_ago": 35,
+              "notes": "Last commit: 2026-03-24 (35d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -752,65 +752,67 @@
       "name": "Blue/Green Enabled",
       "pillar": "Deployment Safety",
       "priority": "P1",
-      "tier1": "blue_green_enabled = true",
-      "tier2": null,
-      "tier3": null,
-      "sor": "Repo Scanner",
-      "binary": true
+      "tier1": "Exists / true",
+      "tier2": "Exists / true if iac_system=cdk",
+      "tier3": "Not Scored",
+      "sor": "Roadie",
+      "data_provider": "Repo Scanner",
+      "description": "Fact blue_green_enabled must be true. Source endpoint returns deployment strategy per service. Verifiable via deployment platform, not self-report."
     },
     "sloGate": {
       "name": "SLO Deployment Gate Enabled",
       "pillar": "Deployment Safety",
       "priority": "P2",
-      "tier1": "GitHub check blocks deploy on SLO breach",
-      "tier2": "Gate configured but not blocking",
-      "tier3": null,
-      "sor": "GitHub / Datadog",
-      "binary": true
+      "tier1": "true",
+      "tier2": "Recommended / true",
+      "tier3": "Optional",
+      "sor": "Roadie",
+      "data_provider": "Github Check Enabled",
+      "description": "Fact slo_deploy_gate_enabled must be true. Gate should block production deploys when SLO burn threshold is violated; override path remains outside Roadie."
     },
     "prSize": {
       "name": "Average PR Size Within Threshold",
       "pillar": "Deployment Safety",
       "priority": "P1",
-      "tier1": "<= 400 lines",
-      "tier2": "<= 600 lines",
-      "tier3": "<= 800 lines",
-      "sor": "GitHub",
-      "thresholds": {
-        "t1": 400,
-        "t2": 600,
-        "t3": 800
-      }
+      "tier1": "<= 400 changed lines (30d avg)",
+      "tier2": "<= 600 changed lines (30d avg)",
+      "tier3": "<= 800 changed lines (30d avg)",
+      "sor": "DX",
+      "data_provider": "Metrics",
+      "description": "Fact avg_pr_changed_lines_30d. Uses rolling 30-day average of merged PR changed lines (adds + deletes). Thresholds standardized here because the source doc left X/Y open."
     },
     "changeFailureRate": {
       "name": "Prod Change Failure Rate Within Threshold",
       "pillar": "Deployment Safety",
       "priority": "P3",
-      "tier1": "< 15%",
-      "tier2": "< 25%",
-      "tier3": "< 35%",
-      "sor": "DX Metrics",
-      "dx_metric": true
+      "tier1": "cfr < 5%",
+      "tier2": "cfr < 10%",
+      "tier3": "cfr < 15%",
+      "sor": "Roadie/DX",
+      "data_provider": "TeamCity / DataDoog",
+      "description": ""
     },
     "rollbackTime": {
       "name": "Rollback Times Within Threshold",
       "pillar": "Deployment Safety",
       "priority": "P2",
-      "tier1": "< 10 min",
-      "tier2": "< 15 min",
-      "tier3": "< 30 min",
-      "sor": "DX Metrics",
-      "dx_metric": true
+      "tier1": "rollback_from_ttd_issue < 10m",
+      "tier2": "rollback_from_ttd_issue < 15m",
+      "tier3": "rollback_from_ttd_issue < 20m",
+      "sor": "Roadie/DX",
+      "data_provider": "Production Deploys / Events",
+      "description": ""
     },
     "deployPipeline": {
       "name": "Production Deploy Pipelines Within Threshold",
       "pillar": "Deployment Safety",
       "priority": "P3",
-      "tier1": "p90 < 30 min",
-      "tier2": "p90 < 45 min",
-      "tier3": "p90 < 60 min",
-      "sor": "DX Metrics",
-      "dx_metric": true
+      "tier1": "p90_time_to_deploy < 10m",
+      "tier2": "p90_time_to_deploy < 15m",
+      "tier3": "p90_time_to_deploy < 20m",
+      "sor": "Roadie/DX",
+      "data_provider": "Production Deploys / Events",
+      "description": ""
     },
     "coverage": {
       "name": "Code Coverage Meets Threshold",
@@ -819,160 +821,196 @@
       "tier1": ">= 80%",
       "tier2": ">= 70%",
       "tier3": ">= 60%",
-      "sor": "TeamCity",
-      "thresholds": {
-        "t1": 80,
-        "t2": 70,
-        "t3": 60
-      }
+      "sor": "Roadie/DX",
+      "data_provider": "TOOL TBD",
+      "description": "Fact coverage_pct from CI or quality collector. Use line coverage percent for main production code."
     },
     "complexity": {
       "name": "Cyclomatic Complexity p95 Within Threshold",
       "pillar": "Code Quality",
       "priority": "P3",
-      "tier1": "< 15",
-      "tier2": "< 20",
-      "tier3": "< 30",
-      "sor": "Roadie",
-      "dx_metric": true
+      "tier1": "< 10",
+      "tier2": "< 12",
+      "tier3": "< 20",
+      "sor": "Roadie/DX",
+      "data_provider": "TOOL TBD",
+      "description": "Fact cyclomatic_complexity_p95. Using p95 keeps one pathological file from dominating the service score while still pushing teams to improve."
     },
     "methodSize": {
       "name": "Method Size p95 Within Threshold",
       "pillar": "Code Quality",
       "priority": "P2",
-      "tier1": "< 50 lines",
-      "tier2": "< 75 lines",
-      "tier3": "< 100 lines",
+      "tier1": "< 500 lines",
+      "tier2": "< 500 lines",
+      "tier3": "< 500 lines",
       "sor": "Roadie",
-      "dx_metric": true
+      "data_provider": "TOOL TBD",
+      "description": "Fact method_size_p95_lines. Aligns to the target stated in the source doc."
     },
     "mutedTests": {
       "name": "No Muted/Ignored Critical Tests",
       "pillar": "Code Quality",
       "priority": "P1",
-      "tier1": "count = 0",
-      "tier2": "count <= 2",
-      "tier3": "count <= 5",
-      "sor": "TeamCity / Repo",
-      "thresholds": {
-        "t1": 0,
-        "t2": 2,
-        "t3": 5
-      }
+      "tier1": "muted_tests_count = 0",
+      "tier2": "muted_critical_tests_count = 0 AND muted_important_tests_count = 0",
+      "tier3": "muted_critical_tests_count = 0",
+      "sor": "Roadie",
+      "data_provider": "TeamCity",
+      "description": "Fact muted_critical_tests_count must equal 0. This should include muted integration, smoke, and blocking CI tests marked critical."
     },
     "testFailureRate": {
       "name": "Test Failure Rate",
       "pillar": "Code Quality",
       "priority": "P1",
-      "tier1": "< 1%",
-      "tier2": "< 3%",
-      "tier3": "< 5%",
-      "sor": "CI Metrics",
-      "dx_metric": true
+      "tier1": "ci_test_failures < 1% MoM",
+      "tier2": "ci_critcial_test_failures + ci_important_test_failures < 2% MoM",
+      "tier3": "ci_critcial_test_failures + ci_important_test_failures < 5% MoM",
+      "sor": "Roadie",
+      "data_provider": "TeamCity",
+      "description": ""
     },
     "eol": {
       "name": "EOL Framework/Version not being used",
       "pillar": "Code Quality",
       "priority": "P1",
-      "tier1": ".NET 8+ LTS",
-      "tier2": ".NET 7 (upgrade within 6mo)",
-      "tier3": ".NET 6 (upgrade within 12mo)",
-      "sor": "Repo Scanner",
-      "binary": true
+      "tier1": "eol_days < 90",
+      "tier2": "eol_days < 90",
+      "tier3": "eol_days != 0",
+      "sor": "Roadie",
+      "data_provider": "Roadie",
+      "description": ""
     },
     "slo": {
       "name": "SLO Defined in Datadog",
       "pillar": "Observability",
       "priority": "P1",
-      "tier1": "slo_count >= 1",
-      "tier2": null,
-      "tier3": null,
-      "sor": "Datadog / Roadie",
-      "binary": true
+      "tier1": "Slo Count >= 1",
+      "tier2": "Slo Count >= 1",
+      "tier3": "Slo Count >= 1",
+      "sor": "Roadie",
+      "data_provider": "Roadie",
+      "description": "Built-in Datadog fact Slo Count. Requires datadoghq.com/slo_tag annotation on the catalog entity."
     },
     "burnRate": {
       "name": "SLO Burn Rate Alerting Configured",
       "pillar": "Observability",
       "priority": "P1",
-      "tier1": "monitor_count >= 1",
-      "tier2": null,
-      "tier3": null,
-      "sor": "Datadog / Roadie",
-      "binary": true
+      "tier1": "Monitor Count >= 1",
+      "tier2": "Monitor Count >= 1",
+      "tier3": "Recommended",
+      "sor": "Roadie",
+      "data_provider": "Roadie",
+      "description": "Built-in Datadog fact Monitor Count. Requires datadoghq.com/monitor_tags annotation that resolves only SLO burn-rate monitors."
     },
     "smokeTests": {
       "name": "Smoke Tests Passing",
       "pillar": "Observability",
       "priority": "P2",
-      "tier1": "100% pass rate",
-      "tier2": ">= 95% pass rate",
-      "tier3": ">= 90% pass rate",
+      "tier1": ">= 95% last 30d and latest deploy passed and smoke_test_count > 3",
+      "tier2": ">= 95% last 30d if iac_system=cdk and smoke_test_count > 1",
+      "tier3": "Recommended",
       "sor": "Roadie",
-      "dx_metric": true
+      "data_provider": "Zocdoc Service Scorecard Metrics (custom HTTP)",
+      "description": "Facts smoke_tests_last_30d_success_pct and latest_deploy_smoke_tests_passed. Keeps this measurable while still allowing some transient noise."
     },
     "sentry": {
       "name": "Sentry Hygiene",
       "pillar": "Observability",
       "priority": "P1",
-      "tier1": "0 unresolved, 0 permanently muted",
-      "tier2": "<= 5 unresolved",
-      "tier3": "<= 10 unresolved",
-      "sor": "Sentry",
-      "binary": true
+      "tier1": "'= 0 unresolved AND 0 permanently unmuted",
+      "tier2": "'= 0 unresolved AND 0 permanently unmuted",
+      "tier3": "<= 5 unresolved AND 0 permanently unmuted",
+      "sor": "Roadie",
+      "data_provider": "Roadie",
+      "description": "Two-condition check on sentry_unresolved_errors_count and sentry_permanently_unmuted_errors_count."
     },
     "incidentMetric": {
       "name": "Metric to auto trigger incidents identified",
       "pillar": "Observability",
       "priority": "P2",
-      "tier1": "5xx/error monitor wired to PD",
-      "tier2": "Monitor exists but not wired to PD",
-      "tier3": null,
-      "sor": "CDK / Datadog",
-      "binary": true
+      "tier1": "sev_1_incident_trigger_metric_present =true",
+      "tier2": "sev_2_incident_trigger_metric_present =true",
+      "tier3": "sev_3_incident_trigger_metric_present =true",
+      "sor": "Roadie",
+      "data_provider": "DataDog/Pagerduty",
+      "description": ""
     },
     "deployable": {
       "name": "Deployable (Recent Prod Deploy)",
-      "pillar": "Tooling",
+      "pillar": "Tooling Standardization",
       "priority": "P1",
-      "tier1": "<= 30 days since prod deploy",
-      "tier2": "<= 60 days",
-      "tier3": "<= 90 days",
-      "sor": "TeamCity / GitHub",
-      "thresholds": {
-        "t1": 30,
-        "t2": 60,
-        "t3": 90
-      }
+      "tier1": "<= 90 days since prod deploy",
+      "tier2": "<= 90 days since prod deploy",
+      "tier3": "<= 180 days since prod deploy",
+      "sor": "Roadie",
+      "data_provider": "Teamcity",
+      "description": "Fact last_prod_deploy_days_ago. Standardizes \u201cdeployable\u201d as a recent successful production deploy."
     },
     "plinth": {
       "name": "On Plinth",
-      "pillar": "Tooling",
+      "pillar": "Tooling Standardization",
       "priority": "P3",
-      "tier1": "service on Plinth framework",
-      "tier2": null,
-      "tier3": null,
-      "sor": "Repo Scanner",
-      "binary": true
+      "tier1": "true",
+      "tier2": "true",
+      "tier3": "true",
+      "sor": "Roadie",
+      "data_provider": "Repo Scanner",
+      "description": "Fact plinth_enabled must be true. Use platform inventory or onboarding registry as source of truth."
     },
     "cdkNoAnsible": {
       "name": "On CDK, Off Ansible",
-      "pillar": "Tooling",
+      "pillar": "Tooling Standardization",
       "priority": "P1",
-      "tier1": "CDK only, no Ansible",
-      "tier2": "CDK present, Ansible remnants",
-      "tier3": null,
-      "sor": "Repo Scanner",
-      "binary": true
+      "tier1": "iac_system = cdk AND ansible_present = false",
+      "tier2": "iac_system = cdk AND ansible_present = false",
+      "tier3": "Recommended",
+      "sor": "Roadie",
+      "data_provider": "Repo Scanner / Roadie",
+      "description": "Two-condition check that the service has completed the CDK migration and no longer relies on Ansible."
     },
     "pagerduty": {
       "name": "PagerDuty Configured Correctly",
-      "pillar": "Tooling",
+      "pillar": "Tooling Standardization",
       "priority": "P1",
-      "tier1": "alarmWebhook wired, off-hours escalation",
-      "tier2": "alarmWebhook wired, no off-hours",
-      "tier3": null,
-      "sor": "PagerDuty / CDK",
-      "binary": true
+      "tier1": "poc != soc AND off_hours_escalation IS configured",
+      "tier2": "poc != soc AND off_hours_escalation IS configured",
+      "tier3": "poc != soc AND business_hours_escalation IS configured",
+      "sor": "Roadie",
+      "data_provider": "PagerDuty",
+      "description": ""
+    },
+    "coreJourneys": {
+      "name": "Defining Core User Journeys",
+      "pillar": "Observability",
+      "priority": "P2",
+      "tier1": "",
+      "tier2": "",
+      "tier3": "",
+      "sor": "Roadie",
+      "data_provider": "TOOL TBD",
+      "description": ""
+    },
+    "qaIterations": {
+      "name": "QA Iterations Per App Cycle",
+      "pillar": "Observability",
+      "priority": "P3",
+      "tier1": "",
+      "tier2": "-",
+      "tier3": "-",
+      "sor": "Roadie",
+      "data_provider": "TOOL TBD",
+      "description": ""
+    },
+    "branchPreview": {
+      "name": "Branch Preview Enabled",
+      "pillar": "Deployment Safety",
+      "priority": "P2",
+      "tier1": "",
+      "tier2": "",
+      "tier3": "",
+      "sor": "Roadie",
+      "data_provider": "Repo Scanner",
+      "description": ""
     }
   }
 }

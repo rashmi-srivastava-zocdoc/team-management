@@ -24,7 +24,39 @@ if os.environ.get("GITHUB_WORKSPACE"):
 else:
     OUTPUT_DIR = BASE_DIR / "team-management/scorecard"
 OUTPUT_FILE = OUTPUT_DIR / "data.json"
+TIER_THRESHOLDS_FILE = OUTPUT_DIR / "tier-thresholds.json"
 GITHUB_ORG = "Zocdoc"
+
+# Mapping from tier-thresholds.json slugs to internal check IDs
+# This allows us to use the Excel-derived thresholds while keeping existing check functions
+SLUG_TO_CHECK_ID = {
+    "blue_green_enabled": "blueGreen",
+    "slo_deployment_gate_enabled": "sloGate",
+    "average_pr_size_within_threshold": "prSize",
+    "prod_change_failure_rate_within_threshold": "changeFailureRate",
+    "rollback_times_within_threshold": "rollbackTime",
+    "production_deploy_pipelines_within_threshold": "deployPipeline",
+    "code_coverage_meets_threshold": "coverage",
+    "cyclomatic_complexity_p95_within_threshold": "complexity",
+    "method_size_p95_within_threshold": "methodSize",
+    "no_muted_ignored_critical_tests": "mutedTests",
+    "test_failure_rate": "testFailureRate",
+    "eol_framework_version_not_being_used": "eol",
+    "slo_defined_in_datadog": "slo",
+    "slo_burn_rate_alerting_configured": "burnRate",
+    "smoke_tests_passing": "smokeTests",
+    "sentry_hygiene": "sentry",
+    "metric_to_auto_trigger_incidents_identified": "incidentMetric",
+    "deployable_recent_prod_deploy": "deployable",
+    "on_plinth": "plinth",
+    "on_cdk_off_ansible": "cdkNoAnsible",
+    "pagerduty_configured_correctly": "pagerduty",
+    "defining_core_user_journeys": "coreJourneys",
+    "qa_iterations_per_app_cycle": "qaIterations",
+    "branch_preview_enabled": "branchPreview",
+}
+
+CHECK_ID_TO_SLUG = {v: k for k, v in SLUG_TO_CHECK_ID.items()}
 
 TEAMS = {
     "provider-onboarding": {
@@ -100,6 +132,36 @@ TEAM_TICKETS = {
 USE_GITHUB = False
 TEMP_DIR = None
 
+def load_tier_thresholds():
+    """Load tier thresholds from tier-thresholds.json and convert to CHECK_DEFINITIONS format."""
+    if not TIER_THRESHOLDS_FILE.exists():
+        print(f"Warning: {TIER_THRESHOLDS_FILE} not found, using fallback definitions")
+        return None
+
+    with open(TIER_THRESHOLDS_FILE) as f:
+        data = json.load(f)
+
+    check_defs = {}
+    for slug, check in data.get("checks", {}).items():
+        check_id = SLUG_TO_CHECK_ID.get(slug)
+        if not check_id:
+            continue
+
+        check_defs[check_id] = {
+            "name": check.get("name", slug),
+            "pillar": check.get("pillar", "Unknown"),
+            "priority": check.get("priority", "P3"),
+            "tier1": check.get("tier1", {}).get("threshold", ""),
+            "tier2": check.get("tier2", {}).get("threshold", ""),
+            "tier3": check.get("tier3", {}).get("threshold", ""),
+            "sor": check.get("sor", ""),
+            "data_provider": check.get("data_provider", ""),
+            "description": check.get("description", ""),
+        }
+
+    print(f"Loaded {len(check_defs)} check definitions from tier-thresholds.json")
+    return check_defs
+
 def clone_repo(github_repo):
     """Clone a repo from GitHub to temp directory, return path."""
     global TEMP_DIR
@@ -129,227 +191,34 @@ def cleanup_temp():
         shutil.rmtree(TEMP_DIR)
         print(f"Cleaned up temp directory: {TEMP_DIR}")
 
-# Q2 Production Standards - 21 checks with tiered thresholds
-# Tiers: t1 (best), t2, t3, below_t3 (worst), unknown, dx_metric
-CHECK_DEFINITIONS = {
-    # === DEPLOYMENT SAFETY (6 checks) ===
-    "blueGreen": {
-        "name": "Blue/Green Enabled",
-        "pillar": "Deployment Safety",
-        "priority": "P1",
-        "tier1": "blue_green_enabled = true",
-        "tier2": None,
-        "tier3": None,
-        "sor": "Repo Scanner",
-        "binary": True
-    },
-    "sloGate": {
-        "name": "SLO Deployment Gate Enabled",
-        "pillar": "Deployment Safety",
-        "priority": "P2",
-        "tier1": "GitHub check blocks deploy on SLO breach",
-        "tier2": "Gate configured but not blocking",
-        "tier3": None,
-        "sor": "GitHub / Datadog",
-        "binary": True
-    },
-    "prSize": {
-        "name": "Average PR Size Within Threshold",
-        "pillar": "Deployment Safety",
-        "priority": "P1",
-        "tier1": "<= 400 lines",
-        "tier2": "<= 600 lines",
-        "tier3": "<= 800 lines",
-        "sor": "GitHub",
-        "thresholds": {"t1": 400, "t2": 600, "t3": 800}
-    },
-    "changeFailureRate": {
-        "name": "Prod Change Failure Rate Within Threshold",
-        "pillar": "Deployment Safety",
-        "priority": "P3",
-        "tier1": "< 15%",
-        "tier2": "< 25%",
-        "tier3": "< 35%",
-        "sor": "DX Metrics",
-        "dx_metric": True
-    },
-    "rollbackTime": {
-        "name": "Rollback Times Within Threshold",
-        "pillar": "Deployment Safety",
-        "priority": "P2",
-        "tier1": "< 10 min",
-        "tier2": "< 15 min",
-        "tier3": "< 30 min",
-        "sor": "DX Metrics",
-        "dx_metric": True
-    },
-    "deployPipeline": {
-        "name": "Production Deploy Pipelines Within Threshold",
-        "pillar": "Deployment Safety",
-        "priority": "P3",
-        "tier1": "p90 < 30 min",
-        "tier2": "p90 < 45 min",
-        "tier3": "p90 < 60 min",
-        "sor": "DX Metrics",
-        "dx_metric": True
-    },
-
-    # === CODE QUALITY (6 checks) ===
-    "coverage": {
-        "name": "Code Coverage Meets Threshold",
-        "pillar": "Code Quality",
-        "priority": "P1",
-        "tier1": ">= 80%",
-        "tier2": ">= 70%",
-        "tier3": ">= 60%",
-        "sor": "TeamCity",
-        "thresholds": {"t1": 80, "t2": 70, "t3": 60}
-    },
-    "complexity": {
-        "name": "Cyclomatic Complexity p95 Within Threshold",
-        "pillar": "Code Quality",
-        "priority": "P3",
-        "tier1": "< 15",
-        "tier2": "< 20",
-        "tier3": "< 30",
-        "sor": "Roadie",
-        "dx_metric": True
-    },
-    "methodSize": {
-        "name": "Method Size p95 Within Threshold",
-        "pillar": "Code Quality",
-        "priority": "P2",
-        "tier1": "< 50 lines",
-        "tier2": "< 75 lines",
-        "tier3": "< 100 lines",
-        "sor": "Roadie",
-        "dx_metric": True
-    },
-    "mutedTests": {
-        "name": "No Muted/Ignored Critical Tests",
-        "pillar": "Code Quality",
-        "priority": "P1",
-        "tier1": "count = 0",
-        "tier2": "count <= 2",
-        "tier3": "count <= 5",
-        "sor": "TeamCity / Repo",
-        "thresholds": {"t1": 0, "t2": 2, "t3": 5}
-    },
-    "testFailureRate": {
-        "name": "Test Failure Rate",
-        "pillar": "Code Quality",
-        "priority": "P1",
-        "tier1": "< 1%",
-        "tier2": "< 3%",
-        "tier3": "< 5%",
-        "sor": "CI Metrics",
-        "dx_metric": True
-    },
-    "eol": {
-        "name": "EOL Framework/Version not being used",
-        "pillar": "Code Quality",
-        "priority": "P1",
-        "tier1": ".NET 8+ LTS",
-        "tier2": ".NET 7 (upgrade within 6mo)",
-        "tier3": ".NET 6 (upgrade within 12mo)",
-        "sor": "Repo Scanner",
-        "binary": True
-    },
-
-    # === OBSERVABILITY (5 checks) ===
-    "slo": {
-        "name": "SLO Defined in Datadog",
-        "pillar": "Observability",
-        "priority": "P1",
-        "tier1": "slo_count >= 1",
-        "tier2": None,
-        "tier3": None,
-        "sor": "Datadog / Roadie",
-        "binary": True
-    },
-    "burnRate": {
-        "name": "SLO Burn Rate Alerting Configured",
-        "pillar": "Observability",
-        "priority": "P1",
-        "tier1": "monitor_count >= 1",
-        "tier2": None,
-        "tier3": None,
-        "sor": "Datadog / Roadie",
-        "binary": True
-    },
-    "smokeTests": {
-        "name": "Smoke Tests Passing",
-        "pillar": "Observability",
-        "priority": "P2",
-        "tier1": "100% pass rate",
-        "tier2": ">= 95% pass rate",
-        "tier3": ">= 90% pass rate",
-        "sor": "Roadie",
-        "dx_metric": True
-    },
-    "sentry": {
-        "name": "Sentry Hygiene",
-        "pillar": "Observability",
-        "priority": "P1",
-        "tier1": "0 unresolved, 0 permanently muted",
-        "tier2": "<= 5 unresolved",
-        "tier3": "<= 10 unresolved",
-        "sor": "Sentry",
-        "binary": True
-    },
-    "incidentMetric": {
-        "name": "Metric to auto trigger incidents identified",
-        "pillar": "Observability",
-        "priority": "P2",
-        "tier1": "5xx/error monitor wired to PD",
-        "tier2": "Monitor exists but not wired to PD",
-        "tier3": None,
-        "sor": "CDK / Datadog",
-        "binary": True
-    },
-
-    # === TOOLING STANDARDIZATION (4 checks) ===
-    "deployable": {
-        "name": "Deployable (Recent Prod Deploy)",
-        "pillar": "Tooling",
-        "priority": "P1",
-        "tier1": "<= 30 days since prod deploy",
-        "tier2": "<= 60 days",
-        "tier3": "<= 90 days",
-        "sor": "TeamCity / GitHub",
-        "thresholds": {"t1": 30, "t2": 60, "t3": 90}
-    },
-    "plinth": {
-        "name": "On Plinth",
-        "pillar": "Tooling",
-        "priority": "P3",
-        "tier1": "service on Plinth framework",
-        "tier2": None,
-        "tier3": None,
-        "sor": "Repo Scanner",
-        "binary": True
-    },
-    "cdkNoAnsible": {
-        "name": "On CDK, Off Ansible",
-        "pillar": "Tooling",
-        "priority": "P1",
-        "tier1": "CDK only, no Ansible",
-        "tier2": "CDK present, Ansible remnants",
-        "tier3": None,
-        "sor": "Repo Scanner",
-        "binary": True
-    },
-    "pagerduty": {
-        "name": "PagerDuty Configured Correctly",
-        "pillar": "Tooling",
-        "priority": "P1",
-        "tier1": "alarmWebhook wired, off-hours escalation",
-        "tier2": "alarmWebhook wired, no off-hours",
-        "tier3": None,
-        "sor": "PagerDuty / CDK",
-        "binary": True
-    },
+# Q2 Production Standards - loaded from tier-thresholds.json
+# Fallback definitions used only if JSON doesn't exist
+CHECK_DEFINITIONS_FALLBACK = {
+    "blueGreen": {"name": "Blue/Green Enabled", "pillar": "Deployment Safety", "priority": "P1"},
+    "sloGate": {"name": "SLO Deployment Gate Enabled", "pillar": "Deployment Safety", "priority": "P2"},
+    "prSize": {"name": "Average PR Size Within Threshold", "pillar": "Deployment Safety", "priority": "P1"},
+    "changeFailureRate": {"name": "Prod Change Failure Rate Within Threshold", "pillar": "Deployment Safety", "priority": "P3"},
+    "rollbackTime": {"name": "Rollback Times Within Threshold", "pillar": "Deployment Safety", "priority": "P2"},
+    "deployPipeline": {"name": "Production Deploy Pipelines Within Threshold", "pillar": "Deployment Safety", "priority": "P3"},
+    "coverage": {"name": "Code Coverage Meets Threshold", "pillar": "Code Quality", "priority": "P1"},
+    "complexity": {"name": "Cyclomatic Complexity p95 Within Threshold", "pillar": "Code Quality", "priority": "P3"},
+    "methodSize": {"name": "Method Size p95 Within Threshold", "pillar": "Code Quality", "priority": "P2"},
+    "mutedTests": {"name": "No Muted/Ignored Critical Tests", "pillar": "Code Quality", "priority": "P1"},
+    "testFailureRate": {"name": "Test Failure Rate", "pillar": "Code Quality", "priority": "P1"},
+    "eol": {"name": "EOL Framework/Version not being used", "pillar": "Code Quality", "priority": "P1"},
+    "slo": {"name": "SLO Defined in Datadog", "pillar": "Observability", "priority": "P1"},
+    "burnRate": {"name": "SLO Burn Rate Alerting Configured", "pillar": "Observability", "priority": "P1"},
+    "smokeTests": {"name": "Smoke Tests Passing", "pillar": "Observability", "priority": "P2"},
+    "sentry": {"name": "Sentry Hygiene", "pillar": "Observability", "priority": "P1"},
+    "incidentMetric": {"name": "Metric to auto trigger incidents identified", "pillar": "Observability", "priority": "P2"},
+    "deployable": {"name": "Deployable (Recent Prod Deploy)", "pillar": "Tooling Standardization", "priority": "P1"},
+    "plinth": {"name": "On Plinth", "pillar": "Tooling Standardization", "priority": "P3"},
+    "cdkNoAnsible": {"name": "On CDK, Off Ansible", "pillar": "Tooling Standardization", "priority": "P1"},
+    "pagerduty": {"name": "PagerDuty Configured Correctly", "pillar": "Tooling Standardization", "priority": "P1"},
 }
+
+# Will be populated at runtime from tier-thresholds.json
+CHECK_DEFINITIONS = None
 
 def run_cmd(cmd, cwd=None):
     try:
@@ -592,6 +461,7 @@ def load_teamcity_coverage():
 
 def analyze_service(team_id, service, repo_base, tc_coverage):
     svc_name = service["name"]
+    check_defs = CHECK_DEFINITIONS or CHECK_DEFINITIONS_FALLBACK
 
     if USE_GITHUB:
         github_repo = service.get("github_repo", service["repo"])
@@ -601,7 +471,7 @@ def analyze_service(team_id, service, repo_base, tc_coverage):
                 "name": svc_name,
                 "repo": service["repo"],
                 "error": f"Failed to clone {github_repo} from GitHub",
-                "checks": {k: {"tier": "unknown", "status": "unknown", "notes": "Clone failed"} for k in CHECK_DEFINITIONS}
+                "checks": {k: {"tier": "unknown", "status": "unknown", "notes": "Clone failed"} for k in check_defs}
             }
     else:
         repo_path = service.get("repo_override") or (repo_base / service["repo"])
@@ -610,7 +480,7 @@ def analyze_service(team_id, service, repo_base, tc_coverage):
                 "name": svc_name,
                 "repo": service["repo"],
                 "error": f"Repo not found at {repo_path}",
-                "checks": {k: {"tier": "unknown", "status": "unknown", "notes": "Repo not found"} for k in CHECK_DEFINITIONS}
+                "checks": {k: {"tier": "unknown", "status": "unknown", "notes": "Repo not found"} for k in check_defs}
             }
 
     checks = {}
@@ -710,6 +580,14 @@ def apply_team_epics(scorecard):
             team["epic"] = team_config["epic"]
 
 def build_scorecard():
+    global CHECK_DEFINITIONS
+
+    # Load check definitions from tier-thresholds.json
+    CHECK_DEFINITIONS = load_tier_thresholds()
+    if CHECK_DEFINITIONS is None:
+        print("Using fallback check definitions")
+        CHECK_DEFINITIONS = CHECK_DEFINITIONS_FALLBACK
+
     tc_coverage = load_teamcity_coverage()
 
     teams_data = {}
