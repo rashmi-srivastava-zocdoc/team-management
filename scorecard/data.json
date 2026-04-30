@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-30T10:46:52.251834",
+  "lastUpdated": "2026-04-30T13:49:41.991089",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -21,8 +21,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 188,
-              "notes": "188 lines avg (30d)"
+              "value": 186,
+              "notes": "186 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -42,10 +42,10 @@
             "coverage": {
               "tier": "below_t3",
               "status": "fail",
-              "value": 39.5,
+              "value": 39.6,
               "target": 80,
-              "notes": "Lines:39.5% (C:60.1% M:58.1% B:60.8%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24681499"
+              "notes": "Lines:39.6% (C:60.1% M:58.2% B:61.2%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24808635"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -58,17 +58,17 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "count": null,
-              "notes": "teamcity CLI not found"
+              "tier": "t1",
+              "status": "pass",
+              "count": 0,
+              "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
               "tier": "t1",
               "status": "pass",
               "value": 0.0,
               "target": 1,
-              "notes": "0.0% (0/12766 tests, 20 builds)"
+              "notes": "0.0% (1/13124 tests, 20 builds)"
             },
             "eol": {
               "tier": "t1",
@@ -105,8 +105,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-04-29 (1d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-04-30 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -131,175 +131,6 @@
         "key": "PROVGRO-6335",
         "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6335",
         "summary": "Q2 2026 - Infrastructure Hardening"
-      },
-      "ticketsByCheck": {
-        "coverage": [
-          {
-            "key": "PROVGRO-6347",
-            "summary": "[Coverage] Edge-case tests for ProviderBootstrapPracticeService (63/90 \u2192 90/90 branches)",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6347"
-          },
-          {
-            "key": "PROVGRO-6346",
-            "summary": "[Coverage] Edge-case tests for InboxPracticeService (85/106 \u2192 106/106 branches)",
-            "status": "Closed",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6346"
-          },
-          {
-            "key": "PROVGRO-6345",
-            "summary": "[Coverage] Branch tests for exception handlers + ImpersonationBaseController (0/14 branches)",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6345"
-          },
-          {
-            "key": "PROVGRO-6344",
-            "summary": "[Coverage] Branch tests for auth handlers + JwtCookiePromotionMiddleware (0/26 branches)",
-            "status": "In Progress",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6344"
-          },
-          {
-            "key": "PROVGRO-6343",
-            "summary": "[Coverage] Branch tests for SynchronizerWebAppController (0/22 branches)",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6343"
-          },
-          {
-            "key": "PROVGRO-6342",
-            "summary": "[Coverage] Branch tests for ProviderBootstrapDataController (0/18 branches)",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6342"
-          },
-          {
-            "key": "PROVGRO-6341",
-            "summary": "[Coverage] Branch tests for InboxController + NavbarController (0/18 branches)",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6341"
-          },
-          {
-            "key": "PROVGRO-6340",
-            "summary": "[Coverage] Branch tests for MiniFeBootstrapper error paths (4/36 branches)",
-            "status": "Closed",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6340"
-          },
-          {
-            "key": "PROVGRO-6339",
-            "summary": "[Coverage] Unit tests for MultiPracticeLoginService (0% \u2192 100%)",
-            "status": "In Progress",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6339"
-          },
-          {
-            "key": "PROVGRO-6338",
-            "summary": "[Coverage] Unit tests for InboxHtmlService (0% \u2192 100%)",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6338"
-          },
-          {
-            "key": "PROVGRO-6337",
-            "summary": "[Coverage] Unit tests for CalendarDataService (0% \u2192 100%)",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6337"
-          },
-          {
-            "key": "PROVGRO-6336",
-            "summary": "[Coverage] Unit tests for ClientSideHtmlService (0% \u2192 100%)",
-            "status": "Closed",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6336"
-          },
-          {
-            "key": "PROVGRO-6272",
-            "summary": "[Test Coverage] Utilities, extensions & mappers",
-            "status": "Closed",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6272"
-          },
-          {
-            "key": "PROVGRO-6271",
-            "summary": "[Test Coverage] Lambda entry points",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6271"
-          },
-          {
-            "key": "PROVGRO-6270",
-            "summary": "[Test Coverage] MilestonesImpl unit tests",
-            "status": "Closed",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6270"
-          },
-          {
-            "key": "PROVGRO-6269",
-            "summary": "[Test Coverage] AlertHandlerImpl + alert definitions",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6269"
-          },
-          {
-            "key": "PROVGRO-6268",
-            "summary": "[Test Coverage] Authorization handlers",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6268"
-          },
-          {
-            "key": "PROVGRO-6267",
-            "summary": "[Test Coverage] Remaining misc task definitions + ClaimYourProfile SKU",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6267"
-          },
-          {
-            "key": "PROVGRO-6266",
-            "summary": "[Test Coverage] Activation & setup tasks + PartnerSyndication SKU",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6266"
-          },
-          {
-            "key": "PROVGRO-6265",
-            "summary": "[Test Coverage] Intake tasks + SKU definition",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6265"
-          },
-          {
-            "key": "PROVGRO-6264",
-            "summary": "[Test Coverage] PartnerNetwork tasks + SKU definitions",
-            "status": "Closed",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6264"
-          }
-        ],
-        "blueGreen": [
-          {
-            "key": "PROVGRO-6301",
-            "summary": "Implement smoke tests for blue/green deployment validation",
-            "status": "To Do",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6301"
-          }
-        ],
-        "plinth": [
-          {
-            "key": "PROVGRO-6189",
-            "summary": "[plinth] add missing auth-policies",
-            "status": "Closed",
-            "service": "provider-setup-service",
-            "url": "https://zocdoc.atlassian.net/browse/PROVGRO-6189"
-          }
-        ]
       }
     },
     "account-user-setup": {
@@ -322,8 +153,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 97,
-              "notes": "97 lines avg (30d)"
+              "value": 100,
+              "notes": "100 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -444,8 +275,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 20,
-              "notes": "20 lines avg (30d)"
+              "value": 22,
+              "notes": "22 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -468,7 +299,7 @@
               "value": 82.9,
               "target": 80,
               "notes": "Lines:82.9% (C:65.8% M:73.9% B:26.2%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/24649992"
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/24738660"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -491,7 +322,7 @@
               "status": "pass",
               "value": 0.0,
               "target": 1,
-              "notes": "0.0% (0/370 tests, 20 builds)"
+              "notes": "0.0% (0/371 tests, 20 builds)"
             },
             "eol": {
               "tier": "t1",
@@ -566,8 +397,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 152,
-              "notes": "152 lines avg (30d)"
+              "value": 160,
+              "notes": "160 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -688,8 +519,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 47,
-              "notes": "47 lines avg (30d)"
+              "value": 62,
+              "notes": "62 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -797,52 +628,6 @@
         "key": "PTERODACTL-1880",
         "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1880",
         "summary": "Q2 2026 [2x] - Infrastructure Hardening"
-      },
-      "ticketsByCheck": {
-        "blueGreen": [
-          {
-            "key": "PTERODACTL-1887",
-            "summary": "Implement smoke tests for PAP blue/green deployment validation",
-            "status": "To Do",
-            "service": "practice-authorization-proxy",
-            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1887"
-          },
-          {
-            "key": "PTERODACTL-1886",
-            "summary": "Enable ECS blue/green deployment for PAP",
-            "status": "To Do",
-            "service": "practice-authorization-proxy",
-            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1886"
-          },
-          {
-            "key": "PTERODACTL-1885",
-            "summary": "Implement smoke tests for PUP blue/green deployment validation",
-            "status": "To Do",
-            "service": "practice-user-permissions",
-            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1885"
-          },
-          {
-            "key": "PTERODACTL-1884",
-            "summary": "Enable ECS blue/green deployment for PUP",
-            "status": "To Do",
-            "service": "practice-user-permissions",
-            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1884"
-          },
-          {
-            "key": "PTERODACTL-1883",
-            "summary": "Implement smoke tests for POGS blue/green deployment validation",
-            "status": "To Do",
-            "service": "provider-grouping",
-            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1883"
-          },
-          {
-            "key": "PTERODACTL-1882",
-            "summary": "Enable ECS blue/green deployment for POGS",
-            "status": "To Do",
-            "service": "provider-grouping",
-            "url": "https://zocdoc.atlassian.net/browse/PTERODACTL-1882"
-          }
-        ]
       }
     },
     "billing": {

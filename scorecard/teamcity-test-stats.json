@@ -1,8 +1,8 @@
 {
   "provider-setup-service": {
     "failure_rate_pct": 0.0,
-    "failed_count": 0,
-    "passed_count": 12766,
+    "failed_count": 1,
+    "passed_count": 13123,
     "total_builds": 20,
     "tier": "t1"
   },
@@ -16,7 +16,7 @@
   "practice-authorization-proxy": {
     "failure_rate_pct": 0.0,
     "failed_count": 0,
-    "passed_count": 370,
+    "passed_count": 371,
     "total_builds": 20,
     "tier": "t1"
   },

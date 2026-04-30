@@ -1,14 +1,14 @@
 {
   "provider-setup-service": {
-    "build_id": 24681499,
-    "build_number": "1636",
+    "build_id": 24808635,
+    "build_number": "1646",
     "buildTypeId": "Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport",
-    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24681499",
-    "finish_date": "20260428T145318-0400",
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24808635",
+    "finish_date": "20260430T131947-0400",
     "classes_pct": 60.1,
-    "methods_pct": 58.1,
-    "lines_pct": 39.5,
-    "branches_pct": 60.8
+    "methods_pct": 58.2,
+    "lines_pct": 39.6,
+    "branches_pct": 61.2
   },
   "practice-user-permissions": {
     "build_id": 24649350,
@@ -22,11 +22,11 @@
     "branches_pct": 70.3
   },
   "practice-authorization-proxy": {
-    "build_id": 24649992,
-    "build_number": "505",
+    "build_id": 24738660,
+    "build_number": "509",
     "buildTypeId": "PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport",
-    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/24649992",
-    "finish_date": "20260428T101917-0400",
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/24738660",
+    "finish_date": "20260429T125933-0400",
     "classes_pct": 65.8,
     "methods_pct": 73.9,
     "lines_pct": 82.9,
