@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-29T10:46:58.270321",
+  "lastUpdated": "2026-04-30T10:46:52.251834",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -21,8 +21,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 159,
-              "notes": "159 lines avg (30d)"
+              "value": 188,
+              "notes": "188 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -106,7 +106,7 @@
               "tier": "t1",
               "status": "pass",
               "days_ago": 1,
-              "notes": "Last commit: 2026-04-28 (1d ago)"
+              "notes": "Last commit: 2026-04-29 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -406,8 +406,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-04-28 (1d ago)"
+              "days_ago": 2,
+              "notes": "Last commit: 2026-04-28 (2d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -432,9 +432,9 @@
           "repo": "practice-authorization-proxy",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "ECS service without B/G"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "B/G enabled in CDK"
             },
             "sloGate": {
               "tier": "unknown",
@@ -444,8 +444,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 16,
-              "notes": "16 lines avg (30d)"
+              "value": 20,
+              "notes": "20 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -529,7 +529,7 @@
               "tier": "t1",
               "status": "pass",
               "days_ago": 1,
-              "notes": "Last commit: 2026-04-28 (1d ago)"
+              "notes": "Last commit: 2026-04-29 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -650,8 +650,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-04-28 (1d ago)"
+              "days_ago": 2,
+              "notes": "Last commit: 2026-04-28 (2d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -772,8 +772,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 5,
-              "notes": "Last commit: 2026-04-24 (5d ago)"
+              "days_ago": 6,
+              "notes": "Last commit: 2026-04-24 (6d ago)"
             },
             "plinth": {
               "tier": "t1",
