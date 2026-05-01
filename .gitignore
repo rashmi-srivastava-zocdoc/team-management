@@ -1,0 +1,4 @@
+
+# Ignore generated files
+.superpowers/
+scripts/__pycache__/

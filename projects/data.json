@@ -1,12 +1,14 @@
 {
-  "lastUpdated": "2026-04-30T10:00:00Z",
+  "lastUpdated": "2026-05-01T02:47:48.657024Z",
   "projects": [
     {
       "id": "provider-self-service",
       "name": "Provider Self-Service Onboarding",
       "summary": "Enable providers to complete onboarding steps without CSM assistance, including credential verification, NPI validation, and scheduling configuration.",
       "team": "provider-onboarding",
-      "leads": ["alexander.gorowara@zocdoc.com"],
+      "leads": [
+        "alexander.gorowara@zocdoc.com"
+      ],
       "stage": "development",
       "slackChannels": [],
       "jiraEpics": [],
@@ -30,7 +32,9 @@
       "name": "Role Bundles v2",
       "summary": "Redesigned role bundle system with improved UX, granular permissions, and better admin controls for practice user management.",
       "team": "account-user-setup",
-      "leads": ["mayank.choudhary@zocdoc.com"],
+      "leads": [
+        "mayank.choudhary@zocdoc.com"
+      ],
       "stage": "planning",
       "slackChannels": [],
       "jiraEpics": [],
@@ -59,7 +63,9 @@
       "name": "Billing Portal Redesign",
       "summary": "Modernize the billing portal with improved invoice management, payment history, and self-service billing adjustments.",
       "team": "billing",
-      "leads": ["dave.ramirez@zocdoc.com"],
+      "leads": [
+        "dave.ramirez@zocdoc.com"
+      ],
       "stage": "discovery",
       "slackChannels": [],
       "jiraEpics": [],
@@ -77,7 +83,9 @@
       "name": "Provider Grouping Migration",
       "summary": "Migrate legacy provider grouping data to the new provider-grouping service architecture.",
       "team": "account-user-setup",
-      "leads": ["garon.smith@zocdoc.com"],
+      "leads": [
+        "garon.smith@zocdoc.com"
+      ],
       "stage": "testing",
       "slackChannels": [],
       "jiraEpics": [],
@@ -101,7 +109,9 @@
       "name": "Invoice Automation",
       "summary": "Automate invoice generation and delivery for recurring billing cycles.",
       "team": "billing",
-      "leads": ["niko.prassas@zocdoc.com"],
+      "leads": [
+        "niko.prassas@zocdoc.com"
+      ],
       "stage": "rollout",
       "slackChannels": [],
       "jiraEpics": [],
