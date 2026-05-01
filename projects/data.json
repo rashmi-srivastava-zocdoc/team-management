@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-30T23:45:00.000Z",
+  "lastUpdated": "2026-05-01T11:05:06.009117Z",
   "projects": [
     {
       "id": "home-page-enhancements",
@@ -9,11 +9,17 @@
       "leads": [],
       "stage": "development",
       "slackChannels": [],
-      "jiraEpics": ["PROVGRO-5870"],
+      "jiraEpics": [
+        "PROVGRO-5870"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "global-nav-bar",
@@ -23,11 +29,17 @@
       "leads": [],
       "stage": "development",
       "slackChannels": [],
-      "jiraEpics": ["PROVGRO-5687"],
+      "jiraEpics": [
+        "PROVGRO-5687"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "provgro-infra-hardening-q2",
@@ -37,11 +49,17 @@
       "leads": [],
       "stage": "development",
       "slackChannels": [],
-      "jiraEpics": ["PROVGRO-6335"],
+      "jiraEpics": [
+        "PROVGRO-6335"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "scope-sheet-scalability",
@@ -51,11 +69,17 @@
       "leads": [],
       "stage": "development",
       "slackChannels": [],
-      "jiraEpics": ["PROVGRO-5399"],
+      "jiraEpics": [
+        "PROVGRO-5399"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "provgro-fga-cutover",
@@ -65,11 +89,17 @@
       "leads": [],
       "stage": "rollout",
       "slackChannels": [],
-      "jiraEpics": ["PROVGRO-5468"],
+      "jiraEpics": [
+        "PROVGRO-5468"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "activation-velocity",
@@ -79,11 +109,17 @@
       "leads": [],
       "stage": "development",
       "slackChannels": [],
-      "jiraEpics": ["PROVGRO-6119"],
+      "jiraEpics": [
+        "PROVGRO-6119"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "misbehavior-locking-phase2",
@@ -93,11 +129,17 @@
       "leads": [],
       "stage": "development",
       "slackChannels": [],
-      "jiraEpics": ["AUTH-3320"],
+      "jiraEpics": [
+        "AUTH-3320"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "practice-users-mfa",
@@ -107,11 +149,17 @@
       "leads": [],
       "stage": "development",
       "slackChannels": [],
-      "jiraEpics": ["AUTH-3195"],
+      "jiraEpics": [
+        "AUTH-3195"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "agentic-ai-readiness",
@@ -121,11 +169,17 @@
       "leads": [],
       "stage": "development",
       "slackChannels": [],
-      "jiraEpics": ["AUTH-3080"],
+      "jiraEpics": [
+        "AUTH-3080"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "user-creation-oom",
@@ -135,25 +189,39 @@
       "leads": [],
       "stage": "development",
       "slackChannels": [],
-      "jiraEpics": ["AUTH-2503"],
+      "jiraEpics": [
+        "AUTH-2503"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "billing-csv-downloads",
       "name": "Billing CSV Downloads",
       "summary": "Enable CSV download functionality for billing reports and statements.",
       "team": "billing",
-      "leads": ["leo.pimenta@zocdoc.com"],
+      "leads": [
+        "leo.pimenta@zocdoc.com"
+      ],
       "stage": "planning",
       "slackChannels": [],
-      "jiraEpics": ["BILL-628"],
+      "jiraEpics": [
+        "BILL-628"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "mid-market-account-segment",
@@ -163,11 +231,17 @@
       "leads": [],
       "stage": "planning",
       "slackChannels": [],
-      "jiraEpics": ["BILL-623"],
+      "jiraEpics": [
+        "BILL-623"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "billing-infra-hardening-aaa",
@@ -177,39 +251,61 @@
       "leads": [],
       "stage": "planning",
       "slackChannels": [],
-      "jiraEpics": ["BILL-613"],
+      "jiraEpics": [
+        "BILL-613"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "billing-fga-migration",
       "name": "FGA Migration",
       "summary": "Migrate billing systems to Fine-Grained Authorization (FGA).",
       "team": "billing",
-      "leads": ["leo.pimenta@zocdoc.com"],
+      "leads": [
+        "leo.pimenta@zocdoc.com"
+      ],
       "stage": "planning",
       "slackChannels": [],
-      "jiraEpics": ["BILL-510"],
+      "jiraEpics": [
+        "BILL-510"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     },
     {
       "id": "stripe-payments-intent",
       "name": "Stripe Payments Intent API Upgrade",
       "summary": "Upgrade Stripe integration to use the newer Payments Intent API.",
       "team": "billing",
-      "leads": ["niko.prassas@zocdoc.com"],
+      "leads": [
+        "niko.prassas@zocdoc.com"
+      ],
       "stage": "planning",
       "slackChannels": [],
-      "jiraEpics": ["BILL-502"],
+      "jiraEpics": [
+        "BILL-502"
+      ],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
     }
   ]
 }
