@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Tracker</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #ffffff;
+            color: #172b4d;
+            line-height: 1.6;
+        }
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #dfe1e6;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: #172b4d;
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #FFE14D;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #172b4d;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: #5e6c84;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover {
+            background: #f4f5f7;
+            color: #172b4d;
+        }
+        .nav-links a.active {
+            background: #FFE14D;
+            color: #172b4d;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .filters {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .filters label {
+            font-weight: 500;
+            color: #5e6c84;
+            font-size: 0.875rem;
+        }
+        .filter-dropdown {
+            padding: 0.5rem 2rem 0.5rem 0.75rem;
+            font-size: 0.9rem;
+            border: 1px solid #dfe1e6;
+            border-radius: 6px;
+            background: #ffffff;
+            color: #172b4d;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            min-width: 160px;
+        }
+        .filter-dropdown:hover {
+            border-color: #0065ff;
+        }
+        .filter-dropdown:focus {
+            outline: none;
+            border-color: #0065ff;
+            box-shadow: 0 0 0 2px rgba(0, 101, 255, 0.2);
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 500;
+            color: #172b4d;
+            margin-bottom: 0.5rem;
+        }
+        .page-meta {
+            color: #5e6c84;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+        /* Table styles */
+        .projects-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .projects-table th {
+            text-align: left;
+            padding: 1rem;
+            background: #f4f5f7;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #5e6c84;
+            border-bottom: 2px solid #dfe1e6;
+        }
+        .projects-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #ebecf0;
+            vertical-align: top;
+        }
+        .projects-table tr:hover {
+            background: #f8f9fa;
+        }
+        .projects-table tr.expanded {
+            background: #fffde7;
+        }
+        .project-name {
+            font-weight: 600;
+            color: #172b4d;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .project-name:hover {
+            color: #0065ff;
+        }
+        .expand-icon {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .expanded .expand-icon {
+            transform: rotate(90deg);
+        }
+        .stage-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .stage-discovery { background: #e3f2fd; color: #1565c0; }
+        .stage-planning { background: #fff3e0; color: #e65100; }
+        .stage-development { background: #e8f5e9; color: #2e7d32; }
+        .stage-testing { background: #f3e5f5; color: #7b1fa2; }
+        .stage-rollout { background: #fce4ec; color: #c2185b; }
+        .stage-metrics { background: #e0f2f1; color: #00695c; }
+        .stage-complete { background: #eceff1; color: #546e7a; }
+        .jira-link {
+            color: #0065ff;
+            text-decoration: none;
+        }
+        .jira-link:hover {
+            text-decoration: underline;
+        }
+        .no-jira {
+            color: #97a0af;
+        }
+        /* Expanded row detail */
+        .project-detail {
+            display: none;
+            background: #fafbfc;
+            border-bottom: 2px solid #FFE14D;
+        }
+        .project-detail.visible {
+            display: table-row;
+        }
+        .project-detail td {
+            padding: 1.5rem;
+        }
+        .detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .detail-section {
+            margin-bottom: 1rem;
+        }
+        .detail-section:last-child {
+            margin-bottom: 0;
+        }
+        .detail-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #5e6c84;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .detail-text {
+            font-size: 0.9rem;
+            color: #172b4d;
+        }
+        .slack-summary {
+            background: #f4f5f7;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-style: italic;
+            font-size: 0.875rem;
+            color: #42526e;
+        }
+        .slack-summary.empty {
+            color: #97a0af;
+            font-style: normal;
+        }
+        .doc-list {
+            list-style: none;
+        }
+        .doc-list li {
+            margin-bottom: 0.5rem;
+        }
+        .doc-list a {
+            color: #0065ff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .doc-list a:hover {
+            text-decoration: underline;
+        }
+        .doc-icon {
+            font-size: 1rem;
+        }
+        .link-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .link-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            background: #e3f2fd;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #0065ff;
+            text-decoration: none;
+        }
+        .link-chip:hover {
+            background: #bbdefb;
+        }
+        .link-chip.slack {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .link-chip.jira {
+            background: #e3f2fd;
+            color: #0065ff;
+        }
+        .jira-progress {
+            font-size: 0.75rem;
+            color: #5e6c84;
+            margin-left: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">T</div>
+            Team Hub
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Directory</a>
+            <a href="scorecard.html">Scorecard</a>
+            <a href="projects.html" class="active">Projects</a>
+        </div>
+        <div class="header-right">
+            <div class="filters">
+                <label for="team-filter">Team:</label>
+                <select id="team-filter" class="filter-dropdown">
+                    <option value="all">All Teams</option>
+                    <option value="provider-onboarding">Provider Onboarding</option>
+                    <option value="account-user-setup">Account & User Setup</option>
+                    <option value="billing">Billing</option>
+                </select>
+                <label for="stage-filter">Stage:</label>
+                <select id="stage-filter" class="filter-dropdown">
+                    <option value="all">All Stages</option>
+                    <option value="discovery">Discovery</option>
+                    <option value="planning">Planning</option>
+                    <option value="development">Development</option>
+                    <option value="testing">Testing</option>
+                    <option value="rollout">Rollout</option>
+                    <option value="metrics">Metrics</option>
+                    <option value="complete">Complete</option>
+                </select>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <h1 class="page-title">Project Tracker</h1>
+        <p class="page-meta">Last updated: <span id="last-updated">Loading...</span></p>
+        <div id="projects-table"></div>
+    </main>
+    <script>
+        const TEAM_NAMES = {
+            'provider-onboarding': 'Provider Onboarding',
+            'account-user-setup': 'Account & User Setup',
+            'billing': 'Billing'
+        };
+
+        const STAGE_NAMES = {
+            'discovery': 'Discovery',
+            'planning': 'Planning',
+            'development': 'Development',
+            'testing': 'Testing',
+            'rollout': 'Rollout',
+            'metrics': 'Metrics',
+            'complete': 'Complete'
+        };
+
+        const DOC_ICONS = {
+            'confluence': '📄',
+            'gdoc': '📝',
+            'figma': '🎨',
+            'looker': '📊',
+            'slack': '💬',
+            'jira': '🎫',
+            'other': '🔗'
+        };
+
+        let projectsData = null;
+
+        async function loadProjects() {
+            try {
+                const response = await fetch('projects/data.json');
+                projectsData = await response.json();
+                document.getElementById('last-updated').textContent =
+                    new Date(projectsData.lastUpdated).toLocaleString();
+                renderTable(projectsData.projects);
+            } catch (error) {
+                console.error('Failed to load projects:', error);
+                document.getElementById('projects-table').innerHTML =
+                    '<p style="color: #de350b;">Failed to load projects data.</p>';
+            }
+        }
+
+        function getLeadName(email) {
+            if (!email) return '—';
+            const name = email.split('@')[0].split('.').map(
+                part => part.charAt(0).toUpperCase() + part.slice(1)
+            ).join(' ');
+            return name;
+        }
+
+        function renderTable(projects) {
+            const teamFilter = document.getElementById('team-filter').value;
+            const stageFilter = document.getElementById('stage-filter').value;
+
+            const filtered = projects.filter(p => {
+                if (teamFilter !== 'all' && p.team !== teamFilter) return false;
+                if (stageFilter !== 'all' && p.stage !== stageFilter) return false;
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                document.getElementById('projects-table').innerHTML =
+                    '<p style="color: #5e6c84; padding: 2rem;">No projects match the selected filters.</p>';
+                return;
+            }
+
+            let html = `
+                <table class="projects-table">
+                    <thead>
+                        <tr>
+                            <th>Project</th>
+                            <th>Team</th>
+                            <th>Lead(s)</th>
+                            <th>Stage</th>
+                            <th>Jira</th>
+                            <th>Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            filtered.forEach(project => {
+                const leadNames = (project.leads || []).map(getLeadName).join(', ') || '—';
+                const jiraLinks = (project.jiraEpics || []).map(key =>
+                    `<a href="https://zocdoc.atlassian.net/browse/${key}" class="jira-link" target="_blank">${key}</a>`
+                ).join(', ') || '<span class="no-jira">—</span>';
+
+                html += `
+                    <tr class="project-row" data-id="${project.id}">
+                        <td>
+                            <div class="project-name" onclick="toggleDetail('${project.id}')">
+                                <span class="expand-icon">▶</span>
+                                ${project.name}
+                            </div>
+                        </td>
+                        <td>${TEAM_NAMES[project.team] || project.team}</td>
+                        <td>${leadNames}</td>
+                        <td><span class="stage-badge stage-${project.stage}">${STAGE_NAMES[project.stage] || project.stage}</span></td>
+                        <td>${jiraLinks}</td>
+                        <td>${new Date(projectsData.lastUpdated).toLocaleDateString()}</td>
+                    </tr>
+                    <tr class="project-detail" data-detail-id="${project.id}">
+                        <td colspan="6">
+                            ${renderDetail(project)}
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += '</tbody></table>';
+            document.getElementById('projects-table').innerHTML = html;
+        }
+
+        function renderDetail(project) {
+            const docs = [...(project.documents || []), ...(project.discoveredDocs || [])];
+            const docListHtml = docs.length > 0
+                ? `<ul class="doc-list">${docs.map(doc => `
+                    <li>
+                        <a href="${doc.url}" target="_blank">
+                            <span class="doc-icon">${DOC_ICONS[doc.type] || DOC_ICONS.other}</span>
+                            ${doc.name}
+                        </a>
+                    </li>
+                `).join('')}</ul>`
+                : '<p style="color: #97a0af; font-size: 0.875rem;">No documents linked yet</p>';
+
+            const slackChannels = (project.slackChannels || []).map(ch =>
+                `<a href="https://zocdoc.slack.com/channels/${ch.replace('#', '')}" class="link-chip slack" target="_blank">💬 ${ch}</a>`
+            ).join('');
+
+            const jiraChips = (project.jiraEpics || []).map(key => {
+                const stats = project.jiraStats || {};
+                const progress = stats.total > 0 ? `<span class="jira-progress">(${stats.done}/${stats.total})</span>` : '';
+                return `<a href="https://zocdoc.atlassian.net/browse/${key}" class="link-chip jira" target="_blank">🎫 ${key}${progress}</a>`;
+            }).join('');
+
+            const slackSummary = project.slackSummary
+                ? `<div class="slack-summary">"${project.slackSummary}"</div>`
+                : '<div class="slack-summary empty">No recent Slack activity</div>';
+
+            return `
+                <div class="detail-content">
+                    <div class="detail-left">
+                        <div class="detail-section">
+                            <div class="detail-label">Summary</div>
+                            <div class="detail-text">${project.summary || 'No summary provided'}</div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Slack (5-day summary)</div>
+                            ${slackSummary}
+                        </div>
+                    </div>
+                    <div class="detail-right">
+                        <div class="detail-section">
+                            <div class="detail-label">Documents</div>
+                            ${docListHtml}
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Links</div>
+                            <div class="link-list">
+                                ${slackChannels}
+                                ${jiraChips}
+                                ${!slackChannels && !jiraChips ? '<span style="color: #97a0af; font-size: 0.875rem;">No links yet</span>' : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleDetail(projectId) {
+            const row = document.querySelector(`tr[data-id="${projectId}"]`);
+            const detail = document.querySelector(`tr[data-detail-id="${projectId}"]`);
+
+            row.classList.toggle('expanded');
+            detail.classList.toggle('visible');
+        }
+
+        // Filter handlers
+        document.getElementById('team-filter').addEventListener('change', () => {
+            if (projectsData) renderTable(projectsData.projects);
+        });
+        document.getElementById('stage-filter').addEventListener('change', () => {
+            if (projectsData) renderTable(projectsData.projects);
+        });
+
+        // Load on page ready
+        loadProjects();
+    </script>
+</body>
+</html>
