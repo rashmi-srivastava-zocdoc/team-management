@@ -1,139 +1,215 @@
 {
-  "lastUpdated": "2026-05-01T02:47:48.657024Z",
+  "lastUpdated": "2026-04-30T23:45:00.000Z",
   "projects": [
     {
-      "id": "provider-self-service",
-      "name": "Provider Self-Service Onboarding",
-      "summary": "Enable providers to complete onboarding steps without CSM assistance, including credential verification, NPI validation, and scheduling configuration.",
+      "id": "home-page-enhancements",
+      "name": "Home Page Enhancements for Enterprise",
+      "summary": "Enable home page for existing enterprise customers with improved UX and feature access.",
       "team": "provider-onboarding",
-      "leads": [
-        "alexander.gorowara@zocdoc.com"
-      ],
+      "leads": [],
       "stage": "development",
       "slackChannels": [],
-      "jiraEpics": [],
-      "documents": [
-        {
-          "name": "Tech Spec",
-          "url": "https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/123456/Provider+Self-Service+Tech+Spec",
-          "type": "confluence"
-        }
-      ],
-      "slackSummary": "",
-      "discoveredDocs": [],
-      "jiraStats": {
-        "total": 0,
-        "done": 0,
-        "inProgress": 0
-      }
-    },
-    {
-      "id": "role-bundles-v2",
-      "name": "Role Bundles v2",
-      "summary": "Redesigned role bundle system with improved UX, granular permissions, and better admin controls for practice user management.",
-      "team": "account-user-setup",
-      "leads": [
-        "mayank.choudhary@zocdoc.com"
-      ],
-      "stage": "planning",
-      "slackChannels": [],
-      "jiraEpics": [],
-      "documents": [
-        {
-          "name": "PRD",
-          "url": "https://docs.google.com/document/d/abc123/edit",
-          "type": "gdoc"
-        },
-        {
-          "name": "Designs",
-          "url": "https://figma.com/file/xyz789",
-          "type": "figma"
-        }
-      ],
-      "slackSummary": "",
-      "discoveredDocs": [],
-      "jiraStats": {
-        "total": 0,
-        "done": 0,
-        "inProgress": 0
-      }
-    },
-    {
-      "id": "billing-portal-redesign",
-      "name": "Billing Portal Redesign",
-      "summary": "Modernize the billing portal with improved invoice management, payment history, and self-service billing adjustments.",
-      "team": "billing",
-      "leads": [
-        "dave.ramirez@zocdoc.com"
-      ],
-      "stage": "discovery",
-      "slackChannels": [],
-      "jiraEpics": [],
+      "jiraEpics": ["PROVGRO-5870"],
       "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {
-        "total": 0,
-        "done": 0,
-        "inProgress": 0
-      }
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
     },
     {
-      "id": "provider-grouping-migration",
-      "name": "Provider Grouping Migration",
-      "summary": "Migrate legacy provider grouping data to the new provider-grouping service architecture.",
-      "team": "account-user-setup",
-      "leads": [
-        "garon.smith@zocdoc.com"
-      ],
-      "stage": "testing",
+      "id": "global-nav-bar",
+      "name": "Global Nav Bar",
+      "summary": "Implement global navigation bar across provider-facing applications.",
+      "team": "provider-onboarding",
+      "leads": [],
+      "stage": "development",
       "slackChannels": [],
-      "jiraEpics": [],
-      "documents": [
-        {
-          "name": "Migration Runbook",
-          "url": "https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/789012/Migration+Runbook",
-          "type": "confluence"
-        }
-      ],
+      "jiraEpics": ["PROVGRO-5687"],
+      "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {
-        "total": 0,
-        "done": 0,
-        "inProgress": 0
-      }
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
     },
     {
-      "id": "invoice-automation",
-      "name": "Invoice Automation",
-      "summary": "Automate invoice generation and delivery for recurring billing cycles.",
-      "team": "billing",
-      "leads": [
-        "niko.prassas@zocdoc.com"
-      ],
+      "id": "provgro-infra-hardening-q2",
+      "name": "Infrastructure Hardening Q2 2026",
+      "summary": "Q2 infrastructure hardening initiative for provider onboarding systems.",
+      "team": "provider-onboarding",
+      "leads": [],
+      "stage": "development",
+      "slackChannels": [],
+      "jiraEpics": ["PROVGRO-6335"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "scope-sheet-scalability",
+      "name": "Scope Sheet Upload Scalability",
+      "summary": "Expand scope sheet upload capacity to support 5K providers per batch.",
+      "team": "provider-onboarding",
+      "leads": [],
+      "stage": "development",
+      "slackChannels": [],
+      "jiraEpics": ["PROVGRO-5399"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "provgro-fga-cutover",
+      "name": "FGA Cutover",
+      "summary": "Complete migration to Fine-Grained Authorization (FGA) system for provider onboarding.",
+      "team": "provider-onboarding",
+      "leads": [],
       "stage": "rollout",
       "slackChannels": [],
-      "jiraEpics": [],
-      "documents": [
-        {
-          "name": "Rollout Plan",
-          "url": "https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/456789/Invoice+Automation+Rollout",
-          "type": "confluence"
-        },
-        {
-          "name": "Metrics Dashboard",
-          "url": "https://looker.zocdoc.com/dashboards/billing-automation",
-          "type": "looker"
-        }
-      ],
+      "jiraEpics": ["PROVGRO-5468"],
+      "documents": [],
       "slackSummary": "",
       "discoveredDocs": [],
-      "jiraStats": {
-        "total": 0,
-        "done": 0,
-        "inProgress": 0
-      }
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "activation-velocity",
+      "name": "Increase Onboarding Activation Velocity",
+      "summary": "Q2 2026 initiative to accelerate provider activation during onboarding.",
+      "team": "provider-onboarding",
+      "leads": [],
+      "stage": "development",
+      "slackChannels": [],
+      "jiraEpics": ["PROVGRO-6119"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "misbehavior-locking-phase2",
+      "name": "Misbehavior Locking Phase 2",
+      "summary": "Automated Trust & Safety system for detecting and handling account misbehavior.",
+      "team": "account-user-setup",
+      "leads": [],
+      "stage": "development",
+      "slackChannels": [],
+      "jiraEpics": ["AUTH-3320"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "practice-users-mfa",
+      "name": "Practice Users MFA Requirement",
+      "summary": "Require multi-factor authentication for all practice user logins.",
+      "team": "account-user-setup",
+      "leads": [],
+      "stage": "development",
+      "slackChannels": [],
+      "jiraEpics": ["AUTH-3195"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "agentic-ai-readiness",
+      "name": "Agentic AI Readiness",
+      "summary": "Prepare authentication systems for agentic AI use cases and integrations.",
+      "team": "account-user-setup",
+      "leads": [],
+      "stage": "development",
+      "slackChannels": [],
+      "jiraEpics": ["AUTH-3080"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "user-creation-oom",
+      "name": "User Creation & Invitation OOM",
+      "summary": "Improve user creation and invitation flows with better operational model.",
+      "team": "account-user-setup",
+      "leads": [],
+      "stage": "development",
+      "slackChannels": [],
+      "jiraEpics": ["AUTH-2503"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "billing-csv-downloads",
+      "name": "Billing CSV Downloads",
+      "summary": "Enable CSV download functionality for billing reports and statements.",
+      "team": "billing",
+      "leads": ["leo.pimenta@zocdoc.com"],
+      "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": ["BILL-628"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "mid-market-account-segment",
+      "name": "Mid-Market Account Segment",
+      "summary": "Support for mid-market account segment with appropriate billing configurations.",
+      "team": "billing",
+      "leads": [],
+      "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": ["BILL-623"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "billing-infra-hardening-aaa",
+      "name": "Infrastructure Hardening - AAA C#",
+      "summary": "Infrastructure hardening for AAA (Authentication, Authorization, Accounting) C# services.",
+      "team": "billing",
+      "leads": [],
+      "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": ["BILL-613"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "billing-fga-migration",
+      "name": "FGA Migration",
+      "summary": "Migrate billing systems to Fine-Grained Authorization (FGA).",
+      "team": "billing",
+      "leads": ["leo.pimenta@zocdoc.com"],
+      "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": ["BILL-510"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
+    },
+    {
+      "id": "stripe-payments-intent",
+      "name": "Stripe Payments Intent API Upgrade",
+      "summary": "Upgrade Stripe integration to use the newer Payments Intent API.",
+      "team": "billing",
+      "leads": ["niko.prassas@zocdoc.com"],
+      "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": ["BILL-502"],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {"total": 0, "done": 0, "inProgress": 0}
     }
   ]
 }
