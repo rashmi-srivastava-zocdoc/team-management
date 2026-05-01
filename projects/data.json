@@ -1,18 +1,22 @@
 {
-  "lastUpdated": "2026-05-01T02:46:21.415893Z",
+  "lastUpdated": "2026-04-30T10:00:00Z",
   "projects": [
     {
       "id": "provider-self-service",
       "name": "Provider Self-Service Onboarding",
-      "summary": "Enable providers to complete onboarding steps without CSM assistance",
+      "summary": "Enable providers to complete onboarding steps without CSM assistance, including credential verification, NPI validation, and scheduling configuration.",
       "team": "provider-onboarding",
-      "leads": [
-        "alexander.gorowara@zocdoc.com"
-      ],
+      "leads": ["alexander.gorowara@zocdoc.com"],
       "stage": "development",
       "slackChannels": [],
       "jiraEpics": [],
-      "documents": [],
+      "documents": [
+        {
+          "name": "Tech Spec",
+          "url": "https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/123456/Provider+Self-Service+Tech+Spec",
+          "type": "confluence"
+        }
+      ],
       "slackSummary": "",
       "discoveredDocs": [],
       "jiraStats": {
@@ -24,12 +28,39 @@
     {
       "id": "role-bundles-v2",
       "name": "Role Bundles v2",
-      "summary": "Redesigned role bundle system with improved UX and granular permissions",
+      "summary": "Redesigned role bundle system with improved UX, granular permissions, and better admin controls for practice user management.",
       "team": "account-user-setup",
-      "leads": [
-        "mayank.choudhary@zocdoc.com"
-      ],
+      "leads": ["mayank.choudhary@zocdoc.com"],
       "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": [],
+      "documents": [
+        {
+          "name": "PRD",
+          "url": "https://docs.google.com/document/d/abc123/edit",
+          "type": "gdoc"
+        },
+        {
+          "name": "Designs",
+          "url": "https://figma.com/file/xyz789",
+          "type": "figma"
+        }
+      ],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
+    },
+    {
+      "id": "billing-portal-redesign",
+      "name": "Billing Portal Redesign",
+      "summary": "Modernize the billing portal with improved invoice management, payment history, and self-service billing adjustments.",
+      "team": "billing",
+      "leads": ["dave.ramirez@zocdoc.com"],
+      "stage": "discovery",
       "slackChannels": [],
       "jiraEpics": [],
       "documents": [],
@@ -42,17 +73,50 @@
       }
     },
     {
-      "id": "billing-portal-redesign",
-      "name": "Billing Portal Redesign",
-      "summary": "Modernize the billing portal with improved invoice management",
-      "team": "billing",
-      "leads": [
-        "dave.ramirez@zocdoc.com"
-      ],
-      "stage": "discovery",
+      "id": "provider-grouping-migration",
+      "name": "Provider Grouping Migration",
+      "summary": "Migrate legacy provider grouping data to the new provider-grouping service architecture.",
+      "team": "account-user-setup",
+      "leads": ["garon.smith@zocdoc.com"],
+      "stage": "testing",
       "slackChannels": [],
       "jiraEpics": [],
-      "documents": [],
+      "documents": [
+        {
+          "name": "Migration Runbook",
+          "url": "https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/789012/Migration+Runbook",
+          "type": "confluence"
+        }
+      ],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
+    },
+    {
+      "id": "invoice-automation",
+      "name": "Invoice Automation",
+      "summary": "Automate invoice generation and delivery for recurring billing cycles.",
+      "team": "billing",
+      "leads": ["niko.prassas@zocdoc.com"],
+      "stage": "rollout",
+      "slackChannels": [],
+      "jiraEpics": [],
+      "documents": [
+        {
+          "name": "Rollout Plan",
+          "url": "https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/456789/Invoice+Automation+Rollout",
+          "type": "confluence"
+        },
+        {
+          "name": "Metrics Dashboard",
+          "url": "https://looker.zocdoc.com/dashboards/billing-automation",
+          "type": "looker"
+        }
+      ],
       "slackSummary": "",
       "discoveredDocs": [],
       "jiraStats": {
