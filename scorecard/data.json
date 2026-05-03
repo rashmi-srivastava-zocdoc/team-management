@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-02T09:54:13.480688",
+  "lastUpdated": "2026-05-03T09:59:12.011941",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -105,8 +105,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-05-01 (1d ago)"
+              "days_ago": 2,
+              "notes": "Last commit: 2026-05-01 (2d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -153,8 +153,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 100,
-              "notes": "100 lines avg (30d)"
+              "value": 104,
+              "notes": "104 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -237,8 +237,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-04-28 (4d ago)"
+              "days_ago": 5,
+              "notes": "Last commit: 2026-04-28 (5d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -359,8 +359,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 3,
-              "notes": "Last commit: 2026-04-29 (3d ago)"
+              "days_ago": 4,
+              "notes": "Last commit: 2026-04-29 (4d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -481,8 +481,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-04-28 (4d ago)"
+              "days_ago": 5,
+              "notes": "Last commit: 2026-04-28 (5d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -603,8 +603,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 8,
-              "notes": "Last commit: 2026-04-24 (8d ago)"
+              "days_ago": 9,
+              "notes": "Last commit: 2026-04-24 (9d ago)"
             },
             "plinth": {
               "tier": "t1",
