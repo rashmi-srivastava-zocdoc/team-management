@@ -1,0 +1,23 @@
+{
+  "lastUpdated": "2026-05-03T00:00:00Z",
+  "teams": [
+    {
+      "id": "peacock",
+      "name": "Peacock (Provider Onboarding)",
+      "jiraProject": "PROVGRO",
+      "memberCount": 9
+    },
+    {
+      "id": "pterodactyl",
+      "name": "Pterodactyl (Account & User Setup)",
+      "jiraProject": "PTERODACTL",
+      "memberCount": 7
+    },
+    {
+      "id": "billing",
+      "name": "Billing",
+      "jiraProject": "BILL",
+      "memberCount": 9
+    }
+  ]
+}
