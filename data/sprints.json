@@ -1,25 +1,25 @@
 {
-  "lastUpdated": "2026-05-04T04:16:56.545790",
+  "lastUpdated": "2026-05-04T08:41:30.118254",
   "2026-05-03": {
     "teams": {}
   },
   "2026-05-04": {
     "teams": {
       "peacock": {
-        "sprint_name": "Provider Growth Sprint 246",
-        "state": "closed",
-        "total_issues": 76,
-        "done_issues": 2,
+        "sprint_name": "Peacock Sprint 340",
+        "state": "active",
+        "total_issues": 87,
+        "done_issues": 28,
         "total_points": 0,
         "done_points": 0,
         "completion_rate": 0
       },
       "pterodactyl": {
-        "sprint_name": "Pterodactl Sprint 338",
-        "state": "closed",
-        "total_issues": 35,
-        "done_issues": 0,
-        "total_points": 9.0,
+        "sprint_name": "Pterodactl Sprint 340",
+        "state": "active",
+        "total_issues": 47,
+        "done_issues": 12,
+        "total_points": 5.5,
         "done_points": 0,
         "completion_rate": 0.0
       },
@@ -27,7 +27,7 @@
         "sprint_name": "Billing 339 - 2026.04.27-05.08",
         "state": "active",
         "total_issues": 41,
-        "done_issues": 0,
+        "done_issues": 5,
         "total_points": 0,
         "done_points": 0,
         "completion_rate": 0
@@ -37,28 +37,28 @@
   "2026-04-13": {
     "teams": {
       "peacock": {
-        "sprint_name": "Provider Growth Sprint 246",
+        "sprint_name": "Peacock Sprint 338",
         "state": "closed",
-        "total_issues": 76,
-        "done_issues": 2,
-        "total_points": 0,
-        "done_points": 0,
-        "completion_rate": 0
+        "total_issues": 78,
+        "done_issues": 74,
+        "total_points": 1.0,
+        "done_points": 1.0,
+        "completion_rate": 100.0
       },
       "pterodactyl": {
         "sprint_name": "Pterodactl Sprint 338",
         "state": "closed",
         "total_issues": 35,
-        "done_issues": 0,
+        "done_issues": 34,
         "total_points": 9.0,
-        "done_points": 0,
-        "completion_rate": 0.0
+        "done_points": 9.0,
+        "completion_rate": 100.0
       },
       "billing": {
         "sprint_name": "Billing 339 - 2026.04.27-05.08",
         "state": "active",
         "total_issues": 41,
-        "done_issues": 0,
+        "done_issues": 5,
         "total_points": 0,
         "done_points": 0,
         "completion_rate": 0
@@ -68,20 +68,569 @@
   "2026-04-20": {
     "teams": {
       "peacock": {
-        "sprint_name": "Provider Growth Sprint 246",
+        "sprint_name": "Peacock Sprint 339",
         "state": "closed",
-        "total_issues": 76,
-        "done_issues": 2,
+        "total_issues": 79,
+        "done_issues": 73,
         "total_points": 0,
         "done_points": 0,
         "completion_rate": 0
       },
       "pterodactyl": {
+        "sprint_name": "Pterodactl Sprint 339",
+        "state": "closed",
+        "total_issues": 35,
+        "done_issues": 28,
+        "total_points": 3.0,
+        "done_points": 1.5,
+        "completion_rate": 50.0
+      },
+      "billing": {
+        "sprint_name": "Billing 338 - 2026.04.13-04.24",
+        "state": "closed",
+        "total_issues": 57,
+        "done_issues": 49,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-01-01": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 331",
+        "state": "closed",
+        "total_issues": 14,
+        "done_issues": 14,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactyl Sprint 331",
+        "state": "closed",
+        "total_issues": 17,
+        "done_issues": 16,
+        "total_points": 3.0,
+        "done_points": 1.5,
+        "completion_rate": 50.0
+      },
+      "billing": {
+        "sprint_name": "Billing 330 - 2025.12.15-01.02",
+        "state": "closed",
+        "total_issues": 34,
+        "done_issues": 34,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-01-08": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 332",
+        "state": "closed",
+        "total_issues": 62,
+        "done_issues": 62,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactyl Sprint 332",
+        "state": "closed",
+        "total_issues": 29,
+        "done_issues": 27,
+        "total_points": 5.5,
+        "done_points": 4.0,
+        "completion_rate": 72.7
+      },
+      "billing": {
+        "sprint_name": "Billing 331 - 2026.01.06-01.16",
+        "state": "closed",
+        "total_issues": 36,
+        "done_issues": 32,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-01-15": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 332",
+        "state": "closed",
+        "total_issues": 62,
+        "done_issues": 62,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactyl Sprint 332",
+        "state": "closed",
+        "total_issues": 29,
+        "done_issues": 27,
+        "total_points": 5.5,
+        "done_points": 4.0,
+        "completion_rate": 72.7
+      },
+      "billing": {
+        "sprint_name": "Billing 331 - 2026.01.06-01.16",
+        "state": "closed",
+        "total_issues": 36,
+        "done_issues": 32,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-01-22": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 333",
+        "state": "closed",
+        "total_issues": 64,
+        "done_issues": 62,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactyl Sprint 333",
+        "state": "closed",
+        "total_issues": 29,
+        "done_issues": 27,
+        "total_points": 5.5,
+        "done_points": 4.0,
+        "completion_rate": 72.7
+      },
+      "billing": {
+        "sprint_name": "Billing 332 - 2026.01.20-01.30",
+        "state": "closed",
+        "total_issues": 40,
+        "done_issues": 40,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-01-29": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 309",
+        "state": "closed",
+        "total_issues": 43,
+        "done_issues": 43,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactyl Sprint 333",
+        "state": "closed",
+        "total_issues": 29,
+        "done_issues": 27,
+        "total_points": 5.5,
+        "done_points": 4.0,
+        "completion_rate": 72.7
+      },
+      "billing": {
+        "sprint_name": "Billing 332 - 2026.01.20-01.30",
+        "state": "closed",
+        "total_issues": 40,
+        "done_issues": 40,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-02-05": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 334",
+        "state": "closed",
+        "total_issues": 68,
+        "done_issues": 66,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactly Sprint 334",
+        "state": "closed",
+        "total_issues": 17,
+        "done_issues": 16,
+        "total_points": 4.0,
+        "done_points": 2.5,
+        "completion_rate": 62.5
+      },
+      "billing": {
+        "sprint_name": "Billing 333 - 2025.02.02-02.13",
+        "state": "closed",
+        "total_issues": 30,
+        "done_issues": 30,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-02-12": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 334",
+        "state": "closed",
+        "total_issues": 68,
+        "done_issues": 66,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactly Sprint 334",
+        "state": "closed",
+        "total_issues": 17,
+        "done_issues": 16,
+        "total_points": 4.0,
+        "done_points": 2.5,
+        "completion_rate": 62.5
+      },
+      "billing": {
+        "sprint_name": "Billing 333 - 2025.02.02-02.13",
+        "state": "closed",
+        "total_issues": 30,
+        "done_issues": 30,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-02-19": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 335",
+        "state": "closed",
+        "total_issues": 71,
+        "done_issues": 66,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactyl Sprint 335",
+        "state": "closed",
+        "total_issues": 36,
+        "done_issues": 29,
+        "total_points": 5.5,
+        "done_points": 4.0,
+        "completion_rate": 72.7
+      }
+    }
+  },
+  "2026-02-26": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 335",
+        "state": "closed",
+        "total_issues": 71,
+        "done_issues": 66,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactyl Sprint 335",
+        "state": "closed",
+        "total_issues": 36,
+        "done_issues": 29,
+        "total_points": 5.5,
+        "done_points": 4.0,
+        "completion_rate": 72.7
+      },
+      "billing": {
+        "sprint_name": "Billing 334 - 2026.02.16-02.27",
+        "state": "closed",
+        "total_issues": 31,
+        "done_issues": 28,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-03-05": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 336",
+        "state": "closed",
+        "total_issues": 77,
+        "done_issues": 72,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactyl Sprint 336",
+        "state": "closed",
+        "total_issues": 40,
+        "done_issues": 33,
+        "total_points": 4.0,
+        "done_points": 2.5,
+        "completion_rate": 62.5
+      },
+      "billing": {
+        "sprint_name": "Billing 335 - 2026.03.02-03.13",
+        "state": "closed",
+        "total_issues": 57,
+        "done_issues": 54,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-03-12": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 336",
+        "state": "closed",
+        "total_issues": 77,
+        "done_issues": 72,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactyl Sprint 336",
+        "state": "closed",
+        "total_issues": 40,
+        "done_issues": 33,
+        "total_points": 4.0,
+        "done_points": 2.5,
+        "completion_rate": 62.5
+      },
+      "billing": {
+        "sprint_name": "Billing 335 - 2026.03.02-03.13",
+        "state": "closed",
+        "total_issues": 57,
+        "done_issues": 54,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-03-19": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 337",
+        "state": "closed",
+        "total_issues": 70,
+        "done_issues": 67,
+        "total_points": 1.0,
+        "done_points": 1.0,
+        "completion_rate": 100.0
+      },
+      "pterodactyl": {
+        "sprint_name": "Sprint 337",
+        "state": "closed",
+        "total_issues": 39,
+        "done_issues": 33,
+        "total_points": 9.5,
+        "done_points": 8.0,
+        "completion_rate": 84.2
+      },
+      "billing": {
+        "sprint_name": "Billing 336 - 2026.03.16-03.27",
+        "state": "closed",
+        "total_issues": 71,
+        "done_issues": 65,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-03-26": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 337",
+        "state": "closed",
+        "total_issues": 70,
+        "done_issues": 67,
+        "total_points": 1.0,
+        "done_points": 1.0,
+        "completion_rate": 100.0
+      },
+      "pterodactyl": {
+        "sprint_name": "Sprint 337",
+        "state": "closed",
+        "total_issues": 39,
+        "done_issues": 33,
+        "total_points": 9.5,
+        "done_points": 8.0,
+        "completion_rate": 84.2
+      },
+      "billing": {
+        "sprint_name": "Billing 336 - 2026.03.16-03.27",
+        "state": "closed",
+        "total_issues": 71,
+        "done_issues": 65,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-04-02": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 338",
+        "state": "closed",
+        "total_issues": 78,
+        "done_issues": 74,
+        "total_points": 1.0,
+        "done_points": 1.0,
+        "completion_rate": 100.0
+      },
+      "pterodactyl": {
         "sprint_name": "Pterodactl Sprint 338",
         "state": "closed",
         "total_issues": 35,
-        "done_issues": 0,
+        "done_issues": 34,
         "total_points": 9.0,
+        "done_points": 9.0,
+        "completion_rate": 100.0
+      },
+      "billing": {
+        "sprint_name": "Billing 337 - 2026.03.30-04.10",
+        "state": "closed",
+        "total_issues": 54,
+        "done_issues": 50,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-04-09": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 338",
+        "state": "closed",
+        "total_issues": 78,
+        "done_issues": 74,
+        "total_points": 1.0,
+        "done_points": 1.0,
+        "completion_rate": 100.0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactl Sprint 338",
+        "state": "closed",
+        "total_issues": 35,
+        "done_issues": 34,
+        "total_points": 9.0,
+        "done_points": 9.0,
+        "completion_rate": 100.0
+      },
+      "billing": {
+        "sprint_name": "Billing 337 - 2026.03.30-04.10",
+        "state": "closed",
+        "total_issues": 54,
+        "done_issues": 50,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-04-16": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 309",
+        "state": "closed",
+        "total_issues": 43,
+        "done_issues": 43,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactl Sprint 339",
+        "state": "closed",
+        "total_issues": 35,
+        "done_issues": 28,
+        "total_points": 3.0,
+        "done_points": 1.5,
+        "completion_rate": 50.0
+      },
+      "billing": {
+        "sprint_name": "Billing 338 - 2026.04.13-04.24",
+        "state": "closed",
+        "total_issues": 57,
+        "done_issues": 49,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-04-23": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 339",
+        "state": "closed",
+        "total_issues": 79,
+        "done_issues": 73,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactl Sprint 339",
+        "state": "closed",
+        "total_issues": 35,
+        "done_issues": 28,
+        "total_points": 3.0,
+        "done_points": 1.5,
+        "completion_rate": 50.0
+      },
+      "billing": {
+        "sprint_name": "Billing 338 - 2026.04.13-04.24",
+        "state": "closed",
+        "total_issues": 57,
+        "done_issues": 49,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-04-30": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Peacock Sprint 340",
+        "state": "active",
+        "total_issues": 87,
+        "done_issues": 28,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactl Sprint 340",
+        "state": "active",
+        "total_issues": 47,
+        "done_issues": 12,
+        "total_points": 5.5,
         "done_points": 0,
         "completion_rate": 0.0
       },
@@ -89,7 +638,7 @@
         "sprint_name": "Billing 339 - 2026.04.27-05.08",
         "state": "active",
         "total_issues": 41,
-        "done_issues": 0,
+        "done_issues": 6,
         "total_points": 0,
         "done_points": 0,
         "completion_rate": 0

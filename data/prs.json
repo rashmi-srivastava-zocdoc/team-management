@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-04T04:16:56.544645",
+  "lastUpdated": "2026-05-04T08:41:30.113097",
   "2026-05-03": {
     "teams": {
       "peacock": {
@@ -45,6 +45,222 @@
       "pterodactyl": {
         "total_prs": 22,
         "unique_authors": 8
+      }
+    }
+  },
+  "2026-01-01": {
+    "teams": {
+      "peacock": {
+        "total_prs": 1,
+        "unique_authors": 1
+      },
+      "pterodactyl": {
+        "total_prs": 2,
+        "unique_authors": 1
+      }
+    }
+  },
+  "2026-01-08": {
+    "teams": {
+      "peacock": {
+        "total_prs": 2,
+        "unique_authors": 1
+      },
+      "pterodactyl": {
+        "total_prs": 10,
+        "unique_authors": 3
+      }
+    }
+  },
+  "2026-01-15": {
+    "teams": {
+      "peacock": {
+        "total_prs": 6,
+        "unique_authors": 5
+      },
+      "pterodactyl": {
+        "total_prs": 17,
+        "unique_authors": 7
+      }
+    }
+  },
+  "2026-01-22": {
+    "teams": {
+      "peacock": {
+        "total_prs": 3,
+        "unique_authors": 2
+      },
+      "pterodactyl": {
+        "total_prs": 18,
+        "unique_authors": 5
+      }
+    }
+  },
+  "2026-01-29": {
+    "teams": {
+      "peacock": {
+        "total_prs": 5,
+        "unique_authors": 5
+      },
+      "pterodactyl": {
+        "total_prs": 15,
+        "unique_authors": 3
+      }
+    }
+  },
+  "2026-02-05": {
+    "teams": {
+      "peacock": {
+        "total_prs": 2,
+        "unique_authors": 1
+      },
+      "pterodactyl": {
+        "total_prs": 26,
+        "unique_authors": 8
+      }
+    }
+  },
+  "2026-02-12": {
+    "teams": {
+      "peacock": {
+        "total_prs": 8,
+        "unique_authors": 4
+      },
+      "pterodactyl": {
+        "total_prs": 10,
+        "unique_authors": 4
+      }
+    }
+  },
+  "2026-02-19": {
+    "teams": {
+      "peacock": {
+        "total_prs": 8,
+        "unique_authors": 5
+      },
+      "pterodactyl": {
+        "total_prs": 21,
+        "unique_authors": 8
+      }
+    }
+  },
+  "2026-02-26": {
+    "teams": {
+      "peacock": {
+        "total_prs": 5,
+        "unique_authors": 2
+      },
+      "pterodactyl": {
+        "total_prs": 19,
+        "unique_authors": 3
+      }
+    }
+  },
+  "2026-03-05": {
+    "teams": {
+      "peacock": {
+        "total_prs": 6,
+        "unique_authors": 3
+      },
+      "pterodactyl": {
+        "total_prs": 21,
+        "unique_authors": 6
+      }
+    }
+  },
+  "2026-03-12": {
+    "teams": {
+      "peacock": {
+        "total_prs": 3,
+        "unique_authors": 2
+      },
+      "pterodactyl": {
+        "total_prs": 15,
+        "unique_authors": 5
+      }
+    }
+  },
+  "2026-03-19": {
+    "teams": {
+      "peacock": {
+        "total_prs": 6,
+        "unique_authors": 3
+      },
+      "pterodactyl": {
+        "total_prs": 17,
+        "unique_authors": 5
+      }
+    }
+  },
+  "2026-03-26": {
+    "teams": {
+      "peacock": {
+        "total_prs": 3,
+        "unique_authors": 2
+      },
+      "pterodactyl": {
+        "total_prs": 19,
+        "unique_authors": 5
+      }
+    }
+  },
+  "2026-04-02": {
+    "teams": {
+      "peacock": {
+        "total_prs": 13,
+        "unique_authors": 4
+      },
+      "pterodactyl": {
+        "total_prs": 11,
+        "unique_authors": 3
+      }
+    }
+  },
+  "2026-04-09": {
+    "teams": {
+      "peacock": {
+        "total_prs": 6,
+        "unique_authors": 3
+      },
+      "pterodactyl": {
+        "total_prs": 23,
+        "unique_authors": 9
+      }
+    }
+  },
+  "2026-04-16": {
+    "teams": {
+      "peacock": {
+        "total_prs": 3,
+        "unique_authors": 2
+      },
+      "pterodactyl": {
+        "total_prs": 19,
+        "unique_authors": 7
+      }
+    }
+  },
+  "2026-04-23": {
+    "teams": {
+      "peacock": {
+        "total_prs": 1,
+        "unique_authors": 1
+      },
+      "pterodactyl": {
+        "total_prs": 26,
+        "unique_authors": 11
+      }
+    }
+  },
+  "2026-04-30": {
+    "teams": {
+      "peacock": {
+        "total_prs": 0,
+        "unique_authors": 0
+      },
+      "pterodactyl": {
+        "total_prs": 22,
+        "unique_authors": 7
       }
     }
   }
