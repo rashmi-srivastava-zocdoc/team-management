@@ -1,6 +1,37 @@
 {
-  "lastUpdated": "2026-05-03T21:38:58.361535",
+  "lastUpdated": "2026-05-04T03:53:09.246308",
   "2026-05-03": {
     "teams": {}
+  },
+  "2026-05-04": {
+    "teams": {
+      "peacock": {
+        "sprint_name": "Provider Growth Sprint 246",
+        "state": "closed",
+        "total_issues": 76,
+        "done_issues": 2,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactl Sprint 338",
+        "state": "closed",
+        "total_issues": 35,
+        "done_issues": 0,
+        "total_points": 9.0,
+        "done_points": 0,
+        "completion_rate": 0.0
+      },
+      "billing": {
+        "sprint_name": "Billing 339 - 2026.04.27-05.08",
+        "state": "active",
+        "total_issues": 41,
+        "done_issues": 0,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
   }
 }
