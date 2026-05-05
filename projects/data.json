@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-05T13:00:00.000000Z",
+  "lastUpdated": "2026-05-05T13:15:00.000000Z",
   "projects": [
     {
       "id": "cms-launch",
@@ -49,7 +49,9 @@
       "summary": "Visual progress tracker at the top of onboarding checklist showing how far users have gone and tasks remaining.",
       "team": "provider-onboarding",
       "initiative": "Home Page Self Serve Enhancements",
-      "leads": [],
+      "leads": [
+        "kelly.lee@zocdoc.com"
+      ],
       "stage": "planning",
       "slackChannels": [],
       "jiraEpics": [],
@@ -68,7 +70,9 @@
       "summary": "Visual explanation of how completing each onboarding task impacts the patient experience.",
       "team": "provider-onboarding",
       "initiative": "Home Page Self Serve Enhancements",
-      "leads": [],
+      "leads": [
+        "kelly.lee@zocdoc.com"
+      ],
       "stage": "planning",
       "slackChannels": [],
       "jiraEpics": [],
@@ -86,7 +90,9 @@
       "name": "Forced Onboarding Step Order",
       "summary": "Direct users through onboarding tasks instead of choose-your-own-adventure style. Tasks without dependencies can be skipped.",
       "team": "provider-onboarding",
-      "leads": [],
+      "leads": [
+        "kelly.lee@zocdoc.com"
+      ],
       "stage": "planning",
       "slackChannels": [],
       "jiraEpics": [],
@@ -105,7 +111,9 @@
       "name": "Bulk NPI in Onboarding",
       "summary": "Bulk NPI modal when launching Create providers task, enabling users to add multiple providers at once with prefilled information.",
       "team": "provider-onboarding",
-      "leads": [],
+      "leads": [
+        "kelly.lee@zocdoc.com"
+      ],
       "stage": "planning",
       "slackChannels": [],
       "jiraEpics": [],
