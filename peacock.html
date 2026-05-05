@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Onboarding (Peacock) - Team Hub</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #FFE14D;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            background: #f8f9fa;
+            color: #1a1a1a;
+        }
+        .nav-links a.active {
+            background: #FFE14D;
+            color: #1a1a1a;
+        }
+        .hero {
+            background: linear-gradient(135deg, #FFE14D 0%, #ffd700 100%);
+            padding: 2rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+        .hero p {
+            color: #333;
+            font-size: 1.1rem;
+        }
+        .hero-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .hero-links a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.5rem 1rem;
+            background: #ffffff;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .hero-links a:hover {
+            background: #f8f9fa;
+            transform: translateY(-1px);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 2px solid #e8e8e8;
+            margin-bottom: 2rem;
+        }
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+        .tab:hover {
+            color: #1a1a1a;
+        }
+        .tab.active {
+            color: #1a1a1a;
+            border-bottom-color: #FFE14D;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .section-card {
+            background: #ffffff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .section-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        .mission-text {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.8;
+        }
+        .team-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .team-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: #fafafa;
+            border-bottom: 2px solid #e8e8e8;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+        }
+        .team-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: middle;
+        }
+        .team-table tr:hover {
+            background: #fafafa;
+        }
+        .team-table tr:last-child td {
+            border-bottom: none;
+        }
+        .member-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .member-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #FFE14D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #1a1a1a;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+        .member-name {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .member-email {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        .member-role {
+            background: #f0f0f0;
+            padding: 0.3rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+        .member-role.em { background: #FFE14D; color: #1a1a1a; }
+        .member-role.pm { background: #e8e8e8; color: #1a1a1a; }
+        .member-role.swe { background: #d4edda; color: #155724; }
+        .member-role.qa { background: #cce5ff; color: #004085; }
+        .member-role.ux { background: #f8d7da; color: #721c24; }
+        .member-role.pa { background: #e2d5f1; color: #4a235a; }
+        .github-link {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.35rem 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .github-link:hover {
+            background: #FFE14D;
+            border-color: #FFE14D;
+            color: #1a1a1a;
+        }
+        .github-link svg {
+            width: 16px;
+            height: 16px;
+        }
+        .no-link {
+            color: #ccc;
+            font-size: 0.85rem;
+        }
+        .ownership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .ownership-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 4px solid #FFE14D;
+        }
+        .ownership-item h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        .ownership-item p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .ownership-item .links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .ownership-item .links a {
+            font-size: 0.8rem;
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .ownership-item .links a:hover {
+            text-decoration: underline;
+        }
+        .project-card {
+            background: #ffffff;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .project-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        .project-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.75rem;
+        }
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+        }
+        .project-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .stage-badge {
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .stage-badge.planning { background: #e8e8e8; color: #666; }
+        .stage-badge.development { background: #cce5ff; color: #004085; }
+        .stage-badge.testing { background: #fff3cd; color: #856404; }
+        .stage-badge.rollout { background: #d4edda; color: #155724; }
+        .stage-badge.completed { background: #d4edda; color: #155724; }
+        .initiative-group {
+            margin-bottom: 2rem;
+        }
+        .initiative-group h4 {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        @media (max-width: 768px) {
+            .header { flex-direction: column; gap: 1rem; }
+            .hero h1 { font-size: 1.5rem; }
+            .tabs { overflow-x: auto; }
+            .tab { padding: 0.75rem 1rem; white-space: nowrap; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">TH</span>
+            Team Hub
+        </a>
+        <nav class="nav-links">
+            <a href="index.html">Teams</a>
+            <a href="peacock.html" class="active">Peacock</a>
+            <a href="billing.html">Billing</a>
+            <a href="scorecard.html">Scorecard</a>
+            <a href="projects.html">Projects</a>
+            <a href="metrics.html">Metrics</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Provider Onboarding (Peacock)</h1>
+        <p>Making provider onboarding fast, simple, and delightful</p>
+        <div class="hero-links">
+            <a href="https://zocdoc.atlassian.net/jira/software/c/projects/PROVGRO/boards/229" target="_blank">Jira Board</a>
+            <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/39427858/Provider+Onboarding+-+Peacock" target="_blank">Confluence</a>
+            <a href="https://zocdoc.pagerduty.com/schedules?teamIds=PCNWGAE" target="_blank">PagerDuty</a>
+            <a href="https://zocdoc.slack.com/channels/provider-peacock-team" target="_blank">#provider-peacock-team</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active" data-tab="mission">Mission</button>
+            <button class="tab" data-tab="team">Team</button>
+            <button class="tab" data-tab="ownership">Ownership</button>
+            <button class="tab" data-tab="projects">Projects</button>
+        </div>
+
+        <div id="mission" class="tab-content active">
+            <div class="section-card">
+                <h3>Team Mission</h3>
+                <p class="mission-text">
+                    We enable healthcare providers to join Zocdoc quickly and easily, ensuring they can start
+                    seeing patients as soon as possible. Our focus is on reducing friction in the onboarding
+                    process while maintaining data quality and compliance.
+                </p>
+            </div>
+            <div class="section-card">
+                <h3>Key Objectives</h3>
+                <ul style="margin-left: 1.5rem; color: #333;">
+                    <li>Reduce time-to-activation for new providers</li>
+                    <li>Increase self-service onboarding completion rates</li>
+                    <li>Improve provider data quality through better validation</li>
+                    <li>Scale onboarding infrastructure for enterprise customers</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="team" class="tab-content">
+            <div class="section-card">
+                <h3>Team Members</h3>
+                <table class="team-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>GitHub</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">RS</div><span class="member-name">Rashmi Srivastava</span></div></td>
+                            <td class="member-email">rashmi.srivastava@zocdoc.com</td>
+                            <td><span class="member-role em">EM</span></td>
+                            <td><span class="no-link">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">AG</div><span class="member-name">Alexander Gorowara</span></div></td>
+                            <td class="member-email">alexander.gorowara@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><a href="https://github.com/alexander-gorowara-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">CP</div><span class="member-name">Clark Pathakis</span></div></td>
+                            <td class="member-email">clark.pathakis@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><a href="https://github.com/clark-pathakis-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">ME</div><span class="member-name">Manon Escoffier</span></div></td>
+                            <td class="member-email">manon.escoffier@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><span class="no-link">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">SM</div><span class="member-name">Sydney Morton</span></div></td>
+                            <td class="member-email">sydney.morton@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><a href="https://github.com/sydney-morton-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">KL</div><span class="member-name">Kelly Lee</span></div></td>
+                            <td class="member-email">kelly.lee@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><span class="no-link">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">RB</div><span class="member-name">Renan Borges</span></div></td>
+                            <td class="member-email">renan.borges@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><span class="no-link">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">AP</div><span class="member-name">Alex Pryadun</span></div></td>
+                            <td class="member-email">alex.pryadun@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><a href="https://github.com/alex-pryadun-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">ES</div><span class="member-name">Eftal Sogukoglu</span></div></td>
+                            <td class="member-email">eftal.sogukoglu@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><span class="no-link">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">SA</div><span class="member-name">Simran Arora</span></div></td>
+                            <td class="member-email">simran.arora@zocdoc.com</td>
+                            <td><span class="member-role qa">QA</span></td>
+                            <td><span class="no-link">-</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="ownership" class="tab-content">
+            <div class="section-card">
+                <h3>Systems & Services</h3>
+                <div class="ownership-grid">
+                    <div class="ownership-item">
+                        <h4>Provider Home Webapp</h4>
+                        <p>React-based provider portal for onboarding and account management</p>
+                        <div class="links">
+                            <a href="https://github.com/AuronHealth/provider-home-webapp" target="_blank">GitHub</a>
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/provider-home-webapp" target="_blank">Backstage</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item">
+                        <h4>Peacock Service</h4>
+                        <p>Core onboarding orchestration service</p>
+                        <div class="links">
+                            <a href="https://github.com/AuronHealth/peacock" target="_blank">GitHub</a>
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/peacock" target="_blank">Backstage</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item">
+                        <h4>Task Framework</h4>
+                        <p>Onboarding task management and tracking system</p>
+                        <div class="links">
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/task-framework" target="_blank">Backstage</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item">
+                        <h4>Scope Sheet Upload</h4>
+                        <p>Bulk provider import via spreadsheet upload</p>
+                        <div class="links">
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/scope-sheet-upload" target="_blank">Backstage</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item">
+                        <h4>Provider Data Services</h4>
+                        <p>Provider profile and data management APIs</p>
+                        <div class="links">
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/provider-data" target="_blank">Backstage</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item">
+                        <h4>Global Navigation</h4>
+                        <p>Shared navigation component for provider portal</p>
+                        <div class="links">
+                            <a href="https://github.com/AuronHealth/fromo" target="_blank">Fromo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="projects" class="tab-content">
+            <div class="initiative-group">
+                <h4>Home Page Self Serve Enhancements</h4>
+                <div class="project-card">
+                    <h4>What You'll Need Guidance</h4>
+                    <p>Tooltips within each onboarding task explaining what users need to complete it (e.g., headshots for providers).</p>
+                    <div class="project-meta">
+                        <span class="stage-badge development">Development</span>
+                        <span>Lead: Kelly Lee</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>Pizza Tracker</h4>
+                    <p>Visual progress tracker at the top of onboarding checklist showing how far users have gone and tasks remaining.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span>Lead: Kelly Lee</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>Patient Side Impact</h4>
+                    <p>Visual explanation of how completing each onboarding task impacts the patient experience.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span>Lead: Kelly Lee</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>Forced Onboarding Step Order</h4>
+                    <p>Direct users through onboarding tasks instead of choose-your-own-adventure style.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span>Lead: Kelly Lee</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>Bulk NPI in Onboarding</h4>
+                    <p>Bulk NPI modal when launching Create providers task, enabling users to add multiple providers at once.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span>Lead: Kelly Lee</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="initiative-group">
+                <h4>Global Nav Refresh</h4>
+                <div class="project-card">
+                    <h4>Global Nav Refresh</h4>
+                    <p>Left nav UI, routes revamp, role-based access, migrate pages using skill, navigation mapping old to new.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge development">Development</span>
+                        <span>Leads: Sydney Morton, Clark Pathakis</span>
+                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5687" target="_blank">PROVGRO-5687</a></span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>Monorepo Consolidation</h4>
+                    <p>Move provider-home-webapp to Fromo.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span>Lead: Sydney Morton</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>Reduce Monolith Dependency</h4>
+                    <p>Move navbar data to GQL OOM.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span>Lead: Clark Pathakis</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="initiative-group">
+                <h4>Provider Data Rebuild</h4>
+                <div class="project-card">
+                    <h4>Data Rebuild: Funnel Tracking</h4>
+                    <p>Foundational funnel tracking via Task Framework, bringing enterprise OOP flows in-product.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>Data Rebuild: Active Statuses</h4>
+                    <p>Trustworthy, real-time signals for provider readiness and activation that remain stable as systems evolve.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span>Lead: Eftal Sogukoglu</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="initiative-group">
+                <h4>Infrastructure & Platform</h4>
+                <div class="project-card">
+                    <h4>CMS Launch</h4>
+                    <p>Support new self sign up flow for CMS providers.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge rollout">Rollout</span>
+                        <span>Lead: Jacqueline Hang</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>Infrastructure Hardening Q2 2026</h4>
+                    <p>Q2 infrastructure hardening initiative for provider onboarding systems.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge development">Development</span>
+                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-6335" target="_blank">PROVGRO-6335</a></span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>Scope Sheet Upload Scalability</h4>
+                    <p>Expand scope sheet upload capacity to support 5K providers per batch.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge development">Development</span>
+                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5399" target="_blank">PROVGRO-5399</a></span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>FGA Migration</h4>
+                    <p>Complete migration to Fine-Grained Authorization (FGA) system for provider onboarding.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge testing">Testing</span>
+                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5468" target="_blank">PROVGRO-5468</a></span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>Increase Onboarding Activation Velocity</h4>
+                    <p>Q2 2026 initiative to accelerate provider activation during onboarding.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge development">Development</span>
+                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-6119" target="_blank">PROVGRO-6119</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="initiative-group">
+                <h4>Completed</h4>
+                <div class="project-card">
+                    <h4>Home Page Enhancements for Enterprise</h4>
+                    <p>Enable home page for existing enterprise customers with improved UX and feature access.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge completed">Completed</span>
+                        <span>Lead: Manon Escoffier</span>
+                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5870" target="_blank">PROVGRO-5870</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

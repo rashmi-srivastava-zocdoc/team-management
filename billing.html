@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing - Team Hub</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #FFE14D;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            background: #f8f9fa;
+            color: #1a1a1a;
+        }
+        .nav-links a.active {
+            background: #FFE14D;
+            color: #1a1a1a;
+        }
+        .hero {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 2rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+        .hero p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+        }
+        .hero-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .hero-links a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.5rem 1rem;
+            background: #ffffff;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .hero-links a:hover {
+            background: #f8f9fa;
+            transform: translateY(-1px);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 2px solid #e8e8e8;
+            margin-bottom: 2rem;
+        }
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+        .tab:hover {
+            color: #1a1a1a;
+        }
+        .tab.active {
+            color: #1a1a1a;
+            border-bottom-color: #4facfe;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .section-card {
+            background: #ffffff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .section-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        .mission-text {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.8;
+        }
+        .team-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .team-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: #fafafa;
+            border-bottom: 2px solid #e8e8e8;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+        }
+        .team-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: middle;
+        }
+        .team-table tr:hover {
+            background: #fafafa;
+        }
+        .team-table tr:last-child td {
+            border-bottom: none;
+        }
+        .member-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .member-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #4facfe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #ffffff;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+        .member-name {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .member-email {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        .member-role {
+            background: #f0f0f0;
+            padding: 0.3rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+        .member-role.em { background: #FFE14D; color: #1a1a1a; }
+        .member-role.pm { background: #e8e8e8; color: #1a1a1a; }
+        .member-role.swe { background: #d4edda; color: #155724; }
+        .member-role.qa { background: #cce5ff; color: #004085; }
+        .member-role.ux { background: #f8d7da; color: #721c24; }
+        .member-role.pa { background: #e2d5f1; color: #4a235a; }
+        .github-link {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.35rem 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .github-link:hover {
+            background: #4facfe;
+            border-color: #4facfe;
+            color: #ffffff;
+        }
+        .github-link svg {
+            width: 16px;
+            height: 16px;
+        }
+        .no-link {
+            color: #ccc;
+            font-size: 0.85rem;
+        }
+        .ownership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .ownership-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 4px solid #4facfe;
+        }
+        .ownership-item h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        .ownership-item p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .ownership-item .links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .ownership-item .links a {
+            font-size: 0.8rem;
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .ownership-item .links a:hover {
+            text-decoration: underline;
+        }
+        .project-card {
+            background: #ffffff;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .project-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        .project-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.75rem;
+        }
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+        }
+        .project-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .stage-badge {
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .stage-badge.planning { background: #e8e8e8; color: #666; }
+        .stage-badge.development { background: #cce5ff; color: #004085; }
+        .stage-badge.testing { background: #fff3cd; color: #856404; }
+        .stage-badge.rollout { background: #d4edda; color: #155724; }
+        .stage-badge.completed { background: #d4edda; color: #155724; }
+        .initiative-group {
+            margin-bottom: 2rem;
+        }
+        .initiative-group h4 {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        @media (max-width: 768px) {
+            .header { flex-direction: column; gap: 1rem; }
+            .hero h1 { font-size: 1.5rem; }
+            .tabs { overflow-x: auto; }
+            .tab { padding: 0.75rem 1rem; white-space: nowrap; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">TH</span>
+            Team Hub
+        </a>
+        <nav class="nav-links">
+            <a href="index.html">Teams</a>
+            <a href="peacock.html">Peacock</a>
+            <a href="billing.html" class="active">Billing</a>
+            <a href="scorecard.html">Scorecard</a>
+            <a href="projects.html">Projects</a>
+            <a href="metrics.html">Metrics</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Billing</h1>
+        <p>Powering provider payments and financial operations</p>
+        <div class="hero-links">
+            <a href="https://zocdoc.atlassian.net/jira/software/c/projects/BILL/boards/2701" target="_blank">Jira Board</a>
+            <a href="https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/2037547071/Billing+Team" target="_blank">Confluence</a>
+            <a href="https://zocdoc.pagerduty.com/schedules?teamIds=P03ER2R" target="_blank">PagerDuty</a>
+            <a href="https://zocdoc.slack.com/channels/provider-billing-team" target="_blank">#provider-billing-team</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active" data-tab="mission">Mission</button>
+            <button class="tab" data-tab="team">Team</button>
+            <button class="tab" data-tab="ownership">Ownership</button>
+            <button class="tab" data-tab="projects">Projects</button>
+        </div>
+
+        <div id="mission" class="tab-content active">
+            <div class="section-card">
+                <h3>Team Mission</h3>
+                <p class="mission-text">
+                    We build and maintain the billing infrastructure that enables Zocdoc to collect payments
+                    from providers reliably and transparently. Our systems handle invoicing, payment processing,
+                    and financial reporting for thousands of healthcare practices.
+                </p>
+            </div>
+            <div class="section-card">
+                <h3>Key Objectives</h3>
+                <ul style="margin-left: 1.5rem; color: #333;">
+                    <li>Ensure reliable and accurate billing for all provider accounts</li>
+                    <li>Modernize payment infrastructure with Stripe Payment Intents</li>
+                    <li>Support new account segments (mid-market) with appropriate billing models</li>
+                    <li>Improve self-service billing capabilities for providers</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="team" class="tab-content">
+            <div class="section-card">
+                <h3>Team Members</h3>
+                <table class="team-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>GitHub</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">JP</div><span class="member-name">John Penner</span></div></td>
+                            <td class="member-email">john.penner@zocdoc.com</td>
+                            <td><span class="member-role em">EM</span></td>
+                            <td><a href="https://github.com/john-penner-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">DR</div><span class="member-name">Dave Ramirez</span></div></td>
+                            <td class="member-email">dave.ramirez@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><a href="https://github.com/dave-ramirez-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">NP</div><span class="member-name">Niko Prassas</span></div></td>
+                            <td class="member-email">niko.prassas@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><a href="https://github.com/Niko-Prassas-Zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">SS</div><span class="member-name">Shantanu Singh</span></div></td>
+                            <td class="member-email">shantanu.singh@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><a href="https://github.com/shan-singh-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">AH</div><span class="member-name">Abdo Hassan</span></div></td>
+                            <td class="member-email">abdo.hassan@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><a href="https://github.com/abdo-hassan-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">LP</div><span class="member-name">Leo Pimenta</span></div></td>
+                            <td class="member-email">leo.pimenta@zocdoc.com</td>
+                            <td><span class="member-role swe">SWE</span></td>
+                            <td><span class="no-link">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">LY</div><span class="member-name">Leeyman Yousuf</span></div></td>
+                            <td class="member-email">leeyman.yousuf@zocdoc.com</td>
+                            <td><span class="member-role pm">PM</span></td>
+                            <td><span class="no-link">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">RZ</div><span class="member-name">Ren Zheng</span></div></td>
+                            <td class="member-email">ren.zheng@zocdoc.com</td>
+                            <td><span class="member-role ux">UX</span></td>
+                            <td><a href="https://github.com/ren-zheng-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">VL</div><span class="member-name">Vishesh Luthra</span></div></td>
+                            <td class="member-email">vishesh.luthra@zocdoc.com</td>
+                            <td><span class="member-role qa">QA</span></td>
+                            <td><a href="https://github.com/vishesh-luthra-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="member-cell"><div class="member-avatar">AC</div><span class="member-name">Andrew Cohen</span></div></td>
+                            <td class="member-email">andrew.cohen@zocdoc.com</td>
+                            <td><span class="member-role pa">PA</span></td>
+                            <td><a href="https://github.com/andrew-cohen-zocdoc" target="_blank" class="github-link"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="ownership" class="tab-content">
+            <div class="section-card">
+                <h3>Systems & Services</h3>
+                <div class="ownership-grid">
+                    <div class="ownership-item">
+                        <h4>Billing Service</h4>
+                        <p>Core billing orchestration and invoice generation</p>
+                        <div class="links">
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/billing-service" target="_blank">Backstage</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item">
+                        <h4>Payment Processing</h4>
+                        <p>Stripe integration for payment collection</p>
+                        <div class="links">
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/payment-processing" target="_blank">Backstage</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item">
+                        <h4>Billing Portal</h4>
+                        <p>Provider-facing billing UI in the provider portal</p>
+                        <div class="links">
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/billing-portal" target="_blank">Backstage</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item">
+                        <h4>Invoice Generation</h4>
+                        <p>Automated invoice creation and delivery</p>
+                        <div class="links">
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/invoice-generation" target="_blank">Backstage</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item">
+                        <h4>AAA Services (C#)</h4>
+                        <p>Authentication, Authorization, and Accounting services</p>
+                        <div class="links">
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/aaa-services" target="_blank">Backstage</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item">
+                        <h4>Financial Reporting</h4>
+                        <p>Revenue recognition and financial data pipelines</p>
+                        <div class="links">
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/financial-reporting" target="_blank">Backstage</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="projects" class="tab-content">
+            <div class="initiative-group">
+                <h4>Payment Infrastructure</h4>
+                <div class="project-card">
+                    <h4>Stripe Payments Intent API Upgrade</h4>
+                    <p>Upgrade Stripe integration to use the newer Payments Intent API for improved payment handling and compliance.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span>Lead: Niko Prassas</span>
+                        <span><a href="https://zocdoc.atlassian.net/browse/BILL-502" target="_blank">BILL-502</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="initiative-group">
+                <h4>Self-Service & Reporting</h4>
+                <div class="project-card">
+                    <h4>Billing CSV Downloads</h4>
+                    <p>Enable CSV download functionality for billing reports and statements, improving provider self-service capabilities.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span>Lead: Leo Pimenta</span>
+                        <span><a href="https://zocdoc.atlassian.net/browse/BILL-628" target="_blank">BILL-628</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="initiative-group">
+                <h4>Account Segments</h4>
+                <div class="project-card">
+                    <h4>Mid-Market Account Segment</h4>
+                    <p>Support for mid-market account segment with appropriate billing configurations and pricing models.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span><a href="https://zocdoc.atlassian.net/browse/BILL-623" target="_blank">BILL-623</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="initiative-group">
+                <h4>Infrastructure & Security</h4>
+                <div class="project-card">
+                    <h4>Infrastructure Hardening - AAA C#</h4>
+                    <p>Infrastructure hardening for AAA (Authentication, Authorization, Accounting) C# services.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span><a href="https://zocdoc.atlassian.net/browse/BILL-613" target="_blank">BILL-613</a></span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h4>FGA Migration</h4>
+                    <p>Migrate billing systems to Fine-Grained Authorization (FGA) for improved access control.</p>
+                    <div class="project-meta">
+                        <span class="stage-badge planning">Planning</span>
+                        <span>Lead: Leo Pimenta</span>
+                        <span><a href="https://zocdoc.atlassian.net/browse/BILL-510" target="_blank">BILL-510</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
