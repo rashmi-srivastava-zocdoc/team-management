@@ -6,7 +6,10 @@
       "name": "CMS Launch",
       "summary": "Support new self sign up flow for CMS providers.",
       "team": "provider-onboarding",
-      "leads": ["jacqueline.hang@zocdoc.com"],
+      "initiative": "CMS Launch",
+      "leads": [
+        "jacqueline.hang@zocdoc.com"
+      ],
       "stage": "rollout",
       "slackChannels": [],
       "jiraEpics": [],
@@ -24,7 +27,10 @@
       "name": "What You'll Need Guidance",
       "summary": "Tooltips within each onboarding task explaining what users need to complete it (e.g., headshots for providers).",
       "team": "provider-onboarding",
-      "leads": ["kelly.lee@zocdoc.com"],
+      "initiative": "Home Page Self Serve Enhancements",
+      "leads": [
+        "kelly.lee@zocdoc.com"
+      ],
       "stage": "development",
       "slackChannels": [],
       "jiraEpics": [],
@@ -42,6 +48,7 @@
       "name": "Pizza Tracker",
       "summary": "Visual progress tracker at the top of onboarding checklist showing how far users have gone and tasks remaining.",
       "team": "provider-onboarding",
+      "initiative": "Home Page Self Serve Enhancements",
       "leads": [],
       "stage": "planning",
       "slackChannels": [],
@@ -60,6 +67,7 @@
       "name": "Patient Side Impact",
       "summary": "Visual explanation of how completing each onboarding task impacts the patient experience.",
       "team": "provider-onboarding",
+      "initiative": "Home Page Self Serve Enhancements",
       "leads": [],
       "stage": "planning",
       "slackChannels": [],
@@ -89,7 +97,8 @@
         "total": 0,
         "done": 0,
         "inProgress": 0
-      }
+      },
+      "initiative": "Home Page Self Serve Enhancements"
     },
     {
       "id": "bulk-npi-onboarding",
@@ -107,7 +116,8 @@
         "total": 0,
         "done": 0,
         "inProgress": 0
-      }
+      },
+      "initiative": "Home Page Self Serve Enhancements"
     },
     {
       "id": "data-rebuild-funnel-tracking",
@@ -125,14 +135,17 @@
         "total": 0,
         "done": 0,
         "inProgress": 0
-      }
+      },
+      "initiative": "Provider Data Rebuild"
     },
     {
       "id": "data-rebuild-active-statuses",
       "name": "Data Rebuild: Active Statuses",
       "summary": "Trustworthy, real-time signals for provider readiness and activation that remain stable as systems evolve. Includes opt-ins/opt-outs.",
       "team": "provider-onboarding",
-      "leads": ["eftal.sogukoglu@zocdoc.com"],
+      "leads": [
+        "eftal.sogukoglu@zocdoc.com"
+      ],
       "stage": "planning",
       "slackChannels": [],
       "jiraEpics": [],
@@ -143,14 +156,17 @@
         "total": 0,
         "done": 0,
         "inProgress": 0
-      }
+      },
+      "initiative": "Provider Data Rebuild"
     },
     {
       "id": "home-page-enhancements",
       "name": "Home Page Enhancements for Enterprise",
       "summary": "Enable home page for existing enterprise customers with improved UX and feature access.",
       "team": "provider-onboarding",
-      "leads": ["manon.escoffier@zocdoc.com"],
+      "leads": [
+        "manon.escoffier@zocdoc.com"
+      ],
       "stage": "completed",
       "slackChannels": [],
       "jiraEpics": [
@@ -163,14 +179,18 @@
         "total": 0,
         "done": 0,
         "inProgress": 0
-      }
+      },
+      "initiative": "Enterprise Home"
     },
     {
       "id": "global-nav-bar",
       "name": "Global Nav Refresh",
-      "summary": "Left nav UI, routes revamp, role-based access, migrate pages using skill, navigation mapping old → new.",
+      "summary": "Left nav UI, routes revamp, role-based access, migrate pages using skill, navigation mapping old \u2192 new.",
       "team": "provider-onboarding",
-      "leads": ["sydney.morton@zocdoc.com", "clark.pathakis@zocdoc.com"],
+      "leads": [
+        "sydney.morton@zocdoc.com",
+        "clark.pathakis@zocdoc.com"
+      ],
       "stage": "development",
       "slackChannels": [],
       "jiraEpics": [
@@ -183,7 +203,8 @@
         "total": 0,
         "done": 0,
         "inProgress": 0
-      }
+      },
+      "initiative": "Global Nav Refresh"
     },
     {
       "id": "provgro-infra-hardening-q2",
@@ -203,7 +224,8 @@
         "total": 0,
         "done": 0,
         "inProgress": 0
-      }
+      },
+      "initiative": "Infrastructure Hardening"
     },
     {
       "id": "scope-sheet-scalability",
@@ -223,7 +245,8 @@
         "total": 0,
         "done": 0,
         "inProgress": 0
-      }
+      },
+      "initiative": "Scalability"
     },
     {
       "id": "provgro-fga-cutover",
@@ -243,7 +266,8 @@
         "total": 0,
         "done": 0,
         "inProgress": 0
-      }
+      },
+      "initiative": "FGA Migration"
     },
     {
       "id": "activation-velocity",
@@ -263,7 +287,8 @@
         "total": 0,
         "done": 0,
         "inProgress": 0
-      }
+      },
+      "initiative": "Activation Velocity"
     },
     {
       "id": "misbehavior-locking-phase2",

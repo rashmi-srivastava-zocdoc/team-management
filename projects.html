@@ -178,6 +178,16 @@
         .stage-rollout { background: #fce4ec; color: #c2185b; }
         .stage-metrics { background: #e0f2f1; color: #00695c; }
         .stage-complete { background: #eceff1; color: #546e7a; }
+        .stage-completed { background: #e8f5e9; color: #2e7d32; }
+        .initiative-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #5e6c84;
+            white-space: nowrap;
+        }
         .jira-link {
             color: #0065ff;
             text-decoration: none;
@@ -478,6 +488,19 @@
                     <option value="account-user-setup">Account & User Setup</option>
                     <option value="billing">Billing</option>
                 </select>
+                <label for="initiative-filter">Initiative:</label>
+                <select id="initiative-filter" class="filter-dropdown" onchange="renderTable(projectsData.projects)">
+                    <option value="all">All Initiatives</option>
+                    <option value="CMS Launch">CMS Launch</option>
+                    <option value="Enterprise Home">Enterprise Home</option>
+                    <option value="Home Page Self Serve Enhancements">Self Serve Enhancements</option>
+                    <option value="Provider Data Rebuild">Data Rebuild</option>
+                    <option value="Global Nav Refresh">Global Nav Refresh</option>
+                    <option value="FGA Migration">FGA Migration</option>
+                    <option value="Infrastructure Hardening">Infrastructure Hardening</option>
+                    <option value="Activation Velocity">Activation Velocity</option>
+                    <option value="Scalability">Scalability</option>
+                </select>
                 <label for="stage-filter">Stage:</label>
                 <select id="stage-filter" class="filter-dropdown">
                     <option value="all">All Stages</option>
@@ -639,10 +662,12 @@ PRD | https://docs.google.com/... | gdoc"></textarea>
 
         function renderTable(projects) {
             const teamFilter = document.getElementById('team-filter').value;
+            const initiativeFilter = document.getElementById('initiative-filter').value;
             const stageFilter = document.getElementById('stage-filter').value;
 
             const filtered = projects.filter(p => {
                 if (teamFilter !== 'all' && p.team !== teamFilter) return false;
+                if (initiativeFilter !== 'all' && p.initiative !== initiativeFilter) return false;
                 if (stageFilter !== 'all' && p.stage !== stageFilter) return false;
                 return true;
             });
@@ -658,11 +683,11 @@ PRD | https://docs.google.com/... | gdoc"></textarea>
                     <thead>
                         <tr>
                             <th>Project</th>
+                            <th>Initiative</th>
                             <th>Team</th>
                             <th>Lead(s)</th>
                             <th>Stage</th>
                             <th>Jira</th>
-                            <th>Updated</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -682,11 +707,11 @@ PRD | https://docs.google.com/... | gdoc"></textarea>
                                 ${project.name}
                             </div>
                         </td>
+                        <td><span class="initiative-badge">${project.initiative || '—'}</span></td>
                         <td>${TEAM_NAMES[project.team] || project.team}</td>
                         <td>${leadNames}</td>
                         <td><span class="stage-badge stage-${project.stage}">${STAGE_NAMES[project.stage] || project.stage}</span></td>
                         <td>${jiraLinks}</td>
-                        <td>${new Date(projectsData.lastUpdated).toLocaleDateString()}</td>
                     </tr>
                     <tr class="project-detail" data-detail-id="${project.id}">
                         <td colspan="6">
