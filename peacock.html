@@ -284,6 +284,143 @@
         .ownership-item .links a:hover {
             text-decoration: underline;
         }
+        .frontend-section {
+            margin-top: 2rem;
+        }
+        .frontend-section > h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        .frontend-category {
+            margin-bottom: 0.5rem;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .frontend-category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: #f4f5f7;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1a1a1a;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .frontend-category-header:hover {
+            background: #ebedf0;
+        }
+        .frontend-category-header .expand-icon {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .frontend-category.expanded .frontend-category-header .expand-icon {
+            transform: rotate(90deg);
+        }
+        .frontend-category-header .count {
+            color: #666;
+            font-weight: normal;
+            font-size: 0.85rem;
+        }
+        .frontend-category-content {
+            display: none;
+            border-top: 1px solid #e8e8e8;
+        }
+        .frontend-category.expanded .frontend-category-content {
+            display: block;
+        }
+        .screenshot-row {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: flex-start;
+        }
+        .screenshot-row:last-child {
+            border-bottom: none;
+        }
+        .screenshot-row:hover {
+            background: #fafafa;
+        }
+        .screenshot-row img {
+            width: 200px;
+            height: 120px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 6px;
+            border: 1px solid #e8e8e8;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .screenshot-row img:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .screenshot-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .screenshot-info h5 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        .screenshot-info .url-row {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.35rem;
+            font-size: 0.85rem;
+            align-items: baseline;
+        }
+        .screenshot-info .url-label {
+            color: #666;
+            min-width: 70px;
+            flex-shrink: 0;
+        }
+        .screenshot-info .url-value {
+            color: #0066cc;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        .screenshot-info .url-value:hover {
+            text-decoration: underline;
+        }
+        .screenshot-info .url-value.na {
+            color: #999;
+            font-style: italic;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+        .modal-overlay .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
         .project-card {
             background: #ffffff;
             border: 1px solid #e8e8e8;
@@ -544,55 +681,431 @@
         </div>
 
         <div id="ownership" class="tab-content">
+            <div class="section-card" style="background: #fffbeb; border-color: #fbbf24; margin-bottom: 1.5rem;">
+                <p style="margin: 0; color: #92400e; font-size: 0.9rem;">
+                    <strong>Note:</strong> In March 2026, some backend services transitioned to the new Provider Roster Management (PRM) team.
+                    Current Peacock scope focuses on frontend, Global Nav, and onboarding UX.
+                    <a href="https://miro.com/app/board/uXjVLabPvW4=" target="_blank" style="color: #0066cc;">View ownership Miro board</a>
+                </p>
+            </div>
+
             <div class="section-card">
-                <h3>Systems & Services</h3>
+                <h3>Full Ownership - Backend Services</h3>
                 <div class="ownership-grid">
                     <div class="ownership-item">
-                        <h4>Provider Home Webapp</h4>
-                        <p>React-based provider portal for onboarding and account management</p>
+                        <h4>provider-setup-service</h4>
+                        <p>New providers setup: training and onboarding orchestration</p>
                         <div class="links">
-                            <a href="https://github.com/AuronHealth/provider-home-webapp" target="_blank">GitHub</a>
-                            <a href="https://backstage.zocdoc.io/catalog/default/component/provider-home-webapp" target="_blank">Backstage</a>
+                            <a href="https://github.com/Zocdoc/provider-setup-service" target="_blank">GitHub</a>
+                            <a href="https://backstage.zocdoc.io/catalog/default/component/provider-setup-service" target="_blank">Roadie</a>
                         </div>
                     </div>
                     <div class="ownership-item">
-                        <h4>Peacock Service</h4>
-                        <p>Core onboarding orchestration service</p>
+                        <h4>operations-provider-onboarding</h4>
+                        <p>Backend operations service for provider onboarding</p>
                         <div class="links">
-                            <a href="https://github.com/AuronHealth/peacock" target="_blank">GitHub</a>
-                            <a href="https://backstage.zocdoc.io/catalog/default/component/peacock" target="_blank">Backstage</a>
+                            <a href="https://github.com/Zocdoc/operations-provider-onboarding" target="_blank">GitHub</a>
                         </div>
                     </div>
                     <div class="ownership-item">
-                        <h4>Task Framework</h4>
-                        <p>Onboarding task management and tracking system</p>
+                        <h4>provider-prefill</h4>
+                        <p>Load third party provider data and make it queryable through APIs</p>
                         <div class="links">
-                            <a href="https://backstage.zocdoc.io/catalog/default/component/task-framework" target="_blank">Backstage</a>
+                            <a href="https://github.com/Zocdoc/provider-prefill" target="_blank">GitHub</a>
                         </div>
                     </div>
                     <div class="ownership-item">
-                        <h4>Scope Sheet Upload</h4>
-                        <p>Bulk provider import via spreadsheet upload</p>
+                        <h4>bulk-onboarding-supply-service</h4>
+                        <p>Bulk Onboarding Supply Service (BOSS) - Lambda-based bulk import</p>
                         <div class="links">
-                            <a href="https://backstage.zocdoc.io/catalog/default/component/scope-sheet-upload" target="_blank">Backstage</a>
+                            <a href="https://github.com/Zocdoc/bulk-onboarding-supply-service" target="_blank">GitHub</a>
                         </div>
                     </div>
                     <div class="ownership-item">
-                        <h4>Provider Data Services</h4>
-                        <p>Provider profile and data management APIs</p>
+                        <h4>practice-authorization-proxy</h4>
+                        <p>Proxy for OKTA FGA authorization requests</p>
                         <div class="links">
-                            <a href="https://backstage.zocdoc.io/catalog/default/component/provider-data" target="_blank">Backstage</a>
+                            <a href="https://github.com/Zocdoc/practice-authorization-proxy" target="_blank">GitHub</a>
                         </div>
                     </div>
                     <div class="ownership-item">
-                        <h4>Global Navigation</h4>
-                        <p>Shared navigation component for provider portal</p>
+                        <h4>internal-dashboards-api-services</h4>
+                        <p>Backend API for internal dashboards (non-PHI tools)</p>
                         <div class="links">
-                            <a href="https://github.com/AuronHealth/fromo" target="_blank">Fromo</a>
+                            <a href="https://github.com/Zocdoc/internal-dashboards-api-services" target="_blank">GitHub</a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="section-card">
+                <h3>Full Ownership - Frontend & Tools</h3>
+                <div class="ownership-grid">
+                    <div class="ownership-item">
+                        <h4>client-side-webapp-host</h4>
+                        <p>Client-side web application host for provider portal</p>
+                        <div class="links">
+                            <a href="https://github.com/Zocdoc/client-side-webapp-host" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item">
+                        <h4>scorecarder-publisher</h4>
+                        <p>Scorecard publishing service</p>
+                        <div class="links">
+                            <a href="https://github.com/Zocdoc/scorecarder-publisher" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3>Partial Ownership (Shared)</h3>
+                <div class="ownership-grid">
+                    <div class="ownership-item" style="border-left-color: #94a3b8;">
+                        <h4>provider-fe-monorepo</h4>
+                        <p>Owns: practiceOnboardingPage, providerInvitePage, shared/core</p>
+                        <div class="links">
+                            <a href="https://github.com/Zocdoc/provider-fe-monorepo" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item" style="border-left-color: #94a3b8;">
+                        <h4>provider-settings-webapp</h4>
+                        <p>Owns: practiceOnboardingPage, selfSignUp, sellPage, providerInvitePage</p>
+                        <div class="links">
+                            <a href="https://github.com/Zocdoc/provider-settings-webapp" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item" style="border-left-color: #94a3b8;">
+                        <h4>api2-gql</h4>
+                        <p>Owns: ProviderGQLRoot, ProviderFactory (shared with Parrot, Peregrine)</p>
+                        <div class="links">
+                            <a href="https://github.com/Zocdoc/api2-gql" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item" style="border-left-color: #94a3b8;">
+                        <h4>zd-claude</h4>
+                        <p>Owns: /teams/zd-provider-onboarding/ skills and tools</p>
+                        <div class="links">
+                            <a href="https://github.com/Zocdoc/zd-claude" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3>Team References</h3>
+                <div class="ownership-grid">
+                    <div class="ownership-item" style="border-left-color: #6366f1;">
+                        <h4>GitHub Team</h4>
+                        <p>@Zocdoc/provider-peacock-team</p>
+                        <div class="links">
+                            <a href="https://github.com/orgs/Zocdoc/teams/provider-peacock-team" target="_blank">Team Page</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item" style="border-left-color: #6366f1;">
+                        <h4>Slack Channels</h4>
+                        <p>#provider-peacock-team, #provider-peacock-prs</p>
+                        <div class="links">
+                            <a href="https://zocdoc.slack.com/channels/provider-peacock-team" target="_blank">Team</a>
+                            <a href="https://zocdoc.slack.com/channels/provider-peacock-prs" target="_blank">PRs</a>
+                        </div>
+                    </div>
+                    <div class="ownership-item" style="border-left-color: #6366f1;">
+                        <h4>Contact</h4>
+                        <p>technology-provideronboarding@zocdoc.com</p>
+                        <div class="links">
+                            <a href="mailto:technology-provideronboarding@zocdoc.com">Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card frontend-section">
+                <h3>Front End</h3>
+
+                <div class="frontend-category expanded" id="cat-join">
+                    <button class="frontend-category-header" onclick="toggleCategory('cat-join')">
+                        <span class="expand-icon">▶</span>
+                        Join Pages
+                        <span class="count">(5 pages)</span>
+                    </button>
+                    <div class="frontend-category-content">
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/join-page-wordpress.png" alt="WordPress Join Page" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>WordPress Join Page</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://www.zocdoc.com/join" target="_blank">zocdoc.com/join</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">WordPress (Marketing owned)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/join-page-castle-connolly.png" alt="Castle Connolly Partner Page" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Castle Connolly Partner</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://www.zocdoc.com/about/castleconnolly" target="_blank">zocdoc.com/about/castleconnolly</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">WordPress (Marketing owned)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/join-page-advancedmd.png" alt="AdvancedMD EHR Partner Page" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>AdvancedMD EHR Partner</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://www.zocdoc.com/about/advancedmd" target="_blank">zocdoc.com/about/advancedmd</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">WordPress (Marketing owned)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/join-page-blue-shield.png" alt="Blue Shield of California Partner Page" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Blue Shield CA Partner</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://www.zocdoc.com/about/blueshieldofcalifornia" target="_blank">zocdoc.com/about/blueshieldofcalifornia</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">WordPress (Marketing owned)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/join-page-va-wellhive.png" alt="VA Wellhive Partner Page" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>VA / Wellhive Partner</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://www.zocdoc.com/partner-network/wellhive" target="_blank">zocdoc.com/partner-network/wellhive</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">WordPress (Marketing owned)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="frontend-category" id="cat-signup">
+                    <button class="frontend-category-header" onclick="toggleCategory('cat-signup')">
+                        <span class="expand-icon">▶</span>
+                        Sign-up Flow
+                        <span class="count">(5 pages)</span>
+                    </button>
+                    <div class="frontend-category-content">
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/signup-lead-creation.png" alt="Lead Creation Form" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Lead Creation Form</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://grow.zocdoc.com/grow/sign-up" target="_blank">grow.zocdoc.com/grow/sign-up</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/signup-email-confirmation.png" alt="Email Confirmation" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Email Confirmation</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <span class="url-value na">Part of sign-up flow</span>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/signup-password-creation.png" alt="Password Creation" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Password Creation</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <span class="url-value na">Part of sign-up flow</span>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/signup-goals.png" alt="Goals Selection" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Goals Selection</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <span class="url-value na">Part of sign-up flow</span>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/signup-recommendations.png" alt="Product Recommendations" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Product Recommendations</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <span class="url-value na">Part of sign-up flow</span>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="frontend-category" id="cat-home">
+                    <button class="frontend-category-header" onclick="toggleCategory('cat-home')">
+                        <span class="expand-icon">▶</span>
+                        Provider Home (pulse.zocdoc.com)
+                        <span class="count">(5 pages)</span>
+                    </button>
+                    <div class="frontend-category-content">
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/home-local.png" alt="Home Page - Local Practice" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Home - Local Practice</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://pulse.zocdoc.com" target="_blank">pulse.zocdoc.com</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/home-local-onboarding.png" alt="Home Page - Onboarding Tasks" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Home - Onboarding Tasks</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://pulse.zocdoc.com" target="_blank">pulse.zocdoc.com</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/home-enterprise.png" alt="Home Page - Enterprise" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Home - Enterprise</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://pulse.zocdoc.com" target="_blank">pulse.zocdoc.com</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/features-page.png" alt="Account Features Page" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Account Features</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://pulse.zocdoc.com/features" target="_blank">pulse.zocdoc.com/features</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/features-manage-products.png" alt="Manage Products Modal" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Manage Products Modal</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <span class="url-value na">Modal on home page</span>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="frontend-category" id="cat-activation">
+                    <button class="frontend-category-header" onclick="toggleCategory('cat-activation')">
+                        <span class="expand-icon">▶</span>
+                        Product Activation Pages
+                        <span class="count">(2 pages)</span>
+                    </button>
+                    <div class="frontend-category-content">
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/marketplace-activation.png" alt="Marketplace Activation" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Marketplace Activation</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://pulse.zocdoc.com/provider/activation-marketplace" target="_blank">pulse.zocdoc.com/provider/activation-marketplace</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-row">
+                            <img src="assets/screenshots/book-from-google-activation.png" alt="Book from Google Activation" onclick="openModal(this.src)">
+                            <div class="screenshot-info">
+                                <h5>Book from Google Activation</h5>
+                                <div class="url-row">
+                                    <span class="url-label">Live Page:</span>
+                                    <a class="url-value" href="https://pulse.zocdoc.com/provider/activation-partner-syndication" target="_blank">pulse.zocdoc.com/provider/activation-partner-syndication</a>
+                                </div>
+                                <div class="url-row">
+                                    <span class="url-label">GitHub:</span>
+                                    <span class="url-value na">TBD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="imageModal" onclick="closeModal()">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Enlarged screenshot">
         </div>
 
         <div id="projects" class="tab-content">
@@ -788,6 +1301,23 @@
                 row.classList.add('expanded');
             }
         }
+
+        function openModal(src) {
+            document.getElementById('modalImage').src = src;
+            document.getElementById('imageModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+
+        function toggleCategory(id) {
+            document.getElementById(id).classList.toggle('expanded');
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
     </script>
 </body>
 </html>
