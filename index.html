@@ -134,10 +134,25 @@
         }
         .page-tabs {
             display: flex;
-            gap: 0.5rem;
+            justify-content: space-between;
+            align-items: center;
             padding: 0 2rem;
             background: #fff;
             border-bottom: 2px solid #e8e8e8;
+        }
+        .tabs-left {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .tabs-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .tabs-right label {
+            font-weight: 500;
+            color: #5e6c84;
+            font-size: 0.875rem;
         }
         .page-tab {
             padding: 1rem 1.5rem;
@@ -400,22 +415,11 @@
             <div class="logo-icon">Z</div>
             Team Directory
         </div>
-        <div class="header-right">
-<nav class="nav-links">
-                <a href="index.html" class="active">Teams</a>
-                <a href="peacock.html">Peacock</a>
-                <a href="billing.html">Billing</a>
-            </nav>
-            <div class="team-selector">
-                <label for="team-filter">Team:</label>
-                <select id="team-filter" class="team-dropdown" onchange="filterTeams()">
-                    <option value="all">All Teams</option>
-                    <option value="peacock">Peacock</option>
-                    <option value="pterodactyl">Pterodactyl</option>
-                    <option value="billing">Billing</option>
-                </select>
-            </div>
-        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="active">Teams</a>
+            <a href="peacock.html">Peacock</a>
+            <a href="billing.html">Billing</a>
+        </nav>
     </header>
 
     <div class="hero">
@@ -424,10 +428,21 @@
     </div>
 
     <div class="page-tabs">
-        <button class="page-tab active" data-page="directory">Directory</button>
-        <button class="page-tab" data-page="scorecard">Scorecard</button>
-        <button class="page-tab" data-page="projects">Projects</button>
-        <button class="page-tab" data-page="metrics">Metrics</button>
+        <div class="tabs-left">
+            <button class="page-tab active" data-page="directory">Directory</button>
+            <button class="page-tab" data-page="scorecard">Scorecard</button>
+            <button class="page-tab" data-page="projects">Projects</button>
+            <button class="page-tab" data-page="metrics">Metrics</button>
+        </div>
+        <div class="tabs-right">
+            <label for="team-filter">Team:</label>
+            <select id="team-filter" class="team-dropdown" onchange="filterTeams()">
+                <option value="all">All Teams</option>
+                <option value="peacock">Peacock</option>
+                <option value="pterodactyl">Pterodactyl</option>
+                <option value="billing">Billing</option>
+            </select>
+        </div>
     </div>
 
     <div id="directory" class="page-content active">

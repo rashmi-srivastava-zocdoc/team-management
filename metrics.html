@@ -268,9 +268,8 @@
             body.in-iframe { padding-top: 1rem; }
         }
     </style>
-    <script>if (window.self !== window.top) document.body.classList.add('in-iframe');</script>
 </head>
-<body>
+<body onload="if(window.self!==window.top)this.classList.add('in-iframe')">
     <header class="header">
         <a href="index.html" class="logo">
             <div class="logo-icon">Z</div>
