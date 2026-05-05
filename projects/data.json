@@ -1,13 +1,157 @@
 {
-  "lastUpdated": "2026-05-05T11:15:13.913264Z",
+  "lastUpdated": "2026-05-05T12:30:00.000000Z",
   "projects": [
+    {
+      "id": "cms-launch",
+      "name": "CMS Launch",
+      "summary": "Support new self sign up flow for CMS providers.",
+      "team": "provider-onboarding",
+      "leads": ["jacqueline.hang@zocdoc.com"],
+      "stage": "rollout",
+      "slackChannels": [],
+      "jiraEpics": [],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
+    },
+    {
+      "id": "what-youll-need-guidance",
+      "name": "What You'll Need Guidance",
+      "summary": "Tooltips within each onboarding task explaining what users need to complete it (e.g., headshots for providers).",
+      "team": "provider-onboarding",
+      "leads": ["kelly.lee@zocdoc.com"],
+      "stage": "development",
+      "slackChannels": [],
+      "jiraEpics": [],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
+    },
+    {
+      "id": "pizza-tracker",
+      "name": "Pizza Tracker",
+      "summary": "Visual progress tracker at the top of onboarding checklist showing how far users have gone and tasks remaining.",
+      "team": "provider-onboarding",
+      "leads": [],
+      "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": [],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
+    },
+    {
+      "id": "patient-side-impact",
+      "name": "Patient Side Impact",
+      "summary": "Visual explanation of how completing each onboarding task impacts the patient experience.",
+      "team": "provider-onboarding",
+      "leads": [],
+      "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": [],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
+    },
+    {
+      "id": "forced-onboarding-order",
+      "name": "Forced Onboarding Step Order",
+      "summary": "Direct users through onboarding tasks instead of choose-your-own-adventure style. Tasks without dependencies can be skipped.",
+      "team": "provider-onboarding",
+      "leads": [],
+      "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": [],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
+    },
+    {
+      "id": "bulk-npi-onboarding",
+      "name": "Bulk NPI in Onboarding",
+      "summary": "Bulk NPI modal when launching Create providers task, enabling users to add multiple providers at once with prefilled information.",
+      "team": "provider-onboarding",
+      "leads": [],
+      "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": [],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
+    },
+    {
+      "id": "data-rebuild-funnel-tracking",
+      "name": "Data Rebuild: Funnel Tracking",
+      "summary": "Foundational funnel tracking via Task Framework, bringing enterprise OOP flows in-product and expanding coverage across SFDC/PDO flows.",
+      "team": "provider-onboarding",
+      "leads": [],
+      "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": [],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
+    },
+    {
+      "id": "data-rebuild-active-statuses",
+      "name": "Data Rebuild: Active Statuses",
+      "summary": "Trustworthy, real-time signals for provider readiness and activation that remain stable as systems evolve. Includes opt-ins/opt-outs.",
+      "team": "provider-onboarding",
+      "leads": ["eftal.sogukoglu@zocdoc.com"],
+      "stage": "planning",
+      "slackChannels": [],
+      "jiraEpics": [],
+      "documents": [],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
+    },
     {
       "id": "home-page-enhancements",
       "name": "Home Page Enhancements for Enterprise",
       "summary": "Enable home page for existing enterprise customers with improved UX and feature access.",
       "team": "provider-onboarding",
-      "leads": [],
-      "stage": "development",
+      "leads": ["manon.escoffier@zocdoc.com"],
+      "stage": "completed",
       "slackChannels": [],
       "jiraEpics": [
         "PROVGRO-5870"
@@ -23,10 +167,10 @@
     },
     {
       "id": "global-nav-bar",
-      "name": "Global Nav Bar",
-      "summary": "Implement global navigation bar across provider-facing applications.",
+      "name": "Global Nav Refresh",
+      "summary": "Left nav UI, routes revamp, role-based access, migrate pages using skill, navigation mapping old → new.",
       "team": "provider-onboarding",
-      "leads": [],
+      "leads": ["sydney.morton@zocdoc.com", "clark.pathakis@zocdoc.com"],
       "stage": "development",
       "slackChannels": [],
       "jiraEpics": [
