@@ -319,11 +319,82 @@
             font-weight: 600;
             text-transform: uppercase;
         }
-        .stage-badge.planning { background: #e8e8e8; color: #666; }
-        .stage-badge.development { background: #cce5ff; color: #004085; }
-        .stage-badge.testing { background: #fff3cd; color: #856404; }
-        .stage-badge.rollout { background: #d4edda; color: #155724; }
-        .stage-badge.completed { background: #d4edda; color: #155724; }
+        .stage-badge.discovery { background: #e3f2fd; color: #1565c0; }
+        .stage-badge.planning { background: #fff3e0; color: #e65100; }
+        .stage-badge.development { background: #e8f5e9; color: #2e7d32; }
+        .stage-badge.testing { background: #f3e5f5; color: #7b1fa2; }
+        .stage-badge.rollout { background: #fce4ec; color: #c2185b; }
+        .stage-badge.completed { background: #eceff1; color: #546e7a; }
+        .projects-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .projects-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: #f4f5f7;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #5e6c84;
+            border-bottom: 2px solid #dfe1e6;
+        }
+        .projects-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #ebecf0;
+            vertical-align: top;
+        }
+        .projects-table tr:hover {
+            background: #f8f9fa;
+        }
+        .project-name {
+            font-weight: 600;
+            color: #172b4d;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .project-name:hover {
+            color: #0065ff;
+        }
+        .expand-icon {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .expanded .expand-icon {
+            transform: rotate(90deg);
+        }
+        .project-detail {
+            display: none;
+            background: #fafbfc;
+            border-bottom: 2px solid #4facfe;
+        }
+        .project-detail.visible {
+            display: table-row;
+        }
+        .project-detail td {
+            padding: 1rem 1.5rem;
+        }
+        .detail-summary {
+            color: #42526e;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .jira-link {
+            color: #0065ff;
+            text-decoration: none;
+        }
+        .jira-link:hover {
+            text-decoration: underline;
+        }
+        .no-jira {
+            color: #97a0af;
+        }
         .initiative-group {
             margin-bottom: 2rem;
         }
@@ -352,9 +423,6 @@
             <a href="index.html">Teams</a>
             <a href="peacock.html">Peacock</a>
             <a href="billing.html" class="active">Billing</a>
-            <a href="scorecard.html">Scorecard</a>
-            <a href="projects.html">Projects</a>
-            <a href="metrics.html">Metrics</a>
         </nav>
     </header>
 
@@ -528,61 +596,81 @@
         <div id="projects" class="tab-content">
             <div class="initiative-group">
                 <h4>Payment Infrastructure</h4>
-                <div class="project-card">
-                    <h4>Stripe Payments Intent API Upgrade</h4>
-                    <p>Upgrade Stripe integration to use the newer Payments Intent API for improved payment handling and compliance.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span>Lead: Niko Prassas</span>
-                        <span><a href="https://zocdoc.atlassian.net/browse/BILL-502" target="_blank">BILL-502</a></span>
-                    </div>
-                </div>
+                <table class="projects-table">
+                    <thead>
+                        <tr><th>Project</th><th>Lead(s)</th><th>Stage</th><th>Jira</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Stripe Payments Intent API Upgrade</div></td>
+                            <td>Niko Prassas</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><a href="https://zocdoc.atlassian.net/browse/BILL-502" class="jira-link" target="_blank">BILL-502</a></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Upgrade Stripe integration to use the newer Payments Intent API for improved payment handling and compliance.</div></td></tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="initiative-group">
                 <h4>Self-Service & Reporting</h4>
-                <div class="project-card">
-                    <h4>Billing CSV Downloads</h4>
-                    <p>Enable CSV download functionality for billing reports and statements, improving provider self-service capabilities.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span>Lead: Leo Pimenta</span>
-                        <span><a href="https://zocdoc.atlassian.net/browse/BILL-628" target="_blank">BILL-628</a></span>
-                    </div>
-                </div>
+                <table class="projects-table">
+                    <thead>
+                        <tr><th>Project</th><th>Lead(s)</th><th>Stage</th><th>Jira</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Billing CSV Downloads</div></td>
+                            <td>Leo Pimenta</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><a href="https://zocdoc.atlassian.net/browse/BILL-628" class="jira-link" target="_blank">BILL-628</a></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Enable CSV download functionality for billing reports and statements, improving provider self-service capabilities.</div></td></tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="initiative-group">
                 <h4>Account Segments</h4>
-                <div class="project-card">
-                    <h4>Mid-Market Account Segment</h4>
-                    <p>Support for mid-market account segment with appropriate billing configurations and pricing models.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span><a href="https://zocdoc.atlassian.net/browse/BILL-623" target="_blank">BILL-623</a></span>
-                    </div>
-                </div>
+                <table class="projects-table">
+                    <thead>
+                        <tr><th>Project</th><th>Lead(s)</th><th>Stage</th><th>Jira</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Mid-Market Account Segment</div></td>
+                            <td>—</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><a href="https://zocdoc.atlassian.net/browse/BILL-623" class="jira-link" target="_blank">BILL-623</a></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Support for mid-market account segment with appropriate billing configurations and pricing models.</div></td></tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="initiative-group">
                 <h4>Infrastructure & Security</h4>
-                <div class="project-card">
-                    <h4>Infrastructure Hardening - AAA C#</h4>
-                    <p>Infrastructure hardening for AAA (Authentication, Authorization, Accounting) C# services.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span><a href="https://zocdoc.atlassian.net/browse/BILL-613" target="_blank">BILL-613</a></span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>FGA Migration</h4>
-                    <p>Migrate billing systems to Fine-Grained Authorization (FGA) for improved access control.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span>Lead: Leo Pimenta</span>
-                        <span><a href="https://zocdoc.atlassian.net/browse/BILL-510" target="_blank">BILL-510</a></span>
-                    </div>
-                </div>
+                <table class="projects-table">
+                    <thead>
+                        <tr><th>Project</th><th>Lead(s)</th><th>Stage</th><th>Jira</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Infrastructure Hardening - AAA C#</div></td>
+                            <td>—</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><a href="https://zocdoc.atlassian.net/browse/BILL-613" class="jira-link" target="_blank">BILL-613</a></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Infrastructure hardening for AAA (Authentication, Authorization, Accounting) C# services.</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>FGA Migration</div></td>
+                            <td>Leo Pimenta</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><a href="https://zocdoc.atlassian.net/browse/BILL-510" class="jira-link" target="_blank">BILL-510</a></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Migrate billing systems to Fine-Grained Authorization (FGA) for improved access control.</div></td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -597,6 +685,19 @@
                 document.getElementById(tab.dataset.tab).classList.add('active');
             });
         });
+
+        function toggleDetail(row) {
+            const detailRow = row.nextElementSibling;
+            const isVisible = detailRow.classList.contains('visible');
+
+            document.querySelectorAll('.project-detail').forEach(d => d.classList.remove('visible'));
+            document.querySelectorAll('.project-row').forEach(r => r.classList.remove('expanded'));
+
+            if (!isVisible) {
+                detailRow.classList.add('visible');
+                row.classList.add('expanded');
+            }
+        }
     </script>
 </body>
 </html>

@@ -132,6 +132,48 @@
         .team-card.hidden {
             display: none;
         }
+        .page-tabs {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0 2rem;
+            background: #fff;
+            border-bottom: 2px solid #e8e8e8;
+        }
+        .page-tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+        .page-tab:hover {
+            color: #1a1a1a;
+        }
+        .page-tab.active {
+            color: #1a1a1a;
+            border-bottom-color: #FFE14D;
+        }
+        .page-content {
+            display: none;
+        }
+        .page-content.active {
+            display: block;
+        }
+        .iframe-container {
+            width: 100%;
+            height: calc(100vh - 200px);
+            border: none;
+        }
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
         .team-header {
             padding: 1.5rem;
             background: #f8f9fa;
@@ -359,13 +401,10 @@
             Team Directory
         </div>
         <div class="header-right">
-            <nav class="nav-links">
+<nav class="nav-links">
                 <a href="index.html" class="active">Teams</a>
                 <a href="peacock.html">Peacock</a>
                 <a href="billing.html">Billing</a>
-                <a href="scorecard.html">Scorecard</a>
-                <a href="projects.html">Projects</a>
-                <a href="metrics.html">Metrics</a>
             </nav>
             <div class="team-selector">
                 <label for="team-filter">Team:</label>
@@ -380,10 +419,18 @@
     </header>
 
     <div class="hero">
-        <h1>Team Directory</h1>
-        <p>Find your team members and their contact information</p>
+        <h1>Team Hub</h1>
+        <p>Your central hub for team information, metrics, and projects</p>
     </div>
 
+    <div class="page-tabs">
+        <button class="page-tab active" data-page="directory">Directory</button>
+        <button class="page-tab" data-page="scorecard">Scorecard</button>
+        <button class="page-tab" data-page="projects">Projects</button>
+        <button class="page-tab" data-page="metrics">Metrics</button>
+    </div>
+
+    <div id="directory" class="page-content active">
     <div class="teams-container">
         <div class="team-card peacock" data-team="peacock">
             <div class="team-header">
@@ -678,6 +725,25 @@
             </table>
         </div>
     </div>
+    </div>
+
+    <div id="scorecard" class="page-content">
+        <div class="iframe-container">
+            <iframe src="scorecard.html" title="Scorecard"></iframe>
+        </div>
+    </div>
+
+    <div id="projects" class="page-content">
+        <div class="iframe-container">
+            <iframe src="projects.html" title="Projects"></iframe>
+        </div>
+    </div>
+
+    <div id="metrics" class="page-content">
+        <div class="iframe-container">
+            <iframe src="metrics.html" title="Metrics"></iframe>
+        </div>
+    </div>
 
     <script>
         function filterTeams() {
@@ -692,6 +758,16 @@
                 }
             });
         }
+
+        document.querySelectorAll('.page-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.page-content').forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.page).classList.add('active');
+            });
+        });
     </script>
 </body>
 </html>

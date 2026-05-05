@@ -319,11 +319,82 @@
             font-weight: 600;
             text-transform: uppercase;
         }
-        .stage-badge.planning { background: #e8e8e8; color: #666; }
-        .stage-badge.development { background: #cce5ff; color: #004085; }
-        .stage-badge.testing { background: #fff3cd; color: #856404; }
-        .stage-badge.rollout { background: #d4edda; color: #155724; }
-        .stage-badge.completed { background: #d4edda; color: #155724; }
+        .stage-badge.discovery { background: #e3f2fd; color: #1565c0; }
+        .stage-badge.planning { background: #fff3e0; color: #e65100; }
+        .stage-badge.development { background: #e8f5e9; color: #2e7d32; }
+        .stage-badge.testing { background: #f3e5f5; color: #7b1fa2; }
+        .stage-badge.rollout { background: #fce4ec; color: #c2185b; }
+        .stage-badge.completed { background: #eceff1; color: #546e7a; }
+        .projects-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .projects-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: #f4f5f7;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #5e6c84;
+            border-bottom: 2px solid #dfe1e6;
+        }
+        .projects-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #ebecf0;
+            vertical-align: top;
+        }
+        .projects-table tr:hover {
+            background: #f8f9fa;
+        }
+        .project-name {
+            font-weight: 600;
+            color: #172b4d;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .project-name:hover {
+            color: #0065ff;
+        }
+        .expand-icon {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .expanded .expand-icon {
+            transform: rotate(90deg);
+        }
+        .project-detail {
+            display: none;
+            background: #fafbfc;
+            border-bottom: 2px solid #FFE14D;
+        }
+        .project-detail.visible {
+            display: table-row;
+        }
+        .project-detail td {
+            padding: 1rem 1.5rem;
+        }
+        .detail-summary {
+            color: #42526e;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .jira-link {
+            color: #0065ff;
+            text-decoration: none;
+        }
+        .jira-link:hover {
+            text-decoration: underline;
+        }
+        .no-jira {
+            color: #97a0af;
+        }
         .initiative-group {
             margin-bottom: 2rem;
         }
@@ -352,9 +423,6 @@
             <a href="index.html">Teams</a>
             <a href="peacock.html" class="active">Peacock</a>
             <a href="billing.html">Billing</a>
-            <a href="scorecard.html">Scorecard</a>
-            <a href="projects.html">Projects</a>
-            <a href="metrics.html">Metrics</a>
         </nav>
     </header>
 
@@ -530,151 +598,169 @@
         <div id="projects" class="tab-content">
             <div class="initiative-group">
                 <h4>Home Page Self Serve Enhancements</h4>
-                <div class="project-card">
-                    <h4>What You'll Need Guidance</h4>
-                    <p>Tooltips within each onboarding task explaining what users need to complete it (e.g., headshots for providers).</p>
-                    <div class="project-meta">
-                        <span class="stage-badge development">Development</span>
-                        <span>Lead: Kelly Lee</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>Pizza Tracker</h4>
-                    <p>Visual progress tracker at the top of onboarding checklist showing how far users have gone and tasks remaining.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span>Lead: Kelly Lee</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>Patient Side Impact</h4>
-                    <p>Visual explanation of how completing each onboarding task impacts the patient experience.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span>Lead: Kelly Lee</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>Forced Onboarding Step Order</h4>
-                    <p>Direct users through onboarding tasks instead of choose-your-own-adventure style.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span>Lead: Kelly Lee</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>Bulk NPI in Onboarding</h4>
-                    <p>Bulk NPI modal when launching Create providers task, enabling users to add multiple providers at once.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span>Lead: Kelly Lee</span>
-                    </div>
-                </div>
+                <table class="projects-table">
+                    <thead>
+                        <tr><th>Project</th><th>Lead(s)</th><th>Stage</th><th>Jira</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>What You'll Need Guidance</div></td>
+                            <td>Kelly Lee</td>
+                            <td><span class="stage-badge development">Development</span></td>
+                            <td><span class="no-jira">—</span></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Tooltips within each onboarding task explaining what users need to complete it (e.g., headshots for providers).</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Pizza Tracker</div></td>
+                            <td>Kelly Lee</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><span class="no-jira">—</span></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Visual progress tracker at the top of onboarding checklist showing how far users have gone and tasks remaining.</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Patient Side Impact</div></td>
+                            <td>Kelly Lee</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><span class="no-jira">—</span></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Visual explanation of how completing each onboarding task impacts the patient experience.</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Forced Onboarding Step Order</div></td>
+                            <td>Kelly Lee</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><span class="no-jira">—</span></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Direct users through onboarding tasks instead of choose-your-own-adventure style.</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Bulk NPI in Onboarding</div></td>
+                            <td>Kelly Lee</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><span class="no-jira">—</span></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Bulk NPI modal when launching Create providers task, enabling users to add multiple providers at once.</div></td></tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="initiative-group">
                 <h4>Global Nav Refresh</h4>
-                <div class="project-card">
-                    <h4>Global Nav Refresh</h4>
-                    <p>Left nav UI, routes revamp, role-based access, migrate pages using skill, navigation mapping old to new.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge development">Development</span>
-                        <span>Leads: Sydney Morton, Clark Pathakis</span>
-                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5687" target="_blank">PROVGRO-5687</a></span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>Monorepo Consolidation</h4>
-                    <p>Move provider-home-webapp to Fromo.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span>Lead: Sydney Morton</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>Reduce Monolith Dependency</h4>
-                    <p>Move navbar data to GQL OOM.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span>Lead: Clark Pathakis</span>
-                    </div>
-                </div>
+                <table class="projects-table">
+                    <thead>
+                        <tr><th>Project</th><th>Lead(s)</th><th>Stage</th><th>Jira</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Global Nav Refresh</div></td>
+                            <td>Sydney Morton, Clark Pathakis</td>
+                            <td><span class="stage-badge development">Development</span></td>
+                            <td><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5687" class="jira-link" target="_blank">PROVGRO-5687</a></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Left nav UI, routes revamp, role-based access, migrate pages using skill, navigation mapping old to new.</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Monorepo Consolidation</div></td>
+                            <td>Sydney Morton</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><span class="no-jira">—</span></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Move provider-home-webapp to Fromo.</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Reduce Monolith Dependency</div></td>
+                            <td>Clark Pathakis</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><span class="no-jira">—</span></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Move navbar data to GQL OOM.</div></td></tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="initiative-group">
                 <h4>Provider Data Rebuild</h4>
-                <div class="project-card">
-                    <h4>Data Rebuild: Funnel Tracking</h4>
-                    <p>Foundational funnel tracking via Task Framework, bringing enterprise OOP flows in-product.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>Data Rebuild: Active Statuses</h4>
-                    <p>Trustworthy, real-time signals for provider readiness and activation that remain stable as systems evolve.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge planning">Planning</span>
-                        <span>Lead: Eftal Sogukoglu</span>
-                    </div>
-                </div>
+                <table class="projects-table">
+                    <thead>
+                        <tr><th>Project</th><th>Lead(s)</th><th>Stage</th><th>Jira</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Data Rebuild: Funnel Tracking</div></td>
+                            <td>—</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><span class="no-jira">—</span></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Foundational funnel tracking via Task Framework, bringing enterprise OOP flows in-product.</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Data Rebuild: Active Statuses</div></td>
+                            <td>Eftal Sogukoglu</td>
+                            <td><span class="stage-badge planning">Planning</span></td>
+                            <td><span class="no-jira">—</span></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Trustworthy, real-time signals for provider readiness and activation that remain stable as systems evolve.</div></td></tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="initiative-group">
                 <h4>Infrastructure & Platform</h4>
-                <div class="project-card">
-                    <h4>CMS Launch</h4>
-                    <p>Support new self sign up flow for CMS providers.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge rollout">Rollout</span>
-                        <span>Lead: Jacqueline Hang</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>Infrastructure Hardening Q2 2026</h4>
-                    <p>Q2 infrastructure hardening initiative for provider onboarding systems.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge development">Development</span>
-                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-6335" target="_blank">PROVGRO-6335</a></span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>Scope Sheet Upload Scalability</h4>
-                    <p>Expand scope sheet upload capacity to support 5K providers per batch.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge development">Development</span>
-                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5399" target="_blank">PROVGRO-5399</a></span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>FGA Migration</h4>
-                    <p>Complete migration to Fine-Grained Authorization (FGA) system for provider onboarding.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge testing">Testing</span>
-                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5468" target="_blank">PROVGRO-5468</a></span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h4>Increase Onboarding Activation Velocity</h4>
-                    <p>Q2 2026 initiative to accelerate provider activation during onboarding.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge development">Development</span>
-                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-6119" target="_blank">PROVGRO-6119</a></span>
-                    </div>
-                </div>
+                <table class="projects-table">
+                    <thead>
+                        <tr><th>Project</th><th>Lead(s)</th><th>Stage</th><th>Jira</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>CMS Launch</div></td>
+                            <td>Jacqueline Hang</td>
+                            <td><span class="stage-badge rollout">Rollout</span></td>
+                            <td><span class="no-jira">—</span></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Support new self sign up flow for CMS providers.</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Infrastructure Hardening Q2 2026</div></td>
+                            <td>—</td>
+                            <td><span class="stage-badge development">Development</span></td>
+                            <td><a href="https://zocdoc.atlassian.net/browse/PROVGRO-6335" class="jira-link" target="_blank">PROVGRO-6335</a></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Q2 infrastructure hardening initiative for provider onboarding systems.</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Scope Sheet Upload Scalability</div></td>
+                            <td>—</td>
+                            <td><span class="stage-badge development">Development</span></td>
+                            <td><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5399" class="jira-link" target="_blank">PROVGRO-5399</a></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Expand scope sheet upload capacity to support 5K providers per batch.</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>FGA Migration</div></td>
+                            <td>—</td>
+                            <td><span class="stage-badge testing">Testing</span></td>
+                            <td><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5468" class="jira-link" target="_blank">PROVGRO-5468</a></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Complete migration to Fine-Grained Authorization (FGA) system for provider onboarding.</div></td></tr>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Increase Onboarding Activation Velocity</div></td>
+                            <td>—</td>
+                            <td><span class="stage-badge development">Development</span></td>
+                            <td><a href="https://zocdoc.atlassian.net/browse/PROVGRO-6119" class="jira-link" target="_blank">PROVGRO-6119</a></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Q2 2026 initiative to accelerate provider activation during onboarding.</div></td></tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="initiative-group">
                 <h4>Completed</h4>
-                <div class="project-card">
-                    <h4>Home Page Enhancements for Enterprise</h4>
-                    <p>Enable home page for existing enterprise customers with improved UX and feature access.</p>
-                    <div class="project-meta">
-                        <span class="stage-badge completed">Completed</span>
-                        <span>Lead: Manon Escoffier</span>
-                        <span><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5870" target="_blank">PROVGRO-5870</a></span>
-                    </div>
-                </div>
+                <table class="projects-table">
+                    <thead>
+                        <tr><th>Project</th><th>Lead(s)</th><th>Stage</th><th>Jira</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="project-row" onclick="toggleDetail(this)">
+                            <td><div class="project-name"><span class="expand-icon">▶</span>Home Page Enhancements for Enterprise</div></td>
+                            <td>Manon Escoffier</td>
+                            <td><span class="stage-badge completed">Completed</span></td>
+                            <td><a href="https://zocdoc.atlassian.net/browse/PROVGRO-5870" class="jira-link" target="_blank">PROVGRO-5870</a></td>
+                        </tr>
+                        <tr class="project-detail"><td colspan="4"><div class="detail-summary">Enable home page for existing enterprise customers with improved UX and feature access.</div></td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -689,6 +775,19 @@
                 document.getElementById(tab.dataset.tab).classList.add('active');
             });
         });
+
+        function toggleDetail(row) {
+            const detailRow = row.nextElementSibling;
+            const isVisible = detailRow.classList.contains('visible');
+
+            document.querySelectorAll('.project-detail').forEach(d => d.classList.remove('visible'));
+            document.querySelectorAll('.project-row').forEach(r => r.classList.remove('expanded'));
+
+            if (!isVisible) {
+                detailRow.classList.add('visible');
+                row.classList.add('expanded');
+            }
+        }
     </script>
 </body>
 </html>

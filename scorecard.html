@@ -528,7 +528,12 @@
                 padding: 0.5rem 0.75rem;
             }
         }
+        @media all {
+            body.in-iframe .header { display: none; }
+            body.in-iframe { padding-top: 1rem; }
+        }
     </style>
+    <script>if (window.self !== window.top) document.body.classList.add('in-iframe');</script>
 </head>
 <body>
     <header class="header">
@@ -541,9 +546,6 @@
                 <a href="index.html">Teams</a>
                 <a href="peacock.html">Peacock</a>
                 <a href="billing.html">Billing</a>
-                <a href="scorecard.html" class="active">Scorecard</a>
-                <a href="projects.html">Projects</a>
-                <a href="metrics.html">Metrics</a>
             </nav>
             <div class="team-selector">
                 <label for="teamFilter">Team:</label>

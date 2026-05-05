@@ -474,7 +474,12 @@
             from { transform: translateY(20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+        @media all {
+            body.in-iframe .header { display: none; }
+            body.in-iframe { padding-top: 1rem; }
+        }
     </style>
+    <script>if (window.self !== window.top) document.body.classList.add('in-iframe');</script>
 </head>
 <body>
     <header class="header">
@@ -483,12 +488,9 @@
             Team Hub
         </a>
         <div class="nav-links">
-            <a href="index.html">Directory</a>
+            <a href="index.html">Teams</a>
             <a href="peacock.html">Peacock</a>
             <a href="billing.html">Billing</a>
-            <a href="scorecard.html">Scorecard</a>
-            <a href="projects.html" class="active">Projects</a>
-            <a href="metrics.html">Metrics</a>
         </div>
         <div class="header-right">
             <div class="filters">
