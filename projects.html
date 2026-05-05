@@ -124,6 +124,7 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            table-layout: fixed;
         }
         .projects-table th {
             text-align: left;
@@ -135,10 +136,16 @@
             color: #5e6c84;
             border-bottom: 2px solid #dfe1e6;
         }
+        .projects-table th:nth-child(1) { width: 40%; }
+        .projects-table th:nth-child(2) { width: 20%; }
+        .projects-table th:nth-child(3) { width: 15%; }
+        .projects-table th:nth-child(4) { width: 25%; }
         .projects-table td {
             padding: 1rem;
             border-bottom: 1px solid #ebecf0;
             vertical-align: top;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .projects-table tr:hover {
             background: #f8f9fa;
