@@ -179,14 +179,16 @@
         .stage-metrics { background: #e0f2f1; color: #00695c; }
         .stage-complete { background: #eceff1; color: #546e7a; }
         .stage-completed { background: #e8f5e9; color: #2e7d32; }
-        .initiative-badge {
-            display: inline-block;
-            padding: 0.2rem 0.5rem;
-            background: #f5f5f5;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            color: #5e6c84;
-            white-space: nowrap;
+        .initiative-group {
+            margin-bottom: 2rem;
+        }
+        .initiative-header {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #172b4d;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid #FFE14D;
         }
         .jira-link {
             color: #0065ff;
@@ -488,19 +490,6 @@
                     <option value="account-user-setup">Account & User Setup</option>
                     <option value="billing">Billing</option>
                 </select>
-                <label for="initiative-filter">Initiative:</label>
-                <select id="initiative-filter" class="filter-dropdown" onchange="renderTable(projectsData.projects)">
-                    <option value="all">All Initiatives</option>
-                    <option value="CMS Launch">CMS Launch</option>
-                    <option value="Enterprise Home">Enterprise Home</option>
-                    <option value="Home Page Self Serve Enhancements">Self Serve Enhancements</option>
-                    <option value="Provider Data Rebuild">Data Rebuild</option>
-                    <option value="Global Nav Refresh">Global Nav Refresh</option>
-                    <option value="FGA Migration">FGA Migration</option>
-                    <option value="Infrastructure Hardening">Infrastructure Hardening</option>
-                    <option value="Activation Velocity">Activation Velocity</option>
-                    <option value="Scalability">Scalability</option>
-                </select>
                 <label for="stage-filter">Stage:</label>
                 <select id="stage-filter" class="filter-dropdown">
                     <option value="all">All Stages</option>
@@ -662,12 +651,10 @@ PRD | https://docs.google.com/... | gdoc"></textarea>
 
         function renderTable(projects) {
             const teamFilter = document.getElementById('team-filter').value;
-            const initiativeFilter = document.getElementById('initiative-filter').value;
             const stageFilter = document.getElementById('stage-filter').value;
 
             const filtered = projects.filter(p => {
                 if (teamFilter !== 'all' && p.team !== teamFilter) return false;
-                if (initiativeFilter !== 'all' && p.initiative !== initiativeFilter) return false;
                 if (stageFilter !== 'all' && p.stage !== stageFilter) return false;
                 return true;
             });
@@ -678,50 +665,129 @@ PRD | https://docs.google.com/... | gdoc"></textarea>
                 return;
             }
 
-            let html = `
-                <table class="projects-table">
-                    <thead>
-                        <tr>
-                            <th>Project</th>
-                            <th>Initiative</th>
-                            <th>Team</th>
-                            <th>Lead(s)</th>
-                            <th>Stage</th>
-                            <th>Jira</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-
-            filtered.forEach(project => {
-                const leadNames = (project.leads || []).map(getLeadName).join(', ') || '—';
-                const jiraLinks = (project.jiraEpics || []).map(key =>
-                    `<a href="https://zocdoc.atlassian.net/browse/${key}" class="jira-link" target="_blank">${key}</a>`
-                ).join(', ') || '<span class="no-jira">—</span>';
-
-                html += `
-                    <tr class="project-row" data-id="${project.id}">
-                        <td>
-                            <div class="project-name" onclick="toggleDetail('${project.id}')">
-                                <span class="expand-icon">▶</span>
-                                ${project.name}
-                            </div>
-                        </td>
-                        <td><span class="initiative-badge">${project.initiative || '—'}</span></td>
-                        <td>${TEAM_NAMES[project.team] || project.team}</td>
-                        <td>${leadNames}</td>
-                        <td><span class="stage-badge stage-${project.stage}">${STAGE_NAMES[project.stage] || project.stage}</span></td>
-                        <td>${jiraLinks}</td>
-                    </tr>
-                    <tr class="project-detail" data-detail-id="${project.id}">
-                        <td colspan="6">
-                            ${renderDetail(project)}
-                        </td>
-                    </tr>
-                `;
+            // Group projects by initiative
+            const grouped = {};
+            const noInitiative = [];
+            filtered.forEach(p => {
+                if (p.initiative) {
+                    if (!grouped[p.initiative]) grouped[p.initiative] = [];
+                    grouped[p.initiative].push(p);
+                } else {
+                    noInitiative.push(p);
+                }
             });
 
-            html += '</tbody></table>';
+            // Define initiative order
+            const initiativeOrder = [
+                'Home Page Self Serve Enhancements',
+                'Provider Data Rebuild',
+                'CMS Launch',
+                'Enterprise Home',
+                'Global Nav Refresh',
+                'FGA Migration',
+                'Infrastructure Hardening',
+                'Activation Velocity',
+                'Scalability'
+            ];
+
+            let html = '';
+
+            // Render each initiative group
+            initiativeOrder.forEach(initiative => {
+                if (!grouped[initiative] || grouped[initiative].length === 0) return;
+
+                html += `
+                    <div class="initiative-group">
+                        <h3 class="initiative-header">${initiative}</h3>
+                        <table class="projects-table">
+                            <thead>
+                                <tr>
+                                    <th>Project</th>
+                                    <th>Lead(s)</th>
+                                    <th>Stage</th>
+                                    <th>Jira</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+
+                grouped[initiative].forEach(project => {
+                    const leadNames = (project.leads || []).map(getLeadName).join(', ') || '—';
+                    const jiraLinks = (project.jiraEpics || []).map(key =>
+                        `<a href="https://zocdoc.atlassian.net/browse/${key}" class="jira-link" target="_blank">${key}</a>`
+                    ).join(', ') || '<span class="no-jira">—</span>';
+
+                    html += `
+                        <tr class="project-row" data-id="${project.id}">
+                            <td>
+                                <div class="project-name" onclick="toggleDetail('${project.id}')">
+                                    <span class="expand-icon">▶</span>
+                                    ${project.name}
+                                </div>
+                            </td>
+                            <td>${leadNames}</td>
+                            <td><span class="stage-badge stage-${project.stage}">${STAGE_NAMES[project.stage] || project.stage}</span></td>
+                            <td>${jiraLinks}</td>
+                        </tr>
+                        <tr class="project-detail" data-detail-id="${project.id}">
+                            <td colspan="4">
+                                ${renderDetail(project)}
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                html += '</tbody></table></div>';
+            });
+
+            // Render projects without initiative
+            if (noInitiative.length > 0) {
+                html += `
+                    <div class="initiative-group">
+                        <h3 class="initiative-header">Other Projects</h3>
+                        <table class="projects-table">
+                            <thead>
+                                <tr>
+                                    <th>Project</th>
+                                    <th>Team</th>
+                                    <th>Lead(s)</th>
+                                    <th>Stage</th>
+                                    <th>Jira</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+
+                noInitiative.forEach(project => {
+                    const leadNames = (project.leads || []).map(getLeadName).join(', ') || '—';
+                    const jiraLinks = (project.jiraEpics || []).map(key =>
+                        `<a href="https://zocdoc.atlassian.net/browse/${key}" class="jira-link" target="_blank">${key}</a>`
+                    ).join(', ') || '<span class="no-jira">—</span>';
+
+                    html += `
+                        <tr class="project-row" data-id="${project.id}">
+                            <td>
+                                <div class="project-name" onclick="toggleDetail('${project.id}')">
+                                    <span class="expand-icon">▶</span>
+                                    ${project.name}
+                                </div>
+                            </td>
+                            <td>${TEAM_NAMES[project.team] || project.team}</td>
+                            <td>${leadNames}</td>
+                            <td><span class="stage-badge stage-${project.stage}">${STAGE_NAMES[project.stage] || project.stage}</span></td>
+                            <td>${jiraLinks}</td>
+                        </tr>
+                        <tr class="project-detail" data-detail-id="${project.id}">
+                            <td colspan="5">
+                                ${renderDetail(project)}
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                html += '</tbody></table></div>';
+            }
+
             document.getElementById('projects-table').innerHTML = html;
         }
 
