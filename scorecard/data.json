@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-04T10:56:42.167863",
+  "lastUpdated": "2026-05-05T10:28:29.213633",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -21,8 +21,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 179,
-              "notes": "179 lines avg (30d)"
+              "value": 164,
+              "notes": "164 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -105,8 +105,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 3,
-              "notes": "Last commit: 2026-05-01 (3d ago)"
+              "days_ago": 1,
+              "notes": "Last commit: 2026-05-04 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -153,8 +153,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 111,
-              "notes": "111 lines avg (30d)"
+              "value": 107,
+              "notes": "107 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -237,8 +237,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 6,
-              "notes": "Last commit: 2026-04-28 (6d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-05 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -275,8 +275,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 22,
-              "notes": "22 lines avg (30d)"
+              "value": 20,
+              "notes": "20 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -359,8 +359,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 5,
-              "notes": "Last commit: 2026-04-29 (5d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-05 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -397,8 +397,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 170,
-              "notes": "170 lines avg (30d)"
+              "value": 165,
+              "notes": "165 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -481,8 +481,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 6,
-              "notes": "Last commit: 2026-04-28 (6d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-05 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -507,9 +507,9 @@
           "repo": "provider-join-service",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "ECS service without B/G"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "B/G enabled in CDK"
             },
             "sloGate": {
               "tier": "unknown",
@@ -519,8 +519,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 62,
-              "notes": "62 lines avg (30d)"
+              "value": 72,
+              "notes": "72 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -603,8 +603,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 10,
-              "notes": "Last commit: 2026-04-24 (10d ago)"
+              "days_ago": 1,
+              "notes": "Last commit: 2026-05-04 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
