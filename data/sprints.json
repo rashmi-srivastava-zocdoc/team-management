@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-06T02:08:45.910956+00:00",
+  "lastUpdated": "2026-05-06T02:38:04.409383+00:00",
   "2026-05-03": {
     "teams": {}
   },
@@ -648,7 +648,13 @@
   "2026-05-06": {
     "teams": {
       "peacock": {
-        "error": "Failed to get sprints: HTTP Error 400: Bad Request"
+        "sprint_name": "Peacock Sprint 340",
+        "state": "active",
+        "total_issues": 86,
+        "done_issues": 48,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
       },
       "pterodactyl": {
         "sprint_name": "Pterodactl Sprint 340",

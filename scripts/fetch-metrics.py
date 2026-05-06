@@ -74,7 +74,12 @@ def fetch_sprint_data(project_key: str, email: str, token: str) -> dict:
     if not boards.get("values"):
         return {"error": "No boards found"}
 
-    board_id = boards["values"][0]["id"]
+    # Prefer scrum boards over kanban for sprint data
+    scrum_boards = [b for b in boards["values"] if b.get("type") == "scrum"]
+    if scrum_boards:
+        board_id = scrum_boards[0]["id"]
+    else:
+        board_id = boards["values"][0]["id"]
 
     # Get active sprint
     sprints_url = f"{JIRA_BASE_URL}/rest/agile/1.0/board/{board_id}/sprint?state=active"
