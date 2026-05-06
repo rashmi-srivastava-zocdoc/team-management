@@ -290,8 +290,25 @@
             font-size: 0.95rem;
             color: #1a1a1a;
             margin: 0;
-            flex: 1;
         }
+        .repo-header .repo-badges {
+            display: flex;
+            gap: 0.4rem;
+            margin-left: auto;
+            margin-right: 1rem;
+        }
+        .repo-badge {
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .repo-badge.be { background: #dbeafe; color: #1e40af; }
+        .repo-badge.fe { background: #dcfce7; color: #166534; }
+        .repo-badge.tool { background: #fef3c7; color: #92400e; }
+        .repo-badge.full { background: #f3e8ff; color: #6b21a8; }
+        .repo-badge.shared { background: #f1f5f9; color: #475569; }
         .repo-header .repo-links {
             display: flex;
             gap: 0.5rem;
@@ -795,12 +812,16 @@
             </div>
 
             <div class="section-card">
-                <h3>Full Ownership - Backend Services</h3>
+                <h3>Code Ownership</h3>
                 <div class="ownership-list">
                     <div class="repo-item">
                         <button class="repo-header" onclick="toggleRepo(this)">
                             <span class="expand-icon">▶</span>
                             <h4>provider-setup-service</h4>
+                            <div class="repo-badges">
+                                <span class="repo-badge be">BE</span>
+                                <span class="repo-badge full">Full</span>
+                            </div>
                             <div class="repo-links">
                                 <a href="https://github.com/Zocdoc/provider-setup-service" target="_blank" onclick="event.stopPropagation()">GitHub</a>
                                 <a href="https://backstage.zocdoc.io/catalog/default/component/provider-setup-service" target="_blank" onclick="event.stopPropagation()">Roadie</a>
@@ -817,16 +838,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="section-card">
-                <h3>Full Ownership - Frontend & Tools</h3>
-                <div class="ownership-list">
                     <div class="repo-item expanded">
                         <button class="repo-header" onclick="toggleRepo(this)">
                             <span class="expand-icon">▶</span>
                             <h4>client-side-webapp-host</h4>
+                            <div class="repo-badges">
+                                <span class="repo-badge be">BE</span>
+                                <span class="repo-badge full">Full</span>
+                            </div>
                             <div class="repo-links">
                                 <a href="https://github.com/Zocdoc/client-side-webapp-host" target="_blank" onclick="event.stopPropagation()">GitHub</a>
                             </div>
@@ -857,32 +876,11 @@
                     <div class="repo-item">
                         <button class="repo-header" onclick="toggleRepo(this)">
                             <span class="expand-icon">▶</span>
-                            <h4>scorecarder-publisher</h4>
-                            <div class="repo-links">
-                                <a href="https://github.com/Zocdoc/scorecarder-publisher" target="_blank" onclick="event.stopPropagation()">GitHub</a>
-                            </div>
-                        </button>
-                        <div class="repo-details">
-                            <p class="summary">Scorecard publishing service</p>
-                            <div class="detail-section">
-                                <h5>Purpose</h5>
-                                <p>Publishes scorecard data for provider metrics and performance tracking.</p>
-                            </div>
-                            <div class="meta">
-                                <span>Status: Active</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-card">
-                <h3>Partial Ownership (Shared)</h3>
-                <div class="ownership-list">
-                    <div class="repo-item shared">
-                        <button class="repo-header" onclick="toggleRepo(this)">
-                            <span class="expand-icon">▶</span>
                             <h4>provider-fe-monorepo</h4>
+                            <div class="repo-badges">
+                                <span class="repo-badge fe">FE</span>
+                                <span class="repo-badge shared">Shared</span>
+                            </div>
                             <div class="repo-links">
                                 <a href="https://github.com/Zocdoc/provider-fe-monorepo" target="_blank" onclick="event.stopPropagation()">GitHub</a>
                             </div>
@@ -902,10 +900,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="repo-item shared">
+                    <div class="repo-item">
                         <button class="repo-header" onclick="toggleRepo(this)">
                             <span class="expand-icon">▶</span>
                             <h4>provider-settings-webapp</h4>
+                            <div class="repo-badges">
+                                <span class="repo-badge fe">FE</span>
+                                <span class="repo-badge shared">Shared</span>
+                            </div>
                             <div class="repo-links">
                                 <a href="https://github.com/Zocdoc/provider-settings-webapp" target="_blank" onclick="event.stopPropagation()">GitHub</a>
                             </div>
@@ -926,10 +928,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="repo-item shared">
+                    <div class="repo-item">
                         <button class="repo-header" onclick="toggleRepo(this)">
                             <span class="expand-icon">▶</span>
                             <h4>api2-gql</h4>
+                            <div class="repo-badges">
+                                <span class="repo-badge be">BE</span>
+                                <span class="repo-badge shared">Shared</span>
+                            </div>
                             <div class="repo-links">
                                 <a href="https://github.com/Zocdoc/api2-gql" target="_blank" onclick="event.stopPropagation()">GitHub</a>
                             </div>
@@ -948,10 +954,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="repo-item shared">
+                    <div class="repo-item">
                         <button class="repo-header" onclick="toggleRepo(this)">
                             <span class="expand-icon">▶</span>
                             <h4>zd-claude</h4>
+                            <div class="repo-badges">
+                                <span class="repo-badge tool">Tool</span>
+                                <span class="repo-badge shared">Shared</span>
+                            </div>
                             <div class="repo-links">
                                 <a href="https://github.com/Zocdoc/zd-claude" target="_blank" onclick="event.stopPropagation()">GitHub</a>
                             </div>
