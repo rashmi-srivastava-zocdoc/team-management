@@ -97,8 +97,8 @@ def fetch_sprint_data(project_key: str, email: str, token: str) -> dict:
     sprint_id = sprint["id"]
     sprint_name = sprint["name"]
 
-    # Get sprint issues
-    issues_url = f"{JIRA_BASE_URL}/rest/agile/1.0/sprint/{sprint_id}/issue?maxResults=200&fields=status,customfield_10004"
+    # Get sprint issues (customfield_10066 = Story Points in Zocdoc Jira)
+    issues_url = f"{JIRA_BASE_URL}/rest/agile/1.0/sprint/{sprint_id}/issue?maxResults=200&fields=status,customfield_10066"
     try:
         req = Request(issues_url, headers=headers)
         with urlopen(req) as resp:
@@ -114,7 +114,7 @@ def fetch_sprint_data(project_key: str, email: str, token: str) -> dict:
     for issue in issues_data.get("issues", []):
         fields = issue.get("fields", {})
         status_cat = fields.get("status", {}).get("statusCategory", {}).get("key", "")
-        points = fields.get("customfield_10004") or 0
+        points = fields.get("customfield_10066") or 0
 
         total_points += points
         if status_cat == "done":
