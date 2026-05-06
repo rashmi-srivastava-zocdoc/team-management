@@ -290,12 +290,13 @@
             font-size: 0.95rem;
             color: #1a1a1a;
             margin: 0;
+            flex: 1;
         }
         .repo-header .repo-badges {
             display: flex;
             gap: 0.4rem;
-            margin-left: auto;
-            margin-right: 1rem;
+            width: 120px;
+            flex-shrink: 0;
         }
         .repo-badge {
             padding: 0.15rem 0.5rem;
@@ -303,6 +304,8 @@
             font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
+            min-width: 45px;
+            text-align: center;
         }
         .repo-badge.be { background: #dbeafe; color: #1e40af; }
         .repo-badge.fe { background: #dcfce7; color: #166534; }
@@ -310,6 +313,13 @@
         .repo-badge.full { background: #f3e8ff; color: #6b21a8; }
         .repo-badge.shared { background: #f1f5f9; color: #475569; }
         .repo-header .repo-links {
+            width: 120px;
+            flex-shrink: 0;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+        .repo-header .repo-links-placeholder {
             display: flex;
             gap: 0.5rem;
         }
