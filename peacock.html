@@ -250,9 +250,111 @@
             color: #ccc;
             font-size: 0.85rem;
         }
+        .ownership-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .repo-item {
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            overflow: hidden;
+            border-left: 4px solid #FFE14D;
+        }
+        .repo-item.shared {
+            border-left-color: #94a3b8;
+        }
+        .repo-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: #f8f9fa;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+        .repo-header:hover {
+            background: #f0f1f3;
+        }
+        .repo-header .expand-icon {
+            font-size: 0.7rem;
+            color: #666;
+            transition: transform 0.2s;
+        }
+        .repo-item.expanded .repo-header .expand-icon {
+            transform: rotate(90deg);
+        }
+        .repo-header h4 {
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            margin: 0;
+            flex: 1;
+        }
+        .repo-header .repo-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .repo-header .repo-links a {
+            font-size: 0.75rem;
+            color: #0066cc;
+            text-decoration: none;
+            padding: 0.2rem 0.5rem;
+            background: #e8f4fc;
+            border-radius: 4px;
+        }
+        .repo-header .repo-links a:hover {
+            background: #d0e8f7;
+        }
+        .repo-details {
+            display: none;
+            padding: 1rem 1rem 1rem 2rem;
+            background: #fff;
+            border-top: 1px solid #e8e8e8;
+        }
+        .repo-item.expanded .repo-details {
+            display: block;
+        }
+        .repo-details .summary {
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .repo-details .detail-section {
+            margin-bottom: 0.75rem;
+        }
+        .repo-details .detail-section h5 {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.35rem;
+        }
+        .repo-details .detail-section p,
+        .repo-details .detail-section ul {
+            font-size: 0.85rem;
+            color: #444;
+            margin: 0;
+        }
+        .repo-details .detail-section ul {
+            margin-left: 1.25rem;
+        }
+        .repo-details .detail-section li {
+            margin-bottom: 0.25rem;
+        }
+        .repo-details .meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #f0f0f0;
+        }
         .ownership-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1rem;
         }
         .ownership-item {
@@ -262,12 +364,12 @@
             border-left: 4px solid #FFE14D;
         }
         .ownership-item h4 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             margin-bottom: 0.5rem;
             color: #1a1a1a;
         }
         .ownership-item p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #666;
             margin-bottom: 0.5rem;
         }
@@ -691,13 +793,25 @@
 
             <div class="section-card">
                 <h3>Full Ownership - Backend Services</h3>
-                <div class="ownership-grid">
-                    <div class="ownership-item">
-                        <h4>provider-setup-service</h4>
-                        <p>New providers setup: training and onboarding orchestration</p>
-                        <div class="links">
-                            <a href="https://github.com/Zocdoc/provider-setup-service" target="_blank">GitHub</a>
-                            <a href="https://backstage.zocdoc.io/catalog/default/component/provider-setup-service" target="_blank">Roadie</a>
+                <div class="ownership-list">
+                    <div class="repo-item">
+                        <button class="repo-header" onclick="toggleRepo(this)">
+                            <span class="expand-icon">▶</span>
+                            <h4>provider-setup-service</h4>
+                            <div class="repo-links">
+                                <a href="https://github.com/Zocdoc/provider-setup-service" target="_blank" onclick="event.stopPropagation()">GitHub</a>
+                                <a href="https://backstage.zocdoc.io/catalog/default/component/provider-setup-service" target="_blank" onclick="event.stopPropagation()">Roadie</a>
+                            </div>
+                        </button>
+                        <div class="repo-details">
+                            <p class="summary">New providers setup: training and onboarding orchestration</p>
+                            <div class="detail-section">
+                                <h5>Purpose</h5>
+                                <p>Orchestrates the setup flow for new providers joining Zocdoc, including training steps and onboarding task management.</p>
+                            </div>
+                            <div class="meta">
+                                <span>Status: Active</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -705,19 +819,55 @@
 
             <div class="section-card">
                 <h3>Full Ownership - Frontend & Tools</h3>
-                <div class="ownership-grid">
-                    <div class="ownership-item">
-                        <h4>client-side-webapp-host</h4>
-                        <p>Client-side web application host for provider portal</p>
-                        <div class="links">
-                            <a href="https://github.com/Zocdoc/client-side-webapp-host" target="_blank">GitHub</a>
+                <div class="ownership-list">
+                    <div class="repo-item expanded">
+                        <button class="repo-header" onclick="toggleRepo(this)">
+                            <span class="expand-icon">▶</span>
+                            <h4>client-side-webapp-host</h4>
+                            <div class="repo-links">
+                                <a href="https://github.com/Zocdoc/client-side-webapp-host" target="_blank" onclick="event.stopPropagation()">GitHub</a>
+                            </div>
+                        </button>
+                        <div class="repo-details">
+                            <p class="summary">A C# service for hosting client-side rendered (CSR) web applications outside the monolith.</p>
+                            <div class="detail-section">
+                                <h5>Purpose</h5>
+                                <p>A thin layer that serves client-side web apps without going through the monolith.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>How It Works</h5>
+                                <p>Fetches pre-built HTML from Velocity Raptor (the asset deployment system) and serves it to users. When you have a React/frontend app that doesn't need server-side rendering from the monolith, you add a controller here that serves the HTML shell, and the client-side JS takes over from there.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>Future Enhancements</h5>
+                                <ul>
+                                    <li>Bootstrapping data into HTML (porting logic from the monolith's BootstrapDataHtmlService)</li>
+                                    <li>Decoupling from monolith's velocity raptor canary deploy</li>
+                                </ul>
+                            </div>
+                            <div class="meta">
+                                <span>Created: September 2022</span>
+                                <span>Status: Active</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="ownership-item">
-                        <h4>scorecarder-publisher</h4>
-                        <p>Scorecard publishing service</p>
-                        <div class="links">
-                            <a href="https://github.com/Zocdoc/scorecarder-publisher" target="_blank">GitHub</a>
+                    <div class="repo-item">
+                        <button class="repo-header" onclick="toggleRepo(this)">
+                            <span class="expand-icon">▶</span>
+                            <h4>scorecarder-publisher</h4>
+                            <div class="repo-links">
+                                <a href="https://github.com/Zocdoc/scorecarder-publisher" target="_blank" onclick="event.stopPropagation()">GitHub</a>
+                            </div>
+                        </button>
+                        <div class="repo-details">
+                            <p class="summary">Scorecard publishing service</p>
+                            <div class="detail-section">
+                                <h5>Purpose</h5>
+                                <p>Publishes scorecard data for provider metrics and performance tracking.</p>
+                            </div>
+                            <div class="meta">
+                                <span>Status: Active</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -725,33 +875,95 @@
 
             <div class="section-card">
                 <h3>Partial Ownership (Shared)</h3>
-                <div class="ownership-grid">
-                    <div class="ownership-item" style="border-left-color: #94a3b8;">
-                        <h4>provider-fe-monorepo</h4>
-                        <p>Owns: practiceOnboardingPage, providerInvitePage, shared/core</p>
-                        <div class="links">
-                            <a href="https://github.com/Zocdoc/provider-fe-monorepo" target="_blank">GitHub</a>
+                <div class="ownership-list">
+                    <div class="repo-item shared">
+                        <button class="repo-header" onclick="toggleRepo(this)">
+                            <span class="expand-icon">▶</span>
+                            <h4>provider-fe-monorepo</h4>
+                            <div class="repo-links">
+                                <a href="https://github.com/Zocdoc/provider-fe-monorepo" target="_blank" onclick="event.stopPropagation()">GitHub</a>
+                            </div>
+                        </button>
+                        <div class="repo-details">
+                            <p class="summary">Shared frontend monorepo for provider-facing applications.</p>
+                            <div class="detail-section">
+                                <h5>Peacock Owns</h5>
+                                <ul>
+                                    <li>practiceOnboardingPage</li>
+                                    <li>providerInvitePage</li>
+                                    <li>shared/core</li>
+                                </ul>
+                            </div>
+                            <div class="meta">
+                                <span>Shared with: Multiple teams</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="ownership-item" style="border-left-color: #94a3b8;">
-                        <h4>provider-settings-webapp</h4>
-                        <p>Owns: practiceOnboardingPage, selfSignUp, sellPage, providerInvitePage</p>
-                        <div class="links">
-                            <a href="https://github.com/Zocdoc/provider-settings-webapp" target="_blank">GitHub</a>
+                    <div class="repo-item shared">
+                        <button class="repo-header" onclick="toggleRepo(this)">
+                            <span class="expand-icon">▶</span>
+                            <h4>provider-settings-webapp</h4>
+                            <div class="repo-links">
+                                <a href="https://github.com/Zocdoc/provider-settings-webapp" target="_blank" onclick="event.stopPropagation()">GitHub</a>
+                            </div>
+                        </button>
+                        <div class="repo-details">
+                            <p class="summary">Provider settings and configuration webapp.</p>
+                            <div class="detail-section">
+                                <h5>Peacock Owns</h5>
+                                <ul>
+                                    <li>practiceOnboardingPage</li>
+                                    <li>selfSignUp</li>
+                                    <li>sellPage</li>
+                                    <li>providerInvitePage</li>
+                                </ul>
+                            </div>
+                            <div class="meta">
+                                <span>Shared with: Multiple teams</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="ownership-item" style="border-left-color: #94a3b8;">
-                        <h4>api2-gql</h4>
-                        <p>Owns: ProviderGQLRoot, ProviderFactory (shared with Parrot, Peregrine)</p>
-                        <div class="links">
-                            <a href="https://github.com/Zocdoc/api2-gql" target="_blank">GitHub</a>
+                    <div class="repo-item shared">
+                        <button class="repo-header" onclick="toggleRepo(this)">
+                            <span class="expand-icon">▶</span>
+                            <h4>api2-gql</h4>
+                            <div class="repo-links">
+                                <a href="https://github.com/Zocdoc/api2-gql" target="_blank" onclick="event.stopPropagation()">GitHub</a>
+                            </div>
+                        </button>
+                        <div class="repo-details">
+                            <p class="summary">GraphQL API layer for provider-facing applications.</p>
+                            <div class="detail-section">
+                                <h5>Peacock Owns</h5>
+                                <ul>
+                                    <li>ProviderGQLRoot</li>
+                                    <li>ProviderFactory</li>
+                                </ul>
+                            </div>
+                            <div class="meta">
+                                <span>Shared with: Parrot, Peregrine</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="ownership-item" style="border-left-color: #94a3b8;">
-                        <h4>zd-claude</h4>
-                        <p>Owns: /teams/zd-provider-onboarding/ skills and tools</p>
-                        <div class="links">
-                            <a href="https://github.com/Zocdoc/zd-claude" target="_blank">GitHub</a>
+                    <div class="repo-item shared">
+                        <button class="repo-header" onclick="toggleRepo(this)">
+                            <span class="expand-icon">▶</span>
+                            <h4>zd-claude</h4>
+                            <div class="repo-links">
+                                <a href="https://github.com/Zocdoc/zd-claude" target="_blank" onclick="event.stopPropagation()">GitHub</a>
+                            </div>
+                        </button>
+                        <div class="repo-details">
+                            <p class="summary">Claude Code skills and tools for Zocdoc engineering.</p>
+                            <div class="detail-section">
+                                <h5>Peacock Owns</h5>
+                                <ul>
+                                    <li>/teams/zd-provider-onboarding/ skills and tools</li>
+                                </ul>
+                            </div>
+                            <div class="meta">
+                                <span>Shared with: All engineering teams</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1278,6 +1490,10 @@
 
         function toggleCategory(id) {
             document.getElementById(id).classList.toggle('expanded');
+        }
+
+        function toggleRepo(el) {
+            el.closest('.repo-item').classList.toggle('expanded');
         }
 
         document.addEventListener('keydown', function(e) {
