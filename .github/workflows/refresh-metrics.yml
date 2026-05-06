@@ -1,0 +1,88 @@
+name: Refresh Metrics Data
+
+on:
+  schedule:
+    # Run daily at 11am UTC (7am ET) - after scorecard/projects
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+    inputs:
+      skip_prs:
+        description: 'Skip GitHub PR fetch'
+        required: false
+        default: 'false'
+        type: boolean
+      skip_sprints:
+        description: 'Skip Jira sprint fetch'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-metrics:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch metrics data
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+        run: |
+          ARGS=""
+          if [[ "${{ github.event.inputs.skip_prs }}" == "true" ]]; then
+            ARGS="$ARGS --skip-prs"
+          fi
+          if [[ "${{ github.event.inputs.skip_sprints }}" == "true" ]]; then
+            ARGS="$ARGS --skip-sprints"
+          fi
+          python3 scripts/fetch-metrics.py $ARGS
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet data/prs.json data/sprints.json 2>/dev/null; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/prs.json data/sprints.json
+          git commit -m "chore: refresh PR and sprint metrics
+
+          Generated with AI
+
+          Co-Authored-By: Claude Code"
+          git push
+
+      - name: Summary
+        run: |
+          echo "## Metrics Refresh" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [[ "${{ steps.changes.outputs.changed }}" == "true" ]]; then
+            echo "✅ Metrics data updated and committed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ No changes to metrics data" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Sprint Data" >> $GITHUB_STEP_SUMMARY
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          cat data/sprints.json | head -50 >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "View: https://rashmi-srivastava-zocdoc.github.io/team-management/metrics.html" >> $GITHUB_STEP_SUMMARY

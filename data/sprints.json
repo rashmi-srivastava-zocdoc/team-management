@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-04T08:41:30.118254",
+  "lastUpdated": "2026-05-06T02:08:45.910956+00:00",
   "2026-05-03": {
     "teams": {}
   },
@@ -639,6 +639,31 @@
         "state": "active",
         "total_issues": 41,
         "done_issues": 6,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      }
+    }
+  },
+  "2026-05-06": {
+    "teams": {
+      "peacock": {
+        "error": "Failed to get sprints: HTTP Error 400: Bad Request"
+      },
+      "pterodactyl": {
+        "sprint_name": "Pterodactl Sprint 340",
+        "state": "active",
+        "total_issues": 50,
+        "done_issues": 20,
+        "total_points": 0,
+        "done_points": 0,
+        "completion_rate": 0
+      },
+      "billing": {
+        "sprint_name": "Billing 339 - 2026.04.27-05.08",
+        "state": "active",
+        "total_issues": 42,
+        "done_issues": 9,
         "total_points": 0,
         "done_points": 0,
         "completion_rate": 0
