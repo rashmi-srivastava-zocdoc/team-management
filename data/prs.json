@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-04T08:41:30.113097",
+  "lastUpdated": "2026-05-06T12:25:37.530360+00:00",
   "2026-05-03": {
     "teams": {
       "peacock": {
@@ -261,6 +261,19 @@
       "pterodactyl": {
         "total_prs": 22,
         "unique_authors": 7
+      }
+    }
+  },
+  "2026-05-06": {
+    "teams": {
+      "peacock": {
+        "total_prs": 0
+      },
+      "pterodactyl": {
+        "total_prs": 0
+      },
+      "billing": {
+        "total_prs": 0
       }
     }
   }
