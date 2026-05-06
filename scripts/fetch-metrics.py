@@ -97,8 +97,9 @@ def fetch_sprint_data(project_key: str, email: str, token: str) -> dict:
     sprint_id = sprint["id"]
     sprint_name = sprint["name"]
 
-    # Get sprint issues (customfield_10066 = Story Points in Zocdoc Jira)
-    issues_url = f"{JIRA_BASE_URL}/rest/agile/1.0/sprint/{sprint_id}/issue?maxResults=200&fields=status,customfield_10066"
+    # Get sprint issues
+    # customfield_10066 = Story Points, customfield_10375 = Remaining Story Points
+    issues_url = f"{JIRA_BASE_URL}/rest/agile/1.0/sprint/{sprint_id}/issue?maxResults=200&fields=status,customfield_10066,customfield_10375"
     try:
         req = Request(issues_url, headers=headers)
         with urlopen(req) as resp:
@@ -109,26 +110,29 @@ def fetch_sprint_data(project_key: str, email: str, token: str) -> dict:
     total = issues_data.get("total", 0)
     done = 0
     total_points = 0
-    done_points = 0
+    remaining_points = 0
 
     for issue in issues_data.get("issues", []):
         fields = issue.get("fields", {})
         status_cat = fields.get("status", {}).get("statusCategory", {}).get("key", "")
         points = fields.get("customfield_10066") or 0
+        remaining = fields.get("customfield_10375") or points  # fallback to full points if no remaining set
 
         total_points += points
         if status_cat == "done":
             done += 1
-            done_points += points
+        else:
+            remaining_points += remaining
 
     return {
         "sprint_name": sprint_name,
         "state": "active",
         "total_issues": total,
         "done_issues": done,
+        "remaining_issues": total - done,
         "total_points": total_points,
-        "done_points": done_points,
-        "completion_rate": round(done_points / total_points * 100) if total_points > 0 else 0,
+        "remaining_points": remaining_points,
+        "completion_rate": round((total_points - remaining_points) / total_points * 100) if total_points > 0 else 0,
     }
 
 

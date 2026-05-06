@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-06T02:51:38.277214+00:00",
+  "lastUpdated": "2026-05-06T03:03:26.292791+00:00",
   "2026-05-03": {
     "teams": {}
   },
@@ -652,27 +652,30 @@
         "state": "active",
         "total_issues": 86,
         "done_issues": 48,
+        "remaining_issues": 38,
         "total_points": 72.0,
-        "done_points": 38.5,
-        "completion_rate": 53
+        "remaining_points": 29.75,
+        "completion_rate": 59
       },
       "pterodactyl": {
         "sprint_name": "Pterodactl Sprint 340",
         "state": "active",
         "total_issues": 50,
         "done_issues": 20,
+        "remaining_issues": 30,
         "total_points": 55.5,
-        "done_points": 19.5,
-        "completion_rate": 35
+        "remaining_points": 33.0,
+        "completion_rate": 41
       },
       "billing": {
         "sprint_name": "Billing 339 - 2026.04.27-05.08",
         "state": "active",
         "total_issues": 42,
         "done_issues": 9,
+        "remaining_issues": 33,
         "total_points": 65.0,
-        "done_points": 16.0,
-        "completion_rate": 25
+        "remaining_points": 50.0,
+        "completion_rate": 23
       }
     }
   }
