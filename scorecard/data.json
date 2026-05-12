@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-11T11:58:20.256923",
+  "lastUpdated": "2026-05-12T11:12:59.224524",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -7,127 +7,122 @@
         {
           "name": "provider-setup-service",
           "repo": "provider-setup-service",
-          "error": "Failed to clone provider-setup-service from GitHub",
           "checks": {
             "blueGreen": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "B/G enabled in CDK"
             },
             "sloGate": {
               "tier": "unknown",
               "status": "unknown",
-              "notes": "Clone failed"
+              "notes": "Depends on SLO definition first"
             },
             "prSize": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "t1",
+              "status": "pass",
+              "value": 185,
+              "notes": "185 lines avg (30d)"
             },
             "changeFailureRate": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "DX/Roadie metric \u2014 not per-svc"
             },
             "rollbackTime": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "DX/Roadie metric"
             },
             "deployPipeline": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "below_t3",
+              "status": "fail",
+              "value": 39.6,
+              "target": 80,
+              "notes": "Lines:39.6% (C:60.1% M:58.2% B:61.2%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24808635"
             },
             "complexity": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "Roadie \u2014 not currently scored"
             },
             "methodSize": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
               "tier": "unknown",
               "status": "unknown",
-              "notes": "Clone failed"
+              "count": null,
+              "notes": "teamcity CLI not found"
             },
             "testFailureRate": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "t1",
+              "status": "pass",
+              "value": 0.0,
+              "target": 1,
+              "notes": "0.0% (1/13124 tests, 20 builds)"
             },
             "eol": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "t1",
+              "status": "pass",
+              "notes": ".NET 8+ LTS"
             },
             "slo": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "below_t3",
+              "status": "fail",
+              "count": 0,
+              "notes": "No SLO detected"
             },
             "burnRate": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "No burn rate alerting \u2014 depends on SLO"
             },
             "smokeTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "Roadie: Sentry Issues Not Looked At, Sentry Issues Unassigned",
+              "roadie_source": true
             },
             "incidentMetric": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 1,
+              "notes": "Last commit: 2026-05-11 (1d ago)"
             },
             "plinth": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "On Plinth"
             },
             "cdkNoAnsible": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
-            },
-            "coreJourneys": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
-            },
-            "qaIterations": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
-            },
-            "branchPreview": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Clone failed"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "Roadie: Pagerduty Long Time to First Ack, Pagerduty High Total Incidents, Pagerduty Configuration",
+              "roadie_source": true
             }
           }
         }
@@ -242,8 +237,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 5,
-              "notes": "Last commit: 2026-05-06 (5d ago)"
+              "days_ago": 6,
+              "notes": "Last commit: 2026-05-06 (6d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -280,8 +275,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 27,
-              "notes": "27 lines avg (30d)"
+              "value": 31,
+              "notes": "31 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -364,8 +359,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-05-07 (4d ago)"
+              "days_ago": 1,
+              "notes": "Last commit: 2026-05-11 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -486,8 +481,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-05-07 (4d ago)"
+              "days_ago": 1,
+              "notes": "Last commit: 2026-05-11 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -608,8 +603,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-05-07 (4d ago)"
+              "days_ago": 5,
+              "notes": "Last commit: 2026-05-07 (5d ago)"
             },
             "plinth": {
               "tier": "t1",
