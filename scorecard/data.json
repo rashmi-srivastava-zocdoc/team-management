@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-13T10:05:58.383902",
+  "lastUpdated": "2026-05-13T10:08:46.754330",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -9,9 +9,9 @@
           "repo": "provider-setup-service",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "ECS service without B/G"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "B/G enabled in CDK"
             },
             "sloGate": {
               "tier": "unknown",
@@ -103,10 +103,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t3",
-              "status": "warning",
-              "days_ago": 85,
-              "notes": "Last commit: 2026-02-17 (85d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 1,
+              "notes": "Last commit: 2026-05-12 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -129,127 +129,119 @@
         {
           "name": "client-side-webapp-host",
           "repo": "client-side-webapp-host",
-          "error": "Repo not found at /Users/rashmi.srivastava/Desktop/github/_team_provider-peacock-team/client-side-webapp-host",
           "checks": {
             "blueGreen": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "B/G enabled in CDK"
             },
             "sloGate": {
               "tier": "unknown",
               "status": "unknown",
-              "notes": "Repo not found"
+              "notes": "Depends on SLO definition first"
             },
             "prSize": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "t1",
+              "status": "pass",
+              "value": 208,
+              "notes": "208 lines avg (30d)"
             },
             "changeFailureRate": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "DX/Roadie metric \u2014 not per-svc"
             },
             "rollbackTime": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "DX/Roadie metric"
             },
             "deployPipeline": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
               "tier": "unknown",
               "status": "unknown",
-              "notes": "Repo not found"
+              "value": null,
+              "target": 80,
+              "notes": "No TeamCity data"
             },
             "complexity": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "Roadie \u2014 not currently scored"
             },
             "methodSize": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "t1",
+              "status": "pass",
+              "count": 0,
+              "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
               "tier": "unknown",
               "status": "unknown",
-              "notes": "Repo not found"
+              "notes": "No test failure data"
             },
             "eol": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "t1",
+              "status": "pass",
+              "notes": ".NET 8+ LTS"
             },
             "slo": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "below_t3",
+              "status": "fail",
+              "count": 0,
+              "notes": "No SLO detected"
             },
             "burnRate": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "No burn rate alerting \u2014 depends on SLO"
             },
             "smokeTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "dx_metric",
+              "status": "dx_metric",
+              "notes": "Roadie surfaces; no active gap"
             },
             "sentry": {
               "tier": "unknown",
               "status": "unknown",
-              "notes": "Repo not found"
+              "unresolved": null,
+              "notes": "Sentry configured \u2014 hygiene unchecked (needs API)"
             },
             "incidentMetric": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 6,
+              "notes": "Last commit: 2026-05-07 (6d ago)"
             },
             "plinth": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "On Plinth"
             },
             "cdkNoAnsible": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
-            },
-            "coreJourneys": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
-            },
-            "qaIterations": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
-            },
-            "branchPreview": {
-              "tier": "unknown",
-              "status": "unknown",
-              "notes": "Repo not found"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Eftal Sogukoglu; Secondary: Sydney Morton; 2 layer(s), 24/7",
+              "pagerduty_source": true
             }
           }
         }
@@ -268,9 +260,9 @@
           "repo": "practice-user-permissions",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "ECS service without B/G"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "B/G enabled in CDK"
             },
             "sloGate": {
               "tier": "unknown",
@@ -362,10 +354,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "below_t3",
-              "status": "fail",
-              "days_ago": 91,
-              "notes": "Last commit: 2026-02-11 (91d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-13 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -390,9 +382,9 @@
           "repo": "practice-authorization-proxy",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "ECS service without B/G"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "B/G enabled in CDK"
             },
             "sloGate": {
               "tier": "unknown",
@@ -484,10 +476,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "below_t3",
-              "status": "fail",
-              "days_ago": 99,
-              "notes": "Last commit: 2026-02-03 (99d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-13 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -512,9 +504,9 @@
           "repo": "provider-grouping",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "ECS service without B/G"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "B/G enabled in CDK"
             },
             "sloGate": {
               "tier": "unknown",
@@ -608,8 +600,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 7,
-              "notes": "Last commit: 2026-05-06 (7d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-13 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -634,9 +626,9 @@
           "repo": "provider-join-service",
           "checks": {
             "blueGreen": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "ECS service without B/G"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "B/G enabled in CDK"
             },
             "sloGate": {
               "tier": "unknown",
@@ -701,10 +693,10 @@
               "notes": ".NET 8+ LTS"
             },
             "slo": {
-              "tier": "below_t3",
-              "status": "fail",
-              "count": 0,
-              "notes": "No SLO detected"
+              "tier": "t1",
+              "status": "pass",
+              "count": 1,
+              "notes": "SLO found in CDK"
             },
             "burnRate": {
               "tier": "below_t3",
@@ -728,10 +720,10 @@
               "notes": "No incident trigger metric detected"
             },
             "deployable": {
-              "tier": "t2",
-              "status": "warning",
-              "days_ago": 50,
-              "notes": "Last commit: 2026-03-24 (50d ago)"
+              "tier": "t1",
+              "status": "pass",
+              "days_ago": 1,
+              "notes": "Last commit: 2026-05-12 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
