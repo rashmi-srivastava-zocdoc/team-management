@@ -12,7 +12,8 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 from pathlib import Path
 
-OUTPUT_DIR = Path.home() / "Desktop/github/team-management/scorecard"
+SCRIPT_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = SCRIPT_DIR.parent / "scorecard"
 
 TOKEN = os.environ.get("ROADIE_API_TOKEN")
 BASE = "https://api.roadie.so/api"
