@@ -32,6 +32,12 @@
         "id": "19a6f611-7e0b-4f35-9a66-8abee3366e11"
       },
       {
+        "card": "Compliance - HIPAA",
+        "check": "Repository Scanned by Semgrep (past 30 days)",
+        "desc": "",
+        "id": "adab6066-17a0-4bb4-ba81-fd266c6c5bac"
+      },
+      {
         "card": "Observability",
         "check": "Sentry Issues Not Looked At",
         "desc": "",
@@ -44,8 +50,8 @@
         "id": "33b7d0b9-06b7-456f-a594-cef0f56a1e55"
       }
     ],
-    "passing_count": 10,
-    "failing_count": 7
+    "passing_count": 9,
+    "failing_count": 8
   },
   "practice-user-permissions": {
     "failing": [
@@ -152,6 +158,12 @@
         "id": "19a6f611-7e0b-4f35-9a66-8abee3366e11"
       },
       {
+        "card": "Compliance - HIPAA",
+        "check": "Repository Scanned by Semgrep (past 30 days)",
+        "desc": "",
+        "id": "adab6066-17a0-4bb4-ba81-fd266c6c5bac"
+      },
+      {
         "card": "Observability",
         "check": "Sentry Issues Not Looked At",
         "desc": "",
@@ -164,8 +176,8 @@
         "id": "33b7d0b9-06b7-456f-a594-cef0f56a1e55"
       }
     ],
-    "passing_count": 8,
-    "failing_count": 9
+    "passing_count": 7,
+    "failing_count": 10
   },
   "provider-grouping": {
     "failing": [
@@ -206,6 +218,12 @@
         "id": "8cc3986a-714a-46a0-8d60-739cb0480664"
       },
       {
+        "card": "Compliance - HIPAA",
+        "check": "Repository Scanned by Semgrep (past 30 days)",
+        "desc": "",
+        "id": "adab6066-17a0-4bb4-ba81-fd266c6c5bac"
+      },
+      {
         "card": "Observability",
         "check": "Sentry Issues Not Looked At",
         "desc": "",
@@ -218,8 +236,8 @@
         "id": "33b7d0b9-06b7-456f-a594-cef0f56a1e55"
       }
     ],
-    "passing_count": 9,
-    "failing_count": 8
+    "passing_count": 8,
+    "failing_count": 9
   },
   "provider-join-service": {
     "failing": [],
