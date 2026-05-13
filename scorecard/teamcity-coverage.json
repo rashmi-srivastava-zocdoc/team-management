@@ -1,57 +1,57 @@
 {
   "provider-setup-service": {
-    "build_id": 24808635,
-    "build_number": "1646",
+    "build_id": 25411117,
+    "build_number": "1735",
     "buildTypeId": "Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport",
-    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/24808635",
-    "finish_date": "20260430T131947-0400",
-    "classes_pct": 60.1,
-    "methods_pct": 58.2,
-    "lines_pct": 39.6,
-    "branches_pct": 61.2
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/25411117",
+    "finish_date": "20260512T155208-0400",
+    "classes_pct": 66.0,
+    "methods_pct": 65.4,
+    "lines_pct": 65.6,
+    "branches_pct": 65.9
   },
   "practice-user-permissions": {
-    "build_id": 24649350,
-    "build_number": "2652",
+    "build_id": 25415973,
+    "build_number": "2680",
     "buildTypeId": "PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport",
-    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport/24649350",
-    "finish_date": "20260428T101251-0400",
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport/25415973",
+    "finish_date": "20260512T162520-0400",
     "classes_pct": 85.3,
     "methods_pct": 85.1,
     "lines_pct": 81.8,
     "branches_pct": 70.3
   },
   "practice-authorization-proxy": {
-    "build_id": 24738660,
-    "build_number": "509",
+    "build_id": 25405570,
+    "build_number": "557",
     "buildTypeId": "PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport",
-    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/24738660",
-    "finish_date": "20260429T125933-0400",
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/25405570",
+    "finish_date": "20260512T150008-0400",
     "classes_pct": 65.8,
     "methods_pct": 73.9,
     "lines_pct": 82.9,
     "branches_pct": 26.2
   },
   "provider-grouping": {
-    "build_id": 24666015,
-    "build_number": "1040",
+    "build_id": 25374157,
+    "build_number": "1132",
     "buildTypeId": "Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport",
-    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/24666015",
-    "finish_date": "20260428T123551-0400",
-    "classes_pct": 70.8,
-    "methods_pct": 73.2,
-    "lines_pct": 74.5,
-    "branches_pct": 46.2
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/25374157",
+    "finish_date": "20260512T110742-0400",
+    "classes_pct": 71.1,
+    "methods_pct": 73.4,
+    "lines_pct": 75.3,
+    "branches_pct": 47.5
   },
   "provider-join-service": {
-    "build_id": 24500321,
-    "build_number": "768",
+    "build_id": 25400456,
+    "build_number": "821",
     "buildTypeId": "Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport",
-    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport/24500321",
-    "finish_date": "20260424T044519-0400",
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport/25400456",
+    "finish_date": "20260512T142742-0400",
     "classes_pct": 80.5,
     "methods_pct": 84.0,
     "lines_pct": 83.9,
-    "branches_pct": 60.9
+    "branches_pct": 61.0
   }
 }
