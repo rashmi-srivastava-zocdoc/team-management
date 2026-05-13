@@ -18,11 +18,12 @@ from datetime import datetime
 from pathlib import Path
 
 BASE_DIR = Path.home() / "Desktop/github"
-# In CI (GitHub Actions), use GITHUB_WORKSPACE; locally use ~/Desktop/github/team-management
+SCRIPT_DIR = Path(__file__).resolve().parent
+# In CI (GitHub Actions), use GITHUB_WORKSPACE; locally use script's sibling scorecard dir
 if os.environ.get("GITHUB_WORKSPACE"):
     OUTPUT_DIR = Path(os.environ["GITHUB_WORKSPACE"]) / "scorecard"
 else:
-    OUTPUT_DIR = BASE_DIR / "team-management/scorecard"
+    OUTPUT_DIR = SCRIPT_DIR.parent / "scorecard"
 OUTPUT_FILE = OUTPUT_DIR / "data.json"
 TIER_THRESHOLDS_FILE = OUTPUT_DIR / "tier-thresholds.json"
 GITHUB_ORG = "Zocdoc"
@@ -59,14 +60,14 @@ SLUG_TO_CHECK_ID = {
 CHECK_ID_TO_SLUG = {v: k for k, v in SLUG_TO_CHECK_ID.items()}
 
 # Roadie check mapping: Roadie check name -> scorecard check ID
+# Only "Pagerduty Configuration" (primary!=secondary, off-hours escalation) affects tier.
+# Ack time and incident count are operational metrics, not configuration.
 ROADIE_CHECK_MAP = {
     # Sentry
     "Sentry Issues Not Looked At": "sentry",
     "Sentry Issues Unassigned": "sentry",
-    # PagerDuty
+    # PagerDuty - only configuration check affects tier
     "Pagerduty Configuration": "pagerduty",
-    "Pagerduty Long Time to First Ack": "pagerduty",
-    "Pagerduty High Total Incidents": "pagerduty",
     # Security / EOL
     "No Critical or High Dependabot Findings": "eol",
     "Zero High Severity Code Findings": "eol",
@@ -679,6 +680,14 @@ def analyze_service(team_id, service, repo_base, tc_coverage, tc_muted_tests, tc
                 "tier": "below_t3",
                 "status": "fail",
                 "notes": f"Roadie: {', '.join(failing_checks)}",
+                "roadie_source": True
+            }
+        elif roadie.get("passing_count", 0) > 0:
+            # Service has Roadie data but no PagerDuty failures = passing
+            checks["pagerduty"] = {
+                "tier": "t1",
+                "status": "pass",
+                "notes": "Roadie: PagerDuty config passing",
                 "roadie_source": True
             }
 
