@@ -299,6 +299,41 @@
       "initiative": "Activation Velocity"
     },
     {
+      "id": "project-org-decoupling",
+      "name": "Project Org Decoupling",
+      "summary": "Decouple project and organization structures, establishing POGS as source of truth with Salesforce sync reversal.",
+      "team": "account-user-setup",
+      "leads": [],
+      "stage": "development",
+      "slackChannels": [],
+      "jiraEpics": [],
+      "documents": [
+        {
+          "title": "POGS as Source of Truth - Salesforce Sync Reversal v2",
+          "url": "https://zocdoc.atlassian.net/wiki/spaces/TECH/pages/2999386238/Design+Doc+POGS+as+Source+of+Truth+Salesforce+Sync+Reversal+v2"
+        },
+        {
+          "title": "Primary Account Rollup",
+          "url": "https://zocdoc.atlassian.net/wiki/spaces/SFADMIN/pages/33522155/Primary+Account+Rollup"
+        },
+        {
+          "title": "Project Org Decoupling Design Doc",
+          "url": "https://docs.google.com/document/d/1Rn6u-BvHGJfvQY8MjxEAiU-dUdnPzspGyiTicZmBMJ0/edit?tab=t.0#heading=h.n6pgf9nt88sq"
+        },
+        {
+          "title": "Project Org Decoupling Supporting Doc",
+          "url": "https://docs.google.com/document/d/15mahjkSJXHnqRZAi6Mr14tUT1YWqhAz54XY4H0VZXUw/edit?tab=t.0"
+        }
+      ],
+      "slackSummary": "",
+      "discoveredDocs": [],
+      "jiraStats": {
+        "total": 0,
+        "done": 0,
+        "inProgress": 0
+      }
+    },
+    {
       "id": "misbehavior-locking-phase2",
       "name": "Misbehavior Locking Phase 2",
       "summary": "Automated Trust & Safety system for detecting and handling account misbehavior.",
