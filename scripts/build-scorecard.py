@@ -81,6 +81,7 @@ PAGERDUTY_SCORES_FILE = OUTPUT_DIR / "pagerduty-scores.json"
 # Query: teamcity api "/app/rest/mutes?locator=project:(id:PROJECT_ID)"
 TEAMCITY_PROJECT_IDS = {
     "provider-setup-service": "Provider_ProviderSetupService",
+    "client-side-webapp-host": "Provider_ClientsideWebAppHost",
     "practice-user-permissions": "PracticeUserPermissions",
     "practice-authorization-proxy": "PracticeAuthorizationProxy",
     "provider-grouping": "Poomba_ProviderGrouping",

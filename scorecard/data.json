@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-13T10:08:46.754330",
+  "lastUpdated": "2026-05-13T10:18:50.266301",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -162,11 +162,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t1",
+              "status": "pass",
+              "value": 96.3,
               "target": 80,
-              "notes": "No TeamCity data"
+              "notes": "Lines:96.3% (C:94.8% M:93.9% B:78.7%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ClientsideWebAppHost_Provider_ClientsideWebAppHost_PantsCICoverageReport/25167057"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -296,7 +297,7 @@
               "value": 81.8,
               "target": 80,
               "notes": "Lines:81.8% (C:85.3% M:85.1% B:70.3%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport/25415973"
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport/25448020"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -418,7 +419,7 @@
               "value": 82.9,
               "target": 80,
               "notes": "Lines:82.9% (C:65.8% M:73.9% B:26.2%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/25405570"
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/25447998"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -540,7 +541,7 @@
               "value": 75.3,
               "target": 80,
               "notes": "Lines:75.3% (C:71.1% M:73.4% B:47.5%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/25374157"
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/25447942"
             },
             "complexity": {
               "tier": "dx_metric",

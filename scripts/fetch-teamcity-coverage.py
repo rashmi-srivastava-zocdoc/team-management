@@ -22,6 +22,7 @@ OUTPUT_DIR = os.path.join(SCRIPT_DIR, "..", "scorecard")
 COVERAGE_BUILD_TYPES = {
     # Peacock (Provider Onboarding)
     "provider-setup-service": "Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport",
+    "client-side-webapp-host": "Provider_ClientsideWebAppHost_Provider_ClientsideWebAppHost_PantsCICoverageReport",
     # Pterodactyl (Account & User Setup)
     "practice-user-permissions": "PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport",
     "practice-authorization-proxy": "PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport",
