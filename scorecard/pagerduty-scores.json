@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-05-13T13:23:45.867436Z",
+  "teams": {
+    "provider-onboarding": {
+      "team": "Provider Onboarding (Peacock)",
+      "checks": {
+        "escalation_levels": {
+          "status": "pass",
+          "details": "4 escalation levels configured"
+        },
+        "distinct_oncalls": {
+          "status": "pass",
+          "details": "Primary: Eftal Sogukoglu; Secondary: Sydney Morton"
+        },
+        "offhours_coverage": {
+          "status": "pass",
+          "details": "2 layer(s), 24/7 coverage"
+        }
+      },
+      "passing": true,
+      "errors": []
+    },
+    "account-user-setup": {
+      "team": "Account & User Setup (Pterodactyl)",
+      "checks": {
+        "escalation_levels": {
+          "status": "pass",
+          "details": "4 escalation levels configured"
+        },
+        "distinct_oncalls": {
+          "status": "pass",
+          "details": "Primary: jacqueline.hang@zocdoc.com; Secondary: Mayank Choudhary"
+        },
+        "offhours_coverage": {
+          "status": "pass",
+          "details": "1 layer(s), 24/7 coverage"
+        }
+      },
+      "passing": true,
+      "errors": []
+    },
+    "billing": {
+      "team": "Billing",
+      "checks": {
+        "escalation_levels": {
+          "status": "pass",
+          "details": "3 escalation levels configured"
+        },
+        "distinct_oncalls": {
+          "status": "pass",
+          "details": "Primary: Leonardo Pimenta; Secondary: Dave Ramirez"
+        },
+        "offhours_coverage": {
+          "status": "pass",
+          "details": "1 layer(s), 24/7 coverage"
+        }
+      },
+      "passing": true,
+      "errors": []
+    }
+  }
+}

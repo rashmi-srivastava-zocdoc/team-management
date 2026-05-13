@@ -75,6 +75,7 @@ ROADIE_CHECK_MAP = {
 }
 
 ROADIE_SCORES_FILE = OUTPUT_DIR / "roadie-scores.json"
+PAGERDUTY_SCORES_FILE = OUTPUT_DIR / "pagerduty-scores.json"
 
 # TeamCity project IDs for muted tests API
 # Query: teamcity api "/app/rest/mutes?locator=project:(id:PROJECT_ID)"
@@ -97,6 +98,7 @@ TEAMS = {
         },
         "services": [
             {"name": "provider-setup-service", "repo": "provider-setup-service", "github_repo": "provider-setup-service"},
+            {"name": "client-side-webapp-host", "repo": "client-side-webapp-host", "github_repo": "client-side-webapp-host"},
         ]
     },
     "account-user-setup": {
@@ -219,6 +221,20 @@ def load_roadie_scores():
 
     print(f"Loaded Roadie scores for {len(scores)} services")
     return scores
+
+
+def load_pagerduty_scores():
+    """Load PagerDuty API scores if available (from fetch-pagerduty.py)."""
+    if not PAGERDUTY_SCORES_FILE.exists():
+        return {}
+
+    with open(PAGERDUTY_SCORES_FILE) as f:
+        data = json.load(f)
+
+    # Return the teams dict directly
+    teams = data.get("teams", {})
+    print(f"Loaded PagerDuty scores for {len(teams)} teams")
+    return teams
 
 
 def clone_repo(github_repo):
@@ -596,10 +612,11 @@ def load_teamcity_muted_tests():
     print(f"Loaded muted tests for {len([r for r in results.values() if 'count' in r])} services from TeamCity")
     return results
 
-def analyze_service(team_id, service, repo_base, tc_coverage, tc_muted_tests, tc_test_stats, roadie_scores=None):
+def analyze_service(team_id, service, repo_base, tc_coverage, tc_muted_tests, tc_test_stats, roadie_scores=None, pagerduty_scores=None):
     svc_name = service["name"]
     check_defs = CHECK_DEFINITIONS or CHECK_DEFINITIONS_FALLBACK
     roadie = roadie_scores.get(svc_name, {}) if roadie_scores else {}
+    pagerduty = pagerduty_scores.get(team_id, {}) if pagerduty_scores else {}
 
     if USE_GITHUB:
         github_repo = service.get("github_repo", service["repo"])
@@ -691,6 +708,32 @@ def analyze_service(team_id, service, repo_base, tc_coverage, tc_muted_tests, tc
                 "roadie_source": True
             }
 
+    # PagerDuty direct API override (takes precedence over Roadie)
+    if pagerduty:
+        pd_checks = pagerduty.get("checks", {})
+        pd_passing = pagerduty.get("passing", False)
+        if pd_passing:
+            # All 3 checks pass: escalation levels, distinct oncalls, off-hours coverage
+            details = []
+            for check_name, check_data in pd_checks.items():
+                if check_data.get("status") == "pass":
+                    details.append(check_data.get("details", ""))
+            checks["pagerduty"] = {
+                "tier": "t1",
+                "status": "pass",
+                "notes": f"PagerDuty API: {'; '.join(d for d in details if d)[:100]}",
+                "pagerduty_source": True
+            }
+        else:
+            # Some checks failed
+            failing = [name for name, data in pd_checks.items() if data.get("status") != "pass"]
+            checks["pagerduty"] = {
+                "tier": "below_t3",
+                "status": "fail",
+                "notes": f"PagerDuty API: failing {', '.join(failing)}",
+                "pagerduty_source": True
+            }
+
     return {
         "name": svc_name,
         "repo": service["repo"],
@@ -769,12 +812,13 @@ def build_scorecard():
     tc_muted_tests = load_teamcity_muted_tests()
     tc_test_stats = load_teamcity_test_stats()
     roadie_scores = load_roadie_scores()
+    pagerduty_scores = load_pagerduty_scores()
 
     teams_data = {}
     for team_id, team_config in TEAMS.items():
         services = []
         for service in team_config["services"]:
-            result = analyze_service(team_id, service, team_config["repo_base"], tc_coverage, tc_muted_tests, tc_test_stats, roadie_scores)
+            result = analyze_service(team_id, service, team_config["repo_base"], tc_coverage, tc_muted_tests, tc_test_stats, roadie_scores, pagerduty_scores)
             services.append(result)
 
         teams_data[team_id] = {

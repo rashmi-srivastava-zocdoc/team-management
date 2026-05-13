@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-13T11:26:21.689806",
+  "lastUpdated": "2026-05-13T10:05:58.383902",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -9,9 +9,9 @@
           "repo": "provider-setup-service",
           "checks": {
             "blueGreen": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "B/G enabled in CDK"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -58,10 +58,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "count": null,
-              "notes": "teamcity CLI not found"
+              "tier": "t1",
+              "status": "pass",
+              "count": 0,
+              "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -103,10 +103,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-05-12 (1d ago)"
+              "tier": "t3",
+              "status": "warning",
+              "days_ago": 85,
+              "notes": "Last commit: 2026-02-17 (85d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -119,10 +119,137 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "Roadie: Pagerduty Configuration",
-              "roadie_source": true
+              "tier": "t1",
+              "status": "pass",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Eftal Sogukoglu; Secondary: Sydney Morton; 2 layer(s), 24/7",
+              "pagerduty_source": true
+            }
+          }
+        },
+        {
+          "name": "client-side-webapp-host",
+          "repo": "client-side-webapp-host",
+          "error": "Repo not found at /Users/rashmi.srivastava/Desktop/github/_team_provider-peacock-team/client-side-webapp-host",
+          "checks": {
+            "blueGreen": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "sloGate": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "prSize": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "changeFailureRate": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "rollbackTime": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "deployPipeline": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "coverage": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "complexity": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "methodSize": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "mutedTests": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "testFailureRate": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "eol": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "slo": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "burnRate": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "smokeTests": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "sentry": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "incidentMetric": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "deployable": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "plinth": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "cdkNoAnsible": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "pagerduty": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "coreJourneys": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "qaIterations": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
+            },
+            "branchPreview": {
+              "tier": "unknown",
+              "status": "unknown",
+              "notes": "Repo not found"
             }
           }
         }
@@ -141,9 +268,9 @@
           "repo": "practice-user-permissions",
           "checks": {
             "blueGreen": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "B/G enabled in CDK"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -153,8 +280,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 237,
-              "notes": "237 lines avg (30d)"
+              "value": 228,
+              "notes": "228 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -235,10 +362,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-05-12 (1d ago)"
+              "tier": "below_t3",
+              "status": "fail",
+              "days_ago": 91,
+              "notes": "Last commit: 2026-02-11 (91d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -251,10 +378,10 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "Roadie: Pagerduty Configuration",
-              "roadie_source": true
+              "tier": "t1",
+              "status": "pass",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: jacqueline.hang@zocdoc.com; Secondary: Mayank Choudhary; 1 ",
+              "pagerduty_source": true
             }
           }
         },
@@ -263,9 +390,9 @@
           "repo": "practice-authorization-proxy",
           "checks": {
             "blueGreen": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "B/G enabled in CDK"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -275,8 +402,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 27,
-              "notes": "27 lines avg (30d)"
+              "value": 26,
+              "notes": "26 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -357,10 +484,10 @@
               "notes": "5xx monitor wired to PD"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-05-12 (1d ago)"
+              "tier": "below_t3",
+              "status": "fail",
+              "days_ago": 99,
+              "notes": "Last commit: 2026-02-03 (99d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -373,10 +500,10 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "Roadie: Pagerduty Configuration",
-              "roadie_source": true
+              "tier": "t1",
+              "status": "pass",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: jacqueline.hang@zocdoc.com; Secondary: Mayank Choudhary; 1 ",
+              "pagerduty_source": true
             }
           }
         },
@@ -385,9 +512,9 @@
           "repo": "provider-grouping",
           "checks": {
             "blueGreen": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "B/G enabled in CDK"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -397,8 +524,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 125,
-              "notes": "125 lines avg (30d)"
+              "value": 121,
+              "notes": "121 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -481,8 +608,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-05-12 (1d ago)"
+              "days_ago": 7,
+              "notes": "Last commit: 2026-05-06 (7d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -497,8 +624,8 @@
             "pagerduty": {
               "tier": "t1",
               "status": "pass",
-              "notes": "Roadie: PagerDuty config passing",
-              "roadie_source": true
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: jacqueline.hang@zocdoc.com; Secondary: Mayank Choudhary; 1 ",
+              "pagerduty_source": true
             }
           }
         },
@@ -507,9 +634,9 @@
           "repo": "provider-join-service",
           "checks": {
             "blueGreen": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "B/G enabled in CDK"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "ECS service without B/G"
             },
             "sloGate": {
               "tier": "unknown",
@@ -574,10 +701,10 @@
               "notes": ".NET 8+ LTS"
             },
             "slo": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 1,
-              "notes": "SLO found in CDK"
+              "tier": "below_t3",
+              "status": "fail",
+              "count": 0,
+              "notes": "No SLO detected"
             },
             "burnRate": {
               "tier": "below_t3",
@@ -601,10 +728,10 @@
               "notes": "No incident trigger metric detected"
             },
             "deployable": {
-              "tier": "t1",
-              "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-05-12 (1d ago)"
+              "tier": "t2",
+              "status": "warning",
+              "days_ago": 50,
+              "notes": "Last commit: 2026-03-24 (50d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -617,9 +744,10 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "alarmWebhook not wired"
+              "tier": "t1",
+              "status": "pass",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: jacqueline.hang@zocdoc.com; Secondary: Mayank Choudhary; 1 ",
+              "pagerduty_source": true
             }
           }
         }
