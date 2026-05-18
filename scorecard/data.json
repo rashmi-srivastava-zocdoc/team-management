@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-18T12:22:02.286570",
+  "lastUpdated": "2026-05-18T08:38:01.908008",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -60,7 +60,7 @@
               "tier": "unknown",
               "status": "unknown",
               "count": null,
-              "notes": "teamcity CLI not found"
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -120,7 +120,7 @@
             "pagerduty": {
               "tier": "t1",
               "status": "pass",
-              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Eftal Sogukoglu; Secondary: Sydney Morton; 2 layer(s), 24/7",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Kelly Lee; Secondary: Eftal Sogukoglu; 2 layer(s), 24/7 cov",
               "pagerduty_source": true
             }
           }
@@ -178,10 +178,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "unknown",
@@ -239,7 +239,7 @@
             "pagerduty": {
               "tier": "t1",
               "status": "pass",
-              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Eftal Sogukoglu; Secondary: Sydney Morton; 2 layer(s), 24/7",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Kelly Lee; Secondary: Eftal Sogukoglu; 2 layer(s), 24/7 cov",
               "pagerduty_source": true
             }
           }
@@ -307,10 +307,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -428,10 +428,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -549,10 +549,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -670,10 +670,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "t1",
