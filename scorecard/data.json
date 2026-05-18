@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-18T11:50:09.537924",
+  "lastUpdated": "2026-05-18T16:18:22.603182",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -21,8 +21,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 183,
-              "notes": "183 lines avg (30d)"
+              "value": 193,
+              "notes": "193 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -45,7 +45,7 @@
               "value": 65.5,
               "target": 80,
               "notes": "Lines:65.5% (C:66.0% M:65.4% B:65.9%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/25594230"
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/25701189"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -76,10 +76,10 @@
               "notes": ".NET 8+ LTS"
             },
             "slo": {
-              "tier": "below_t3",
-              "status": "fail",
+              "tier": "t2",
+              "status": "warning",
               "count": 0,
-              "notes": "No SLO detected"
+              "notes": "SLO reference found, verify definition"
             },
             "burnRate": {
               "tier": "below_t3",
@@ -105,8 +105,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 3,
-              "notes": "Last commit: 2026-05-15 (3d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-18 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -143,8 +143,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 308,
-              "notes": "308 lines avg (30d)"
+              "value": 314,
+              "notes": "314 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -164,10 +164,10 @@
             "coverage": {
               "tier": "t1",
               "status": "pass",
-              "value": 96.1,
+              "value": 96.3,
               "target": 80,
-              "notes": "Lines:96.1% (C:94.8% M:92.9% B:74.3%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ClientsideWebAppHost_Provider_ClientsideWebAppHost_PantsCICoverageReport/25600668"
+              "notes": "Lines:96.3% (C:95.0% M:93.2% B:74.8%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ClientsideWebAppHost_Provider_ClientsideWebAppHost_PantsCICoverageReport/25689122"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -225,8 +225,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 3,
-              "notes": "Last commit: 2026-05-15 (3d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-18 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -517,8 +517,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 66,
-              "notes": "66 lines avg (30d)"
+              "value": 64,
+              "notes": "64 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -538,10 +538,10 @@
             "coverage": {
               "tier": "t2",
               "status": "warning",
-              "value": 75.5,
+              "value": 75.4,
               "target": 80,
-              "notes": "Lines:75.5% (C:71.2% M:73.5% B:47.4%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/25619805"
+              "notes": "Lines:75.4% (C:71.2% M:73.5% B:47.2%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/25689473"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -601,8 +601,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 3,
-              "notes": "Last commit: 2026-05-15 (3d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-18 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
