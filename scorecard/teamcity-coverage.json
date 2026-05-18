@@ -1,20 +1,68 @@
 {
   "provider-setup-service": {
-    "error": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+    "build_id": 25594230,
+    "build_number": "1741",
+    "buildTypeId": "Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport",
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/25594230",
+    "finish_date": "20260515T084743-0400",
+    "classes_pct": 66.0,
+    "methods_pct": 65.4,
+    "lines_pct": 65.5,
+    "branches_pct": 65.9
   },
   "client-side-webapp-host": {
-    "error": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+    "build_id": 25600668,
+    "build_number": "300",
+    "buildTypeId": "Provider_ClientsideWebAppHost_Provider_ClientsideWebAppHost_PantsCICoverageReport",
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ClientsideWebAppHost_Provider_ClientsideWebAppHost_PantsCICoverageReport/25600668",
+    "finish_date": "20260515T103442-0400",
+    "classes_pct": 94.8,
+    "methods_pct": 92.9,
+    "lines_pct": 96.1,
+    "branches_pct": 74.3
   },
   "practice-user-permissions": {
-    "error": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+    "build_id": 25600294,
+    "build_number": "2702",
+    "buildTypeId": "PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport",
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport/25600294",
+    "finish_date": "20260515T103009-0400",
+    "classes_pct": 85.5,
+    "methods_pct": 85.2,
+    "lines_pct": 81.9,
+    "branches_pct": 69.5
   },
   "practice-authorization-proxy": {
-    "error": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+    "build_id": 25542419,
+    "build_number": "569",
+    "buildTypeId": "PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport",
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/25542419",
+    "finish_date": "20260514T111624-0400",
+    "classes_pct": 65.8,
+    "methods_pct": 73.9,
+    "lines_pct": 82.9,
+    "branches_pct": 26.2
   },
   "provider-grouping": {
-    "error": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+    "build_id": 25619805,
+    "build_number": "1159",
+    "buildTypeId": "Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport",
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/25619805",
+    "finish_date": "20260515T142054-0400",
+    "classes_pct": 71.2,
+    "methods_pct": 73.5,
+    "lines_pct": 75.5,
+    "branches_pct": 47.4
   },
   "provider-join-service": {
-    "error": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+    "build_id": 25594184,
+    "build_number": "834",
+    "buildTypeId": "Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport",
+    "web_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport/25594184",
+    "finish_date": "20260515T084636-0400",
+    "classes_pct": 80.5,
+    "methods_pct": 84.0,
+    "lines_pct": 83.9,
+    "branches_pct": 61.0
   }
 }
