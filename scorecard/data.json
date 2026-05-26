@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-25T12:19:52.450231",
+  "lastUpdated": "2026-05-26T12:57:35.078165",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -21,8 +21,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 246,
-              "notes": "246 lines avg (30d)"
+              "value": 231,
+              "notes": "231 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -60,7 +60,7 @@
               "tier": "unknown",
               "status": "unknown",
               "count": null,
-              "notes": "teamcity CLI not found"
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -104,8 +104,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 5,
-              "notes": "Last commit: 2026-05-20 (5d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-26 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -120,7 +120,7 @@
             "pagerduty": {
               "tier": "t1",
               "status": "pass",
-              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Kelly Lee; Secondary: Eftal Sogukoglu; 2 layer(s), 24/7 cov",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Sydney Morton; Secondary: alex.pryadun@zocdoc.com; 2 layer(",
               "pagerduty_source": true
             }
           }
@@ -178,10 +178,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "unknown",
@@ -223,8 +223,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 3,
-              "notes": "Last commit: 2026-05-22 (3d ago)"
+              "days_ago": 4,
+              "notes": "Last commit: 2026-05-22 (4d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -239,7 +239,7 @@
             "pagerduty": {
               "tier": "t1",
               "status": "pass",
-              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Kelly Lee; Secondary: Eftal Sogukoglu; 2 layer(s), 24/7 cov",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Sydney Morton; Secondary: alex.pryadun@zocdoc.com; 2 layer(",
               "pagerduty_source": true
             }
           }
@@ -271,8 +271,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 245,
-              "notes": "245 lines avg (30d)"
+              "value": 247,
+              "notes": "247 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -307,10 +307,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -354,8 +354,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 3,
-              "notes": "Last commit: 2026-05-22 (3d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-26 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -368,9 +368,9 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "PagerDuty API: 4 escalation levels configured; Primary: jacqueline.hang@zocdoc.com; Secondary: Mayank Choudhary; 1 ",
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "PagerDuty API: failing distinct_oncalls",
               "pagerduty_source": true
             }
           }
@@ -392,8 +392,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 26,
-              "notes": "26 lines avg (30d)"
+              "value": 23,
+              "notes": "23 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -428,10 +428,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -475,8 +475,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 3,
-              "notes": "Last commit: 2026-05-22 (3d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-26 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -489,9 +489,9 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "PagerDuty API: 4 escalation levels configured; Primary: jacqueline.hang@zocdoc.com; Secondary: Mayank Choudhary; 1 ",
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "PagerDuty API: failing distinct_oncalls",
               "pagerduty_source": true
             }
           }
@@ -513,8 +513,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 112,
-              "notes": "112 lines avg (30d)"
+              "value": 107,
+              "notes": "107 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -549,10 +549,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -596,8 +596,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 5,
-              "notes": "Last commit: 2026-05-20 (5d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-05-26 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -610,9 +610,9 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "PagerDuty API: 4 escalation levels configured; Primary: jacqueline.hang@zocdoc.com; Secondary: Mayank Choudhary; 1 ",
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "PagerDuty API: failing distinct_oncalls",
               "pagerduty_source": true
             }
           }
@@ -670,10 +670,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -717,8 +717,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 6,
-              "notes": "Last commit: 2026-05-19 (6d ago)"
+              "days_ago": 7,
+              "notes": "Last commit: 2026-05-19 (7d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -731,9 +731,9 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": "PagerDuty API: 4 escalation levels configured; Primary: jacqueline.hang@zocdoc.com; Secondary: Mayank Choudhary; 1 ",
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "PagerDuty API: failing distinct_oncalls",
               "pagerduty_source": true
             }
           }
