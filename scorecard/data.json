@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-26T12:57:35.078165",
+  "lastUpdated": "2026-05-26T14:25:10.124407",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -40,11 +40,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t3",
+              "status": "warning",
+              "value": 67.0,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:67.0% (C:68.0% M:66.6% B:70.5%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/26033777"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -57,10 +58,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "count": null,
-              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
+              "tier": "t1",
+              "status": "pass",
+              "count": 0,
+              "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -161,11 +162,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t1",
+              "status": "pass",
+              "value": 96.3,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:96.3% (C:95.0% M:93.2% B:73.3%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ClientsideWebAppHost_Provider_ClientsideWebAppHost_PantsCICoverageReport/25957322"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -178,10 +180,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "count": null,
-              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
+              "tier": "t1",
+              "status": "pass",
+              "count": 0,
+              "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
               "tier": "unknown",
@@ -290,11 +292,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t1",
+              "status": "pass",
+              "value": 81.9,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:81.9% (C:85.5% M:85.2% B:69.9%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport/26022310"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -307,10 +310,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "count": null,
-              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
+              "tier": "t1",
+              "status": "pass",
+              "count": 0,
+              "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -411,11 +414,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t1",
+              "status": "pass",
+              "value": 82.9,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:82.9% (C:65.8% M:73.9% B:26.2%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/26032210"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -428,10 +432,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "count": null,
-              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
+              "tier": "t1",
+              "status": "pass",
+              "count": 0,
+              "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -513,8 +517,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 107,
-              "notes": "107 lines avg (30d)"
+              "value": 103,
+              "notes": "103 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -532,11 +536,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t2",
+              "status": "warning",
+              "value": 75.5,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:75.5% (C:70.9% M:73.5% B:47.8%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/26035551"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -549,10 +554,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "count": null,
-              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
+              "tier": "t1",
+              "status": "pass",
+              "count": 0,
+              "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -653,11 +658,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t1",
+              "status": "pass",
+              "value": 83.9,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:83.9% (C:80.5% M:84.0% B:61.0%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport/25741975"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -670,10 +676,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "count": null,
-              "notes": "TeamCity API error: Error: cannot connect to https://teamcity.east.zocdoccloud.net: Get \"https://teamcity.east.zocdocclo"
+              "tier": "t1",
+              "status": "pass",
+              "count": 0,
+              "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
               "tier": "t1",
