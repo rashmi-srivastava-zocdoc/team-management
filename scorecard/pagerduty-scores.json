@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-26T16:53:26.616268Z",
+  "generated_at": "2026-06-02T16:49:33.670732Z",
   "teams": {
     "provider-onboarding": {
       "team": "Provider Onboarding (Peacock)",
@@ -10,7 +10,7 @@
         },
         "distinct_oncalls": {
           "status": "pass",
-          "details": "Primary: Sydney Morton; Secondary: alex.pryadun@zocdoc.com"
+          "details": "Primary: alex.pryadun@zocdoc.com; Secondary: Kelly Lee"
         },
         "offhours_coverage": {
           "status": "pass",
@@ -28,15 +28,15 @@
           "details": "4 escalation levels configured"
         },
         "distinct_oncalls": {
-          "status": "fail",
-          "details": "Same person on primary and secondary"
+          "status": "pass",
+          "details": "Primary: Thiago Salvadori; Secondary: Mayank Choudhary"
         },
         "offhours_coverage": {
           "status": "pass",
           "details": "1 layer(s), 24/7 coverage"
         }
       },
-      "passing": false,
+      "passing": true,
       "errors": []
     },
     "billing": {

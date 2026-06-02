@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-02T12:34:54.496441",
+  "lastUpdated": "2026-06-02T12:50:35.904795",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -21,8 +21,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 258,
-              "notes": "258 lines avg (30d)"
+              "value": 256,
+              "notes": "256 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -40,11 +40,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t3",
+              "status": "warning",
+              "value": 66.2,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:66.2% (C:66.8% M:66.0% B:69.6%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/26386873"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -57,10 +58,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "unknown",
-              "status": "unknown",
-              "count": null,
-              "notes": "teamcity CLI not found"
+              "tier": "t1",
+              "status": "pass",
+              "count": 0,
+              "notes": "No muted tests in TeamCity"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -120,7 +121,7 @@
             "pagerduty": {
               "tier": "t1",
               "status": "pass",
-              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Sydney Morton; Secondary: alex.pryadun@zocdoc.com; 2 layer(",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: alex.pryadun@zocdoc.com; Secondary: Kelly Lee; 2 layer(s), ",
               "pagerduty_source": true
             }
           }
@@ -161,11 +162,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t1",
+              "status": "pass",
+              "value": 96.3,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:96.3% (C:95.0% M:93.2% B:73.3%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ClientsideWebAppHost_Provider_ClientsideWebAppHost_PantsCICoverageReport/25957322"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -239,7 +241,7 @@
             "pagerduty": {
               "tier": "t1",
               "status": "pass",
-              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Sydney Morton; Secondary: alex.pryadun@zocdoc.com; 2 layer(",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: alex.pryadun@zocdoc.com; Secondary: Kelly Lee; 2 layer(s), ",
               "pagerduty_source": true
             }
           }
@@ -271,8 +273,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 212,
-              "notes": "212 lines avg (30d)"
+              "value": 205,
+              "notes": "205 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -290,11 +292,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t1",
+              "status": "pass",
+              "value": 81.7,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:81.7% (C:85.6% M:85.2% B:69.7%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport/26398260"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -368,9 +371,9 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "PagerDuty API: failing distinct_oncalls",
+              "tier": "t1",
+              "status": "pass",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Thiago Salvadori; Secondary: Mayank Choudhary; 1 layer(s), ",
               "pagerduty_source": true
             }
           }
@@ -411,11 +414,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t1",
+              "status": "pass",
+              "value": 82.9,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:82.9% (C:65.8% M:73.9% B:26.2%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/26197907"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -489,9 +493,9 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "PagerDuty API: failing distinct_oncalls",
+              "tier": "t1",
+              "status": "pass",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Thiago Salvadori; Secondary: Mayank Choudhary; 1 layer(s), ",
               "pagerduty_source": true
             }
           }
@@ -513,8 +517,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 178,
-              "notes": "178 lines avg (30d)"
+              "value": 205,
+              "notes": "205 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -532,11 +536,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t2",
+              "status": "warning",
+              "value": 75.0,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:75.0% (C:67.9% M:70.6% B:48.7%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/26310923"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -596,8 +601,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-06-01 (1d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-06-02 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -610,9 +615,9 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "PagerDuty API: failing distinct_oncalls",
+              "tier": "t1",
+              "status": "pass",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Thiago Salvadori; Secondary: Mayank Choudhary; 1 layer(s), ",
               "pagerduty_source": true
             }
           }
@@ -653,11 +658,12 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "unknown",
-              "status": "unknown",
-              "value": null,
+              "tier": "t1",
+              "status": "pass",
+              "value": 83.5,
               "target": 80,
-              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
+              "notes": "Lines:83.5% (C:80.5% M:83.1% B:61.0%)",
+              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport/26202494"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -731,9 +737,9 @@
               "notes": "CDK only"
             },
             "pagerduty": {
-              "tier": "below_t3",
-              "status": "fail",
-              "notes": "PagerDuty API: failing distinct_oncalls",
+              "tier": "t1",
+              "status": "pass",
+              "notes": "PagerDuty API: 4 escalation levels configured; Primary: Thiago Salvadori; Secondary: Mayank Choudhary; 1 layer(s), ",
               "pagerduty_source": true
             }
           }
