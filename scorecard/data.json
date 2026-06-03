@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-02T12:51:26.344760",
+  "lastUpdated": "2026-06-03T13:07:55.096782",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -21,8 +21,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 256,
-              "notes": "256 lines avg (30d)"
+              "value": 265,
+              "notes": "265 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -40,12 +40,11 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "t3",
-              "status": "warning",
-              "value": 66.2,
+              "tier": "unknown",
+              "status": "unknown",
+              "value": null,
               "target": 80,
-              "notes": "Lines:66.2% (C:66.8% M:66.0% B:69.6%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderSetupService_Provider_ProviderSetupService_PantsCICoverageReport/26386873"
+              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -58,10 +57,10 @@
               "notes": "Roadie \u2014 not currently scored"
             },
             "mutedTests": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 0,
-              "notes": "No muted tests in TeamCity"
+              "tier": "unknown",
+              "status": "unknown",
+              "count": null,
+              "notes": "teamcity CLI not found"
             },
             "testFailureRate": {
               "tier": "t1",
@@ -106,7 +105,7 @@
               "tier": "t1",
               "status": "pass",
               "days_ago": 0,
-              "notes": "Last commit: 2026-06-02 (0d ago)"
+              "notes": "Last commit: 2026-06-03 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -162,12 +161,11 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "t1",
-              "status": "pass",
-              "value": 96.3,
+              "tier": "unknown",
+              "status": "unknown",
+              "value": null,
               "target": 80,
-              "notes": "Lines:96.3% (C:95.0% M:93.2% B:73.3%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ClientsideWebAppHost_Provider_ClientsideWebAppHost_PantsCICoverageReport/25957322"
+              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -225,8 +223,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 11,
-              "notes": "Last commit: 2026-05-22 (11d ago)"
+              "days_ago": 12,
+              "notes": "Last commit: 2026-05-22 (12d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -273,8 +271,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 205,
-              "notes": "205 lines avg (30d)"
+              "value": 193,
+              "notes": "193 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -292,12 +290,11 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "t1",
-              "status": "pass",
-              "value": 81.7,
+              "tier": "unknown",
+              "status": "unknown",
+              "value": null,
               "target": 80,
-              "notes": "Lines:81.7% (C:85.6% M:85.2% B:69.7%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeUserPermissions_PracticeUserPermissions_PantsCICoverageReport/26398260"
+              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -358,7 +355,7 @@
               "tier": "t1",
               "status": "pass",
               "days_ago": 0,
-              "notes": "Last commit: 2026-06-02 (0d ago)"
+              "notes": "Last commit: 2026-06-03 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -414,12 +411,11 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "t1",
-              "status": "pass",
-              "value": 82.9,
+              "tier": "unknown",
+              "status": "unknown",
+              "value": null,
               "target": 80,
-              "notes": "Lines:82.9% (C:65.8% M:73.9% B:26.2%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/PracticeAuthorizationProxy_PracticeAuthorizationProxy_PantsCICoverageReport/26197907"
+              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -479,8 +475,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 5,
-              "notes": "Last commit: 2026-05-28 (5d ago)"
+              "days_ago": 6,
+              "notes": "Last commit: 2026-05-28 (6d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -517,8 +513,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 205,
-              "notes": "205 lines avg (30d)"
+              "value": 192,
+              "notes": "192 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -536,12 +532,11 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "t2",
-              "status": "warning",
-              "value": 75.0,
+              "tier": "unknown",
+              "status": "unknown",
+              "value": null,
               "target": 80,
-              "notes": "Lines:75.0% (C:67.9% M:70.6% B:48.7%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Poomba_ProviderGrouping_Poomba_ProviderGrouping_PantsCICoverageReport/26310923"
+              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -601,8 +596,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-06-02 (0d ago)"
+              "days_ago": 1,
+              "notes": "Last commit: 2026-06-02 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -658,12 +653,11 @@
               "notes": "DX metric \u2014 p90 time-to-deploy"
             },
             "coverage": {
-              "tier": "t1",
-              "status": "pass",
-              "value": 83.5,
+              "tier": "unknown",
+              "status": "unknown",
+              "value": null,
               "target": 80,
-              "notes": "Lines:83.5% (C:80.5% M:83.1% B:61.0%)",
-              "build_url": "https://teamcity.east.zocdoccloud.net/buildConfiguration/Provider_ProviderJoinService_Provider_ProviderJoinService_PantsCICoverageReport/26202494"
+              "notes": "no PantsCICoverageReport build (build type not found or coverlet not wired)"
             },
             "complexity": {
               "tier": "dx_metric",
@@ -723,8 +717,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 5,
-              "notes": "Last commit: 2026-05-28 (5d ago)"
+              "days_ago": 6,
+              "notes": "Last commit: 2026-05-28 (6d ago)"
             },
             "plinth": {
               "tier": "t1",
