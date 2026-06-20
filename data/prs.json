@@ -1,19 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T13:59:09.226733+00:00",
-  "2026-05-21": {
-    "teams": {
-      "peacock": {
-        "total_prs": 0,
-        "unique_authors": 0
-      },
-      "pterodactyl": {
-        "total_prs": 0
-      },
-      "billing": {
-        "total_prs": 0
-      }
-    }
-  },
+  "lastUpdated": "2026-06-20T12:25:11.143531+00:00",
   "2026-05-22": {
     "teams": {
       "peacock": {
@@ -379,6 +365,19 @@
     }
   },
   "2026-06-19": {
+    "teams": {
+      "peacock": {
+        "total_prs": 0
+      },
+      "pterodactyl": {
+        "total_prs": 0
+      },
+      "billing": {
+        "total_prs": 0
+      }
+    }
+  },
+  "2026-06-20": {
     "teams": {
       "peacock": {
         "total_prs": 0
