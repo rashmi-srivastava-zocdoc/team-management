@@ -1,7 +1,7 @@
 {
   "version": "Q2-2026",
   "source": "Infrastructure Scorecard.xlsx",
-  "generated": "2026-07-07T11:37:52.626154Z",
+  "generated": "2026-07-08T10:54:05.159495Z",
   "checks": {
     "blue_green_enabled": {
       "name": "Blue/Green Enabled",
