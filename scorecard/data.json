@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-26T10:29:06.305711",
+  "lastUpdated": "2026-07-27T12:11:14.323460",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -104,8 +104,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 2,
-              "notes": "Last commit: 2026-07-24 (2d ago)"
+              "days_ago": 3,
+              "notes": "Last commit: 2026-07-24 (3d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -223,8 +223,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 11,
-              "notes": "Last commit: 2026-07-15 (11d ago)"
+              "days_ago": 12,
+              "notes": "Last commit: 2026-07-15 (12d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -354,8 +354,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 2,
-              "notes": "Last commit: 2026-07-24 (2d ago)"
+              "days_ago": 3,
+              "notes": "Last commit: 2026-07-24 (3d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -475,8 +475,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 5,
-              "notes": "Last commit: 2026-07-21 (5d ago)"
+              "days_ago": 6,
+              "notes": "Last commit: 2026-07-21 (6d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -596,8 +596,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 3,
-              "notes": "Last commit: 2026-07-23 (3d ago)"
+              "days_ago": 4,
+              "notes": "Last commit: 2026-07-23 (4d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -632,10 +632,10 @@
               "notes": "Depends on SLO definition first"
             },
             "prSize": {
-              "tier": "t1",
-              "status": "pass",
-              "value": 391,
-              "notes": "391 lines avg (30d)"
+              "tier": "t2",
+              "status": "warning",
+              "value": 410,
+              "notes": "410 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -717,8 +717,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-07-22 (4d ago)"
+              "days_ago": 5,
+              "notes": "Last commit: 2026-07-22 (5d ago)"
             },
             "plinth": {
               "tier": "t1",
