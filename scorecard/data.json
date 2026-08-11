@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-10T10:08:57.647348",
+  "lastUpdated": "2026-08-11T09:51:33.903197",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -21,8 +21,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 292,
-              "notes": "292 lines avg (30d)"
+              "value": 248,
+              "notes": "248 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -104,8 +104,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 3,
-              "notes": "Last commit: 2026-08-07 (3d ago)"
+              "days_ago": 1,
+              "notes": "Last commit: 2026-08-10 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -223,8 +223,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 11,
-              "notes": "Last commit: 2026-07-30 (11d ago)"
+              "days_ago": 12,
+              "notes": "Last commit: 2026-07-30 (12d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -271,8 +271,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 76,
-              "notes": "76 lines avg (30d)"
+              "value": 71,
+              "notes": "71 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -354,8 +354,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 5,
-              "notes": "Last commit: 2026-08-05 (5d ago)"
+              "days_ago": 1,
+              "notes": "Last commit: 2026-08-10 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -446,10 +446,10 @@
               "notes": ".NET 8+ LTS"
             },
             "slo": {
-              "tier": "t1",
-              "status": "pass",
-              "count": 1,
-              "notes": "SLO found in CDK"
+              "tier": "below_t3",
+              "status": "fail",
+              "count": 0,
+              "notes": "No SLO detected"
             },
             "burnRate": {
               "tier": "below_t3",
@@ -475,8 +475,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 13,
-              "notes": "Last commit: 2026-07-28 (13d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-08-11 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -513,8 +513,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 360,
-              "notes": "360 lines avg (30d)"
+              "value": 355,
+              "notes": "355 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -596,8 +596,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-08-06 (4d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-08-11 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -634,8 +634,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 162,
-              "notes": "162 lines avg (30d)"
+              "value": 156,
+              "notes": "156 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -717,8 +717,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-08-06 (4d ago)"
+              "days_ago": 1,
+              "notes": "Last commit: 2026-08-10 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
