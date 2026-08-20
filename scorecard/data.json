@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-19T09:23:21.356460",
+  "lastUpdated": "2026-08-20T09:23:57.949335",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -21,8 +21,8 @@
             "prSize": {
               "tier": "t2",
               "status": "warning",
-              "value": 465,
-              "notes": "465 lines avg (30d)"
+              "value": 484,
+              "notes": "484 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -104,8 +104,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 0,
-              "notes": "Last commit: 2026-08-19 (0d ago)"
+              "days_ago": 1,
+              "notes": "Last commit: 2026-08-19 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -223,8 +223,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 6,
-              "notes": "Last commit: 2026-08-13 (6d ago)"
+              "days_ago": 7,
+              "notes": "Last commit: 2026-08-13 (7d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -271,8 +271,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 98,
-              "notes": "98 lines avg (30d)"
+              "value": 104,
+              "notes": "104 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -355,7 +355,7 @@
               "tier": "t1",
               "status": "pass",
               "days_ago": 1,
-              "notes": "Last commit: 2026-08-18 (1d ago)"
+              "notes": "Last commit: 2026-08-19 (1d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -475,8 +475,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-08-18 (1d ago)"
+              "days_ago": 2,
+              "notes": "Last commit: 2026-08-18 (2d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -513,8 +513,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 380,
-              "notes": "380 lines avg (30d)"
+              "value": 395,
+              "notes": "395 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -596,8 +596,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 6,
-              "notes": "Last commit: 2026-08-13 (6d ago)"
+              "days_ago": 7,
+              "notes": "Last commit: 2026-08-13 (7d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -634,8 +634,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 146,
-              "notes": "146 lines avg (30d)"
+              "value": 56,
+              "notes": "56 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -717,8 +717,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 1,
-              "notes": "Last commit: 2026-08-18 (1d ago)"
+              "days_ago": 2,
+              "notes": "Last commit: 2026-08-18 (2d ago)"
             },
             "plinth": {
               "tier": "t1",
