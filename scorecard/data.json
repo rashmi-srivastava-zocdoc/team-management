@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-13T13:32:24.653111",
+  "lastUpdated": "2026-09-14T15:26:01.093308",
   "teams": {
     "provider-onboarding": {
       "name": "Provider Onboarding",
@@ -104,8 +104,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 2,
-              "notes": "Last commit: 2026-09-11 (2d ago)"
+              "days_ago": 3,
+              "notes": "Last commit: 2026-09-11 (3d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -223,8 +223,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 5,
-              "notes": "Last commit: 2026-09-08 (5d ago)"
+              "days_ago": 6,
+              "notes": "Last commit: 2026-09-08 (6d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -271,8 +271,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 89,
-              "notes": "89 lines avg (30d)"
+              "value": 79,
+              "notes": "79 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -320,9 +320,9 @@
               "notes": "0.0% (0/13231 tests, 20 builds)"
             },
             "eol": {
-              "tier": "t1",
-              "status": "pass",
-              "notes": ".NET 8+ LTS"
+              "tier": "below_t3",
+              "status": "fail",
+              "notes": "Legacy framework \u2014 urgent upgrade needed"
             },
             "slo": {
               "tier": "below_t3",
@@ -354,8 +354,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 2,
-              "notes": "Last commit: 2026-09-11 (2d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-09-14 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -475,8 +475,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 4,
-              "notes": "Last commit: 2026-09-09 (4d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-09-14 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -596,8 +596,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 9,
-              "notes": "Last commit: 2026-09-04 (9d ago)"
+              "days_ago": 10,
+              "notes": "Last commit: 2026-09-04 (10d ago)"
             },
             "plinth": {
               "tier": "t1",
@@ -634,8 +634,8 @@
             "prSize": {
               "tier": "t1",
               "status": "pass",
-              "value": 20,
-              "notes": "20 lines avg (30d)"
+              "value": 17,
+              "notes": "17 lines avg (30d)"
             },
             "changeFailureRate": {
               "tier": "dx_metric",
@@ -717,8 +717,8 @@
             "deployable": {
               "tier": "t1",
               "status": "pass",
-              "days_ago": 12,
-              "notes": "Last commit: 2026-09-01 (12d ago)"
+              "days_ago": 0,
+              "notes": "Last commit: 2026-09-14 (0d ago)"
             },
             "plinth": {
               "tier": "t1",
